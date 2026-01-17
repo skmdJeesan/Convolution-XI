@@ -147,9 +147,26 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground;
   }
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
+@keyframes float-hologram {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-float-delayed {
+  animation: float-hologram 6s ease-in-out 1.5s infinite;
+}
+
+ .animate-scanline-delayed {
+   animation: scanline 3s linear 1.5s infinite;
+}

@@ -1,13 +1,14 @@
 import EventShowcase from "@/components/EventShowcase";
-import HomeAbout from "@/components/Hero";
-import Navbar from "@/components/Navbar";
+import FaqSection from "@/components/FAQ";
+import HomeAbout from "@/components/HomeAbout";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="bg-green-900 w-full h-[100vh]">
+    <main className="bg-black w-full h-[100vh]">
       <HomeAbout/>
       <EventShowcase/>
+      {/* <FaqSection/> */}
     </main>
    
   );

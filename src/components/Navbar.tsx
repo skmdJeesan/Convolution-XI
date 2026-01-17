@@ -1,12 +1,10 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import ConvoIcon from "../assets/images/HerosectionImages/ConvoSvg.svg";
+import ConvoIcon from "../assets/images/CovoSvg.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { IoClose, IoMenuOutline, IoChevronDownOutline } from "react-icons/io5";
-import profileIcon from "@/assets/images/profileIcon.webp";
-
-// ------------------- DATA -------------------
+import profileIcon from "@/assets/images/Robot_Profile.jpg";
 
 const desktopNavLinks = [
   { href: "/", label: "Home" },
@@ -40,28 +38,39 @@ const mobileNavLinks = [
   { href: "/#sponsors", label: "Previous Sponsors" },
 ];
 
-// ------------------- COMPONENT -------------------
-
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const lastScrollY = useRef(0);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const toggleNavigation = (): void => {
     setIsNavOpen((prevState) => !prevState);
   };
 
-  // ------------------- SCROLL LOGIC -------------------
+  
+  const startHideTimer = () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setIsVisible(false);
+    }, 2300); // 2.3 seconds until auto-hide
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      
+      // Clear timer on any scroll activity so it doesn't vanish mid-scroll
+      if (timerRef.current) clearTimeout(timerRef.current);
 
-      if (currentScrollY < 10) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY.current) {
-        setIsVisible(false); // Scrolling DOWN -> Hide
+      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        // SCROLL DOWN -> Hide immediately
+        setIsVisible(false);
       } else {
-        setIsVisible(true);  // Scrolling UP -> Show
+        // SCROLL UP (or at top) -> Show immediately
+        setIsVisible(true);
+        // Start the countdown to hide it again
+        startHideTimer();
       }
 
       lastScrollY.current = currentScrollY;
@@ -69,17 +78,19 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
+    // Initial timer on mount
+    startHideTimer();
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (timerRef.current) clearTimeout(timerRef.current);
     };
   }, []);
 
-  const navVisibilityClass = isVisible || isNavOpen ? "translate-y-0" : "-translate-y-[150%]";
+  const navVisibilityClass = (isVisible || isNavOpen) ? "translate-y-0" : "-translate-y-[150%]";
 
   return (
     <>
-      {/* ---------------- 1. FIXED LOGO (ALWAYS VISIBLE) ---------------- */}
-      {/* This is outside the moving container so it never hides */}
       <div className="fixed top-6 left-4 md:left-8 z-[1000] pointer-events-auto transition-transform hover:scale-105 duration-300">
         <Link href="/">
           <Image
@@ -90,25 +101,31 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {/* ---------------- 2. SMART NAVBAR (HIDES ON SCROLL) ---------------- */}
+     {/* center navBar */}
       <div 
         className={`fixed top-0 left-0 right-0 z-[999] p-4 pt-6 font-sans transition-transform duration-500 ease-in-out ${navVisibilityClass}`}
+        onMouseEnter={() => {
+            // If hovering, clear timer and keep visible
+            if (timerRef.current) clearTimeout(timerRef.current);
+            setIsVisible(true);
+        }}
+        onMouseLeave={() => {
+            // When mouse leaves, restart the countdown
+            startHideTimer();
+        }}
       >
-        {/* Container: Changed justify-between to justify-end because Logo is gone from here */}
+        
         <div className="maxWidthForSections w-full flex justify-end items-center mx-auto pointer-events-none">
-          
-          {/* ---------------- CENTER: GLASS PILL NAVBAR (Desktop) ---------------- */}
+        
           <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 pointer-events-auto">
             <ul className="flex items-center gap-x-2 px-3 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl text-xs font-bold uppercase tracking-widest text-gray-200 ring-1 ring-white/10">
               {desktopNavLinks.map((item, index) => (
                 <li key={index} className="relative group">
                   {item.subItems ? (
-                    /* Dropdown Parent */
                     <div className="px-6 py-2 hover:bg-white/10  rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1 hover:text-white">
                       <span>{item.label}</span>
                       <IoChevronDownOutline className="size-3 group-hover:rotate-180 transition-transform duration-300" />
                       
-                      {/* Glass Dropdown Menu */}
                       <div className="absolute top-full left-1/2 -translate-x-1/2 pt-6 hidden group-hover:block w-56">
                         <ul className="bg-black backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden shadow-2xl p-2 flex flex-col gap-1">
                           {item.subItems.map((sub, subIndex) => (
@@ -125,7 +142,6 @@ const Navbar = () => {
                       </div>
                     </div>
                   ) : (
-                    /* Standard Link */
                     <Link
                       href={item.href}
                       className="block px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 hover:text-white"
@@ -138,7 +154,7 @@ const Navbar = () => {
             </ul>
           </nav>
 
-          {/* ---------------- RIGHT: PROFILE & TOGGLE ---------------- */}
+          {/* Profile and Toggle */}
           <div className="flex items-center gap-4 pointer-events-auto z-50">
             <Link href="/profile" className="rounded-full relative group block">
               <div className="rounded-full border-2 border-white/20 overflow-hidden hover:border-white transition-colors shadow-lg shadow-white/10">
@@ -161,7 +177,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* ---------------- MOBILE GLASS DRAWER ---------------- */}
+        {/* Mobile sidebar*/}
         <div
           className={`${
             isNavOpen ? "translate-x-0" : "translate-x-full"
@@ -199,12 +215,12 @@ const Navbar = () => {
 
             <div className="mt-auto">
                <Link
-                  href="/login"
-                  onClick={toggleNavigation}
-                  className="block w-full bg-white text-black py-4 rounded-full font-black uppercase tracking-widest text-center mt-4 hover:bg-gray-200 transition-all duration-300"
-                >
-                  Login
-                </Link>
+                 href="/login"
+                 onClick={toggleNavigation}
+                 className="block w-full bg-white text-black py-4 rounded-full font-black uppercase tracking-widest text-center mt-4 hover:bg-gray-200 transition-all duration-300"
+               >
+                 Login
+               </Link>
             </div>
           </div>
         </div>

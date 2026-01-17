@@ -49,22 +49,16 @@ const eventsData = [
 
 const EventShowcase = () => {
   return (
-    <div className="w-full bg-[#030303] flex flex-col items-center overflow-x-hidden relative">
-      
-      {/* 1. FIXED BACKGROUND */}
+    <div id="all-events" className="w-full bg-[#030303] flex flex-col items-center overflow-x-hidden relative">
       <div className="fixed inset-0 pointer-events-none z-0">
         
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:25%_100%]" />
       
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:25%_100%]" />
-        
-        {/* Top Fade Gradient */}
         <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-orange-900/10 to-transparent pointer-events-none" />
       </div>
 
-      {/* --- CINEMATIC HEADER SECTION --- */}
-      <div className="relative z-10 w-full max-w-[1400px] px-6 md:px-12 pt-24 pb-12 flex flex-col items-center text-center">
-        
-        {/* Floating Tag */}
+    
+      <div className="relative z-10 w-full max-w-[1400px] px-6 md:px-12 pt-24 pb-12 flex flex-col items-center text-center">  
         <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 backdrop-blur-sm animate-fade-in-down">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
@@ -75,27 +69,22 @@ const EventShowcase = () => {
           </span>
         </div>
 
-        {/* GIANT TITLE */}
         <h1 className="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-stone-200 to-stone-500 drop-shadow-2xl mb-6 relative">
           The Events
-          {/* Decorative Glitch/Glow behind text */}
           <span className="absolute -inset-1 blur-2xl bg-gradient-to-r from-orange-600/20 to-red-600/20 -z-10"></span>
         </h1>
 
-        {/* Subtitle / Description */}
         <p className="max-w-2xl text-stone-400 text-sm md:text-lg font-medium leading-relaxed tracking-wide">
           Prepare for deployment. Choose your domain and prove your skills in the 
           <span className="text-orange-400 font-bold"> ultimate techno-management battlefield</span>.
         </p>
 
-        {/* Decorative Divider Line */}
         <div className="mt-12 w-full h-[1px] bg-gradient-to-r from-transparent via-orange-500/30 to-transparent relative">
              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-1 bg-orange-500 rounded-full shadow-[0_0_10px_#f97316]" />
         </div>
 
       </div>
 
-      {/* --- EVENT CARDS SECTION --- */}
       <div className="w-full max-w-[1400px] px-4 md:px-12 relative z-10 flex flex-col gap-8 md:gap-0 pb-32">
         {eventsData.map((event, index) => {
           const isEven = index % 2 === 0;
