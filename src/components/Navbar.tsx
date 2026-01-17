@@ -1,22 +1,24 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import ConvoIcon from "../assets/images/CovoSvg.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { IoClose, IoMenuOutline, IoChevronDownOutline } from "react-icons/io5";
+import { usePathname } from "next/navigation";
+import { IoMenuOutline, IoChevronDownOutline } from "react-icons/io5";
 import profileIcon from "@/assets/images/Robot_Profile.jpg";
+import MobileMenu from "./MobileMenu"; 
+
 
 const desktopNavLinks = [
   { href: "/", label: "Home" },
+  { label: "About", href: "/#about" },
   {
     label: "Events",
-    href: "/#events",
+    href: "/#",
     subItems: [
       { href: "/#all-events", label: "All Events" },
       { href: "/#timeline", label: "Timeline" },
     ],
   },
-  { href: "/#contact", label: "Contact" },
   {
     label: "More",
     href: "#",
@@ -24,6 +26,7 @@ const desktopNavLinks = [
       { href: "/#faq", label: "FAQ" },
       { href: "/#team", label: "Team" },
       { href: "/#sponsors", label: "Sponsors" },
+      { href: "/#contact", label: "Let's Connect" },
     ],
   },
 ];
@@ -35,7 +38,7 @@ const mobileNavLinks = [
   { href: "/#contact", label: "Contact" },
   { href: "/#faq", label: "FAQ" },
   { href: "/#team", label: "Team" },
-  { href: "/#sponsors", label: "Previous Sponsors" },
+  { href: "/#sponsors", label: "Sponsors" },
 ];
 
 const Navbar = () => {
@@ -43,86 +46,92 @@ const Navbar = () => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const lastScrollY = useRef(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const pathname = usePathname();
 
   const toggleNavigation = (): void => {
     setIsNavOpen((prevState) => !prevState);
   };
 
-  
   const startHideTimer = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       setIsVisible(false);
-    }, 2300); // 2.3 seconds until auto-hide
+    }, 2300);
+  };
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+    if (href.includes("#")) {
+      const targetId = href.substring(href.indexOf("#"));
+      const targetPath = href.substring(0, href.indexOf("#"));
+      const isCurrentPage = targetPath === "" || targetPath === pathname || (targetPath === "/" && pathname === "/");
+
+      if (isCurrentPage) {
+        e.preventDefault();
+        const elem = document.querySelector(targetId);
+
+        if (elem) {
+          if (isNavOpen) setIsNavOpen(false);
+          const offset = 0;
+          const elementPosition = elem.getBoundingClientRect().top + window.scrollY;
+          const offsetPosition = elementPosition - offset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
+      } else {
+        setIsNavOpen(false);
+      }
+    } else {
+      setIsNavOpen(false);
+    }
   };
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScrollEvent = () => {
       const currentScrollY = window.scrollY;
-      
-      // Clear timer on any scroll activity so it doesn't vanish mid-scroll
       if (timerRef.current) clearTimeout(timerRef.current);
 
       if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
-        // SCROLL DOWN -> Hide immediately
         setIsVisible(false);
       } else {
-        // SCROLL UP (or at top) -> Show immediately
         setIsVisible(true);
-        // Start the countdown to hide it again
         startHideTimer();
       }
-
       lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    // Initial timer on mount
+    window.addEventListener("scroll", handleScrollEvent, { passive: true });
     startHideTimer();
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScrollEvent);
       if (timerRef.current) clearTimeout(timerRef.current);
     };
   }, []);
 
-  const navVisibilityClass = (isVisible || isNavOpen) ? "translate-y-0" : "-translate-y-[150%]";
+  const navVisibilityClass = isVisible || isNavOpen ? "translate-y-0" : "-translate-y-[150%]";
 
   return (
     <>
-      <div className="fixed top-6 left-4 md:left-8 z-[1000] pointer-events-auto transition-transform hover:scale-105 duration-300">
-        <Link href="/">
-          <Image
-            src={ConvoIcon}
-            alt="convo logo"
-            className="object-cover h-12 w-auto drop-shadow-xl"
-          />
-        </Link>
-      </div>
-
-     {/* center navBar */}
-      <div 
+      <div
         className={`fixed top-0 left-0 right-0 z-[999] p-4 pt-6 font-sans transition-transform duration-500 ease-in-out ${navVisibilityClass}`}
         onMouseEnter={() => {
-            // If hovering, clear timer and keep visible
-            if (timerRef.current) clearTimeout(timerRef.current);
-            setIsVisible(true);
+          if (timerRef.current) clearTimeout(timerRef.current);
+          setIsVisible(true);
         }}
         onMouseLeave={() => {
-            // When mouse leaves, restart the countdown
-            startHideTimer();
+          startHideTimer();
         }}
       >
-        
-        <div className="maxWidthForSections w-full flex justify-end items-center mx-auto pointer-events-none">
-        
+        <div className="w-full flex justify-end items-center mx-auto pointer-events-none">
+          {/* DESKTOP NAV */}
           <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 pointer-events-auto">
             <ul className="flex items-center gap-x-2 px-3 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl text-xs font-bold uppercase tracking-widest text-gray-200 ring-1 ring-white/10">
               {desktopNavLinks.map((item, index) => (
                 <li key={index} className="relative group">
                   {item.subItems ? (
-                    <div className="px-6 py-2 hover:bg-white/10  rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1 hover:text-white">
+                    <div className="px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1 hover:text-white">
                       <span>{item.label}</span>
                       <IoChevronDownOutline className="size-3 group-hover:rotate-180 transition-transform duration-300" />
                       
@@ -132,6 +141,7 @@ const Navbar = () => {
                             <li key={subIndex}>
                               <Link
                                 href={sub.href}
+                                onClick={(e) => handleScroll(e, sub.href)}
                                 className="block px-4 py-3 hover:bg-white/20 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[10px]"
                               >
                                 {sub.label}
@@ -144,6 +154,7 @@ const Navbar = () => {
                   ) : (
                     <Link
                       href={item.href}
+                      onClick={(e) => handleScroll(e, item.href)}
                       className="block px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 hover:text-white"
                     >
                       {item.label}
@@ -168,62 +179,23 @@ const Navbar = () => {
               </div>
             </Link>
 
-            <button 
-              onClick={toggleNavigation} 
-              className="md:hidden text-white bg-white/10 p-3 rounded-full backdrop-blur-md border border-white/20 active:scale-90 transition-all shadow-lg"
+            <button
+              onClick={toggleNavigation}
+              className="md:hidden text-white bg-white/10 p-3 rounded-full backdrop-blur-md border border-white/20 active:scale-90 transition-all shadow-lg hover:bg-white/20"
             >
               <IoMenuOutline className="size-6" />
             </button>
           </div>
         </div>
 
-        {/* Mobile sidebar*/}
-        <div
-          className={`${
-            isNavOpen ? "translate-x-0" : "translate-x-full"
-          } transition-transform duration-500 cubic-bezier(0.22, 1, 0.36, 1) fixed top-0 right-0 w-full h-screen z-[1000] flex justify-end pointer-events-auto`}
-          onClick={toggleNavigation} 
-        >
-          <div
-            className="h-full w-full max-w-sm bg-[#0a0a0a]/80 backdrop-blur-3xl border-l border-white/10 flex flex-col py-8 px-8 shadow-2xl"
-            onClick={(e) => e.stopPropagation()} 
-          >
-            <div className="relative flex justify-between items-center mb-12 border-b border-white/10 pb-6">
-              <span className="text-white/50 text-sm font-bold tracking-widest uppercase">Menu</span>
-              <IoClose
-                className="size-12 text-white hover:text-orange-500/60 transition-all cursor-pointer bg-white/5 hover:bg-white/20 rounded-full p-2 border border-white/10"
-                onClick={toggleNavigation}
-              />
-            </div>
-
-            <ul className="flex flex-col gap-y-6">
-              {mobileNavLinks.map((item, index) => (
-                <li key={index} className="group">
-                  <Link 
-                    href={item.href} 
-                    onClick={toggleNavigation}
-                    className="flex items-center justify-between text-3xl font-black text-white/80 uppercase tracking-tight hover:text-orange-500/60 transition-all duration-300 group-hover:translate-x-4"
-                  >
-                    {item.label}
-                    <span className="opacity-0 group-hover:opacity-100 text-lg transition-opacity duration-300">
-                      →
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-auto">
-               <Link
-                 href="/login"
-                 onClick={toggleNavigation}
-                 className="block w-full bg-white text-black py-4 rounded-full font-black uppercase tracking-widest text-center mt-4 hover:bg-gray-200 transition-all duration-300"
-               >
-                 Login
-               </Link>
-            </div>
-          </div>
-        </div>
+        {/* ---------------- MOBILE SIDEBAR COMPONENT ---------------- */}
+        <MobileMenu 
+          isOpen={isNavOpen} 
+          onClose={() => setIsNavOpen(false)} 
+          links={mobileNavLinks} 
+          onLinkClick={handleScroll}
+        />
+        
       </div>
     </>
   );

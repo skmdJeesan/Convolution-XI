@@ -39,7 +39,7 @@ export default function FaqSection() {
       {/*Heading*/}
       <div className="relative z-10 text-center mb-16 space-y-2">
         <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]">
-          Freq. Asked Questions
+          Frequently Asked Questions
         </h2>
         <div className="h-1 w-24 mx-auto bg-gradient-to-r from-transparent via-cyan-500 to-transparent rounded-full opacity-70"></div>
       </div>
