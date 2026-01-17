@@ -1,156 +1,89 @@
 import React from 'react';
 
+const faqData = [
+  {
+    question: "What is Convolution?",
+    answer: 
+      "Convolution is the annual tech fest organised by JUEE, where technology, creativity, and innovation come together. It features exciting events, workshops, competitions, and opportunities to showcase talent.",
+  },
+  {
+    question: "When and where is Convolution happening?",
+    answer: 
+      "Convolution will take place from 20th to 22nd February, 2025 at the Department of Electrical Engineering, Jadavpur University. Further updates about the time, date and venue of specific events will be available on our website soon. Stay tuned for more updates !! ",
+  },
+  {
+    question: "Who can participate in Convolution?",
+    answer: 
+      "Any student enrolled in any undergraduate programme interested in exploring, engaging in enthralling activities and undertaking mind boggling challenges are welcome to participate in Convolution. ",
+  },
+  {
+    question: "How do I register on the website?",
+    answer: 
+      "To register for any event, click on the “Register” button and create an account. You will receive a verification email, which may land in your spam folder. After verifying your email, log in , using the credentials given during registration. Voilà! You are all set to participate in the events!",
+  },
+  {
+    question: "Is there any registration fee?",
+    answer: 
+      "No, the registrations for the events are completely free of cost.",
+  },
+];
+
 export default function FaqSection() {
   return (
-    <div className="[interpolate-size:allow-keywords] bg-gradient-to-br from-black to-black/95 min-h-screen flex flex-col place-items-center gap-8 pt-16">
-      <h2 className="text-3xl font-semibold bg-radial to-zinc-500/50 from-gray-50/80 bg-clip-text text-transparent">
-        Frequently Asked Questions
-      </h2>
-      <div className="w-[600px] max-h-[80vh] overflow-y-auto p-6 flex flex-col gap-y-4">
-        {/* Item 1 */}
-        <details
-          name="example"
-          className="group rounded-lg transition-all duration-200 ease-in-out ring-2 ring-zinc-800/40 ring-[1px] ring-offset-[1px] ring-offset-black/40 hover:bg-zinc-900/20 
-                    [&::details-content]:[height:0] [&::details-content]:overflow-y-clip [&::details-content]:[transition:all_475ms_allow-discrete]
-                    [&[open]::details-content]:[height:auto] [&[open]]:bg-gradient-to-br [&[open]]:from-zinc-900/10 [&[open]]:via-zinc-800/20 [&[open]]:to-zinc-900/10"
-        >
-          <summary className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-zinc-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:text-zinc-400 w-full px-6 py-3 h-auto justify-between hover:bg-transparent cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-            <h3 className="text-base font-medium transition-colors duration-200 text-left text-zinc-600/70 [details[open]_&]:text-zinc-200">
-              What is interpolate-size?
-            </h3>
-            <div className="p-0.5 rounded-full flex-shrink-0 transition-transform duration-400 scale-110 text-zinc-500 [details[open]_&]:rotate-180 [details[open]_&]:text-zinc-400">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
-                aria-hidden="true"
-              >
-                <path d="m6 9 6 6 6-6"></path>
-              </svg>
-            </div>
-          </summary>
-          <div className="overflow-hidden">
-            <div className="px-6 pb-4 pt-2 starting:blur-xs starting:opacity-0 starting:-translate-y-1 [details:not([open])_&]:opacity-20 [details:not([open])_&]:-translate-y-1 [details:not([open])_&]:blur-xs blur-none translate-y-0 opacity-100 transition-all duration-500">
-              <p className="text-sm text-zinc-500 leading-relaxed">
-                The interpolate-size CSS property allows you to enable
-                animations and transitions between length-percentage values and
-                intrinsic size values like auto, fit-content, and max-content.
-              </p>
-            </div>
-          </div>
-        </details>
+    <div id="faq" className="relative w-full min-h-screen bg-[#050505] overflow-hidden flex flex-col items-center pt-24 pb-12">
+      <div className="absolute inset-0 z-0 opacity-15" 
+           style={{ backgroundImage: 'linear-gradient(#222 1px, transparent 1px), linear-gradient(90deg, #222 1px, transparent 1px)', backgroundSize: '50px 50px' }}>
+      </div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-        {/* Item 2 */}
-        <details
-          name="example"
-          className="group rounded-lg transition-all duration-200 ease-in-out ring-2 ring-zinc-800/40 ring-[1px] ring-offset-[1px] ring-offset-black/40 hover:bg-zinc-900/20 
-                    [&::details-content]:[height:0] [&::details-content]:overflow-y-clip [&::details-content]:[transition:background_475ms,content-visibility_475ms_allow-discrete,height_475ms]
-                    [&[open]::details-content]:[height:auto] [&[open]]:bg-gradient-to-br [&[open]]:from-zinc-900/10 [&[open]]:via-zinc-800/20 [&[open]]:to-zinc-900/10"
-        >
-          <summary className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-zinc-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:text-zinc-400 w-full px-6 py-3 h-auto justify-between hover:bg-transparent cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-            <h3 className="text-base font-medium transition-colors duration-200 text-left text-zinc-600/70 [details[open]_&]:text-zinc-200">
-              How does it work?
-            </h3>
-            <div className="p-0.5 rounded-full flex-shrink-0 transition-transform duration-400 scale-110 text-zinc-500 [details[open]_&]:rotate-180 [details[open]_&]:text-zinc-400">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
-                aria-hidden="true"
-              >
-                <path d="m6 9 6 6 6-6"></path>
-              </svg>
-            </div>
-          </summary>
-          <div className="overflow-hidden">
-            <div className="px-6 pb-4 pt-2 starting:blur-xs starting:opacity-0 starting:-translate-y-1 [details:not([open])_&]:opacity-20 [details:not([open])_&]:-translate-y-1 [details:not([open])_&]:blur-xs blur-none translate-y-0 opacity-100 transition-all duration-500">
-              <p className="text-sm text-zinc-500 leading-relaxed">
-                The browser can now smoothly animate between fixed heights and
-                intrinsic sizes, length values and fit-content, percentages and
-                max-content using the ::details-content pseudo-element.
-              </p>
-            </div>
-          </div>
-        </details>
+      {/*Heading*/}
+      <div className="relative z-10 text-center mb-16 space-y-2">
+        <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+          Freq. Asked Questions
+        </h2>
+        <div className="h-1 w-24 mx-auto bg-gradient-to-r from-transparent via-cyan-500 to-transparent rounded-full opacity-70"></div>
+      </div>
 
-        {/* Item 3 */}
-        <details
-          name="example"
-          className="group rounded-lg transition-all duration-200 ease-in-out ring-2 ring-zinc-800/40 ring-[1px] ring-offset-[1px] ring-offset-black/40 hover:bg-zinc-900/20 
-                    [&::details-content]:[height:0] [&::details-content]:overflow-y-clip [&::details-content]:[transition:background_475ms,content-visibility_475ms_allow-discrete,height_475ms]
-                    [&[open]::details-content]:[height:auto] [&[open]]:bg-gradient-to-br [&[open]]:from-zinc-900/10 [&[open]]:via-zinc-800/20 [&[open]]:to-zinc-900/10"
-        >
-          <summary className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-zinc-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:text-zinc-400 w-full px-6 py-3 h-auto justify-between hover:bg-transparent cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-            <h3 className="text-base font-medium transition-colors duration-200 text-left text-zinc-600/70 [details[open]_&]:text-zinc-200">
-              Implementation example
-            </h3>
-            <div className="p-0.5 rounded-full flex-shrink-0 transition-transform duration-400 scale-110 text-zinc-500 [details[open]_&]:rotate-180 [details[open]_&]:text-zinc-400">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
-                aria-hidden="true"
-              >
-                <path d="m6 9 6 6 6-6"></path>
-              </svg>
-            </div>
-          </summary>
-          <div className="overflow-hidden">
-            <div className="px-6 pb-4 pt-2 starting:blur-xs starting:opacity-0 starting:-translate-y-1 [details:not([open])_&]:opacity-20 [details:not([open])_&]:-translate-y-1 [details:not([open])_&]:blur-xs blur-none translate-y-0 opacity-100 transition-all duration-500">
-              <p className="text-sm text-zinc-500 leading-relaxed mb-3">
-                Here's the key CSS converted to Tailwind arbitrary classes:
-              </p>
-              <div className="bg-zinc-950 border border-zinc-800/40 text-zinc-100 rounded-lg p-3 text-xs font-mono overflow-x-auto">
-                <div className="text-emerald-400">
-                  /* Enable interpolate-size */
-                </div>
-                <div className="text-zinc-300">
-                  [interpolate-size:allow-keywords]
-                </div>
-                <br />
-                <div className="text-emerald-400">/* Exclusive behavior */</div>
-                <div className="text-zinc-300">name="example"</div>
-                <br />
-                <div className="text-emerald-400">
-                  /* Target ::details-content pseudo-element */
-                </div>
-                <div className="text-zinc-300">
-                  [&::details-content]:[height:0]
-                </div>
-                <div className="text-zinc-300">
-                  [&[open]::details-content]:[height:auto]
-                </div>
-                <br />
-                <div className="text-emerald-400">/* Smooth transitions */</div>
-                <div className="text-zinc-300">
-                  [&::details-content]:[transition:background_475ms,content-visibility_475ms_allow-discrete,height_475ms]
-                </div>
+      {/* Faq */}
+      <div className="relative z-10 w-full max-w-[800px] px-6 flex flex-col gap-y-4">
+        {faqData.map((data, id) => (
+          <details
+            key={id}
+            className="group relative overflow-hidden rounded-2xl bg-white/[0.03] backdrop-blur-sm border border-white/10 transition-all duration-500 ease-in-out hover:bg-white/[0.05] hover:border-white/20 open:bg-white/[0.07] open:border-cyan-500/30 open:shadow-[0_0_30px_-10px_rgba(6,182,212,0.15)] [interpolate-size:allow-keywords] [&::details-content]:[height:0] [&::details-content]:overflow-y-clip [&::details-content]:[transition:all_400ms_ease-out] [&[open]::details-content]:[height:auto]"
+          >
+            <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-cyan-400 to-purple-500 opacity-0 transition-opacity duration-300 group-open:opacity-100"></div>
+
+            <summary className="flex items-center justify-between w-full px-6 py-5 cursor-pointer list-none select-none outline-none [&::-webkit-details-marker]:hidden">
+              <h3 className="text-lg md:text-xl font-medium text-slate-300 transition-colors duration-300 group-hover:text-white group-open:text-cyan-200">
+                {data.question}
+              </h3>
+
+              <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 transition-all duration-300 group-open:bg-cyan-500/20 group-open:border-cyan-500/50 group-open:rotate-180">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                  className="w-4 h-4 text-slate-400 transition-colors duration-300 group-open:text-cyan-400"
+                >
+                  <path d="m6 9 6 6 6-6"></path>
+                </svg>
+              </div>
+            </summary>
+
+    
+            <div className="px-6 pb-6 pt-0">
+              <div className="w-full h-[1px] bg-white/5 mb-4"></div>
+              
+              <div className="text-slate-400 leading-relaxed font-light tracking-wide text-sm md:text-base 
+                              starting:blur-sm starting:opacity-0 starting:-translate-y-2 
+                              transition-all duration-500 ease-out">
+                {data.answer}
               </div>
             </div>
-          </div>
-        </details>
+          </details>
+        ))}
       </div>
+
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
     </div>
   );
 }

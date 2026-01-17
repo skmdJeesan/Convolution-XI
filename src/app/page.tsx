@@ -8,7 +8,7 @@ export default function Home() {
     <main className="bg-black w-full h-[100vh]">
       <HomeAbout/>
       <EventShowcase/>
-      {/* <FaqSection/> */}
+      <FaqSection/>
     </main>
    
   );
