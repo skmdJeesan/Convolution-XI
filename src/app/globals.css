@@ -170,3 +170,11 @@ html{
  .animate-scanline-delayed {
    animation: scanline 3s linear 1.5s infinite;
 }
+
+.glass-btn {
+  @apply px-5 py-2 rounded-full text-sm font-medium text-white bg-white/5 backdrop-blur-md border border-white/20 hover:bg-white/10 cursor-pointer transition;
+}
+
+.glassmorphism-bg {
+  @apply bg-black/35 backdrop-blur-2xl backdrop-saturate-150 border border-white/20 shadow-[0_20px_60px_rgba(0,_0,_0,_0.45)] before:absolute before:inset-0 before:rounded-[32px] before:bg-gradient-to-br before:from-white/20 before:via-white/5 before:to-transparent before:pointer-events-none;
+}
