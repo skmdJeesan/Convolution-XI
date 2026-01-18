@@ -25,7 +25,7 @@ function Footer() {
   const { ref, breakTheText } = useWaveText({ 
     scrub: 2, 
     yoyo: false,
-    markers: true 
+    markers: false 
   });
   const [text, setText] = useState("Convolution");
 
