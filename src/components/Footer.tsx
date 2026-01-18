@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link';
 import { FaInstagram } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
@@ -5,6 +6,8 @@ import { FaLinkedin } from "react-icons/fa";
 import Image from 'next/image';
 import ConvoLogo from "@/assets/images/CovoSvg.svg";
 import { MdCall, MdLocationOn, MdOutlineEmail } from "react-icons/md";
+import { useEffect, useState } from 'react';
+import { useWaveText } from '@/hooks/useWaveText';
 
 const events = [
   { name: "Algomaniac", href: "/event/algomaniac" },
@@ -19,6 +22,20 @@ const events = [
 ];
 
 function Footer() {
+  const { ref, breakTheText } = useWaveText({ 
+    scrub: 2, 
+    yoyo: false,
+    markers: true 
+  });
+  const [text, setText] = useState("Convolution");
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.setAttribute('data-text', text);
+      breakTheText();
+    }
+  }, [text, breakTheText]);
+
   return (
     <div id='contact' className='footer relative min-h-[85vh] bg-black flex flex-col px-4 md:px-8 lg:px-12 py-4 md:py-6 lg:py-8'>
 
@@ -79,7 +96,7 @@ function Footer() {
           <span className="h-1 w-10 md:w-14 mt-2 rounded-full bg-white"></span>
           <ul className="mt-4 md:mt-6 [&>*]:eventLinks flex flex-row flex-wrap gap-2 md:gap-[0.5px] md:flex-col justify-center md:justify-start">
             {events.map((event, index) => (
-                <li key={index} className="hover:scale-105 hover:text-purple-400 text-sm md:text-sm lg:text-base  md:text-left text-white/80 shrink-0">
+                <li key={index} className="hover:scale-105 hover:text-purple-400 text-sm md:text-sm lg:text-base md:text-left text-white/80 shrink-0">
                   <Link href={event.href}>{event.name}</Link>
                 </li>
             ))}
@@ -88,7 +105,7 @@ function Footer() {
       </div>
 
       <div className='middle h-[12vh] md:h-[15vh] lg:h-[20vh] w-full border-b-2 flex justify-center overflow-clip relative z-10'>
-        <h1 className='text-[15vw] md:text-[12vw] lg:text-[15vw] text-white font-bold absolute -bottom-4 md:-bottom-6 lg:-bottom-10 leading-none'>Convolution</h1>
+        <h1 ref={ref as React.RefObject<HTMLHeadingElement>} className='text-[15vw] md:text-[12vw] lg:text-[16vw] text-white tracking-tight font-bold absolute -bottom-4 md:-bottom-6 lg:-bottom-14 leading-none'>{text}</h1>
       </div>
 
       <div className='bottom h-auto md:h-[10vh] w-full flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2 relative z-10 py-4 md:py-0'>
@@ -104,7 +121,7 @@ function Footer() {
         <Image src='/page-bottom.jpg' alt='footer' fill className='object-cover'/>
       </div>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
