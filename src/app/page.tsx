@@ -7,8 +7,8 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="bg-black w-full h-screen">
-      {/* <HomeAbout/>
-      <EventShowcase/> */}
+      <HomeAbout/>
+      <EventShowcase/>
       <FaqSection/>
       <Footer />
     </main>
