@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { IoMenuOutline, IoChevronDownOutline } from "react-icons/io5";
 import profileIcon from "@/assets/images/Robot_Profile.jpg";
 import MobileMenu from "./MobileMenu"; 
+import FlipLink from "./FlipLink";
 
 
 const desktopNavLinks = [
@@ -132,7 +133,7 @@ const Navbar = () => {
                 <li key={index} className="relative group">
                   {item.subItems ? (
                     <div className="px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1 hover:text-white">
-                      <span>{item.label}</span>
+                      <span><FlipLink href="">{item.label}</FlipLink></span>
                       <IoChevronDownOutline className="size-3 group-hover:rotate-180 transition-transform duration-300" />
                       
                       <div className="absolute top-full left-1/2 -translate-x-1/2 pt-6 hidden group-hover:block w-56">
@@ -144,7 +145,7 @@ const Navbar = () => {
                                 onClick={(e) => handleScroll(e, sub.href)}
                                 className="block px-4 py-3 hover:bg-white/20 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[10px]"
                               >
-                                {sub.label}
+                                <FlipLink href="">{sub.label}</FlipLink>
                               </Link>
                             </li>
                           ))}
@@ -157,7 +158,7 @@ const Navbar = () => {
                       onClick={(e) => handleScroll(e, item.href)}
                       className="block px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 hover:text-white"
                     >
-                      {item.label}
+                      <FlipLink href="">{item.label}</FlipLink>
                     </Link>
                   )}
                 </li>
