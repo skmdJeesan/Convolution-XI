@@ -39,7 +39,7 @@ function Footer() {
   return (
     <div id='contact' className='footer relative min-h-[85vh] bg-black flex flex-col px-4 md:px-8 lg:px-12 py-4 md:py-6 lg:py-8'>
 
-      <div className="top h-auto md:h-[50vh] w-full flex flex-col md:flex-row items-start justify-between gap-8 md:gap-4 px-2 md:px-4 lg:px-8 py-4 md:py-2">
+      <div className="top h-auto md:h-[40vh] w-full flex flex-col md:flex-row items-start md:items-center justify-between md:justify-center gap-8 md:gap-4 px-2 md:px-4 mb-4 md:mb-10 lg:mb-10 lg:px-8 py-4 md:py-2">
         <div className="logo flex flex-col items-center lg:items-start gap-4 md:gap-8 w-full md:w-[30%]">
           <div className="w-40 h-16 md:w-52 md:h-20">
             <Image src={ConvoLogo} alt='convo logo' className='object-cover'/>
@@ -104,8 +104,8 @@ function Footer() {
         </div>
       </div>
 
-      <div className='middle h-[12vh] md:h-[15vh] lg:h-[20vh] w-full border-b-2 flex justify-center overflow-clip relative z-10'>
-        <h1 ref={ref as React.RefObject<HTMLHeadingElement>} className='text-[15vw] md:text-[12vw] lg:text-[16vw] text-white tracking-tight font-bold absolute -bottom-4 md:-bottom-6 lg:-bottom-14 leading-none'>{text}</h1>
+      <div className='middle h-[10vh] md:h-[10vh] lg:h-[20vh] w-full border-b-2 flex justify-center overflow-clip relative z-10'>
+        <h1 ref={ref as React.RefObject<HTMLHeadingElement>} className='text-[16vw] md:text-[14vw] lg:text-[16vw] text-white tracking-tight font-bold absolute -bottom-4 md:-bottom-7 lg:-bottom-12 leading-none'>{text}</h1>
       </div>
 
       <div className='bottom h-auto md:h-[10vh] w-full flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2 relative z-10 py-4 md:py-0'>
@@ -117,7 +117,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="w-full h-24 md:h-32 lg:h-40 absolute bottom-0 left-0 opacity-30 z-0">
+      <div className="w-full h-40 md:h-40 lg:h-40 absolute bottom-0 left-0 opacity-30 z-0">
         <Image src='/page-bottom.jpg' alt='footer' fill className='object-cover'/>
       </div>
     </div>
