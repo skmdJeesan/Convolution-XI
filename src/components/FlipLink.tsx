@@ -1,44 +1,59 @@
 import { motion } from 'motion/react'
-import React from 'react'
+import React, { useRef } from 'react'
 
 function FlipLink({ children, href }: { children: string, href: string }) {
+  const topDivRef = useRef<HTMLDivElement>(null);
+  const bottomDivRef = useRef<HTMLDivElement>(null);
+
+  const handleHoverStart = () => {
+    if (topDivRef.current && bottomDivRef.current) {
+      const topSpans = topDivRef.current.querySelectorAll('span');
+      const bottomSpans = bottomDivRef.current.querySelectorAll('span');
+
+      topSpans.forEach((span, i) => {
+        span.animate(
+          [{ transform: 'translateY(0)' }, { transform: 'translateY(-100%)' }],
+          {
+            duration: 250,
+            delay: 25 * i,
+            easing: 'ease-in-out',
+            fill: 'forwards',
+          }
+        );
+      });
+
+      bottomSpans.forEach((span, i) => {
+        span.animate(
+          [{ transform: 'translateY(100%)' }, { transform: 'translateY(0)' }],
+          {
+            duration: 250,
+            delay: 25 * i,
+            easing: 'ease-in-out',
+            fill: 'forwards',
+          }
+        );
+      });
+    }
+  };
+
   return (
     <motion.a
-      initial="initial"
-      whileHover="hovered"
       href={href}
       className='relative block overflow-hidden whitespace-nowrap'
+      onHoverStart={handleHoverStart}
     >
-      <div>
+      <div ref={topDivRef}>
         {children.split('').map((l, i) => {
-          return <motion.span
+          return <span
             className='inline-block'
-            variants={{
-              initial: { y: 0 },
-              hovered: { y: '-100%' }
-            }}
-            transition={{
-              duration: 0.25,
-              delay: 0.025*i,
-              ease: "easeInOut"
-            }}
-            key={i}>{l}</motion.span>
+            key={i}>{l}</span>
         })}
       </div>
-      <div className='absolute inset-0'>
+      <div ref={bottomDivRef} className='absolute inset-0'>
         {children.split('').map((l, i) => {
-          return <motion.span
+          return <span
             className='inline-block'
-            variants={{
-              initial: { y: '100%' },
-              hovered: { y: 0 }
-            }}
-            transition={{
-              duration: 0.25,
-              delay: 0.025*i,
-              ease: "easeInOut"
-            }}
-            key={i}>{l}</motion.span>
+            key={i}>{l}</span>
         })}
       </div>
     </motion.a>
