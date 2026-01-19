@@ -1,6 +1,6 @@
 "use client";
 import React from 'react'
-import ConvoIcon from "../assets/images/CovoSvg.svg";
+import ConvoIcon from "../assets/images/ConvoSvg.svg";
 import Image from "next/image";
 import Link from "next/link";
 

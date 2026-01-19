@@ -4,7 +4,7 @@ import { FaInstagram } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import Image from 'next/image';
-import ConvoLogo from "@/assets/images/CovoSvg.svg";
+import ConvoLogo from "@/assets/images/ConvoSvg.svg";
 import { MdCall, MdLocationOn, MdOutlineEmail } from "react-icons/md";
 import { useEffect, useState } from 'react';
 import { useWaveText } from '@/hooks/useWaveText';

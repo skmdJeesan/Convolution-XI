@@ -9,7 +9,7 @@ import MobileMenu from "./MobileMenu";
 
 
 const desktopNavLinks = [
-  { href: "/", label: "Home" },
+  { href: "/#home", label: "Home" },
   { label: "About", href: "/#about" },
   {
     label: "Events",
@@ -32,7 +32,7 @@ const desktopNavLinks = [
 ];
 
 const mobileNavLinks = [
-  { href: "/", label: "Home" },
+  { href: "/#home", label: "Home" },
   { href: "/#all-events", label: "Events" },
   { href: "/#timeline", label: "Timeline" },
   { href: "/#contact", label: "Contact" },
