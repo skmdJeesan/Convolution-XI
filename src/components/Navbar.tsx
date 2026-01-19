@@ -60,7 +60,7 @@ const Navbar = () => {
     }, 2300);
   };
 
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+  const handleScroll = (e: React.MouseEvent<HTMLElement, MouseEvent>, href: string) => {
     if (href.includes("#")) {
       const targetId = href.substring(href.indexOf("#"));
       const targetPath = href.substring(0, href.indexOf("#"));
@@ -140,26 +140,24 @@ const Navbar = () => {
                         <ul className="bg-black backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden shadow-2xl p-2 flex flex-col gap-1">
                           {item.subItems.map((sub, subIndex) => (
                             <li key={subIndex}>
-                              <Link
-                                href={sub.href}
+                              <div
                                 onClick={(e) => handleScroll(e, sub.href)}
                                 className="block px-4 py-3 hover:bg-white/20 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[10px]"
                               >
-                                <FlipLink href="">{sub.label}</FlipLink>
-                              </Link>
+                                <FlipLink href={sub.href}>{sub.label}</FlipLink>
+                              </div>
                             </li>
                           ))}
                         </ul>
                       </div>
                     </div>
                   ) : (
-                    <Link
-                      href={item.href}
+                    <div
                       onClick={(e) => handleScroll(e, item.href)}
                       className="block px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 hover:text-white"
                     >
-                      <FlipLink href="">{item.label}</FlipLink>
-                    </Link>
+                      <FlipLink href={item.href}>{item.label}</FlipLink>
+                    </div>
                   )}
                 </li>
               ))}
