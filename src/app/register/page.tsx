@@ -45,7 +45,7 @@ function Page() {
   );
 
   return (
-    <div className='bg-[#030305] font-mono selection:bg-cyan-500/30 h-screen w-full' id="container">
+    <div className='bg-[#030305] font-sans selection:bg-cyan-500/30 h-screen w-full' id="container">
       <BackgroundGrid />
       <Particles />
       <Signup />
