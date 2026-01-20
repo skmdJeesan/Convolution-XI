@@ -117,7 +117,7 @@ function HeroSection() {
     }, []);
 
     return (
-        <div className="h-[100dvh] w-full relative overflow-hidden mx-auto bg-[#030305] font-mono selection:bg-cyan-500/30">
+        <div className="h-[100vh] w-full relative overflow-hidden mx-auto bg-[#030305] font-mono selection:bg-cyan-500/30">
             
             <BackgroundGrid />
             <Particles />
