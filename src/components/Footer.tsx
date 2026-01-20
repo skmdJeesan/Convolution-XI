@@ -4,10 +4,11 @@ import { FaInstagram } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import Image from 'next/image';
-import ConvoLogo from "@/assets/images/CovoSvg.svg";
+import ConvoLogo from "@/assets/images/ConvoSvg.svg";
 import { MdCall, MdLocationOn, MdOutlineEmail } from "react-icons/md";
 import { useEffect, useState } from 'react';
 import { useWaveText } from '@/hooks/useWaveText';
+import FlipLink from './FlipLink';
 
 const events = [
   { name: "Algomaniac", href: "/event/algomaniac" },
@@ -39,7 +40,7 @@ function Footer() {
   return (
     <div id='contact' className='footer relative min-h-[85vh] bg-black flex flex-col px-4 md:px-8 lg:px-12 py-4 md:py-6 lg:py-8'>
 
-      <div className="top h-auto md:h-[50vh] w-full flex flex-col md:flex-row items-start justify-between gap-8 md:gap-4 px-2 md:px-4 lg:px-8 py-4 md:py-2">
+      <div className="top h-auto md:h-[40vh] w-full flex flex-col md:flex-row items-start justify-between md:justify-center gap-8 md:gap-4 px-2 md:px-4 mb-4 md:mb-10 lg:mb-10 lg:px-2 py-4 md:py-2">
         <div className="logo flex flex-col items-center lg:items-start gap-4 md:gap-8 w-full md:w-[30%]">
           <div className="w-40 h-16 md:w-52 md:h-20">
             <Image src={ConvoLogo} alt='convo logo' className='object-cover'/>
@@ -53,7 +54,7 @@ function Footer() {
           </p>
         </div>
         <div className="getInTouch flex flex-col items-center w-full md:w-[30%]">
-          <h2 className="text-xl md:text-2xl lg:text-3xl text-white">Get In Touch</h2>
+          <h2 className="text-xl md:text-2xl lg:text-3xl text-white"><FlipLink href=''>Get In Touch</FlipLink></h2>
           <span className="h-1 w-16 md:w-24 mt-2 rounded-full bg-white"></span>
           <ul className="mt-4 md:mt-6 flex flex-col gap-y-4 md:gap-y-6 [&>*]:listFooter text-white/80">
             <li className='flex items-center gap-4 md:gap-7'>
@@ -91,21 +92,21 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="events flex flex-col items-center md:items-start lg:items-center w-full md:w-[20%]">
-          <h2 className="text-xl md:text-2xl lg:text-3xl text-white">Events</h2>
+        <div className="events flex flex-col items-center md:items-start lg:items-center w-full md:w-[20%] transition-all">
+          <h2 className="text-xl md:text-2xl lg:text-3xl text-white"><FlipLink href='#'>Events</FlipLink></h2>
           <span className="h-1 w-10 md:w-14 mt-2 rounded-full bg-white"></span>
           <ul className="mt-4 md:mt-6 [&>*]:eventLinks flex flex-row flex-wrap gap-2 md:gap-[0.5px] md:flex-col justify-center md:justify-start">
             {events.map((event, index) => (
-                <li key={index} className="hover:scale-105 hover:text-purple-400 text-sm md:text-sm lg:text-base md:text-left text-white/80 shrink-0">
-                  <Link href={event.href}>{event.name}</Link>
+                <li key={index} className="hover:scale-95 hover:text-purple-400 text-sm md:text-sm lg:text-base md:text-left text-white/80 shrink-0">
+                  <FlipLink href={event.href}>{event.name}</FlipLink>
                 </li>
             ))}
           </ul>
         </div>
       </div>
 
-      <div className='middle h-[12vh] md:h-[15vh] lg:h-[20vh] w-full border-b-2 flex justify-center overflow-clip relative z-10'>
-        <h1 ref={ref as React.RefObject<HTMLHeadingElement>} className='text-[15vw] md:text-[12vw] lg:text-[16vw] text-white tracking-tight font-bold absolute -bottom-4 md:-bottom-6 lg:-bottom-14 leading-none'>{text}</h1>
+      <div className='middle h-[10vh] md:h-[10vh] lg:h-[20vh] w-full border-b-2 flex justify-center overflow-clip relative z-10'>
+        <h1 ref={ref as React.RefObject<HTMLHeadingElement>} className='text-[16vw] md:text-[14vw] lg:text-[16vw] text-white tracking-tight font-bold absolute -bottom-4 md:-bottom-7 lg:-bottom-12 leading-none whitespace-nowrap'>{text}</h1>
       </div>
 
       <div className='bottom h-auto md:h-[10vh] w-full flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2 relative z-10 py-4 md:py-0'>
@@ -117,7 +118,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="w-full h-24 md:h-32 lg:h-40 absolute bottom-0 left-0 opacity-30 z-0">
+      <div className="w-full h-40 md:h-40 lg:h-40 absolute bottom-0 left-0 opacity-30 z-0">
         <Image src='/page-bottom.jpg' alt='footer' fill className='object-cover'/>
       </div>
     </div>

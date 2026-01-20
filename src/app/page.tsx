@@ -10,7 +10,7 @@ export default function Home() {
     <main className="bg-black w-full h-screen">
       <HeroSection/>
       <HomeAbout/>
-      <EventShowcase/>
+      {/* <EventShowcase/> */}
       <FaqSection/>
       <Footer />
     </main>

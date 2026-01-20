@@ -52,8 +52,8 @@ export const useWaveText = (options: UseWaveTextProps = {}): UseWaveTextReturn =
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: element.parentElement, // Use parent div as trigger
-        start: 'top 100%',
-        end: 'top 40%',
+        start: 'top 80%',
+        end: 'top 100%',
         scrub: scrub,
         markers: markers,
       },
@@ -69,9 +69,8 @@ export const useWaveText = (options: UseWaveTextProps = {}): UseWaveTextReturn =
         {
           y: 90,
           opacity: 0,
-          
           rotationX: 90,
-          duration: 1,
+          duration: 1.2,
           ease: 'back.out(1.8)',
           yoyo: yoyo,
         },
@@ -82,7 +81,7 @@ export const useWaveText = (options: UseWaveTextProps = {}): UseWaveTextReturn =
         span,
         {
           rotationZ: 0,
-          duration: 1,
+          duration: 1.2,
           ease: 'elastic.out(1, 0.5)',
           yoyo: yoyo,
         },

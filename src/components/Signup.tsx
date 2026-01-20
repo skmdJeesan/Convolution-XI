@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import FlipLink from './FlipLink';
 
 
 
@@ -120,7 +121,7 @@ function SignUp() {
 
           <div className="flex gap-1 items-center justify-center">
             <p className='text-xs'>Already have an Account?</p>
-            <Link href="/login" className="text-sm">please <span className='text-purple-400'>Login</span></Link>
+            <div className="text-sm inline-flex gap-1">please <span className='text-purple-400'><FlipLink href="/login">Login</FlipLink></span></div>
           </div>
 
           <button
@@ -128,7 +129,7 @@ function SignUp() {
             disabled={loading}
             className="py-2 px-4 rounded-3xl glass-btnn cursor-pointe"
           >
-            {loading ? ("loading..") : <FlipLink>Register</FlipLink>}
+            {loading ? ("loading..") : <FlipLink href=''>Register</FlipLink>}
           </button>
 
           <div className="flex items-center justify-center gap-2">
