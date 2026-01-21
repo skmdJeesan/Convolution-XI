@@ -7,6 +7,7 @@ import { IoMenuOutline, IoChevronDownOutline } from "react-icons/io5";
 import profileIcon from "@/assets/images/Robot_Profile.jpg";
 import MobileMenu from "./MobileMenu"; 
 import FlipLink from "./FlipLink";
+import { useSession } from "next-auth/react";
 
 
 const desktopNavLinks = [
@@ -45,9 +46,16 @@ const mobileNavLinks = [
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(true);
+  //const [isLoggedin, setIsLoggedin] = useState<boolean>(false);
   const lastScrollY = useRef(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
+
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return null; // or skeleton
+  }
 
   const toggleNavigation = (): void => {
     setIsNavOpen((prevState) => !prevState);
@@ -57,7 +65,7 @@ const Navbar = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       setIsVisible(false);
-    }, 2300);
+    }, 2400);
   };
 
   const handleScroll = (e: React.MouseEvent<HTMLElement, MouseEvent>, href: string) => {
@@ -166,17 +174,28 @@ const Navbar = () => {
 
           {/* Profile and Toggle */}
           <div className="flex items-center gap-4 pointer-events-auto z-50">
-            <Link href="/profile" className="rounded-full relative group block">
-              <div className="rounded-full border-2 border-white/20 overflow-hidden hover:border-white transition-colors shadow-lg shadow-white/10">
-                <Image
-                  src={profileIcon}
-                  alt="profile icon"
-                  height={45}
-                  width={45}
-                  className="object-cover"
-                />
+            {session ? (
+              <Link href="/profile" className="rounded-full relative group block">
+                <div className="rounded-full border-2 border-white/20 overflow-hidden hover:border-white transition-colors shadow-lg shadow-white/10">
+                  <Image
+                    src={profileIcon}
+                    alt="profile icon"
+                    height={45}
+                    width={45}
+                    className="object-cover"
+                  />
+                </div>
+              </Link>
+            ) : (
+              <div className="flex gap-2 items-center">
+                <div className="py-2.5 px-6 rounded-full glass-btn text-sm">
+                  <FlipLink href="/login">Log in</FlipLink>
+                </div>
+                <div className="py-2.5 px-6 rounded-full glass-btn text-sm">
+                  <FlipLink href="/register">Register&nbsp;now</FlipLink>
+                </div>
               </div>
-            </Link>
+            )}
 
             <button
               onClick={toggleNavigation}

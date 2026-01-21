@@ -1,8 +1,8 @@
 'use client';
-
 import React, { useState } from 'react';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import FlipLink from '@/components/FlipLink'; // adjust import path as needed
+import axios from 'axios'
 import {
   Select,
   SelectContent,
@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'; // adjust import path as needed
+import { signIn } from 'next-auth/react';
 
 export default function SignupForm() {
   const [loading, setLoading] = useState(false);
@@ -33,11 +34,39 @@ export default function SignupForm() {
     setFormData(prev => ({ ...prev, year: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     // Handle form submission
-    console.log(formData);
+    try {
+      const response = await axios.post('/api/auth/register', formData)
+      console.log(response.data)
+      
+      // Sign in automatically after registration
+      const signInResult = await signIn('credentials', {
+        email: formData.email,
+        password: formData.password,
+        redirect: false
+      })
+      
+      if (signInResult?.ok) {
+        setFormData({
+          name: '',
+          email: '',
+          password: '',
+          phone: '',
+          institution: '',
+          department: '',
+          year: '',
+        })
+        setLoading(false)
+      } else {
+        console.error('Sign in failed')
+      }
+    } catch (error) {
+      throw error
+    }
+    //console.log(formData);
   };
 
   return (

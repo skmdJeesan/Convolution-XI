@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ConvologoSmall from "@/components/convologoSmall";
+import ClientProvider from "@/components/ClientProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,7 @@ export default function RootLayout({
       >
         <ConvologoSmall/>
         <Navbar/>
-        {children}
+        <ClientProvider>{children}</ClientProvider>
       </body>
     </html>
   );
