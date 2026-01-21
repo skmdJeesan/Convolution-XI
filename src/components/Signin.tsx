@@ -4,31 +4,45 @@ import React, { useState } from 'react'
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
 import FlipLink from './FlipLink';
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import Loader from './Loader';
+
 
 function SignIn() {
   const [loading, setLoading] = useState(false)
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  })
+  const [formData, setFormData] = useState({ email: '', password: '', })
+
+  const session = useSession()
+  const router = useRouter()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    // Handle form submission
-    console.log(formData);
-    setTimeout(() => setLoading(false), 2000);
-  };
+  const signinHandler = async (e: React.FormEvent) => {
+  e.preventDefault()
+
+  const result = await signIn('credentials', {
+    email: formData.email,
+    password: formData.password,
+    redirect: false,
+  })
+
+  if (result?.ok) {
+    router.replace('/')   // or '/home'
+  } else {
+    console.error(result?.error)
+    alert("Invalid credentials")
+  }
+}
+
 
   return (
     <div className='main flex items-center justify-center min-h-screen w-full text-white px-3 sm:px-4 py-8 sm:py-6'>
       <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-3 items-center glassmorphism-bg rounded-2xl sm:rounded-3xl md:rounded-4xl overflow-hidden px-4 sm:px-5 md:px-6 lg:px-7 py-5 sm:py-6 md:py-7 lg:py-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-[35vw]">
-        
+
         {/* Header */}
         <div className='flex flex-col items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-1.5'>
           <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">Sign in</h1>
@@ -36,8 +50,8 @@ function SignIn() {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className='w-full flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-3'>
-          
+        <form onSubmit={signinHandler} className='w-full flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-3'>
+
           {/* Email Field */}
           <div className='flex flex-col gap-1 sm:gap-1.5'>
             <label htmlFor="email" className='px-3 sm:px-4 font-semibold text-xs sm:text-sm'>Email</label>
@@ -79,7 +93,7 @@ function SignIn() {
           <div className="flex flex-col sm:flex-row gap-1 sm:gap-2 items-center justify-center text-center">
             <p className='text-xs sm:text-sm'>Don&apos;t have an account?</p>
             <div className="text-xs sm:text-sm inline-flex gap-1">
-              please <span className='text-purple-400'><FlipLink href="/register">Register</FlipLink></span>
+              please <span className='text-purple-400'><FlipLink href="register">Register</FlipLink></span>
             </div>
           </div>
 
@@ -90,10 +104,7 @@ function SignIn() {
             className="py-2 sm:py-2.5 md:py-3 px-4 sm:px-5 md:px-6 rounded-2xl sm:rounded-3xl glass-btnn cursor-pointer font-semibold text-sm sm:text-base hover:bg-purple-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? (
-              <span className="flex items-center gap-2">
-                <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                Loading...
-              </span>
+              <Loader />
             ) : (
               <FlipLink href=''>Sign in</FlipLink>
             )}
@@ -111,15 +122,17 @@ function SignIn() {
             <button
               type="button"
               className="py-2 sm:py-2.5 md:py-3 px-4 sm:px-6 md:px-7 flex-1 sm:flex-none bg-zinc-800 rounded-2xl sm:rounded-3xl inline-flex gap-2 sm:gap-3 items-center justify-center glass-btn hover:bg-zinc-700 hover:scale-105 transition-all active:scale-95"
+              onClick={() => signIn('google', {callbackUrl: '/'})}
             >
-              <FaGoogle className='text-base sm:text-lg md:text-xl'/>
+              <FaGoogle className='text-base sm:text-lg md:text-xl' />
               <span className='text-xs sm:text-sm hidden sm:inline'>Google</span>
             </button>
             <button
               type="button"
               className="py-2 sm:py-2.5 md:py-3 px-4 sm:px-6 md:px-7 flex-1 sm:flex-none bg-zinc-800 rounded-2xl sm:rounded-3xl inline-flex gap-2 sm:gap-3 items-center justify-center glass-btn hover:bg-zinc-700 hover:scale-105 transition-all active:scale-95"
+              onClick={() => signIn('github', {callbackUrl: '/'})}
             >
-              <FaGithub className='text-base sm:text-lg md:text-xl'/>
+              <FaGithub className='text-base sm:text-lg md:text-xl' />
               <span className='text-xs sm:text-sm hidden sm:inline'>GitHub</span>
             </button>
           </div>

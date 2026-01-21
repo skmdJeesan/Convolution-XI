@@ -18,8 +18,7 @@ const authOptions:NextAuthOptions = {
       async authorize(credentials) {
         // Implement your authorization logic here
         let { email, password } = credentials as { email: string; password: string };
-        if(!email || !password)
-          throw new Error("Email and Password are required")
+        if(!email || !password) return null
 
         await dbConnect() // safe to call every time
 
@@ -64,7 +63,7 @@ const authOptions:NextAuthOptions = {
             name: user.name,
             email: user.email,
             image: user?.image,
-            password: '', // No password for OAuth users
+            password: null, // No password for OAuth users
           });
         }
         user.id = existingUser._id.toString();

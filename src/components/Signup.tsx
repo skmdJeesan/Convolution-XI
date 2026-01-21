@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'; // adjust import path as needed
 import { signIn } from 'next-auth/react';
+import Loader from './Loader';
 
 export default function SignupForm() {
   const [loading, setLoading] = useState(false);
@@ -46,7 +47,7 @@ export default function SignupForm() {
       const signInResult = await signIn('credentials', {
         email: formData.email,
         password: formData.password,
-        redirect: false
+        redirect: true
       })
       
       if (signInResult?.ok) {
@@ -207,7 +208,7 @@ export default function SignupForm() {
             disabled={loading}
             className="py-1 sm:py-2.5 md:py-3 px-4 sm:px-5 md:px-6 rounded-2xl sm:rounded-3xl glass-btnn cursor-pointer font-semibold text-sm sm:text-base hover:bg-purple-500/20 transition-all disabled:opacity-50"
           >
-            {loading ? "Loading.." : <FlipLink href=''>Register</FlipLink>}
+            {loading ? <Loader /> : <FlipLink href=''>Register</FlipLink>}
           </button>
 
           {/* Divider */}

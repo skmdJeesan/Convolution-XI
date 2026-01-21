@@ -53,9 +53,16 @@ const Navbar = () => {
 
   const { data: session, status } = useSession();
 
-  if (status === "loading") {
-    return null; // or skeleton
-  }
+  useEffect(() => {
+    // this runs on every render safely
+    if (session) {
+      console.log("User logged in");
+    }
+  }, [session]);
+
+  // if (status === "loading") {
+  //   return null; // or skeleton
+  // }
 
   const toggleNavigation = (): void => {
     setIsNavOpen((prevState) => !prevState);
