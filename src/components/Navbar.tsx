@@ -124,7 +124,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 right-0 z-[999] p-4 pt-6 font-sans transition-transform duration-500 ease-in-out ${navVisibilityClass}`}
+        className={`fixed top-0 left-0 right-0 z-999 p-4 pt-6 font-sans transition-transform duration-500 ease-in-out ${navVisibilityClass}`}
         onMouseEnter={() => {
           if (timerRef.current) clearTimeout(timerRef.current);
           setIsVisible(true);
