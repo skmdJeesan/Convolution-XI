@@ -22,21 +22,21 @@ function SignIn() {
   };
 
   const signinHandler = async (e: React.FormEvent) => {
-  e.preventDefault()
+    e.preventDefault()
 
-  const result = await signIn('credentials', {
-    email: formData.email,
-    password: formData.password,
-    redirect: false,
-  })
+    const result = await signIn('credentials', {
+      email: formData.email,
+      password: formData.password,
+      redirect: false,
+    })
 
-  if (result?.ok) {
-    router.replace('/')   // or '/home'
-  } else {
-    console.error(result?.error)
-    alert("Invalid credentials")
+    if (result?.ok) {
+      router.replace('/')   // or '/home'
+    } else {
+      console.error(result?.error)
+      alert("Invalid credentials")
+    }
   }
-}
 
 
   return (
@@ -122,7 +122,7 @@ function SignIn() {
             <button
               type="button"
               className="py-2 sm:py-2.5 md:py-3 px-4 sm:px-6 md:px-7 flex-1 sm:flex-none bg-zinc-800 rounded-2xl sm:rounded-3xl inline-flex gap-2 sm:gap-3 items-center justify-center glass-btn hover:bg-zinc-700 hover:scale-105 transition-all active:scale-95"
-              onClick={() => signIn('google', {callbackUrl: '/'})}
+              onClick={() => signIn('google', { callbackUrl: '/' })}
             >
               <FaGoogle className='text-base sm:text-lg md:text-xl' />
               <span className='text-xs sm:text-sm hidden sm:inline'>Google</span>
@@ -130,7 +130,7 @@ function SignIn() {
             <button
               type="button"
               className="py-2 sm:py-2.5 md:py-3 px-4 sm:px-6 md:px-7 flex-1 sm:flex-none bg-zinc-800 rounded-2xl sm:rounded-3xl inline-flex gap-2 sm:gap-3 items-center justify-center glass-btn hover:bg-zinc-700 hover:scale-105 transition-all active:scale-95"
-              onClick={() => signIn('github', {callbackUrl: '/'})}
+              onClick={() => signIn('github', { callbackUrl: '/' })}
             >
               <FaGithub className='text-base sm:text-lg md:text-xl' />
               <span className='text-xs sm:text-sm hidden sm:inline'>GitHub</span>

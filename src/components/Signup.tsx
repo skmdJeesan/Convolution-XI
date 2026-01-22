@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/select'; // adjust import path as needed
 import { signIn } from 'next-auth/react';
 import Loader from './Loader';
+import { useRouter } from 'next/navigation';
 
 export default function SignupForm() {
   const [loading, setLoading] = useState(false);
@@ -25,6 +26,8 @@ export default function SignupForm() {
     department: '',
     year: '',
   });
+
+  const router = useRouter()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -47,7 +50,7 @@ export default function SignupForm() {
       const signInResult = await signIn('credentials', {
         email: formData.email,
         password: formData.password,
-        redirect: true
+        redirect: false
       })
       
       if (signInResult?.ok) {
@@ -61,6 +64,7 @@ export default function SignupForm() {
           year: '',
         })
         setLoading(false)
+        router.replace('/')   // or '/home'
       } else {
         console.error('Sign in failed')
       }
