@@ -1,6 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import credentialsProvider from "next-auth/providers/credentials";
-import googleProvider from "next-auth/providers/google";
+import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import dbConnect from "./db";
 import User from "@/models/user.model";
@@ -39,7 +39,7 @@ const authOptions:NextAuthOptions = {
       }
     }),
 
-    googleProvider({
+    GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
