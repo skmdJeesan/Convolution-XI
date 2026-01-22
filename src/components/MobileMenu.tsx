@@ -100,14 +100,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
           }}
         >
           <Link
-            href="/SignUp"
+            href="/register"
             onClick={onClose}
             className="group relative block w-[60%] text-center overflow-hidden rounded-full p-[1px]"
           >
             <span className="absolute inset-0 bg-cyan-700  opacity-70 group-hover:opacity-100 animate-gradient-xy transition-opacity" />
             <div className="relative bg-black rounded-full py-4 transition-colors group-hover:bg-black/80">
               <span className="font-bold uppercase tracking-[0.2em] text-sm text-white group-hover:scale-105 inline-block transition-transform duration-300">
-                SIgn Up
+                Register
               </span>
             </div>
           </Link>

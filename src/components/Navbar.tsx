@@ -194,7 +194,7 @@ const Navbar = () => {
                 </div>
               </Link>
             ) : (
-              <div className="flex gap-2 items-center">
+              <div className="hidden lg:flex gap-2 items-center">
                 <div className="py-2.5 px-6 rounded-full glass-btn text-sm">
                   <FlipLink href="/login">Log in</FlipLink>
                 </div>
