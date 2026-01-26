@@ -51,8 +51,21 @@ export const useWaveText = (options: UseWaveTextProps = {}): UseWaveTextReturn =
     // Create timeline for synchronized animation
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: element.parentElement, // Use parent div as trigger
-        start: 'top 80%',
+        trigger: element.parentElement, 
+        start: () => {
+      if (typeof window === 'undefined') return "top 85%";
+
+      const width = window.innerWidth;
+
+      if (width < 1025) {
+        return "top 85%"; 
+      } else if (width >= 1025 && width < 1367) {
+        return "top 70%";
+      } else {
+        
+        return "top 65%";
+      }
+    },
         end: 'top 100%',
         scrub: scrub,
         markers: markers,

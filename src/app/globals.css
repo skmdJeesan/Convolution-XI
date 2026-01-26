@@ -199,6 +199,9 @@ html{
 .glassmorphism-bg {
   @apply bg-black/35 backdrop-blur-2xl backdrop-saturate-150 border border-white/20 shadow-[0_20px_60px_rgba(0,_0,_0,_0.45)] before:absolute before:inset-0 before:rounded-[32px] before:bg-gradient-to-br before:from-white/20 before:via-white/5 before:to-transparent before:pointer-events-none;
 }
+.maxWidthForSections{
+    @apply 2xl:max-w-[1280px] xl:max-w-[1200px] mx-auto xl:px-0 px-[3vw] sm:px-[5vw]
+  }
 
 /* For Header animations */
 
@@ -381,4 +384,12 @@ html{
   .stroke-text {
       -webkit-text-stroke: 2px rgba(6, 182, 212, 0.15);
   }
+}
+
+  @keyframes float_drone {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.animate-float_drone {
+  animation: float 3s ease-in-out infinite;
 }

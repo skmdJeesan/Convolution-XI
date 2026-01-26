@@ -5,16 +5,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoMenuOutline, IoChevronDownOutline } from "react-icons/io5";
 import profileIcon from "@/assets/images/Robot_Profile.jpg";
-import MobileMenu from "./MobileMenu"; 
+import MobileMenu from "./MobileMenu";
 import FlipLink from "./FlipLink";
-
 
 const desktopNavLinks = [
   { href: "/#home", label: "Home" },
   { label: "About", href: "/#about" },
   {
     label: "Events",
-    href: "/#",
+    href: "#", // Parent item does not redirect
     subItems: [
       { href: "/#all-events", label: "All Events" },
       { href: "/#timeline", label: "Timeline" },
@@ -22,7 +21,7 @@ const desktopNavLinks = [
   },
   {
     label: "More",
-    href: "#",
+    href: "#", // Parent item does not redirect
     subItems: [
       { href: "/#faq", label: "FAQ" },
       { href: "/#team", label: "Team" },
@@ -45,9 +44,24 @@ const mobileNavLinks = [
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(true);
+  
+  // --- STATE FOR CLICK HANDLING ---
+  // Tracks which dropdown is currently "locked" open by a click
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
   const lastScrollY = useRef(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
+
+  // --- CLICK OUTSIDE TO CLOSE ---
+  // If user clicks anywhere else on the page, close the dropdown
+  useEffect(() => {
+    const closeDropdown = () => setActiveDropdown(null);
+    if (activeDropdown) {
+      document.addEventListener("click", closeDropdown);
+    }
+    return () => document.removeEventListener("click", closeDropdown);
+  }, [activeDropdown]);
 
   const toggleNavigation = (): void => {
     setIsNavOpen((prevState) => !prevState);
@@ -57,10 +71,20 @@ const Navbar = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       setIsVisible(false);
+      setActiveDropdown(null); // Close dropdowns when nav hides
     }, 2300);
   };
 
   const handleScroll = (e: React.MouseEvent<HTMLElement, MouseEvent>, href: string) => {
+    // 1. If it's a placeholder link (parent item), prevent default
+    if (href === "#") {
+      e.preventDefault();
+      return;
+    }
+
+    // 2. If it's a real link (sub-item), close the dropdowns and proceed
+    setActiveDropdown(null);
+
     if (href.includes("#")) {
       const targetId = href.substring(href.indexOf("#"));
       const targetPath = href.substring(0, href.indexOf("#"));
@@ -88,6 +112,15 @@ const Navbar = () => {
     }
   };
 
+  // --- TOGGLE HANDLER ---
+  const handleDropdownToggle = (e: React.MouseEvent, label: string) => {
+    e.preventDefault();
+    e.stopPropagation(); // Stop the "click outside" listener from firing immediately
+    
+    // If clicking the same one that is open, close it. Otherwise, open it.
+    setActiveDropdown(activeDropdown === label ? null : label);
+  };
+
   useEffect(() => {
     const handleScrollEvent = () => {
       const currentScrollY = window.scrollY;
@@ -95,6 +128,7 @@ const Navbar = () => {
 
       if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
         setIsVisible(false);
+        setActiveDropdown(null); // Close dropdown on scroll down
       } else {
         setIsVisible(true);
         startHideTimer();
@@ -132,17 +166,35 @@ const Navbar = () => {
               {desktopNavLinks.map((item, index) => (
                 <li key={index} className="relative group">
                   {item.subItems ? (
-                    <div className="px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1 hover:text-white">
-                      <span><FlipLink href="">{item.label}</FlipLink></span>
-                      <IoChevronDownOutline className="size-3 group-hover:rotate-180 transition-transform duration-300" />
+                    // --- PARENT ITEM WITH SUBMENU ---
+                    <div 
+                      className={`
+                        px-6 py-2 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1
+                        ${activeDropdown === item.label ? "bg-white/10 text-white" : "hover:bg-white/10 hover:text-white"}
+                      `}
+                      // Toggle on CLICK
+                      onClick={(e) => handleDropdownToggle(e, item.label)}
+                    >
+                      <span><FlipLink href="#">{item.label}</FlipLink></span>
+                      <IoChevronDownOutline 
+                        className={`
+                          size-3 transition-transform duration-300 
+                          /* Rotate if Active OR Group-Hovered */
+                          ${activeDropdown === item.label ? "rotate-180" : "group-hover:rotate-180"}
+                        `} 
+                      />
                       
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-6 hidden group-hover:block w-56">
-                        <ul className="bg-black backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden shadow-2xl p-2 flex flex-col gap-1">
+                      {/*submenu*/}
+                      <div className={`
+                        absolute top-full left-1/2 -translate-x-1/2 pt-6 w-56
+                        ${activeDropdown === item.label ? "block" : "hidden group-hover:block"}
+                      `}>
+                        <ul className="bg-black backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl p-2 flex flex-col gap-1">
                           {item.subItems.map((sub, subIndex) => (
                             <li key={subIndex}>
                               <div
                                 onClick={(e) => handleScroll(e, sub.href)}
-                                className="block px-4 py-3 hover:bg-white/20 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[10px]"
+                                className="block px-4 py-3 hover:bg-white/5 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[10px] cursor-pointer"
                               >
                                 <FlipLink href={sub.href}>{sub.label}</FlipLink>
                               </div>
@@ -152,9 +204,10 @@ const Navbar = () => {
                       </div>
                     </div>
                   ) : (
+                    // Normal links
                     <div
                       onClick={(e) => handleScroll(e, item.href)}
-                      className="block px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 hover:text-white"
+                      className="block px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 hover:text-white cursor-pointer"
                     >
                       <FlipLink href={item.href}>{item.label}</FlipLink>
                     </div>
