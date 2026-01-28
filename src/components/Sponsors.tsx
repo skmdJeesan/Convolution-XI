@@ -74,7 +74,7 @@ const Sponsors: React.FC = () => {
             <a
               href="https://megatherm.com/"
               target="_blank"
-              className="glassmorphism-bg p-3 rounded-lg"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg"
             >
               <Image
                 src={megatherm}
@@ -101,7 +101,7 @@ const Sponsors: React.FC = () => {
             <a
               href="https://www.raydus.com/"
               target="_blank"
-              className="glassmorphism-bg p-3 rounded-lg h-20 w-30"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-20 w-30"
             >
               <Image
                 src={raydus}
@@ -128,7 +128,7 @@ const Sponsors: React.FC = () => {
               variants={itemVariants}
               href="https://www.exideindustries.com/"
               target="_blank"
-              className="glassmorphism-bg p-3 rounded-lg h-14 w-40"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-14 w-40"
             >
               <Image
                 src={exide}
@@ -140,7 +140,7 @@ const Sponsors: React.FC = () => {
               variants={itemVariants}
               href="https://www.techno.co.in/"
               target="_blank"
-              className="glassmorphism-bg p-3 rounded-lg h-14 w-40"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-14 w-40"
             >
               <Image
                 src={techEle}
@@ -167,7 +167,7 @@ const Sponsors: React.FC = () => {
               variants={itemVariants}
               href="https://www.theiet.org/"
               target="_blank"
-              className="glassmorphism-bg p-3 rounded-lg h-22 w-40"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-22 w-40"
             >
               <Image
                 src={iet}
@@ -179,7 +179,7 @@ const Sponsors: React.FC = () => {
               variants={itemVariants}
               href="http://ieeepeskolkata.org/#:~:text=The%20Power%20%26%20Energy%20Society%20"
               target="_blank"
-              className="glassmorphism-bg p-3 rounded-lg h-22 w-40"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-22 w-40"
             >
               <Image
                 src={pes}
@@ -191,7 +191,7 @@ const Sponsors: React.FC = () => {
               variants={itemVariants}
               href="http://www.ieeespskolkata.org/"
               target="_blank"
-              className="glassmorphism-bg p-3 rounded-lg h-22 w-40"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-22 w-40"
             >
               <Image
                 src={sps}
@@ -203,7 +203,7 @@ const Sponsors: React.FC = () => {
               variants={itemVariants}
               href="https://ewh.ieee.org/r10/calcutta/deis/"
               target="_blank"
-              className="glassmorphism-bg p-3 rounded-lg h-22 w-40"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-22 w-40"
             >
               <Image
                 src={deis}
@@ -215,7 +215,7 @@ const Sponsors: React.FC = () => {
               variants={itemVariants}
               href="https://www.comsoc.org/"
               target="_blank"
-              className="glassmorphism-bg p-3 rounded-lg h-22 w-40"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-22 w-40"
             >
               <Image
                 src={comsoc}
@@ -227,7 +227,7 @@ const Sponsors: React.FC = () => {
               variants={itemVariants}
               href="https://www.neoteletronix.com/"
               target="_blank"
-              className="glassmorphism-bg p-3 rounded-lg h-22 w-40"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-22 w-40"
             >
               <Image
                 src={ntpl}
@@ -253,7 +253,7 @@ const Sponsors: React.FC = () => {
             <a
               href="https://www.telegraphindia.com/edugraph"
               target="_blank"
-              className="glassmorphism-bg p-3 rounded-lg h-24 w-60"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-24 w-60"
             >
               <Image
                 src={telegraph}

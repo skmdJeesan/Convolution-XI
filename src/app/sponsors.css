@@ -61,6 +61,3 @@
     opacity: 0.25;
   }
 }
-
-a {transition: all}
-a:hover {transform: scale(1.1);}
