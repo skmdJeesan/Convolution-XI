@@ -200,7 +200,7 @@ html{
 }
 
 .glassmorphism-bg {
-  @apply bg-black/35 backdrop-blur-2xl backdrop-saturate-150 border border-white/20 shadow-[0_20px_60px_rgba(0,_0,_0,_0.45)] before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/20 before:via-white/5 before:to-transparent before:pointer-events-none;
+  @apply bg-black/35 backdrop-blur-2xl backdrop-saturate-150 border border-white/20 shadow-[0_20px_60px_rgba(0,_0,_0,_0.45)] before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/20 before:via-white/5 before:to-transparent before:pointer-events-none overflow-hidden;
 }
 
 /* For Header animations */
