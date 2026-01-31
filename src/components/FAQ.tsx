@@ -73,9 +73,8 @@ export default function FaqSection() {
             <div className="px-6 pb-6 pt-0">
               <div className="w-full h-[1px] bg-white/5 mb-4"></div>
               
-              <div className="text-slate-400 leading-relaxed font-light tracking-wide text-sm md:text-base 
-                              starting:blur-sm starting:opacity-0 starting:-translate-y-2 
-                              transition-all duration-500 ease-out">
+              {/* FIXED: Removed newlines in className to prevent hydration mismatch */}
+              <div className="text-slate-400 leading-relaxed font-light tracking-wide text-sm md:text-base starting:blur-sm starting:opacity-0 starting:-translate-y-2 transition-all duration-500 ease-out">
                 {data.answer}
               </div>
             </div>

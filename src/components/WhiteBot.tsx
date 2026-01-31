@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
+// Dynamic import of Spline to ensure it runs only on client
 const Spline = dynamic(() => import('@splinetool/react-spline'), {
   ssr: false,
   loading: () => (
@@ -15,21 +16,11 @@ const Spline = dynamic(() => import('@splinetool/react-spline'), {
 export default function WhiteBot() {
   const containerRef = useRef<HTMLDivElement>(null);
   const splineRef = useRef<any>(null); 
-  
   const [isInView, setIsInView] = useState(false);
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
-  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    setHasMounted(true);
-    
-    const checkDevice = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkDevice();
-    window.addEventListener('resize', checkDevice);
-
+    // Intersection Observer to pause animation when off-screen
+    // This prevents the page from getting heavy/laggy when scrolling
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -51,34 +42,28 @@ export default function WhiteBot() {
     }
 
     return () => {
-      window.removeEventListener('resize', checkDevice);
       observer.disconnect();
     };
   }, []);
 
   function onLoad(splineApp: any) {
     splineRef.current = splineApp;
-    if (isInView) {
-      splineApp.play();
-    } else {
+    // Initial check: if loaded but off-screen (rare), stop it immediately
+    if (!isInView) {
       splineApp.stop();
     }
-  }
-
-  // Mobile check
-  if (!hasMounted || isMobile === true) {
-    return null;
   }
 
   return (
     <div ref={containerRef} className="w-full h-screen bg-black relative">
       <Spline
         onLoad={onLoad}
-        // I updated this to match the file name in your commit logs
-        scene="/r_4_x_bot.spline" 
+        // Ensure this URL is correct and public
+        scene="https://prod.spline.design/NDbRFWmhe5l1U1eN/scene.splinecode" 
         className="w-full h-full"
       />
-      <div className="absolute bottom-0 left-0 w-full h-30 bg-gradient-to-t from-black via-black/100 to-transparent z-50 pointer-events-none" />
+      {/* Overlay to blend the bottom of the bot into the page */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black via-black to-transparent z-10 pointer-events-none" />
     </div>
   );
 }
