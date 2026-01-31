@@ -12,6 +12,7 @@ export default function Home() {
       <HeroSection/>
       {/* <HomeAbout/>
       <EventShowcase/> */}
+      <EventShowcase/>
       <FaqSection/>
       <Footer />
     </main>
