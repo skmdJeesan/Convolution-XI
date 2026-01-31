@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface ConvolutionCardProps {
   data: {
@@ -13,6 +14,7 @@ interface ConvolutionCardProps {
 }
 
 const ConvolutionCard = ({ data }: ConvolutionCardProps) => {
+  const router = useRouter();
   return (
     // OUTER WRAPPER
     <div className="relative group w-full h-full perspective-1000">
@@ -94,11 +96,12 @@ const ConvolutionCard = ({ data }: ConvolutionCardProps) => {
 
               {/* ACTION BUTTON */}
               <div>
-                <button className="group/btn relative w-full md:w-auto px-6 py-3 md:px-8 md:py-4 bg-transparent overflow-hidden rounded-xl border border-white/20 active:scale-95 md:hover:border-orange-500 transition-all duration-300">
+                <button 
+                  onClick={() => router.push(`/events/${data.title.toLowerCase()}`)}
+                  className="group/btn cursor-pointer relative w-full md:w-auto px-6 py-3 md:px-8 md:py-4 bg-transparent overflow-hidden rounded-xl border border-white/20 active:scale-95 md:hover:border-orange-500 transition-all duration-300">
                   <div className="absolute inset-0 w-0 bg-gradient-to-r from-orange-600 to-red-700 transition-all duration-[400ms] ease-out group-hover/btn:w-full" />
-                  
                   <span className="relative z-10 text-white font-bold tracking-[0.25em] uppercase text-xs md:text-xs flex items-center justify-center gap-3">
-                    Explore Mission 
+                    Explore Mission
                     <ArrowRight className="w-4 h-4 md:group-hover/btn:translate-x-2 transition-transform duration-300" />
                   </span>
                 </button>
