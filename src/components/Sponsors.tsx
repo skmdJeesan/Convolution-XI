@@ -36,7 +36,7 @@ const Sponsors: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen mb-14 bg-black">  
+    <div className="relative w-full min-h-screen">  
       {/* <Cursor magnetic /> */}
 
       {/* Grid Background */}
