@@ -57,14 +57,14 @@ const Sponsors: React.FC = () => {
           <div className="h-1 w-24 mx-auto bg-linear-to-r from-transparent via-cyan-500 to-transparent rounded-full opacity-70"></div>
         </motion.div>
 
-        <div className="w-full h-full">
+        <div className="w-full h-full flex flex-col items-center justify-center">
           <motion.p 
             variants={sectionVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
             className="text-white text-center text-2xl mb-4 w-fit"
-          ><FlipLink href="">Main Sponsor</FlipLink></motion.p>
+          ><FlipLink href="">Main&nbsp;Sponsor</FlipLink></motion.p>
           <motion.div 
             variants={sectionVariants}
             initial="hidden"
@@ -117,7 +117,7 @@ const Sponsors: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
-            className="text-white text-center text-xl mb-4 w-fit"><FlipLink href="">Associate Sponsor</FlipLink></motion.p>
+            className="text-white text-center text-xl mb-4 w-fit"><FlipLink href="">Associate&nbsp;Sponsor</FlipLink></motion.p>
           <motion.div 
             variants={containerVariants}
             initial="hidden"
@@ -156,7 +156,7 @@ const Sponsors: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
-            className="text-white text-center text-xl mb-4 mt-10 w-fit"><FlipLink href="">Event Partners</FlipLink></motion.p>
+            className="text-white text-center text-xl mb-4 mt-10 w-fit"><FlipLink href="">Event&nbsp;Partners</FlipLink></motion.p>
           <motion.div 
             variants={containerVariants}
             initial="hidden"
@@ -243,7 +243,7 @@ const Sponsors: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
-            className="text-white text-center text-xl mb-4 mt-10 w-fit"><FlipLink href="">Digital Media Partner</FlipLink></motion.p>
+            className="text-white text-center text-xl mb-4 mt-10 w-fit"><FlipLink href="">Digital&nbsp;Media&nbsp;Partner</FlipLink></motion.p>
           <motion.div 
             variants={sectionVariants}
             initial="hidden"
