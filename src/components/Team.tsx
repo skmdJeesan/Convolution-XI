@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import { motion, easeInOut } from "framer-motion"
 import './TeamStyles.css'
 
 type TeamMember = {
@@ -120,9 +121,33 @@ function Team() {
     return translateY;
   };
 
-  const variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.20, } }
+  const headerVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, staggerChildren: 0.15 } }
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0, },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3,
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 70, scale: 0.8 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: { 
+        duration: 0.6,
+        ease: easeInOut
+      }
+    }
   };
 
   return (
@@ -134,7 +159,12 @@ function Team() {
       <div className="team-spotlight-glow"></div>
 
       {/* Header Section */}
-      <div className="team-header">
+      <motion.div
+        variants={headerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }} 
+        className="team-header">
         <h2 className="team-title">
           Meet Our Team
         </h2>
@@ -142,10 +172,16 @@ function Team() {
           A diverse team of passionate students with unique skills driving innovation and excellence.
         </p>
         <div className="team-title-underline"></div>
-      </div>
+      </motion.div>
 
       {/* Curved Cards Container */}
-      <div className="team-cards-container">
+      <motion.div 
+        className="team-cards-container"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         {teamMembers.map((member, index) => (
           <div
             key={index}
@@ -157,7 +193,10 @@ function Team() {
             } as React.CSSProperties}
           >
             {/* Card with floating animation */}
-            <div className="team-card">
+            <motion.div
+              variants={cardVariants}
+              className="team-card"
+            >
               {/* Image/Avatar Section - Full card background */}
               <div className="team-card-image-container">
                 {member.image ? (
@@ -223,10 +262,10 @@ function Team() {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }
