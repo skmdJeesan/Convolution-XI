@@ -120,6 +120,11 @@ function Team() {
     return translateY;
   };
 
+  const variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.20, } }
+  };
+
   return (
     <div id='team' className="team-section">
       {/* Premium dark background with gradient */}
