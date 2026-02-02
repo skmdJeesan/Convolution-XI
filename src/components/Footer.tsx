@@ -11,15 +11,15 @@ import { useWaveText } from '@/hooks/useWaveText';
 import FlipLink from './FlipLink';
 
 const events = [
-  { name: "Algomaniac", href: "/event/algomaniac" },
-  { name: "Abol Tabol", href: "/event/aboltabol" },
-  { name: "Circuistics", href: "/event/circuistics" },
-  { name: "Decisia", href: "/event/decisia" },
-  { name: "Eureka", href: "/event/eureka" },
-  { name: "Sparkhack", href: "/event/sparkhack" },
-  { name: "Inquizzitive", href: "/event/inquizzitive" },
-  { name: "JU Talks", href: "/event/jutalks" },
-  { name: "24 Frames", href: "/event/frames" },
+  { name: "Algomaniac", href: "/events/algomaniac" },
+  { name: "Abol Tabol", href: "/events/aboltabol" },
+  { name: "Circuistics", href: "/events/circuistics" },
+  { name: "Decisia", href: "/events/decisia" },
+  { name: "Eureka", href: "/events/eureka" },
+  { name: "Sparkhack", href: "/events/sparkhack" },
+  { name: "Inquizzitive", href: "/events/inquizzitive" },
+  { name: "JU Talks", href: "/events/jutalks" },
+  { name: "24 Frames", href: "/events/frames" },
 ];
 
 function Footer() {

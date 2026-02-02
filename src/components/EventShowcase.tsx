@@ -56,8 +56,7 @@ const EventShowcase = () => {
       
         <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-orange-900/10 to-transparent pointer-events-none" />
       </div>
-
-    
+      
       <div className="relative z-10 w-full max-w-[1400px] px-6 md:px-12 pt-24 pb-12 flex flex-col items-center text-center">  
         <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 backdrop-blur-sm animate-fade-in-down">
           <span className="relative flex h-2 w-2">
