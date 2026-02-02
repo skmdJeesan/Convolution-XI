@@ -96,7 +96,6 @@ html{
 .maxWidthForSections{
     @apply 2xl:max-w-[1280px] xl:max-w-[1200px] mx-auto xl:px-0 px-[3vw] sm:px-[5vw]
   }
-
 /* For Header animations */
 
 @keyframes blink {

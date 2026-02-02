@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import HomeAbout from "@/components/HomeAbout";
 import HeroSection from "@/components/HeroSection";
 import Timeline from "@/components/TimeLine";
+import Team from "@/components/Team";
 import Image from "next/image";
 
 export default function Home() {
@@ -29,9 +30,10 @@ export default function Home() {
 
   return (
     <main className="bg-black w-full min-h-screen">
-      <HeroSection />
+      {/* <HeroSection /> */}
       {/* <EventShowcase /> */}
       <FaqSection />
+      <Team />
       <Footer />
     </main>
   );
