@@ -134,19 +134,19 @@ const MobileTimeline = () => {
       >
           <div className="absolute inset-0 bg-black/90 z-0"></div>
           {/* First gd */}
-          <div className="absolute top-[5%] left-[-20%] w-[90vw] h-[80vw] rounded-full bg-violet-950/30 blur-[100px] z-0"></div>
+          <div className="absolute top-[5%] left-[-20%] w-[90vw] h-[80vw] rounded-full bg-violet-950/30 blur-[120px] z-0"></div>
           {/* second gd */}
-          <div className="absolute top-[25%] right-[-20%] w-[90vw] h-[90vw] rounded-full bg-cyan-950/40 blur-[100px] z-0"></div>
+          <div className="absolute top-[25%] right-[-20%] w-[90vw] h-[90vw] rounded-full bg-cyan-950/30 blur-[120px] z-0"></div>
           {/* third gd */}
-          <div className="absolute bottom-[25%] left-[-20%] w-[90vw] h-[90vw] rounded-full bg-violet-950/40 blur-[100px] z-0"></div>
+          <div className="absolute bottom-[25%] left-[-15%] w-[90vw] h-[90vw] rounded-full bg-violet-950/30 blur-[100px] z-0"></div>
           {/* Last gd */}
           <div className="absolute bottom-[2%] right-[-20%] w-[90vw] h-[80vw] rounded-full bg-cyan-950/30 blur-[100px] z-0"></div>
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-10 z-0"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-size-[3rem_3rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-10 z-0"></div>
           <Particles />
       </div>
       
       {/* Bottom Gradient*/}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black-950/20 via-transparent to-transparent z-20 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-black-950/20 via-transparent to-transparent z-20 pointer-events-none"></div>
 
       {/*Header*/}
       <div className="relative z-50 pt-20 pb-8 flex flex-col items-center justify-center">
@@ -154,22 +154,22 @@ const MobileTimeline = () => {
             <div className="w-1.5 h-1.5 bg-red-500 animate-pulse rounded-full"></div>
             <span className="text-[10px] text-cyan-500 tracking-[0.3em] uppercase">Status: Online</span>
           </div> */}
-          <h1 className="text-5xl font-black tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600">
+          <h1 className="text-5xl font-black tracking-tighter uppercase text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600">
             Timeline
           </h1>
-          <div className="w-20 h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent mt-4"></div>
+          <div className="w-50 h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent  mt-2"></div>
       </div>
 
       {/* --- RAIL --- */}
-      <div ref={railContainerRef} className="absolute top-50 left-0 w-[80px] h-full z-0 pointer-events-none">
+      <div ref={railContainerRef} className="absolute top-50 left-0 w-20 h-full z-0 pointer-events-none">
           <div
-            className="absolute top-0 left-1/2 translate-x-[8px] w-[1px] bg-gray-900 transition-[height]"
+            className="absolute top-0 left-1/2 translate-x-2 w-px bg-gray-900 transition-[height]"
             style={{ height: railHeight ? `${railHeight}px` : '100%' }}
           ></div>
-          <div className="absolute top-0 left-1/2 translate-x-[8px] w-[2px] z-10">
+          <div className="absolute top-0 left-1/2 translate-x-2 w-0.5 z-10">
               <div ref={lineRef} className="relative w-full bg-cyan-400 shadow-[0_0_15px_#00f3ff] h-0">
                    {/* Spark Head */}
-                   <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-cyan-500 blur-[4px] rounded-full z-20"></div>
+                   <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-cyan-500 blur-xs rounded-full z-20"></div>
                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-white rounded-full z-30"></div>
               </div>
           </div>
@@ -208,7 +208,7 @@ const MobileTimeline = () => {
                  <div className="relative">
                      
                      <div className={`
-                         absolute top-[23px] left-[-34px] h-[1px] bg-cyan-400 shadow-[0_0_10px_#00f3ff]
+                         absolute top-5.75 -left-8.5 h-px bg-cyan-400 shadow-[0_0_10px_#00f3ff]
                          transition-all duration-300 ease-out origin-left z-0
                          ${isActive ? 'w-7.5 opacity-100' : 'w-0 opacity-0'}
                       `}></div>
@@ -265,7 +265,7 @@ const MobileTimeline = () => {
                                        ))}
                                    </div>
 
-                                   <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[size:100%_4px] opacity-10 pointer-events-none"></div>
+                                   <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.5)_50%)] bg-size-[100%_4px] opacity-10 pointer-events-none"></div>
                               </div>
                           </div>
                       </div>

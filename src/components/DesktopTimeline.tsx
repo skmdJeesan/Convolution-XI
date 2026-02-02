@@ -12,13 +12,13 @@ const Particles = () => {
       setMounted(true);
   }, []);
   if(!mounted) return null;
-  const particles = Array.from({ length: 50 });
+  const particles = Array.from({ length: 60 });
   return (
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           {particles.map((_, i) => (
               <div
                   key={i}
-                  className="absolute w-1 h-1 bg-cyan-400/60 rounded-full animate-particle"
+                  className="absolute w-0.5 h-0.5 bg-cyan-400/60 rounded-full animate-particle"
                   style={{
                       left: `${Math.random() * 100}%`,
                       top: `${Math.random() * 100}%`,
@@ -105,7 +105,7 @@ const DesktopTimeline = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full h-[100vh] overflow-hidden flex flex-col items-center bg-[#0a0a0a] text-white font-mono">
+    <div ref={containerRef} className="relative w-full h-screen overflow-hidden flex flex-col items-center bg-[#0a0a0a] text-white font-mono">
       
  {/* --- BACKGROUND LAYER --- */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -120,34 +120,34 @@ const DesktopTimeline = () => {
           <div className="absolute inset-0 bg-black/90 z-0"></div>
 
           {/* Nebulas */}
-          <div className="absolute top-[10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-violet-950/20 blur-[100px] z-0"></div>
-          <div className="absolute bottom-[10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-cyan-950/20 blur-[100px] z-0"></div>
+          <div className="absolute top-[10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-violet-950/30 blur-[120px] z-0"></div>
+          <div className="absolute bottom-[10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-cyan-950/30 blur-[120px] z-0"></div>
 
           {/* Grid */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-5 z-0"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-5 z-0"></div>
           
           <Particles />
       </div>
       {/* --- SEAM BLENDERS --- */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black to-transparent z-20 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black via-black/80 to-transparent z-20 pointer-events-none"></div>
+      <div className="absolute top-0 left-0 w-full h-15 bg-linear-to-b from-black via-black/40 to-transparent z-20 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-full h-15 bg-linear-to-t from-black via-black/40 to-transparent z-20 pointer-events-none"></div>
       </div>
 
        {/* --- HEADER --- */}
        <div className="absolute top-[5vh] z-40 flex flex-col items-center pointer-events-none">
-          <h1 className="text-3xl md:text-7xl font-black tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">
+          <h1 className="text-center text-xl sm:text-3xl md:text-5xl font-black tracking-tighter uppercase text-transparent bg-clip-text bg-linear-to-b from-white to-gray-400">
             Timeline
           </h1>
-         
+         <div className="w-50 h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent  mt-2"></div>
       </div>
 
       {/* --- TIMELINE TRACK --- */}
       <div ref={trackRef} className="absolute top-0 left-0 h-full flex flex-row items-start pt-[55vh] pl-[50vw] w-max">
         
         {/* RAILS */}
-        <div ref={grayRailRef} className="absolute top-[55vh] left-[50vw] h-[1px] bg-neutral-900 -translate-y-1/2 z-0 border-y border-gray-900"></div>
-        <div ref={lineRef} className="absolute top-[55vh] left-[50vw] h-[2px] bg-cyan-400 shadow-[0_0_20px_#22d3ee] -translate-y-1/2 z-10" style={{ width: '0px' }}>
-           <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 bg-cyan-500 blur-[4px] rounded-full z-20"></div>
+        <div ref={grayRailRef} className="absolute top-[55vh] left-[50vw] h-px bg-neutral-900 -translate-y-1/2 z-0 border-y border-gray-900"></div>
+        <div ref={lineRef} className="absolute top-[55vh] left-[50vw] h-0.5 bg-cyan-400 shadow-[0_0_20px_#22d3ee] -translate-y-1/2 z-10" style={{ width: '0px' }}>
+           <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 bg-cyan-500 blur-xs rounded-full z-20"></div>
            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-2 h-2 bg-white rounded-full z-30"></div>
         </div>
 
@@ -157,7 +157,7 @@ const DesktopTimeline = () => {
           const isEven = index % 2 === 0;
 
           return (
-            <div key={event.id} ref={(el) => { nodeRefs.current[index] = el; }} className="relative z-20 flex-shrink-0 w-auto mx-[10vw] -translate-y-1/2">
+            <div key={event.id} ref={(el) => { nodeRefs.current[index] = el; }} className="relative z-20 shrink-0 w-auto mx-[10vw] -translate-y-1/2">
               
               {/* Central Node*/}
               <div className={`w-10 h-10 transition-all duration-300 ease-out flex items-center justify-center bg-[#0a0a0a] relative z-30 ${isActive ? 'scale-[0.8] opacity-100' : 'scale-[0.7] opacity-40'}`}>
@@ -169,7 +169,7 @@ const DesktopTimeline = () => {
 
               {/* Connector Line */}
               <div className={`
-                  absolute left-1/2 -translate-x-1/2 w-[1px] bg-cyan-400 shadow-[0_0_15px_#00f3ff] z-0 transition-[height] duration-500 ease-out
+                  absolute left-1/2 -translate-x-1/2 w-px bg-cyan-400 shadow-[0_0_15px_#00f3ff] z-0 transition-[height] duration-500 ease-out
                   ${isEven ? 'bottom-1/2 origin-bottom' : 'top-1/2 origin-top'}
                 `}
                 style={{
@@ -179,8 +179,8 @@ const DesktopTimeline = () => {
 
               {/* Card Wrapper*/}
              <div className={`
-                absolute w-[350px] left-1/2 -translate-x-1/2 transition-all duration-700 ease-out
-                ${isActive ? 'opacity-100 translate-y-0 blur-0 z-50' : 'opacity-0 blur-[8px] z-0'}
+                absolute w-87.5 left-1/2 -translate-x-1/2 transition-all duration-700 ease-out
+                ${isActive ? 'opacity-100 translate-y-0 blur-0 z-50' : 'opacity-0 blur-sm z-0'}
                 
                 ${isEven 
                     ? `bottom-[calc(50%+30px)] ${isActive ? 'translate-y-0' : 'translate-y-8'}` 
@@ -242,7 +242,7 @@ const DesktopTimeline = () => {
                       </div>
 
                       {/* Background*/}
-                      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[size:100%_4px] opacity-10 pointer-events-none"></div>
+                      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.5)_50%)] bg-size-[100%_4px] opacity-10 pointer-events-none"></div>
                   </div>
 
                 </div>

@@ -127,15 +127,15 @@ const TabletTimeline = () => {
           
           <div className="absolute inset-0 bg-black/90 z-0"></div>
 
-          <div className="absolute top-[5%] left-[-16%] w-[90vw] h-[80vw] rounded-full bg-violet-950/20 blur-[100px] z-0"></div>
+          <div className="absolute top-[5%] left-[-16%] w-[90vw] h-[80vw] rounded-full bg-violet-950/30 blur-[120px] z-0"></div>
 
-          <div className="absolute bottom-[2%] right-[-15%] w-[90vw] h-[80vw] rounded-full bg-cyan-950/20 blur-[100px] z-0"></div>
+          <div className="absolute bottom-[2%] right-[-15%] w-[90vw] h-[80vw] rounded-full bg-cyan-950/30 blur-[120px] z-0"></div>
           
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-5 z-0"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-5 z-0"></div>
           <Particles />
       </div>
       
-      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black via-gray-950/20 to-transparent z-20 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-full h-40 bg-linear-to-t from-black via-gray-950/20 to-transparent z-20 pointer-events-none"></div>
 
 
       {/* --- HEADER --- */}
@@ -144,14 +144,14 @@ const TabletTimeline = () => {
             <div className="w-2 h-2 bg-red-500 animate-pulse rounded-full"></div>
             <span className="text-xs text-cyan-500 tracking-[0.3em] uppercase">System Status: Online</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600">
+          <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600">
             Timeline
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent mt-4"></div>
+          <div className="w-24 h-1 bg-linear-to-r from-transparent via-cyan-500 to-transparent mt-4"></div>
       </div>
       
       {/* Rail */}
-      <div ref={railContainerRef} className="absolute top-60 left-1/2 -translate-x-1/2 w-[2px] h-full z-0 pointer-events-none">
+      <div ref={railContainerRef} className="absolute top-60 left-1/2 -translate-x-1/2 w-0.5 h-full z-0 pointer-events-none">
           
           {/* Gray Rail */}
           <div 
@@ -163,7 +163,7 @@ const TabletTimeline = () => {
           <div className="absolute top-0 left-0 w-full z-10">
               <div ref={lineRef} className="relative w-full bg-cyan-400 shadow-[0_0_20px_#00f3ff] h-0">
                    {/* Spark Head */}
-                   <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-4 h-4 bg-cyan-500 blur-[4px] rounded-full z-20"></div>
+                   <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-4 h-4 bg-cyan-500 blur-xs rounded-full z-20"></div>
                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-white rounded-full z-30"></div>
               </div>
           </div>
@@ -177,7 +177,7 @@ const TabletTimeline = () => {
             const isEven = index % 2 === 0; 
             
             return (
-               <div key={event.id} className={`relative w-full mb-5 min-h-[140px] flex ${isEven ? 'justify-start' : 'justify-end'}`}>
+               <div key={event.id} className={`relative w-full mb-5 min-h-35 flex ${isEven ? 'justify-start' : 'justify-end'}`}>
                  
                  {/* 1. CENTRAL NODE (Tech Core) */}
                  <div className="absolute left-1/2 -translate-x-1/2 top-8 z-20 flex flex-col items-center">
@@ -195,7 +195,7 @@ const TabletTimeline = () => {
 
                  {/* 2. HORIZONTAL CONNECTOR */}
                  <div className={`
-                     absolute top-[49px] h-[2px] shadow-[0_0_10px_rgba(34,211,238,0.5)]
+                     absolute top-12.25 h-0.5 shadow-[0_0_10px_rgba(34,211,238,0.5)]
                      transition-all duration-700 ease-out z-0
                      ${isEven ? 'right-1/2 origin-right' : 'left-1/2 origin-left'}
                      ${isActive ? 'w-[calc(50%-45%)] opacity-100 bg-cyan-400' : 'w-0 opacity-0 bg-gray-800'}
@@ -262,7 +262,7 @@ const TabletTimeline = () => {
                              </div>
 
                              {/* Scanline */}
-                             <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[size:100%_4px] opacity-10 pointer-events-none"></div>
+                             <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.5)_50%)] bg-size-[100%_4px] opacity-10 pointer-events-none"></div>
 
                         </div>
                     </div>

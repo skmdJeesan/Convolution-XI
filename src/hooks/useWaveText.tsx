@@ -52,13 +52,14 @@ export const useWaveText = (options: UseWaveTextProps = {}): UseWaveTextReturn =
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: element.parentElement, 
+        // Different start point for various screen size
         start: () => {
       if (typeof window === 'undefined') return "top 85%";
 
       const width = window.innerWidth;
 
       if (width < 1025) {
-        return "top 85%"; 
+        return "top 90%"; 
       } else if (width >= 1025 && width < 1367) {
         return "top 70%";
       } else {

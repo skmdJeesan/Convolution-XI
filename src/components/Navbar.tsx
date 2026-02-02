@@ -7,6 +7,8 @@ import { IoMenuOutline, IoChevronDownOutline } from "react-icons/io5";
 import profileIcon from "@/assets/images/Robot_Profile.jpg";
 import MobileMenu from "./MobileMenu";
 import FlipLink from "./FlipLink";
+import ConvoIcon from "../assets/images/ConvoSvg.svg";
+
 
 const desktopNavLinks = [
   { href: "/#home", label: "Home" },
@@ -33,12 +35,14 @@ const desktopNavLinks = [
 
 const mobileNavLinks = [
   { href: "/#home", label: "Home" },
+  { href: "/#about", label: "About" },
   { href: "/#all-events", label: "Events" },
   { href: "/#timeline", label: "Timeline" },
-  { href: "/#contact", label: "Contact" },
-  { href: "/#faq", label: "FAQ" },
   { href: "/#team", label: "Team" },
   { href: "/#sponsors", label: "Sponsors" },
+  { href: "/#gallery", label: "Gallery" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/#contact", label: "Let's Connect" },
 ];
 
 const Navbar = () => {
@@ -53,7 +57,6 @@ const Navbar = () => {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
 
-  // --- CLICK OUTSIDE TO CLOSE ---
   // If user clicks anywhere else on the page, close the dropdown
   useEffect(() => {
     const closeDropdown = () => setActiveDropdown(null);
@@ -75,14 +78,12 @@ const Navbar = () => {
     }, 2300);
   };
 
+  // scroll back to the top of the section when clicked
   const handleScroll = (e: React.MouseEvent<HTMLElement, MouseEvent>, href: string) => {
-    // 1. If it's a placeholder link (parent item), prevent default
     if (href === "#") {
       e.preventDefault();
       return;
     }
-
-    // 2. If it's a real link (sub-item), close the dropdowns and proceed
     setActiveDropdown(null);
 
     if (href.includes("#")) {
@@ -121,6 +122,17 @@ const Navbar = () => {
     setActiveDropdown(activeDropdown === label ? null : label);
   };
 
+//  on refresh bring to the home page
+useEffect(() => {
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
+  // on scroll down make the navbar to be closed
   useEffect(() => {
     const handleScrollEvent = () => {
       const currentScrollY = window.scrollY;
@@ -149,8 +161,19 @@ const Navbar = () => {
 
   return (
     <>
+    <div className="fixed top-6 left-4 md:left-8 z-1000 pointer-events-auto transition-transform hover:scale-105 duration-300">
+        <Link href="/"
+        onClick={(e) => handleScroll(e, "/#home")}
+        >
+          <Image
+            src={ConvoIcon}
+            alt="convo logo"
+            className="object-cover h-12 w-auto drop-shadow-xl"
+          />
+        </Link>
+      </div>
       <div
-        className={`fixed top-0 left-0 right-0 z-[999] p-4 pt-6 font-sans transition-transform duration-500 ease-in-out ${navVisibilityClass}`}
+        className={`fixed top-0 left-0 right-0 z-999 p-4 pt-6 font-sans transition-transform duration-500 ease-in-out ${navVisibilityClass}`}
         onMouseEnter={() => {
           if (timerRef.current) clearTimeout(timerRef.current);
           setIsVisible(true);
@@ -166,16 +189,16 @@ const Navbar = () => {
               {desktopNavLinks.map((item, index) => (
                 <li key={index} className="relative group">
                   {item.subItems ? (
-                    // --- PARENT ITEM WITH SUBMENU ---
+                    // parent items with submenu
                     <div 
                       className={`
                         px-6 py-2 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1
                         ${activeDropdown === item.label ? "bg-white/10 text-white" : "hover:bg-white/10 hover:text-white"}
                       `}
-                      // Toggle on CLICK
+                      // Toggle on click
                       onClick={(e) => handleDropdownToggle(e, item.label)}
                     >
-                      <span><FlipLink href="#">{item.label}</FlipLink></span>
+                      <span><FlipLink >{item.label}</FlipLink></span>
                       <IoChevronDownOutline 
                         className={`
                           size-3 transition-transform duration-300 
@@ -196,7 +219,7 @@ const Navbar = () => {
                                 onClick={(e) => handleScroll(e, sub.href)}
                                 className="block px-4 py-3 hover:bg-white/5 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[10px] cursor-pointer"
                               >
-                                <FlipLink href={sub.href}>{sub.label}</FlipLink>
+                                <FlipLink >{sub.label}</FlipLink>
                               </div>
                             </li>
                           ))}
@@ -209,7 +232,7 @@ const Navbar = () => {
                       onClick={(e) => handleScroll(e, item.href)}
                       className="block px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 hover:text-white cursor-pointer"
                     >
-                      <FlipLink href={item.href}>{item.label}</FlipLink>
+                      <FlipLink >{item.label}</FlipLink>
                     </div>
                   )}
                 </li>

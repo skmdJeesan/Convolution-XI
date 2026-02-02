@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import { FaInstagram, FaFacebook, FaLinkedin } from "react-icons/fa6";
 import Image from 'next/image';
-import ConvoLogo from "@/assets/images/ConvoSvg.svg";
-import { MdCall, MdLocationOn, MdOutlineEmail, MdArrowForward } from "react-icons/md";
+import ConvoLogo from "@/assets/images/Convologo.png";
+import { MdCall, MdLocationOn, MdOutlineEmail,MdArrowForward } from "react-icons/md";
 import { useEffect, useState } from 'react';
 import { useWaveText } from '@/hooks/useWaveText';
 import FlipLink from './FlipLink';
@@ -27,13 +27,13 @@ const Particles = () => {
       setMounted(true);
   }, []);
   if(!mounted) return null;
-  const particles = Array.from({ length: 50 });
+  const particles = Array.from({ length: 60 });
   return (
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           {particles.map((_, i) => (
               <div
                   key={i}
-                  className="absolute w-1 h-1 bg-cyan-400/60 rounded-full animate-particle"
+                  className="absolute w-0.5 h-0.5 bg-cyan-400/60 rounded-full animate-particle"
                   style={{
                       left: `${Math.random() * 100}%`,
                       top: `${Math.random() * 100}%`,
@@ -48,7 +48,7 @@ const Particles = () => {
 };
 
 export default function Footer() {
-  const { ref, breakTheText } = useWaveText({ 
+ const { ref, breakTheText } = useWaveText({ 
     scrub: 2, 
     yoyo: false,
     markers: false 
@@ -67,7 +67,6 @@ export default function Footer() {
     <div id='contact' className='relative bg-black flex flex-col pt-5 overflow-hidden  z-0'>
       
       {/* --- BACKGROUND LAYER --- */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
         <div 
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
@@ -75,36 +74,36 @@ export default function Footer() {
              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)'
         }}
       >
-          {/* Deep Space Blackout */}
-          <div className="absolute inset-0 bg-black/90 z-0"></div>
+         
 
-          {/* Nebulas */}
-          <div className="absolute top-[10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-violet-950/20 blur-[100px] z-0"></div>
-          <div className="absolute bottom-[10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-cyan-950/20 blur-[100px] z-0"></div>
+          <div className="absolute top-[10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-violet-900/20 blur-[120px] z-0"></div>
+          <div className="absolute top-[10%] left-1/3 w-[30vw] h-[70vw] rounded-full bg-blue-900/20 blur-[120px] z-0"></div>
+          <div className="absolute bottom-[10%] right-[-10%] w-[50vw] h-[40vw] rounded-full bg-cyan-900/25 blur-[120px] z-0"></div>
 
           {/* Grid */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-5 z-0"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-5 z-0"></div>
           
           <Particles />
-      </div>
-     
       </div>
 
 
       <div className="w-full maxWidthForSections relative z-20">
-        <div className="sm:grid w-full grid-cols-2 md:grid-cols-3 mt-4 flex flex-col items-center sm:items-start gap-x-2 gap-y-8">
+        <div className="flex flex-col md:grid md:grid-cols-3 gap-8 mt-4 w-full">
           
-          {/* Logo & address */}
-          <div className="flex flex-col gap-6 justify-center sm:justify-start sm:items-start items-center">
-            <div className="w-54 relative">
+          {/*Logo & Address*/}
+          <div className="flex flex-col gap-2 items-center md:items-start text-center md:text-left">
+            <div className="w-60 relative">
               <Image
                 src={ConvoLogo}
                 alt="convo logo"
                 className="object-cover"
               />
             </div>
-            <div className="pt-2 border-t border-white/20 w-full">
-               <p className="text-gray-300 mt-4 sm:text-left md:text-base text-sm text-center">
+            <div className="w-full flex flex-col gap-2">
+              <p className="text-cyan-400 font-semibold text-base uppercase tracking-wide">
+                  Innovate. Integrate. Inspire.
+               </p>
+               <p className="text-slate-300 mt-4 text-sm md:text-base">
                 Department of Electrical Engineering <br />
                 Jadavpur University <br />
                 188, Raja Subodh Chandra Mallick Rd, Jadavpur, <br />
@@ -112,148 +111,152 @@ export default function Footer() {
                 India
               </p>
             </div>
-            <div className="flex justify-center md:justify-end gap-4">
-                        <Link href="#" className='text-gray-300 hover:text-cyan-500 hover:scale-110 transition-all'>
-                            <FaInstagram size={25} />
-                        </Link>
-                        <Link href="#" className='text-gray-300 hover:text-cyan-500 hover:scale-110 transition-all'>
-                            <FaFacebook size={25} />
-                        </Link>
-                        <Link href="#" className='text-gray-300 hover:text-cyan-500 hover:scale-110 transition-all'>
-                            <FaLinkedin size={25} />
-                        </Link>
-                </div>
+            <div className="flex justify-center md:justify-start gap-4">
+                <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                    <FaInstagram size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors" />
+                </Link>
+                <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                    <FaFacebook size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors"/>
+                </Link>
+                <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                    <FaLinkedin size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors" />
+                </Link>
+            </div>
           </div>
 
-          {/* Let's connect */}
-          <div className='md:ml-6 lg:ml-12 md:pt-19'>
-            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 uppercase mb-6 border-b border-white/20 pb-2 inline-block ml-9 sm:ml-0">
-                Let's Connect
-            </h3>
+          {/* Lets connect */}
+          <div className='flex flex-col items-center w-full '>
             
-            <ul className="flex flex-col gap-5">
-              {/* Email */}
-              <li className='flex items-start gap-4'>
-                <Link href="mailto:convolutionXI2026@gmail.com" className='flex items-center justify-normal'>
-                  <MdOutlineEmail className="text-3xl text-cyan-500 mt-0.5" />
-                </Link>
-                <div className="text-[17px]">
-                  <span className="text-gray-300 text-[16px] font-bold tracking-wider block mb-0.5">Email</span>
-                  <Link 
-                  href="mailto:convolutionXI2026@gmail.com" 
-                  className="text-gray-300 hover:text-cyan-400 transition-colors block break-all"
-                >
-                  convolutionx2026@gmail.com
-                </Link>
-                </div>
-              </li>
+            <div className='flex flex-col items-center sm:items-start md:items-center md:ml-7 lg-ml-2 lg:items-start'>
+                
+                <h3 className="text-[20px] md:text-xl lg:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 uppercase mb-8 relative inline-block whitespace-nowrap sm:ml-11">
+                    Let's Connect
+                    <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent "></span>
+                </h3>
 
-              {/* Address */}
-              <li className='flex items-start gap-4'>
-                <Link target="_blank" href="https://maps.app.goo.gl/wKYjjoLyR1ScsFEq5" className="flex items-center justify-normal">
-                    <MdLocationOn className="text-3xl text-cyan-500 mt-0.5" />
-                </Link>
-                <div className="text-[14px">
-                  <span className="text-gray-300 text-[16px] font-bold tracking-wider block mb-0.5">Address</span>
-                <Link 
-                  href="https://maps.app.goo.gl/wKYjjoLyR1ScsFEq5" 
-                  target="_blank"
-                  className="text-gray-300 hover:text-cyan-400 transition-colors block leading-relaxed"
-                >
-                  Department of Electrical Engineering, <br />
-                  Jadavpur University
-                </Link>
-                </div>
-              </li>
+                <ul className="flex flex-col gap-4">
+                {/* Email */}
+                <li className='flex items-start gap-4 group'>
+                    <Link href="mailto:convolutionXI2026@gmail.com" className='flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-cyan-400 group-hover:bg-cyan-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0'>
+                    <MdOutlineEmail className="text-xl text-cyan-400 mt-0.5 group-hover:text-cyan-300 transition-colors duration-300" />
+                    </Link>
+                    <div className="text-md">
+                    <span className="text-slate-400   font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">Email</span>
+                    <Link 
+                    href="mailto:convolutionXI2026@gmail.com" 
+                    className="text-slate-200 hover:text-white transition-colors block break-all"
+                    >
+                    convolutionx2026@gmail.com
+                    </Link>
+                    </div>
+                </li>
 
-              {/* Phone */}
-              <li className='flex items-start gap-4'>
-  {/* Icon click calls the primary number */}
-  <a href="tel:+919933671072" className="hover:scale-110 transition-transform">
-    <MdCall className="text-3xl text-cyan-500 mt-0.5" />
-  </a>
+                {/* Address */}
+                <li className='flex items-start gap-4 group'>
+                    <Link target="_blank" href="https://maps.app.goo.gl/wKYjjoLyR1ScsFEq5" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-cyan-400 group-hover:bg-cyan-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0">
+                        <MdLocationOn className="text-xl text-cyan-400 mt-0.5 group-hover:text-cyan-300 transition-colors duration-300" />
+                    </Link>
+                    <div className="text-md">
+                    <span className="text-slate-400 font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">Address</span>
+                    <Link 
+                    href="https://maps.app.goo.gl/wKYjjoLyR1ScsFEq5" 
+                    target="_blank"
+                    className="text-slate-200 hover:text-white transition-colors block break-all"
+                    >
+                    Department of Electrical Engineering, <br />
+                    Jadavpur University
+                    </Link>
+                    </div>
+                </li>
 
-  <div className="text-[14px]">
-    <span className="text-gray-300 text-[16px] font-bold tracking-wider block mb-1">
-      Phone
-    </span>
-    <a 
-      href="tel:+917679880740" 
-      className="block text-gray-300 hover:text-cyan-400 transition-colors"
-    >
-      +91 76798 80740
-    </a>
-    <a 
-      href="tel:+919933671072" 
-      className="block text-gray-300 hover:text-cyan-400 transition-colors"
-    >
-      +91 99336 71072
-    </a>
-  </div>
-</li>
-            </ul>
+                {/* Phone */}
+                <li className='flex items-start gap-4 group'>
+                    <a href="tel:+919933671072" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-cyan-400 group-hover:bg-cyan-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0">
+                    <MdCall className="text-xl text-cyan-400 mt-0.5 group-hover:text-cyan-300 transition-colors duration-300" />
+                    </a>
+
+                    <div className="text-md">
+                    <span className="text-slate-400   font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">
+                        Phone
+                    </span>
+                    <a href="tel:+917679880740" className="block text-slate-200 hover:text-white transition-colors">
+                        +91 76798 80740
+                    </a>
+                    <a href="tel:+919933671072" className="text-slate-200 hover:text-white transition-colors  block">
+                        +91 99336 71072
+                    </a>
+                    </div>
+                </li>
+                </ul>
+            </div>
           </div>
 
           {/* Events */}
-          <div className='md:ml-26 lg:ml-12 md:pt-19'>
-            <h3 className="text-2xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 uppercase mb-6 border-b border-white/20 pb-2 inline-block">
-                Events
-            </h3>
-    
-            <ul className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-2">
-              {events.map((event, index) => (
-              <li key={index}>
-                <Link href={event.href} className="group flex items-center justify-between border-b border-transparent hover:border-white/10 pb-1 transition-colors gap-x-1" >
-                    <span className="text-[17px] text-gray-300 group-hover:text-cyan-400 transition-colors">
-                        <FlipLink>{event.name}</FlipLink>
-                    </span>
-                    <span className="text-cyan-400 text-lg opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
-                        <MdArrowForward />
-                    </span>
-                </Link>
-              </li>
-              ))}
-            </ul>
+          <div className='flex flex-col items-center md:items-end w-full'>
+             <div className='flex flex-col items-center sm:items-start'>
+                <h3 className="text-[20px] md:text-xl lg:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 uppercase mb-8 relative inline-block -ml-4 sm:ml-0">
+                    events
+                    <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent "></span>
+                </h3>
+        
+
+                <ul className="grid grid-cols-3 md:grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-2">
+                  {events.map((event, index) => (
+                  <li key={index}>
+                    <Link href={event.href} className="group flex items-center justify-between border-b border-transparent hover:border-white/10 pb-0.5 transition-colors gap-x-1" >
+                        <span className="text-md md:text-lg text-slate-300 group-hover:text-cyan-400 transition-colors">
+                            <FlipLink>{event.name}</FlipLink>
+                        </span>
+                        <span className="hidden md:block text-cyan-400 text-lg opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
+                            →
+                        </span>
+                    </Link>
+                  </li>
+                  ))}
+                </ul>
+             </div>
           </div>
 
         </div>
       </div>
 
 {/*Big Convo Text*/}
-<div className='relative w-full -mt-13 md:-mt-25  h-[25vw] md:h-[22vw] overflow-hidden z-10 pointer-events-none flex items-end justify-center'>
+<div className='middle relative w-full -mt-13 md:-mt-30  h-[25vw] md:h-[22vw] overflow-clip z-10 pointer-events-none flex items-end justify-center'>
         
         <h1 
             ref={ref as React.RefObject<HTMLHeadingElement>} 
-            className='text-center text-[18vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-gradient-to-b [&_span]:from-white [&_span]:to-gray-500 tracking-tighter font-black leading-[0.8] whitespace-nowrap translate-y-[10%] md:translate-y-6'
+            className='text-[16vw] md:text-[14vw] lg:text-[16vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#0e7490] [&_span]:to-black/50 tracking-tight font-bold absolute -bottom-6 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
         >
             {text}
         </h1>
 
       </div>
+
       
      
 
       {/*Bottom*/}
-        <div className='relative w-full border-t border-white/10 bg-black/40 backdrop-blur-md z-30'>
-        <div className="max-w-[1440px] mx-auto ">
+        <div className='relative w-full bg-transparent/40 backdrop-blur-md z-30'>
+        <div className="w-[95%] h-px bg-linear-to-r from-transparent via-cyan-500/80 to-transparent mx-auto"></div>
+        <div className="max-w-360 mx-auto ">
             <div className="flex flex-col items-center">
-                
-                <div className="text-[15px] tracking-wider text-gray-400 text-center md:text-left">
+
+                <div className="text-[12px] md:text-[14px] tracking-wider text-slate-400 text-center md:text-left">
                     © 2026 Convolution
                 </div>
 
-                <div className="text-[15px] tracking-wider text-gray-400 text-center">
-                    Made with ⚡ by <span className="text-white text-[17px]">Team Convo</span>
+                <div className="text-[12px] md:text-[14px] tracking-wider text-slate-400 text-center">
+                    Made with 💣 by <span className="text-white text-[13px] md:text-[16px]">Team Convo</span>
                 </div>
             </div>
         </div>
+
       </div>
 
       {/* Background Image*/}
-      <div className="w-full h-16 absolute bottom-0 left-0 opacity-70 z-0">
+      {/* <div className="w-full h-40 md:h-40 lg:h-40 absolute bottom-0 left-0 opacity-30 z-0">
         <Image src='/page-bottom.jpg' alt='footer' fill className='object-cover'/>
-      </div>
-
+      </div> */}
     </div>
   );
 }
