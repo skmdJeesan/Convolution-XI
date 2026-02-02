@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import React, { useRef } from 'react'
 
-function FlipLink({ children, href }: { children: string, href: string }) {
+function FlipLink({ children }: { children: string }) {
   const topDivRef = useRef<HTMLDivElement>(null);
   const bottomDivRef = useRef<HTMLDivElement>(null);
 
@@ -37,8 +37,8 @@ function FlipLink({ children, href }: { children: string, href: string }) {
   };
 
   return (
-    <motion.a
-      href={href}
+    <motion.div
+      
       className='relative block overflow-hidden whitespace-nowrap'
       onHoverStart={handleHoverStart}
     >
@@ -56,7 +56,7 @@ function FlipLink({ children, href }: { children: string, href: string }) {
             key={i}>{l}</span>
         })}
       </div>
-    </motion.a>
+    </motion.div>
   )
 }
 
