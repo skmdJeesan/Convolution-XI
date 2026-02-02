@@ -1,15 +1,17 @@
+'use client'
 // src/app/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
-import Gallery from "@/components/Gallery"; 
-import FaqSection from "@/components/FAQ";
+import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
 import HomeAbout from "@/components/HomeAbout";
+import Gallery from "@/components/Gallery";
 import HeroSection from "@/components/HeroSection";
 import Timeline from "@/components/TimeLine";
 import Team from "@/components/Team";
 import Image from "next/image";
+import Sponsors from '@/components/Sponsors';
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
@@ -30,10 +32,14 @@ export default function Home() {
 
   return (
     <main className="bg-black w-full min-h-screen">
-      {/* <HeroSection /> */}
+      <HeroSection />
+      <HomeAbout/>
       {/* <EventShowcase /> */}
-      <FaqSection />
+      <Timeline/>
       <Team />
+      <Sponsors />
+      <Gallery/>
+      <FaqSection/>
       <Footer />
     </main>
   );
