@@ -64,7 +64,7 @@ const Sponsors: React.FC = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
             className="text-white text-center text-2xl mb-4 w-fit"
-          ><FlipLink href="">Main&nbsp;Sponsor</FlipLink></motion.p>
+          ><FlipLink>Main&nbsp;Sponsor</FlipLink></motion.p>
           <motion.div 
             variants={sectionVariants}
             initial="hidden"
@@ -91,7 +91,7 @@ const Sponsors: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
-            className="text-white text-center text-2xl mb-4 w-fit"><FlipLink href="">Co-Sponsor</FlipLink></motion.p>
+            className="text-white text-center text-2xl mb-4 w-fit"><FlipLink >Co-Sponsor</FlipLink></motion.p>
           <motion.div 
             variants={sectionVariants}
             initial="hidden"
@@ -117,7 +117,7 @@ const Sponsors: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
-            className="text-white text-center text-xl mb-4 w-fit"><FlipLink href="">Associate&nbsp;Sponsor</FlipLink></motion.p>
+            className="text-white text-center text-xl mb-4 w-fit"><FlipLink>Associate&nbsp;Sponsor</FlipLink></motion.p>
           <motion.div 
             variants={containerVariants}
             initial="hidden"
@@ -156,7 +156,7 @@ const Sponsors: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
-            className="text-white text-center text-xl mb-4 mt-10 w-fit"><FlipLink href="">Event&nbsp;Partners</FlipLink></motion.p>
+            className="text-white text-center text-xl mb-4 mt-10 w-fit"><FlipLink>Event&nbsp;Partners</FlipLink></motion.p>
           <motion.div 
             variants={containerVariants}
             initial="hidden"
@@ -243,7 +243,7 @@ const Sponsors: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
-            className="text-white text-center text-xl mb-4 mt-10 w-fit"><FlipLink href="">Digital&nbsp;Media&nbsp;Partner</FlipLink></motion.p>
+            className="text-white text-center text-xl mb-4 mt-10 w-fit"><FlipLink>Digital&nbsp;Media&nbsp;Partner</FlipLink></motion.p>
           <motion.div 
             variants={sectionVariants}
             initial="hidden"
