@@ -61,7 +61,7 @@ export const useWaveText = (options: UseWaveTextProps = {}): UseWaveTextReturn =
       if (width < 1025) {
         return "top 90%"; 
       } else if (width >= 1025 && width < 1367) {
-        return "top 70%";
+        return "top 60%";
       } else {
         
         return "top 65%";

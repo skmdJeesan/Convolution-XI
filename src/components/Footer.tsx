@@ -246,7 +246,7 @@ export default function Footer() {
                 </div>
 
                 <div className="text-[12px] md:text-[14px] tracking-wider text-slate-400 text-center">
-                    Made with 💣 by <span className="text-white text-[13px] md:text-[16px]">Team Convo</span>
+                    Made with ❤️ by <span className="text-white text-[13px] md:text-[16px]">Team Convo</span>
                 </div>
             </div>
         </div>
