@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { IoMenuOutline, IoChevronDownOutline } from "react-icons/io5";
 import profileIcon from "@/assets/images/Robot_Profile.jpg";
 import MobileMenu from "./MobileMenu";
@@ -49,6 +49,8 @@ const mobileNavLinks = [
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(true);
+
+  const router = useRouter()
   
   // --- STATE FOR CLICK HANDLING ---
   // Tracks which dropdown is currently "locked" open by a click
@@ -89,7 +91,6 @@ const Navbar = () => {
     timerRef.current = setTimeout(() => {
       setIsVisible(false);
       setActiveDropdown(null); // Close dropdowns when nav hides
-    }, 2300);
     }, 2400);
   };
 
@@ -271,11 +272,15 @@ useEffect(() => {
               </Link>
             ) : (
               <div className="hidden lg:flex gap-2 items-center">
-                <div className="py-2.5 px-6 rounded-full glass-btn text-sm">
-                  <FlipLink href="/login">Log in</FlipLink>
+                <div 
+                onClick={() => { router.push('/login')}}
+                className="py-2.5 px-6 rounded-full glass-btn text-sm">
+                  <FlipLink>Log in</FlipLink>
                 </div>
-                <div className="py-2.5 px-6 rounded-full glass-btn text-sm">
-                  <FlipLink href="/register">Register&nbsp;now</FlipLink>
+                <div 
+                onClick={() => { router.push('/register')}}
+                className="py-2.5 px-6 rounded-full glass-btn text-sm">
+                  <FlipLink>Register&nbsp;now</FlipLink>
                 </div>
               </div>
             )}
