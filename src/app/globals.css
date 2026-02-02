@@ -228,7 +228,7 @@ html {
   @apply bg-black/35 backdrop-blur-2xl backdrop-saturate-150 border border-white/20 shadow-[0_20px_60px_rgba(0,_0,_0,_0.45)] before:absolute before:inset-0 before:rounded-[32px] before:bg-gradient-to-br before:from-white/20 before:via-white/5 before:to-transparent before:pointer-events-none;
 }
 .maxWidthForSections {
-  @apply 2xl:max-w-[1280px] xl:max-w-[1200px] mx-auto xl:px-0 px-[3vw] sm:px-[5vw];
+  @apply 2xl:max-w-7xl xl:max-w-300 mx-auto xl:px-0 px-[3vw] sm:px-[5vw];
 }
 /* For Header animations */
 

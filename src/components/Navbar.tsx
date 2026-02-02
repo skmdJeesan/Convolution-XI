@@ -8,7 +8,7 @@ import profileIcon from "@/assets/images/Robot_Profile.jpg";
 import MobileMenu from "./MobileMenu";
 import FlipLink from "./FlipLink";
 import { useSession } from "next-auth/react";
-import ConvoIcon from "../assets/images/ConvoSvg.svg";
+import ConvoLogo from "../assets/images/Convologo.png";
 
 
 const desktopNavLinks = [
@@ -182,9 +182,9 @@ useEffect(() => {
         onClick={(e) => handleScroll(e, "/#home")}
         >
           <Image
-            src={ConvoIcon}
+            src={ConvoLogo}
             alt="convo logo"
-            className="object-cover h-12 w-auto drop-shadow-xl"
+            className="object-cover h-10 w-auto drop-shadow-xl"
           />
         </Link>
       </div>

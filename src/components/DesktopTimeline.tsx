@@ -56,7 +56,7 @@ const DesktopTimeline = () => {
         
         const maxLineWidth = lastNodeCenterX - lineStartX;
         const moveDist = lastNodeCenterX - (window.innerWidth / 2);
-        const holdDist = window.innerHeight * 0.1;
+        const holdDist = window.innerHeight * 0.2;
 
         const triggerPoints = nodeRefs.current.map(node => {
           if (!node) return 0;

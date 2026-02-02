@@ -740,7 +740,7 @@
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from "next/image";
-import Artboard18 from "@/assets/images/Artboard18.svg";
+import ConvoLogo from "@/assets/images/Convologo.png";
 import Link from 'next/link';
 
 // --- 1. UTILITY COMPONENTS ---
@@ -917,10 +917,10 @@ const CommandDeck = () => {
             {/* --- MOBILE LAYOUT (GRID) --- */}
             <div className="md:hidden w-full flex flex-col items-center justify-end pb-0 pointer-events-auto">
                 <div className="grid grid-cols-2 gap-3 w-full max-w-[360px]">
-                    <SciFiButton label="Timeline" href="/timeline" color="cyan" />
-                    <SciFiButton label="Gallery" href="/gallery" color="cyan" />
-                    <SciFiButton label="Events" href="/events" color="fuchsia" />
-                    <SciFiButton label="Sponsors" href="/sponsors" color="fuchsia" />
+                    <SciFiButton label="Timeline" href="#timeline" color="cyan" />
+                    <SciFiButton label="Gallery" href="#gallery" color="cyan" />
+                    <SciFiButton label="Events" href="#all-events" color="fuchsia" />
+                    <SciFiButton label="Sponsors" href="#sponsors" color="fuchsia" />
                 </div>
                 <div className="mt-4 w-32 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
             </div>
@@ -974,7 +974,7 @@ function HeroSection() {
     const MOBILE_VIDEO_PATH = "/assets/videos/hero_robot_mobile_15.mp4";
 
     return (
-        <div className="h-[100dvh] w-full relative overflow-hidden mx-auto bg-[#0b0b15] font-sans selection:bg-cyan-500/30">
+        <div id='home' className="h-[100dvh] w-full relative overflow-hidden mx-auto bg-[#0b0b15] font-sans selection:bg-cyan-500/30">
             {/* We place the BackgroundGrid here. */}
             <BackgroundGrid />
             <Particles />
@@ -985,7 +985,7 @@ function HeroSection() {
                 <div className="relative group w-full flex justify-center">
                     <div className="absolute -inset-10 md:-inset-32 bg-gradient-to-r from-cyan-500/20 to-fuchsia-500/20 blur-[60px] md:blur-[100px] rounded-full opacity-10" />
                     <Image
-                        src={Artboard18}
+                        src={ConvoLogo}
                         alt="Convolution Logo Center"
                         className="w-[75vw] md:w-[45vw] xl:w-[45vw] max-w-[300px] md:max-w-5xl h-auto object-contain relative z-10 drop-shadow-[0_0_30px_rgba(6,182,212,0.6)]"
                         priority
