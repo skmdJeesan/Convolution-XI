@@ -1,13 +1,129 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
 @custom-variant dark (&:is(.dark *));
 
+@theme inline {
+  --animate-shimmer: shimmer 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-shimmer: shimmer 3s infinite linear;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
 
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(1deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(1deg);
+  }
 }
 
 .animate-float {
@@ -15,8 +131,15 @@
 }
 
 @keyframes pulse-slow {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.1); }
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
 }
 
 @keyframes floatSlow {
@@ -31,7 +154,8 @@
   }
 }
 @keyframes ghostPulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.03;
   }
   50% {
@@ -49,11 +173,16 @@
 }
 
 @keyframes gradient-x {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
-
 
 @layer base {
   * {
@@ -65,21 +194,26 @@
   }
 }
 
-html{
+html {
   scroll-behavior: smooth;
 }
 
 @keyframes float-hologram {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 .animate-float-delayed {
   animation: float-hologram 6s ease-in-out 1.5s infinite;
 }
 
- .animate-scanline-delayed {
-   animation: scanline 3s linear 1.5s infinite;
+.animate-scanline-delayed {
+  animation: scanline 3s linear 1.5s infinite;
 }
 
 .glass-btn {
@@ -93,23 +227,36 @@ html{
 .glassmorphism-bg {
   @apply bg-black/35 backdrop-blur-2xl backdrop-saturate-150 border border-white/20 shadow-[0_20px_60px_rgba(0,_0,_0,_0.45)] before:absolute before:inset-0 before:rounded-[32px] before:bg-gradient-to-br before:from-white/20 before:via-white/5 before:to-transparent before:pointer-events-none;
 }
-.maxWidthForSections{
-    @apply 2xl:max-w-[1280px] xl:max-w-[1200px] mx-auto xl:px-0 px-[3vw] sm:px-[5vw]
-  }
+.maxWidthForSections {
+  @apply 2xl:max-w-[1280px] xl:max-w-[1200px] mx-auto xl:px-0 px-[3vw] sm:px-[5vw];
+}
 /* For Header animations */
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 .animate-blink {
   animation: blink 1s step-end infinite;
 }
 
 @keyframes particle {
-  0% { transform: translateY(0) scale(1); opacity: 0; }
-  10% { opacity: 1; }
-  100% { transform: translateY(-100vh) scale(0); opacity: 0; }
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(0);
+    opacity: 0;
+  }
 }
 .animate-particle {
   animation-name: particle;
@@ -117,58 +264,106 @@ html{
   animation-iteration-count: infinite;
 }
 @keyframes pulse-slow {
-  0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.05); }
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
 }
 .animate-pulse-slow {
   animation: pulse-slow 6s ease-in-out infinite;
 }
 
 @keyframes pulse-slower {
-  0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.1); }
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
 }
 .animate-pulse-slower {
   animation: pulse-slower 8s ease-in-out infinite;
 }
 
 @keyframes glitch-text {
-  0% { transform: translate(0); opacity: 0.2; }
-  2% { transform: translate(-2px, 2px); opacity: 0.3; }
-  4% { transform: translate(2px, -2px); opacity: 0.2; }
-  6% { transform: translate(0); opacity: 0.2; }
-  100% { transform: translate(0); opacity: 0.2; }
+  0% {
+    transform: translate(0);
+    opacity: 0.2;
+  }
+  2% {
+    transform: translate(-2px, 2px);
+    opacity: 0.3;
+  }
+  4% {
+    transform: translate(2px, -2px);
+    opacity: 0.2;
+  }
+  6% {
+    transform: translate(0);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(0);
+    opacity: 0.2;
+  }
 }
 .animate-glitch-text {
   animation: glitch-text 3s infinite linear alternate-reverse;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
 
 @keyframes pan-grid {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
 }
 .animate-pan-grid {
   animation: pan-grid 60s linear infinite;
 }
 @keyframes pan-grid-reverse {
-  0% { background-position: 0% 0%; }
-  100% { background-position: -100% -100%; }
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: -100% -100%;
+  }
 }
 .animate-pan-grid-reverse {
   animation: pan-grid-reverse 60s linear infinite;
 }
 
 @keyframes typewriter {
-  from { width: 0; opacity: 0; }
-  to { width: 100%; opacity: 1; }
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
 }
 .animate-typewriter {
   overflow: hidden;
@@ -177,89 +372,144 @@ html{
 }
 
 @keyframes grow-width {
-  from { width: 0; }
-  to { width: 8rem; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 8rem;
+  }
 }
 .animate-grow-width {
   animation: grow-width 1s ease-out forwards;
 }
 
 @keyframes fade-in-down {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 .animate-fade-in-down {
   animation: fade-in-down 1s ease-out forwards;
 }
 
 @keyframes slide-in-left {
-  from { transform: translateX(-50px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 .animate-slide-in-left {
   animation: slide-in-left 1s ease-out forwards;
 }
 
 @keyframes slide-in-right {
-  from { transform: translateX(50px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 .animate-slide-in-right {
   animation: slide-in-right 1s ease-out forwards;
 }
 
 @keyframes scroll-down {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  51% { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
 }
 .animate-scroll-down {
   animation: scroll-down 2s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
 }
 
 @keyframes scan-pulse {
-  0% { 
-    border-color: rgba(6, 182, 212, 0.1); 
+  0% {
+    border-color: rgba(6, 182, 212, 0.1);
     filter: drop-shadow(0 0 0 rgba(6, 182, 212, 0));
   }
-  50% { 
-    border-color: rgba(6, 182, 212, 1); 
-    filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.5)); 
+  50% {
+    border-color: rgba(6, 182, 212, 1);
+    filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.5));
   }
-  100% { 
-    border-color: rgba(6, 182, 212, 0.1); 
+  100% {
+    border-color: rgba(6, 182, 212, 0.1);
     filter: drop-shadow(0 0 0 rgba(6, 182, 212, 0));
   }
 }
 
-.animate-scan-corner-tl { 
-  animation: scan-pulse 4s ease-in-out infinite; 
+.animate-scan-corner-tl {
+  animation: scan-pulse 4s ease-in-out infinite;
 }
 
-.animate-scan-corner-tr { 
-  animation: scan-pulse 4s ease-in-out infinite; 
+.animate-scan-corner-tr {
+  animation: scan-pulse 4s ease-in-out infinite;
 }
 
-.animate-scan-corner-br { 
-  animation: scan-pulse 4s ease-in-out infinite; 
+.animate-scan-corner-br {
+  animation: scan-pulse 4s ease-in-out infinite;
 }
 
-.animate-scan-corner-bl { 
-  animation: scan-pulse 4s ease-in-out infinite; 
+.animate-scan-corner-bl {
+  animation: scan-pulse 4s ease-in-out infinite;
 }
 
 @keyframes noise {
-  0%, 100% { background-position: 0 0; }
-  10% { background-position: -5% -10%; }
-  20% { background-position: -15% 5%; }
-  30% { background-position: 7% -25%; }
-  40% { background-position: 20% 25%; }
-  50% { background-position: -25% 10%; }
-  60% { background-position: 15% 5%; }
-  70% { background-position: 0% 15%; }
-  80% { background-position: 25% 35%; }
-  90% { background-position: -10% 10%; }
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+  10% {
+    background-position: -5% -10%;
+  }
+  20% {
+    background-position: -15% 5%;
+  }
+  30% {
+    background-position: 7% -25%;
+  }
+  40% {
+    background-position: 20% 25%;
+  }
+  50% {
+    background-position: -25% 10%;
+  }
+  60% {
+    background-position: 15% 5%;
+  }
+  70% {
+    background-position: 0% 15%;
+  }
+  80% {
+    background-position: 25% 35%;
+  }
+  90% {
+    background-position: -10% 10%;
+  }
 }
 .animate-noise {
   animation: noise 0.5s steps(8) infinite both;
@@ -272,13 +522,18 @@ html{
 }
 @media (min-width: 768px) {
   .stroke-text {
-      -webkit-text-stroke: 2px rgba(6, 182, 212, 0.15);
+    -webkit-text-stroke: 2px rgba(6, 182, 212, 0.15);
   }
 }
 
-  @keyframes float_drone {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+@keyframes float_drone {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 .animate-float_drone {
   animation: float 3s ease-in-out infinite;

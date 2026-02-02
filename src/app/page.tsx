@@ -3,8 +3,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic'; //
-import EventShowcase from "@/components/EventShowcase";
+import dynamic from 'next/dynamic';
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import HomeAbout from "@/components/HomeAbout";
@@ -51,11 +50,10 @@ export default function Home() {
     <main className="bg-black w-full min-h-screen">
       <HeroSection/>
        <HomeAbout/>
-      {/* <EventShowcase/> */}
       <Timeline/>
       <Team/>
       <Sponsors/>
-      <Gallery/>
+      {/* <Gallery/> */}
       <FaqSection/>
       {shouldLoadBot && <WhiteBot />}
       <Footer />
