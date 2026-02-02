@@ -1,0 +1,482 @@
+/* EventCarousel.module.css */
+.bodyContainer {
+  --carousel-transition-duration: 250ms;
+  --carousel-transition-ease: ease-out;
+  --carousel-bg-color-rgb: 0, 0, 0;
+  --carousel-shadow-color-rgb: 128, 128, 128;
+  /* Adjusted size as per your code */
+  --carousel-item-width: 13rem; 
+  --carousel-item-height: 20rem;
+  --carousel-item-hover-effect: 1.075;
+  --carousel-item-reflection-blur: 0.25rem;
+  --carousel-item-empty-color-rgb: 255, 255, 255;
+  --carousel-item-glow-color-rgb: 6, 182, 212; /* Cyan glow */
+  --carousel-item-glow-size: 5rem;
+  --carousel-diameter: 50rem;
+  --carousel-3d-perspective: 1000px;
+  --carousel-3d-perspective-origin: 50% 0%;
+  --carousel-control-button-width: 1.25rem;
+  --carousel-control-button-height: 4rem;
+  --carousel-control-color-rgb: 255, 255, 255;
+  --carousel-animation-duration: 35s; 
+  --carousel-animation-play-state: running;
+  --carousel-direction-animation-play-state: paused;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgb(var(--carousel-bg-color-rgb));
+  overflow: hidden;
+  position: relative;
+}
+
+/* ... Keep existing media queries for responsiveness ... */
+.carousel {
+  --_diameter: var(--carousel-diameter);
+  --_radius: calc(var(--_diameter) / 2);
+  --_item-width: var(--carousel-item-width);
+  --_item-height: var(--carousel-item-height);
+
+  transform-style: preserve-3d;
+  perspective: var(--carousel-3d-perspective);
+  perspective-origin: var(--carousel-3d-perspective-origin);
+  width: var(--_diameter);
+  height: var(--_diameter);
+  position: relative;
+  /* CRITICAL FIX 1: Allow mouse events to pass through the container to the 3D items */
+  pointer-events: none;
+
+  /* --- ADD THIS LINE --- */
+  /* Adjust '5rem' to '10rem' or higher to move it further down */
+  transform: translateY(5rem);
+}
+
+@media only screen and (max-width: 48rem) {
+  .carousel {
+      --_diameter: calc(var(--carousel-diameter) * 0.75);
+      --_item-width: calc(var(--carousel-item-width) * 0.75);
+      --_item-height: calc(var(--carousel-item-height) * 0.75);
+  }
+}
+
+@media only screen and (max-width: 32rem) {
+  .carousel {
+      --_diameter: calc(var(--carousel-diameter) * 0.6);
+      --_item-width: calc(var(--carousel-item-width) * 0.6);
+      --_item-height: calc(var(--carousel-item-height) * 0.6);
+  }
+}
+
+@media only screen and (max-width: 16rem) {
+  .carousel {
+      --_diameter: calc(var(--carousel-diameter) * 0.25);
+      --_item-width: calc(var(--carousel-item-width) * 0.25);
+      --_item-height: calc(var(--carousel-item-height) * 0.25);
+  }
+}
+
+.carouselControlButton {
+  --_width: var(--carousel-control-button-width);
+  --_height: var(--carousel-control-button-height);
+  z-index: 1;
+  width: var(--_width);
+  height: var(--_height);
+  background-color: rgb(var(--carousel-control-color-rgb));
+  opacity: 0.2;
+  transition: opacity var(--carousel-transition-duration) var(--carousel-transition-ease);
+  position: absolute;
+  cursor: pointer;
+  /* CRITICAL FIX 2: Re-enable events on buttons */
+  pointer-events: auto;
+}
+
+.carouselControlButton:hover { opacity: 0.4; }
+.carouselControlButton:has(input:checked) { opacity: 0.8; }
+.carouselControlButton input {
+  -webkit-appearance: none;
+  appearance: none;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.left {
+  clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+  top: calc(var(--_radius) - var(--_height) / 2);
+  left: 0;
+}
+.carousel:has(.left input:checked) { --carousel-direction-animation-play-state: running; }
+
+.right {
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  top: calc(var(--_radius) - var(--_height) / 2);
+  right: 0;
+}
+.carousel:has(.right input:checked) { --carousel-direction-animation-play-state: paused; }
+
+.carouselRotationDirection {
+  --_direction-animation-play-state: var(--carousel-direction-animation-play-state);
+  --_z: calc(var(--_radius) * -1);
+  transform: translateZ(var(--_z));
+  transform-style: preserve-3d;
+  animation: carousel-rotation-reverse calc(var(--carousel-animation-duration) / 2) reverse linear infinite var(--_direction-animation-play-state);
+  transition: all var(--carousel-transition-duration) var(--carousel-transition-ease);
+  /* FIX: Ensure this container doesn't block clicks */
+  pointer-events: none;
+}
+
+@keyframes carousel-rotation-reverse {
+  from { transform: translateZ(var(--_z)) rotateY(0deg); }
+  to { transform: translateZ(var(--_z)) rotateY(360deg); }
+}
+@keyframes carousel-rotation-normal {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+.carouselItemWrapper {
+  transform-style: inherit;
+  width: inherit;
+  height: inherit;
+  list-style-type: none;
+  position: relative;
+  animation: carousel-rotation-normal var(--carousel-animation-duration) normal linear infinite var(--carousel-animation-play-state);
+  transition: all var(--carousel-transition-duration) var(--carousel-transition-ease);
+  margin: 0;
+  padding: 0;
+  /* FIX: Ensure this container doesn't block clicks */
+  pointer-events: none;
+}
+
+/* PAUSE LOGIC: Inherits down to children to pause rotation */
+.carouselRotationDirection:has(.carouselItem:hover) {
+  --carousel-animation-play-state: paused;
+  --_direction-animation-play-state: paused;
+}
+
+.carouselItem {
+  --_width: var(--_item-width);
+  --_height: var(--_item-height);
+  --_rotation: calc(360 / var(--_num-elements) * var(--_index) * 1deg);
+  left: calc(var(--_radius) - var(--_item-width) / 2);
+  top: calc(var(--_radius) - var(--_item-height) / 2);
+  transform: rotateY(var(--_rotation)) translateZ(var(--_radius));
+  transform-style: inherit;
+  width: var(--_width);
+  height: var(--_height);
+  transition: all var(--carousel-transition-duration) var(--carousel-transition-ease);
+  box-shadow: 0 0 var(--carousel-item-glow-size) transparent;
+  position: absolute;
+  
+  /* Background Image is set here on the item itself now */
+  background-image: var(--_image-url);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 12px;
+
+  /* CRITICAL FIX 3: Re-enable events on the items themselves so they can be hovered */
+  pointer-events: auto;
+  will-change: transform; /* Smoothness hint */
+}
+
+/* FIXED: Removed z-index: 100. 
+   The 'translateZ' calculation below handles the "pop out" effect physically in 3D space.
+   Adding z-index here caused the "snapping" issue.
+*/
+.carouselItem:hover {
+  box-shadow: 0 0 var(--carousel-item-glow-size) rgb(var(--carousel-item-glow-color-rgb));
+  transform: rotateY(var(--_rotation)) translateZ(calc(var(--_radius) * var(--carousel-item-hover-effect)));
+}
+
+/* NEW: Card Content Overlay */
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(
+    to bottom, 
+    rgba(0,0,0,0) 0%, 
+    rgba(0,0,0,0.3) 20%, 
+    rgba(0,0,0,0.9) 100%
+  );
+  border-radius: 12px;
+  color: white;
+  opacity: 0; 
+  /* Synced transition speed with the card movement for smoother effect */
+  transition: opacity var(--carousel-transition-duration) var(--carousel-transition-ease);
+  /* 1. Ensure this layer supports 3D children */
+  transform-style: preserve-3d;
+  
+  /* 2. Disable interactions when invisible so it doesn't block the card hover trigger */
+  pointer-events: none;
+}
+
+/* Allow interaction with the button inside the card */
+.cardContent a {
+  pointer-events: auto;
+}
+
+/* Show content on hover */
+.carouselItem:hover .cardContent {
+  opacity: 1;
+  /* 3. Enable interaction ONLY when popped out. 
+     This makes the whole text area "solid" to the mouse, preventing flickering. */
+  pointer-events: auto;
+}
+
+/* Always show title slightly if you prefer, but opacity 0->1 is cleaner for 3D */
+/* To make it visible always: change opacity: 0 to opacity: 1 and remove the hover rule above */
+
+.iconContainer {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #06b6d4; /* Cyan-500 */
+  filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0.5));
+}
+
+.cardTitle {
+  font-family: var(--font-geist-sans);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.cardDesc {
+  font-family: var(--font-geist-sans);
+  font-size: 0.8rem;
+  color: #e5e5e5;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.exploreBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background-color: rgba(6, 182, 212, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.5);
+  border-radius: 9999px;
+  color: white;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+  width: fit-content;
+  cursor: pointer;
+
+  /* 4. MAGIC FIX: Physically lift the button off the card surface.
+     This ensures it is the absolute front-most element, 
+     preventing hit-test failures with the background. */
+  /* transform: translateZ(20px); */
+}
+
+.exploreBtn:hover {
+  background-color: rgba(6, 182, 212, 0.8);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+}
+
+/* Reflection Effect */
+.carouselItem::before {
+  content: '';
+  width: inherit;
+  height: inherit;
+  background-color: rgba(var(--carousel-item-empty-color-rgb), 0.5);
+  background-image:
+      linear-gradient(to top, rgba(var(--carousel-bg-color-rgb), 0.25) 0%, rgba(var(--carousel-bg-color-rgb), 1.0) 75%),
+      var(--_image-url);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+  filter: blur(var(--carousel-item-reflection-blur));
+  transition: filter var(--carousel-transition-duration) var(--carousel-transition-ease);
+  transform-style: inherit;
+  transform-origin: center bottom;
+  transform: rotateX(90deg) rotateZ(180deg) rotateY(180deg);
+  position: absolute;
+  border-radius: 12px;
+}
+
+.carouselItem:hover::before {
+  filter: blur(var(--carousel-item-reflection-blur));
+}
+
+.carouselGround {
+  --_width: var(--_diameter);
+  --_height: var(--_diameter);
+  --_rotation: 90deg;
+  left: calc(var(--_radius) - var(--_width) / 2);
+  top: calc(var(--_radius) - var(--_height) / 2);
+  transform: rotateX(var(--_rotation)) translateZ(calc(var(--_item-height) / -2));
+  width: var(--_width);
+  height: var(--_height);
+  border-radius: 50%;
+  background: radial-gradient(rgba(var(--carousel-shadow-color-rgb), 0.75) 15%, rgba(var(--carousel-bg-color-rgb), 0) 60%);
+  opacity: 0.5;
+  transition: opacity var(--carousel-transition-duration) var(--carousel-transition-ease);
+  position: absolute;
+  /* FIX: Ensure ground doesn't block events */
+  pointer-events: none;
+}
+
+.carouselItemWrapper:has(.carouselItem:hover) .carouselGround {
+  opacity: 0.75;
+}
+
+.centerRobotWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 58rem;
+  height: 58rem;
+  
+  /* FIX 1: Adjusted translateY to 14rem. 
+     Because the camera is looking down (perspective-origin: 20%), 
+     items in the back appear higher. We need to push the robot 
+     down significantly to make it look "grounded".
+  */
+  transform: translate(-50%, -50%) translateZ(0) translateY(18rem);
+  
+  z-index: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.centerPiece {
+  position: absolute;
+  /* Use absolute center relative to the ring's origin */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  width: 35rem; 
+  height: 40rem; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; 
+  z-index: 50;
+  transform-style: preserve-3d;
+
+  /* COUNTER ROTATION: This cancels out the parent's rotation */
+  /* We use the same duration and timing, but 'reverse' direction of the normal spin */
+  /* animation: carousel-rotation-normal var(--carousel-animation-duration) reverse linear infinite var(--carousel-animation-play-state); */
+}
+
+
+.robotImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* Floating animation */
+  animation: float-robot 4s ease-in-out infinite;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+
+  /* === NEW CSS ADDED HERE === */
+  position: relative;
+  z-index: 1; /* Lower z-index than the gradient */
+}
+
+/* === ADD THIS NEW CLASS BLOCK === */
+.robotLegsGradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%; /* Covers the bottom half of the robot container */
+  /* Linear gradient from transparent to solid black */
+  background: linear-gradient(to bottom, transparent 0%, black 85%);
+  z-index: 2; /* Sits on top of the image */
+  pointer-events: none; /* Ensures it doesn't block clicks */
+  /* Apply same animation so it floats with the robot */
+  animation: float-robot 4s ease-in-out infinite;
+}
+/* ================================ */
+
+@keyframes float-robot {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+.spotlight {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12rem; /* Made slightly wider to look better */
+  height: 25rem;
+  background: radial-gradient(
+    ellipse at top, 
+    rgba(255, 255, 255, 0.4) 0%, 
+    rgba(6, 182, 212, 0.15) 40%, 
+    transparent 70%
+  );
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  pointer-events: none;
+  filter: blur(8px);
+  mix-blend-mode: overlay;
+}
+
+/* Floor Glow */
+.centerPiece::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) rotateX(90deg);
+  width: 10rem;
+  height: 10rem;
+  background: radial-gradient(
+    circle,
+    rgba(6, 182, 212, 0.4) 0%,
+    transparent 70%
+  );
+  filter: blur(10px);
+}
+
+
+.robotGlowBase {
+  position: absolute;
+  bottom: 0; /* Aligned to bottom of wrapper */
+  left: 50%;
+  transform: translateX(-50%) rotateX(90deg);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.6) 0%, transparent 60%);
+  filter: blur(20px);
+  z-index: -1;
+  opacity: 0.8;
+}
+
+
+/* Responsiveness for the Robot 
+   We must match the media queries of the carousel diameter
+   so the robot stays in the center as the ring shrinks.
+*/
+
+@media only screen and (max-width: 48rem) {
+  .centerRobotWrapper {
+      width: 14rem;
+      height: 14rem;
+  }
+}
+
+@media only screen and (max-width: 32rem) {
+  .centerRobotWrapper {
+      width: 10rem;
+      height: 10rem;
+  }
+}
