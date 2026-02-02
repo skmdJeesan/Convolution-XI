@@ -2,9 +2,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import EventShowcase from "@/components/EventShowcase";
+import Gallery from "@/components/Gallery"; 
 import FaqSection from "@/components/FAQ";
 import Footer from "@/components/Footer";
+import HomeAbout from "@/components/HomeAbout";
 import HeroSection from "@/components/HeroSection";
 import Timeline from "@/components/TimeLine";
 import Image from "next/image";
