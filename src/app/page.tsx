@@ -5,7 +5,6 @@
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic'; //
 import EventShowcase from "@/components/EventShowcase";
-import FaqSection from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import HomeAbout from "@/components/HomeAbout";
@@ -13,6 +12,7 @@ import Sponsors from '@/components/Sponsors';
 import Timeline from '@/components/TimeLine';
 import Team from '@/components/Team';
 import Gallery from '@/components/Gallery';
+import FaqSection from '@/components/FaqSection';
 
 // 1. Dynamic Import for WhiteBot
 // This ensures the code for WhiteBot is NOT bundled with the main page.
