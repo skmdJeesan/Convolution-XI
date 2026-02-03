@@ -272,7 +272,6 @@ useEffect(() => {
               </Link>
             ) : (
               <div className="hidden lg:flex gap-3 items-center">
-  {/* LOGIN BUTTON: Glass/Ghost Style */}
   <div 
     onClick={() => router.push('/login')}
     className="
@@ -285,7 +284,6 @@ useEffect(() => {
       <FlipLink>Log in</FlipLink>
   </div>
 
-  {/* REGISTER BUTTON: Solid High-Contrast Style */}
   <div 
     onClick={() => router.push('/register')}
     className="
