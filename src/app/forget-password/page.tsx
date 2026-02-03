@@ -1,6 +1,12 @@
 "use client";
-
+import FlipLink from '@/components/FlipLink';
+import '../register/register.css'
+import DecorativeIcons from "@/components/DecorativeIcons";
+import Loader from '@/components/Loader';
+import Particles from "@/components/Particles";
 import { useState, FormEvent } from "react";
+
+
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState<string>("");
@@ -32,20 +38,22 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-4 text-white">
-      <div className="w-full max-w-sm rounded-lg border p-6 shadow-md">
-        <h1 className="mb-4 text-2xl font-bold text-center">Reset Password</h1>
-        
+    <div className="flex min-h-screen items-center justify-center text-white">
+      <Particles />
+      <div className="tech-grid pointer-events-none" /> {/* Grid Background */}
+      <DecorativeIcons />
+      <div className="w-full max-w-sm glassmorphism-bg p-6 rounded-2xl shadow-lg">
+        <h1 className="mb-6 text-2xl font-bold text-center">Reset Password</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-1">
+            <label htmlFor="email" className="block text-sm font-medium mb-2">
               Enter your email address
             </label>
             <input
               id="email"
               type="email"
               placeholder="name@example.com"
-              className="w-full rounded border p-2 text-black"
+              className="w-full rounded-lg p-2 text-black glass-btn outline-none focus:ring-1 focus:ring-purple-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -55,9 +63,9 @@ export default function ForgotPasswordPage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded bg-purple-600 p-2 text-white hover:bg-purple-700 disabled:opacity-50"
+            className="w-full rounded-lg p-2 glass-btnn disabled:opacity-50"
           >
-            {isSubmitting ? "Sending..." : "Send Reset Link"}
+            {isSubmitting ? <Loader /> : <FlipLink>Send&nbsp;Reset&nbsp;Link</FlipLink>}
           </button>
         </form>
 
