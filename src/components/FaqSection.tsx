@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import droneImage from "../assets/images/Faq_Drone.png"; 
 import { FaPlus, FaMinus } from 'react-icons/fa6';
+import Particles from './Particles';
 
 const Data = [
   {
@@ -27,33 +28,6 @@ const Data = [
     answer: "No, the registrations for the events are completely free of cost.",
   },
 ];
-
-//PARTICLES COMPONENT
-const Particles = () => {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-      setMounted(true);
-  }, []);
-  if(!mounted) return null;
-  const particles = Array.from({ length: 60 });
-  return (
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          {particles.map((_, i) => (
-              <div
-                  key={i}
-                  className="absolute w-0.5 h-0.5 bg-cyan-400/60 rounded-full animate-particle"
-                  style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                      animationDelay: `${Math.random() * 5}s`,
-                      animationDuration: `${10 + Math.random() * 20}s`,
-                      opacity: Math.random() * 0.5 + 0.2,
-                  }}
-              />
-          ))}
-      </div>
-  );
-};
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);

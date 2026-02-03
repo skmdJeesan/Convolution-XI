@@ -24,9 +24,6 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /* Your matcher looks mostly fine, but ensure 'signup' matches your 
-      actual route (you used '/register' in the array above).
-    */
-    '/((?!api|_next/static|_next/image|favicon.ico|login|signup|node_modules).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|login|signup|node_modules|.*\\..*).*)',
   ],
 }
