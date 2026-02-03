@@ -26,9 +26,10 @@ const desktopNavLinks = [
     label: "More",
     href: "#", // Parent item does not redirect
     subItems: [
-      { href: "/#faq", label: "FAQ" },
       { href: "/#team", label: "Team" },
       { href: "/#sponsors", label: "Sponsors" },
+      { href: "/#gallery", label: "Gallery" },
+       { href: "/#faq", label: "FAQ" },
       { href: "/#contact", label: "Let's Connect" },
     ],
   },
@@ -51,8 +52,7 @@ const Navbar = () => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
 
   const router = useRouter()
-  
-  // --- STATE FOR CLICK HANDLING ---
+
   // Tracks which dropdown is currently "locked" open by a click
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
@@ -173,7 +173,7 @@ useEffect(() => {
     };
   }, []);
 
-  const navVisibilityClass = isVisible || isNavOpen ? "translate-y-0" : "-translate-y-[150%]";
+  const navVisibilityClass = isVisible || isNavOpen ? "translate-y-0" : "translate-y-0 md:-translate-y-[150%]";
 
   return (
     <>
@@ -189,7 +189,7 @@ useEffect(() => {
         </Link>
       </div>
       <div
-        className={`fixed top-0 left-0 right-0 z-999 p-4 pt-6 font-sans transition-transform duration-500 ease-in-out ${navVisibilityClass}`}
+        className={`fixed top-0 left-0 right-0 z-999 p-4 pt-6 font-sans transition-transform duration-500 ease-in-out`}
         onMouseEnter={() => {
           if (timerRef.current) clearTimeout(timerRef.current);
           setIsVisible(true);
@@ -200,7 +200,7 @@ useEffect(() => {
       >
         <div className="w-full flex justify-end items-center mx-auto pointer-events-none">
           {/* DESKTOP NAV */}
-          <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 pointer-events-auto">
+          <nav className={`hidden md:flex absolute left-1/2 -translate-x-1/2 pointer-events-auto ${navVisibilityClass}`}>
             <ul className="flex items-center gap-x-2 px-3 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl text-xs font-bold uppercase tracking-widest text-gray-200 ring-1 ring-white/10">
               {desktopNavLinks.map((item, index) => (
                 <li key={index} className="relative group">
@@ -271,18 +271,33 @@ useEffect(() => {
                 </div>
               </Link>
             ) : (
-              <div className="hidden lg:flex gap-2 items-center">
-                <div 
-                onClick={() => { router.push('/login')}}
-                className="py-2.5 px-6 rounded-full glass-btn text-sm">
-                  <FlipLink>Log in</FlipLink>
-                </div>
-                <div 
-                onClick={() => { router.push('/register')}}
-                className="py-2.5 px-6 rounded-full glass-btn text-sm">
-                  <FlipLink>Register&nbsp;now</FlipLink>
-                </div>
-              </div>
+              <div className="hidden lg:flex gap-3 items-center">
+  {/* LOGIN BUTTON: Glass/Ghost Style */}
+  <div 
+    onClick={() => router.push('/login')}
+    className="
+      group relative px-6 py-3 rounded-full 
+     bg-white/5 backdrop-blur-xl border border-white/20 shadow-lg text-xs font-bold uppercase tracking-widest text-gray-200
+      hover:bg-white/10 hover:border-white/30 
+      transition-all duration-300 ease-out cursor-pointer
+    "
+  >
+      <FlipLink>Log in</FlipLink>
+  </div>
+
+  {/* REGISTER BUTTON: Solid High-Contrast Style */}
+  <div 
+    onClick={() => router.push('/register')}
+    className="
+     group relative px-6 py-3 rounded-full 
+     bg-white/5 backdrop-blur-xl border border-white/20 shadow-lg text-xs font-bold uppercase tracking-widest text-gray-200
+      hover:bg-white/10 hover:border-white/30 
+      transition-all duration-300 ease-out cursor-pointer
+    "
+  >
+      <FlipLink>Register</FlipLink>
+  </div>
+</div>
             )}
 
             <button

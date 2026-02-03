@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoPersonOutline, IoLogInOutline, IoPersonAddOutline } from "react-icons/io5";import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -14,6 +16,12 @@ interface MobileMenuProps {
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkClick }) => {
   const [mounted, setMounted] = useState(false);
 
+  const authButtonStyle = `
+    relative group flex items-center justify-center gap-3 w-full px-6 py-3.5 
+    rounded-full font-bold font-sans text-sm tracking-widest Capitalize
+    border border-white/10 bg-white/5 hover:bg-white/20 hover:border-white/40
+    text-white transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]
+  `;
 
   useEffect(() => {
     setMounted(true);
@@ -30,6 +38,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
       document.body.style.overflow = "";
     };
   }, [isOpen]);
+    const router = useRouter()
+    const { data: session, status } = useSession();
 
   // If not mounted yet return nothing
   if (!mounted) return null;
@@ -82,8 +92,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex-1 flex flex-col justify-start pl-2 pt-20">
-            <ul className="flex flex-col gap-7 ">
+          <nav className="flex-1 flex flex-col justify-start pl-2 pt-10">
+            <ul className="flex flex-col gap-5 ">
               {links.map((item, index) => (
                 <li key={index} className="overflow-hidden">
                   <Link
@@ -100,6 +110,80 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                 </li>
               ))}
             </ul>
+           {/* ---------------- SEPARATOR ---------------- */}
+            <div 
+              className={`h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-4 w-full transform transition-all duration-700 ${isOpen ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}`}
+              style={{ transitionDelay: isOpen ? `${200 + links.length * 50}ms` : "0ms" }}
+            />
+
+            {/* ---------------- AUTH SECTION ---------------- */}
+            <div className="flex flex-col gap-4 mt-4 pb-10">
+              {session ? (
+                // PROFILE BUTTON
+                <div className="overflow-hidden">
+                    <Link
+                      href="/profile"
+                      onClick={(e) => onLinkClick(e, "/profile")}
+                      className={`${authButtonStyle} ${
+                        isOpen
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-[100%] opacity-0"
+                      }`}
+                      style={{
+                        transitionDelay: isOpen
+                          ? `${200 + (links.length + 1) * 50}ms`
+                          : "0ms",
+                      }}
+                    >
+                      <IoPersonOutline className="text-lg mb-0.5" />
+                      <span>My Profile</span>
+                    </Link>
+                </div>
+              ) : (
+                // LOGIN / REGISTER BUTTONS
+                <>
+                  <div className="overflow-hidden">
+                    <Link
+                        href="/login"
+                        onClick={(e) => onLinkClick(e, "/login")}
+                        className={`${authButtonStyle} ${
+                        isOpen
+                            ? "translate-y-0 opacity-100"
+                            : "translate-y-full opacity-0"
+                        }`}
+                        style={{
+                        transitionDelay: isOpen
+                            ? `${200 + (links.length + 1) * 50}ms`
+                            : "0ms",
+                        }}
+                    >
+                        <IoLogInOutline className="text-xl mb-0.5" />
+                        <span>Login</span>
+                    </Link>
+                  </div>
+
+                  <div className="overflow-hidden">
+                    <Link
+                        href="/register"
+                        onClick={(e) => onLinkClick(e, "/register")}
+                        className={`${authButtonStyle} bg-white! !text-black hover:!bg-gray-200 border-transparent ${
+                        isOpen
+                            ? "translate-y-0 opacity-100"
+                            : "translate-y-[100%] opacity-0"
+                        }`}
+                        style={{
+                        transitionDelay: isOpen
+                            ? `${200 + (links.length + 2) * 50}ms`
+                            : "0ms",
+                        }}
+                    >
+                        <IoPersonAddOutline className="text-lg mb-0.5" />
+                        <span>Register Now</span>
+                    </Link>
+                  </div>
+                </>
+              )}
+            </div>
           </nav>
 
         </div>
