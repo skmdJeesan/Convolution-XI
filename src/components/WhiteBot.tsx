@@ -63,7 +63,7 @@ export default function WhiteBot() {
         className="w-full h-full"
       />
       {/* Overlay to blend the bottom of the bot into the page */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black via-black to-transparent z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-black via-black to-transparent z-10 pointer-events-none" />
     </div>
   );
 }
