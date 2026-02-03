@@ -55,7 +55,7 @@ export default function Home() {
       <Sponsors/>
       {/* <Gallery/> */}
       <FaqSection/>
-      {shouldLoadBot && <WhiteBot />}
+      {/* {shouldLoadBot && <WhiteBot />} */}
       <Footer />
       
       {/* 4. Conditional Rendering 

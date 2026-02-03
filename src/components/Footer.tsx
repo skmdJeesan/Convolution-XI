@@ -63,19 +63,23 @@ export default function Footer() {
   }, [text, breakTheText]);
 
   return (
-    
-    <div id='contact' className='relative bg-black flex flex-col pt-5 overflow-hidden  z-0'>
+// CHANGED: bg-black -> bg-[#03000b] to match the FAQ bottom
+    <div id='contact' className='relative bg-[#03050c] -mt-0.5 flex flex-col pt-5 overflow-hidden z-0'>
       
+      {/* --- NEW: SEAMLESS BLENDER --- */}
+      {/* This creates a soft glow transition that "blends" the FAQ grid into the Footer */}
+<div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-[#03050d] via-[#03050d]/30 to-transparent z-10 pointer-events-none"></div>
       {/* --- BACKGROUND LAYER --- */}
-        <div 
+      <div 
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
-             maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
-             WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)'
+             // CHANGED: transparent 0% -> black 0%
+             // This ensures the particles and grid start IMMEDIATELY at the junction
+             maskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)',
+             WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)'
         }}
       >
-         
-
+          
           <div className="absolute top-[10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-violet-900/20 blur-[120px] z-0"></div>
           <div className="absolute top-[10%] left-1/3 w-[30vw] h-[70vw] rounded-full bg-blue-900/20 blur-[120px] z-0"></div>
           <div className="absolute bottom-[10%] right-[-10%] w-[50vw] h-[40vw] rounded-full bg-cyan-900/25 blur-[120px] z-0"></div>
@@ -83,9 +87,8 @@ export default function Footer() {
           {/* Grid */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-5 z-0"></div>
           
-          <Particles />
+          {/* <Particles /> */}
       </div>
-
 
       <div className="w-full maxWidthForSections relative z-20">
         <div className="flex flex-col md:grid md:grid-cols-3 gap-8 mt-4 w-full">

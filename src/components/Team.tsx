@@ -154,24 +154,17 @@ function Team() {
     <div id='team' className="team-section">
       {/* Premium dark background with gradient */}
       <div className="team-bg-gradient"></div>
-      
-      {/* Animated spotlight glow behind cards */}
-      <div className="team-spotlight-glow"></div>
-
       {/* Header Section */}
       <motion.div
         variants={headerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }} 
-        className="team-header">
-        <h2 className="team-title">
-          Meet Our Team
-        </h2>
-        <p className="team-subtitle">
-          A diverse team of passionate students with unique skills driving innovation and excellence.
-        </p>
-        <div className="team-title-underline"></div>
+        className="absolute top-[1vh] z-50 flex flex-col items-center pointer-events-none select-none mb-5">
+        <h1 className="text-center text-xl sm:text-3xl md:text-5xl font-black tracking-tight uppercase text-transparent bg-clip-text bg-linear-to-b from-white to-gray-400 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">
+            our team
+            <div className="w-60 h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent  mt-2"></div>
+          </h1>
       </motion.div>
 
       {/* Curved Cards Container */}

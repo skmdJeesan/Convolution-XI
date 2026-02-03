@@ -245,24 +245,7 @@ html {
   animation: blink 1s step-end infinite;
 }
 
-@keyframes particle {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh) scale(0);
-    opacity: 0;
-  }
-}
-.animate-particle {
-  animation-name: particle;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
+
 @keyframes pulse-slow {
   0%,
   100% {
@@ -537,4 +520,23 @@ html {
 }
 .animate-float_drone {
   animation: float 3s ease-in-out infinite;
+}
+
+@keyframes particle {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(0);
+    opacity: 0;
+  }
+}
+.animate-particle {
+  animation-name: particle;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
