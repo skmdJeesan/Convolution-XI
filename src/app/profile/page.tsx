@@ -15,7 +15,7 @@ function page() {
       // Use NextAuth's built-in redirect instead of router.replace()
       await signOut({ 
         redirect: true, 
-        callbackUrl: '/login' 
+        callbackUrl: '/' 
       })
     } catch (error) {
       console.error('Sign out error:', error)
