@@ -85,9 +85,9 @@ function SignIn() {
 
           {/* Forgot Password Link */}
           <div className="flex justify-center px-1">
-            <a href="#" className='text-xs sm:text-sm text-purple-400 hover:text-purple-300 transition-colors'>
+            <Link href="/forget-password" className='text-xs sm:text-sm text-purple-400 hover:text-purple-300 transition-colors'>
               Forgot password?
-            </a>
+            </Link>
           </div>
 
           {/* Register Link */}

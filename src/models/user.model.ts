@@ -12,6 +12,8 @@ interface IUser {
   image?: string;
   createdAt?: Date;
   updatedAt?: Date;
+  resetPasswordToken?: string;
+  resetPasswordExpires?: Date;
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -48,6 +50,8 @@ const userSchema = new mongoose.Schema<IUser>({
     type: String,
     required: false,
   },
+  resetPasswordToken: { type: String },
+  resetPasswordExpires: { type: Date },
 }, { timestamps: true });
 
 const User =  mongoose.models?.User || mongoose.model("User", userSchema);

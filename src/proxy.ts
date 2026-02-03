@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const publicRoutes = ['/login', '/register', '/api/auth', '/favicon.ico', '/_next'];
+  const publicRoutes = ['/login', '/register', '/api/auth', '/favicon.ico', '/_next', '/forget-password', '/reset-password'];
 
   const isPublicRoute = publicRoutes.some((path) => pathname.startsWith(path));
   const isHomePage = pathname === '/';
