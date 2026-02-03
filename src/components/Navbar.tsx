@@ -273,15 +273,15 @@ useEffect(() => {
             ) : (
               <div className="hidden lg:flex gap-2 items-center">
                 <div 
-                onClick={() => { router.push('/login')}}
-                className="py-2.5 px-6 rounded-full glass-btn text-sm">
-                  <FlipLink>Log in</FlipLink>
+                  onClick={() => { router.push('/login')}}
+                  className="py-3 px-5 rounded-full glass-btnn text-xs uppercase font-bold">
+                  <FlipLink>Log&nbsp;in/Register</FlipLink>
                 </div>
-                <div 
+                {/* <div 
                 onClick={() => { router.push('/register')}}
-                className="py-2.5 px-6 rounded-full glass-btn text-sm">
+                className="py-2.5 px-6 rounded-full glass-btn text-sm font-semibold">
                   <FlipLink>Register&nbsp;now</FlipLink>
-                </div>
+                </div> */}
               </div>
             )}
 

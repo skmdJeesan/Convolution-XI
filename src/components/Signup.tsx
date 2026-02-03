@@ -202,7 +202,7 @@ export default function SignupForm() {
           <div className="flex flex-col sm:flex-row gap-1 sm:gap-2 items-center justify-center text-center">
             <p className='text-xs sm:text-sm'>Already have an Account?</p>
             <div className="text-xs sm:text-sm inline-flex gap-1">
-              please <span className='text-purple-400'><FlipLink href="/login">Sign in</FlipLink></span>
+              please <span onClick={() => router.replace('/login')} className='text-purple-400 cursor-pointer'><FlipLink>Sign in</FlipLink></span>
             </div>
           </div>
 
@@ -212,7 +212,7 @@ export default function SignupForm() {
             disabled={loading}
             className="py-1 sm:py-2.5 md:py-3 px-4 sm:px-5 md:px-6 rounded-2xl sm:rounded-3xl glass-btnn cursor-pointer font-semibold text-sm sm:text-base hover:bg-purple-500/20 transition-all disabled:opacity-50"
           >
-            {loading ? <Loader /> : <FlipLink href=''>Register</FlipLink>}
+            {loading ? <Loader /> : <FlipLink>Register</FlipLink>}
           </button>
 
           {/* Divider */}

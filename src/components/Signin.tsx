@@ -23,7 +23,7 @@ function SignIn() {
 
   const signinHandler = async (e: React.FormEvent) => {
     e.preventDefault()
-
+    setLoading(true)
     const result = await signIn('credentials', {
       email: formData.email,
       password: formData.password,
@@ -35,6 +35,7 @@ function SignIn() {
     } else {
       console.error(result?.error)
       alert("Invalid credentials")
+      setLoading(false)
     }
   }
 
@@ -45,7 +46,7 @@ function SignIn() {
 
         {/* Header */}
         <div className='flex flex-col items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-1.5'>
-          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">Sign in</h1>
+          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">Log in</h1>
           <p className='text-xs sm:text-sm md:text-base text-gray-400'>Join the Future of <span className='text-purple-500/80'>Engineering</span></p>
         </div>
 
@@ -93,7 +94,7 @@ function SignIn() {
           <div className="flex flex-col sm:flex-row gap-1 sm:gap-2 items-center justify-center text-center">
             <p className='text-xs sm:text-sm'>Don&apos;t have an account?</p>
             <div className="text-xs sm:text-sm inline-flex gap-1">
-              please <span className='text-purple-400'><FlipLink href="register">Register</FlipLink></span>
+              please <span onClick={() => router.replace('/register')} className='text-purple-400 cursor-pointer'><FlipLink>Register</FlipLink></span>
             </div>
           </div>
 
@@ -106,7 +107,7 @@ function SignIn() {
             {loading ? (
               <Loader />
             ) : (
-              <FlipLink href=''>Sign in</FlipLink>
+              <FlipLink>Sign in</FlipLink>
             )}
           </button>
 
