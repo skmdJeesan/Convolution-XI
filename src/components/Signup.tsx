@@ -64,7 +64,7 @@ export default function SignupForm() {
           year: '',
         })
         setLoading(false)
-        router.replace('/')   // or '/home'
+        router.replace('/verify-email')   // first /verify-email then '/home'
       } else {
         console.error('Sign in failed')
       }

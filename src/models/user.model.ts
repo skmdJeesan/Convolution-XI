@@ -14,44 +14,25 @@ interface IUser {
   updatedAt?: Date;
   resetPasswordToken?: string;
   resetPasswordExpires?: Date;
+  isVerified: boolean;
+  verifyToken?: string;
+  verifyTokenExpiry?: Date;
 }
 
 const userSchema = new mongoose.Schema<IUser>({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: false,
-  },
-  phone: {
-    type: String,
-    required: true,
-  },
-  institution: {
-    type: String,
-    required: true,
-  },
-  department: {
-    type: String,
-    required: true,
-  },
-  year: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: false,
-  },
+  name: { type: String, required: true, },
+  email: { type: String, required: true, unique: true, },
+  password: { type: String, required: false, },
+  phone: {type: String,required: true, },
+  institution: { type: String, required: true, },
+  department: { type: String, required: true, },
+  year: { type: String, required: true, },
+  image: { type: String, required: false, },
   resetPasswordToken: { type: String },
   resetPasswordExpires: { type: Date },
+  isVerified: { type: Boolean, default: false },
+  verifyToken: { type: String, required: false, },
+  verifyTokenExpiry: { type: Date, index: { expires: '0s' } },
 }, { timestamps: true });
 
 const User =  mongoose.models?.User || mongoose.model("User", userSchema);
