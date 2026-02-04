@@ -12,7 +12,6 @@ import Timeline from '@/components/TimeLine';
 import Team from '@/components/Team';
 import Gallery from '@/components/Gallery';
 import FaqSection from '@/components/FaqSection';
-import EventShowcase from '@/components/EventShowcase';
 
 // 1. Dynamic Import for WhiteBot
 // This ensures the code for WhiteBot is NOT bundled with the main page.
