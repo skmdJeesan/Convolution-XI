@@ -188,14 +188,14 @@ const Navbar = () => {
           <div className="hidden lg:flex gap-3 items-center">
             <div
               onClick={() => router.push("/login")}
-              className="group relative px-6 py-3 rounded-full bg-cyan-400/40 hover:bg-cyan-400/70 backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest text-gray-200  transition-all duration-300 ease-out cursor-pointer"
+              className="group relative px-6 py-2.5 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#05080f] backdrop-blur-xl shadow-lg text-sm font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer"
             >
               <FlipLink>Log in</FlipLink>
             </div>
 
             <div
               onClick={() => router.push("/register")}
-              className="group relative px-6 py-3 rounded-full bg-purple-400/40 hover:bg-purple-400/70 backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest text-gray-200  transition-all duration-300 ease-out cursor-pointer"
+              className="group relative px-6 py-2.5 rounded-full bg-purple-500 hover:bg-purple-400 text-[#05080f] backdrop-blur-xl shadow-lg text-sm font-bold uppercase tracking-widest  transition-all duration-300 ease-out cursor-pointer"
             >
               <FlipLink>Register</FlipLink>
             </div>

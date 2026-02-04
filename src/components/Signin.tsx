@@ -6,6 +6,8 @@ import { signIn, useSession } from 'next-auth/react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaGoogle } from "react-icons/fa"
 import { IoMailOutline, IoLockClosedOutline, IoFingerPrintOutline, IoEyeOutline, IoEyeOffOutline } from "react-icons/io5"
+import DecorativeIcons from './DecorativeIcons'
+import Particles from './Particles'
 
 const Loader = () => (
   <div className="flex items-center gap-1">
@@ -48,7 +50,7 @@ export default function Signin() {
   const iconClass = "pl-4 pr-3 transition-colors text-cyan-400 md:text-cyan-600 group-focus-within/input:text-cyan-400";
 
   return (
-    <div className='relative min-h-dvh w-full flex items-center justify-center overflow-x-hidden overflow-y-auto font-mono text-cyan-50 bg-[#0a0e17] selection:bg-cyan-500/30 py-6 sm:py-0'>
+    <div className='relative min-h-dvh w-full flex items-center justify-center overflow-x-hidden overflow-y-auto font-mono text-cyan-50 bg-[#050505] selection:bg-fuchsia-500/30 py-6 sm:py-0'>
       
       <style jsx global>{`
         input:-webkit-autofill,
@@ -63,10 +65,13 @@ export default function Signin() {
       `}</style>
 
       <div className="fixed inset-0 z-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[#0a0e17]"></div>
-          <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l17.32 10v20L20 40 2.68 30V10z' fill-opacity='0' stroke='%2322d3ee' stroke-width='0.5'/%3E%3C/svg%3E")`, backgroundSize: '40px 40px' }}></div>
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-125 bg-cyan-500/10 blur-[120px] rounded-full mix-blend-screen"></div>
-          <div className="absolute bottom-0 right-0 w-125 h-125 bg-blue-600/10 blur-[120px] rounded-full mix-blend-screen"></div>
+          <div className="absolute inset-0 bg-[#050505]"></div>
+          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l17.32 10v20L20 40 2.68 30V10z' fill-opacity='0' stroke='%2322d3ee' stroke-width='0.5'/%3E%3C/svg%3E")`, backgroundSize: '40px 40px' }}></div>
+
+          <div className="absolute top-0 left-0 w-[50vw] h-[50vh] bg-cyan-500/10 blur-[120px] rounded-full mix-blend-screen"></div>
+          <div className="absolute bottom-0 right-0 w-[50vw] h-[50vh] bg-purple-600/10 blur-[120px] rounded-full mix-blend-screen"></div>
+          <DecorativeIcons/>
+          <Particles/>
       </div>
 
       <motion.div 
@@ -76,13 +81,13 @@ export default function Signin() {
         className="relative z-10 w-full max-w-95 px-4 my-auto"
       >
         <div className="relative group">
-            <div className="absolute -inset-px bg-linear-to-b from-cyan-500/30 via-cyan-900/10 to-cyan-500/30 rounded-sm opacity-70 group-hover:opacity-100 transition duration-500 [clip-path:polygon(15px_0,100%_0,100%_calc(100%-15px),calc(100%-15px)_100%,0_100%,0_15px)]"></div>
+            <div className="absolute -inset-px bg-linear-to-b from-cyan-500/30 via-purple-500/20 to-cyan-500/30 rounded-sm opacity-70 group-hover:opacity-100 transition duration-500 [clip-path:polygon(15px_0,100%_0,100%_calc(100%-15px),calc(100%-15px)_100%,0_100%,0_15px)]"></div>
 
-            <div className="relative bg-[#0d111a]/95 backdrop-blur-xl [clip-path:polygon(15px_0,100%_0,100%_calc(100%-15px),calc(100%-15px)_100%,0_100%,0_15px)] shadow-2xl">
-                <div className="flex items-center justify-between px-5 py-2.5 bg-[#111620] border-b border-cyan-800/20">
+            <div className="relative bg-[#080a0f]/95 backdrop-blur-xl [clip-path:polygon(15px_0,100%_0,100%_calc(100%-15px),calc(100%-15px)_100%,0_100%,0_15px)] shadow-2xl">
+                <div className="flex items-center justify-between px-5 py-2.5 bg-[#0f1219] border-b border-cyan-800/20">
                     <div className="flex gap-1.5">
                          <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></div>
-                         <div className="w-1.5 h-1.5 bg-cyan-400/30 rounded-full"></div>
+                         <div className="w-1.5 h-1.5 bg-purple-500/50 rounded-full"></div>
                     </div>
                     <span className="text-[10px] tracking-[0.2em] text-cyan-400/80 font-semibold uppercase">Sys_Ready</span>
                 </div>
@@ -122,14 +127,12 @@ export default function Signin() {
                                     <input type="checkbox" className="peer absolute opacity-0 w-full h-full cursor-pointer" />
                                     <div className="absolute inset-0.5 bg-cyan-400 scale-0 peer-checked:scale-100 transition-transform duration-150"></div>
                                 </div>
-                                {/* Highlighted on mobile */}
                                 <span className="text-sm sm:text-xs font-medium text-cyan-300 md:text-gray-400 md:group-hover/chk:text-cyan-300 uppercase tracking-wide transition-colors">Remember</span>
                             </label>
-                            {/* Highlighted on mobile */}
-                            <a href="#" className='text-sm sm:text-xs font-medium text-cyan-300 md:text-gray-400 md:hover:text-cyan-300 uppercase tracking-wide transition-colors'>Recover Key?</a>
+                            <a href="/forget-password" className='text-sm sm:text-xs font-medium text-cyan-300 md:text-gray-400 md:hover:text-cyan-300 uppercase tracking-wide transition-colors'>Recover Key?</a>
                         </div>
 
-                        <button type="submit" disabled={loading} className="group relative w-full h-10 mt-2 bg-cyan-500 hover:bg-cyan-400 text-[#05080f] text-sm tracking-[0.2em] uppercase font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed [clip-path:polygon(12px_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%,0_12px)] shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)]">
+                        <button type="submit" disabled={loading} className="group relative w-full h-10 mt-2 bg-cyan-500 hover:bg-cyan-400 text-[#05080f] text-sm tracking-[0.2em] uppercase font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed [clip-path:polygon(12px_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%,0_12px)] shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] cursor-pointer">
                           <span className="relative z-10 flex items-center justify-center gap-3">{loading ? <Loader /> : <><IoFingerPrintOutline className="text-lg" />Initiate Login</>}</span>
                         </button>
 
@@ -140,7 +143,14 @@ export default function Signin() {
                           <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-cyan-50 md:text-gray-400 md:hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_calc(100%-10px),calc(100%-10px)_100%,0_100%)]" onClick={() => signIn('github', { callbackUrl: '/' })}><FaGithub className='text-lg' /><span className='text-xs font-semibold tracking-wider'>GITHUB</span></button>
                         </div>
                         
-                        <div className="text-center mt-2"><p className="text-sm sm:text-xs text-gray-500 font-bold uppercase tracking-wide">No Access ID? <Link href="/register" className='text-cyan-300 md:text-cyan-400 hover:text-cyan-200 ml-2 hover:underline underline-offset-4 decoration-cyan-500/50 transition-colors'>Register User</Link></p></div>
+                        <div className="text-center mt-2">
+                            <p className="text-sm sm:text-xs text-gray-500 font-bold uppercase tracking-wide">
+                                No Access ID? 
+                                <Link href="/register" className='text-purple-400 hover:text-purple-300 ml-2 hover:underline underline-offset-4 decoration-purple-500/50 transition-colors'>
+                                    Register User
+                                </Link>
+                            </p>
+                        </div>
 
                     </form>
                 </div>

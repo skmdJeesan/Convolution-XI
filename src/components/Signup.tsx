@@ -26,6 +26,8 @@ import {
   IoEyeOutline,
   IoEyeOffOutline
 } from 'react-icons/io5';
+import Particles from './Particles';
+import DecorativeIcons from './DecorativeIcons';
 
 // --- LOADER ---
 const Loader = () => (
@@ -77,7 +79,6 @@ export default function SignupForm() {
       if (signInResult?.ok) {
         setFormData({ name: '', email: '', password: '', phone: '', institution: '', department: '', year: '' });
         setLoading(false);
-        // LOGIC FIX: Changed from '/' to '/verify-email' based on your previous workflow
         router.replace('/verify-email');
       } else {
         console.error('Sign in failed');
@@ -88,10 +89,11 @@ export default function SignupForm() {
     }
   };
 
+
   const inputContainerClass = "relative flex items-center h-9 bg-[#0a0e14] border border-cyan-800/30 transition-all duration-300 group-hover/input:border-cyan-500/50 group-focus-within/input:border-cyan-400 group-focus-within/input:bg-[#080b10] group-focus-within/input:shadow-[inset_0_0_10px_rgba(6,182,212,0.1)] [clip-path:polygon(0_0,100%_0,100%_calc(100%-8px),calc(100%-8px)_100%,0_100%)]";
 
   return (
-    <div className='relative min-h-screen w-full flex items-center justify-center overflow-x-hidden overflow-y-auto font-mono text-cyan-50 bg-[#0a0e17] selection:bg-cyan-500/30 py-6 sm:py-0'>
+    <div className='relative min-h-screen w-full flex items-center justify-center overflow-x-hidden overflow-y-auto font-mono text-cyan-50 bg-[#050505] selection:bg-purple-500/30 py-6 sm:py-0'>
       
       <style jsx global>{`
         input:-webkit-autofill,
@@ -105,12 +107,17 @@ export default function SignupForm() {
         }
       `}</style>
 
-      {/* Background */}
+      {/* Background*/}
       <div className="fixed inset-0 z-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[#0a0e17]"></div>
-          <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l17.32 10v20L20 40 2.68 30V10z' fill-opacity='0' stroke='%2322d3ee' stroke-width='0.5'/%3E%3C/svg%3E")`, backgroundSize: '40px 40px' }}></div>
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-125 bg-cyan-500/10 blur-[120px] rounded-full mix-blend-screen"></div>
-          <div className="absolute bottom-0 right-0 w-125 h-125 bg-blue-600/10 blur-[120px] rounded-full mix-blend-screen"></div>
+          <div className="absolute inset-0 bg-[#050505]"></div>
+          
+          {/* Subtle Grid Pattern */}
+          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l17.32 10v20L20 40 2.68 30V10z' fill-opacity='0' stroke='%2322d3ee' stroke-width='0.5'/%3E%3C/svg%3E")`, backgroundSize: '40px 40px' }}></div>
+          
+          <div className="absolute top-0 left-0 w-[50vw] h-[50vh] bg-cyan-500/10 blur-[120px] rounded-full mix-blend-screen"></div>
+          <div className="absolute bottom-0 right-0 w-[50vw] h-[50vh] bg-purple-600/10 blur-[120px] rounded-full mix-blend-screen"></div>
+          <Particles/>
+          <DecorativeIcons/>
       </div>
       
       <motion.div 
@@ -121,16 +128,15 @@ export default function SignupForm() {
       >
         
         <div className="relative group">
-            {/* Border Outline */}
-            <div className="absolute -inset-px bg-linear-to-b from-cyan-500/30 via-cyan-900/10 to-cyan-500/30 rounded-sm opacity-70 group-hover:opacity-100 transition duration-500 [clip-path:polygon(20px_0,100%_0,100%_calc(100%-20px),calc(100%-20px)_100%,0_100%,0_20px)]"></div>
+            <div className="absolute -inset-px bg-linear-to-b from-cyan-500/30 via-purple-500/20 to-cyan-500/30 rounded-sm opacity-70 group-hover:opacity-100 transition duration-500 [clip-path:polygon(20px_0,100%_0,100%_calc(100%-20px),calc(100%-20px)_100%,0_100%,0_20px)]"></div>
 
             {/* Main Panel */}
-            <div className="relative bg-[#0d111a]/95 backdrop-blur-xl [clip-path:polygon(20px_0,100%_0,100%_calc(100%-20px),calc(100%-20px)_100%,0_100%,0_20px)] shadow-2xl">
+            <div className="relative bg-[#080a0f]/95 backdrop-blur-xl [clip-path:polygon(20px_0,100%_0,100%_calc(100%-20px),calc(100%-20px)_100%,0_100%,0_20px)] shadow-2xl">
                 
-                <div className="flex items-center justify-between px-5 py-2 bg-[#111620] border-b border-cyan-800/20">
+                <div className="flex items-center justify-between px-5 py-2 bg-[#0f1219] border-b border-cyan-800/20">
                     <div className="flex gap-1.5">
                          <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></div>
-                         <div className="w-1.5 h-1.5 bg-cyan-400/30 rounded-full"></div>
+                         <div className="w-1.5 h-1.5 bg-purple-500/50 rounded-full"></div>
                     </div>
                     <span className="text-[10px] tracking-[0.2em] text-cyan-400/80 font-semibold uppercase">Sys_Reg_v4</span>
                 </div>
@@ -279,7 +285,7 @@ export default function SignupForm() {
                         </div>
 
                         {/* Submit */}
-                        <button type="submit" disabled={loading} className="group relative w-full h-10 mt-1 bg-cyan-500 hover:bg-cyan-400 text-[#05080f] text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed [clip-path:polygon(12px_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%,0_12px)] shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)]">
+                        <button type="submit" disabled={loading} className="group relative w-full h-10 mt-1 bg-cyan-500 hover:bg-cyan-400 text-[#05080f] text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed [clip-path:polygon(12px_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%,0_12px)] shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] cursor-pointer">
                           <span className="relative z-10 flex items-center justify-center gap-3">{loading ? <Loader /> : <><IoFingerPrintOutline className="text-lg" />AUTHORIZE REGISTRATION</>}</span>
                         </button>
 
@@ -292,7 +298,14 @@ export default function SignupForm() {
                           <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_calc(100%-10px),calc(100%-10px)_100%,0_100%)]" onClick={() => signIn('github', { callbackUrl: '/' })}><FaGithub className='text-base' /><span className='text-[10px] font-semibold tracking-wider'>GITHUB</span></button>
                         </div>
                         
-                        <div className="text-center mt-1"><p className="text-xs text-gray-500 font-bold uppercase tracking-wide">Existing Entity? <Link href="/login" className='text-cyan-400 hover:text-cyan-200 ml-2 hover:underline underline-offset-4 decoration-cyan-500/50 transition-colors'>Access System</Link></p></div>
+                        <div className="text-center mt-1">
+                            <p className="text-xs text-gray-500 font-bold uppercase tracking-wide">
+                                Existing Entity? 
+                                <Link href="/login" className='text-purple-400 hover:text-purple-300 ml-2 hover:underline underline-offset-4 decoration-purple-500/50 transition-colors drop-shadow-[0_0_5px_rgba(192,132,252,0.5)]'>
+                                    Access System
+                                </Link>
+                            </p>
+                        </div>
 
                     </form>
                 </div>
