@@ -271,33 +271,18 @@ useEffect(() => {
                 </div>
               </Link>
             ) : (
-              <div className="hidden lg:flex gap-3 items-center">
-  {/* LOGIN BUTTON: Glass/Ghost Style */}
-  <div 
-    onClick={() => router.push('/login')}
-    className="
-      group relative px-6 py-3 rounded-full 
-     bg-white/5 backdrop-blur-xl border border-white/20 shadow-lg text-xs font-bold uppercase tracking-widest text-gray-200
-      hover:bg-white/10 hover:border-white/30 
-      transition-all duration-300 ease-out cursor-pointer
-    "
-  >
-      <FlipLink>Log in</FlipLink>
-  </div>
-
-  {/* REGISTER BUTTON: Solid High-Contrast Style */}
-  <div 
-    onClick={() => router.push('/register')}
-    className="
-     group relative px-6 py-3 rounded-full 
-     bg-white/5 backdrop-blur-xl border border-white/20 shadow-lg text-xs font-bold uppercase tracking-widest text-gray-200
-      hover:bg-white/10 hover:border-white/30 
-      transition-all duration-300 ease-out cursor-pointer
-    "
-  >
-      <FlipLink>Register</FlipLink>
-  </div>
-</div>
+              <div className="hidden lg:flex gap-2 items-center">
+                <div 
+                  onClick={() => { router.push('/login')}}
+                  className="py-3 px-5 rounded-full glass-btnn text-xs uppercase font-bold">
+                  <FlipLink>Log&nbsp;in/Register</FlipLink>
+                </div>
+                {/* <div 
+                onClick={() => { router.push('/register')}}
+                className="py-2.5 px-6 rounded-full glass-btn text-sm font-semibold">
+                  <FlipLink>Register&nbsp;now</FlipLink>
+                </div> */}
+              </div>
             )}
 
             <button

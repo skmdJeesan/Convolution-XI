@@ -12,7 +12,7 @@ export default function DecorativeIcons() {
 
       {/* Robotics */}
       <Bot
-        className="absolute top-[35vh] left-[19vw] w-11 h-11 text-cyan-400
+        className="absolute top-[35vh] left-[19vw] w-11 h-11 text-cyan-400/60
         animate-[float_6s_ease-in-out_infinite]"
       />
 
@@ -30,7 +30,7 @@ export default function DecorativeIcons() {
 
       {/* Electronics */}
       <CircuitBoard
-        className="absolute bottom-[8vh] left-[11vw] w-12 h-12 text-cyan-300
+        className="absolute bottom-[8vh] left-[11vw] w-12 h-12 text-cyan-300/35
         animate-[spin_20s_linear_infinite]"
       />
 

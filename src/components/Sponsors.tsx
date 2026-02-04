@@ -36,7 +36,7 @@ const Sponsors: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen">  
+    <div id="sponsors" className="relative w-full min-h-screen">  
       {/* <Cursor magnetic /> */}
 
       {/* Grid Background */}
@@ -56,7 +56,6 @@ const Sponsors: React.FC = () => {
           </h2>
           <div className="h-1 w-24 mx-auto bg-linear-to-r from-transparent via-cyan-500 to-transparent rounded-full opacity-70"></div>
         </motion.div>
-
         <div className="w-full h-full flex flex-col items-center justify-center">
           <motion.p 
             variants={sectionVariants}
@@ -72,15 +71,17 @@ const Sponsors: React.FC = () => {
             viewport={{ once: true, amount: 0.5 }}
             className="flex gap-4 justify-center mb-10">
             <a
-              href="https://megatherm.com/"
+              // href="https://megatherm.com/"
+              href="/"
               target="_blank"
               className="hover:scale-105 glassmorphism-bg p-3 rounded-lg"
             >
-              <Image
+              {/* <Image
                 src={megatherm}
                 alt="megatherm image"
                 className="object-cover h-full w-full"
-              ></Image>
+              ></Image> */}
+              <p className="text-white/80">Coming Soon.</p>
             </a>
             
           </motion.div>
@@ -99,15 +100,17 @@ const Sponsors: React.FC = () => {
             viewport={{ once: true, amount: 0.5 }}
             className="flex gap-4 justify-center mb-10">
             <a
-              href="https://www.raydus.com/"
+              // href="https://www.raydus.com/"
+              href="/"
               target="_blank"
               className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-20 w-30"
             >
-              <Image
+              {/* <Image
                 src={raydus}
                 alt="exide image"
                 className="h-full w-full object-cover "
-              ></Image>
+              ></Image> */}
+              <p className="text-white/80">Coming Soon.</p>
             </a> 
           </motion.div>
 
@@ -126,27 +129,31 @@ const Sponsors: React.FC = () => {
             className="flex gap-4 justify-center">
             <motion.a
               variants={itemVariants}
-              href="https://www.exideindustries.com/"
+              // href="https://www.exideindustries.com/"
+              href="/"
               target="_blank"
               className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-14 w-40"
             >
-              <Image
+              {/* <Image
                 src={exide}
                 alt="exide image"
                 className="h-full w-full object-cover"
-              ></Image>
+              ></Image> */}
+              <p className="text-white/80">Coming Soon.</p>
             </motion.a>
             <motion.a
               variants={itemVariants}
-              href="https://www.techno.co.in/"
+              //href="https://www.techno.co.in/"
+              href="/"
               target="_blank"
               className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-14 w-40"
             >
-              <Image
+              {/* <Image
                 src={techEle}
                 alt="exide image"
                 className="h-full w-full object-cover"
-              ></Image>
+              ></Image> */}
+              <p className="text-white/80">Coming Soon.</p>
             </motion.a>
           </motion.div>
 
