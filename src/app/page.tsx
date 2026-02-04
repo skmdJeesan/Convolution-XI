@@ -18,7 +18,7 @@ import FaqSection from '@/components/FaqSection';
 // It will only be fetched when we render <WhiteBot /> below.
 // ssr: false prevents the server from trying to render the 3D scene (which causes freezing).
 const WhiteBot = dynamic(() => import("@/components/WhiteBot"), {
-  ssr: false, 
+  ssr: false,
   loading: () => <div className="h-screen w-full bg-black" />, // Optional placeholder while downloading
 });
 
@@ -48,22 +48,20 @@ export default function Home() {
 
   return (
     <main className="bg-black w-full min-h-screen">
-      <HeroSection/>
-      {/* <HomeAbout/> */}
-      {/* <EventShowcase/> */}
+      <HeroSection />
+      <HomeAbout />
       <Timeline/>
-      <Team/>
+      <Team />
+      <Gallery/>
       <Sponsors/>
-      {/* <Gallery/> */}
-      <FaqSection/>
+      <FaqSection />
       {/* {shouldLoadBot && <WhiteBot />} */}
       <Footer />
-      
+
       {/* 4. Conditional Rendering 
         The browser will ONLY download the 'WhiteBot' javascript chunk 
         and the 3D model assets if 'shouldLoadBot' is true.
       */}
-      
     </main>
   );
 }
