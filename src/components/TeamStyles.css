@@ -15,8 +15,8 @@
     transform: scale(1.1);
   }
 }
+/* TeamStyles.css */
 
-/* Main section container */
 .team-section {
   position: relative;
   width: 100%;
@@ -27,9 +27,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #000000; 
+  margin-top: 0px;
 }
 
-/* Premium dark gradient background */
 .team-bg-gradient {
   position: absolute;
   top: 0;
@@ -38,16 +39,15 @@
   height: 100%;
   background: linear-gradient(
     180deg,
-    #000000 0%,
-    #1a1a2e 20%,
-    #16213e 40%,
-    #0f3460 60%,
-    #000000 80%,
-    #000000 100%
+    #030712 0%,    /* Start: Gunmetal (#030712) - Matches Timeline */
+    #030712 5%,    /* Hold it for a moment */
+    #1a1a2e 30%,   
+    #10192f 50%,
+    #091f3a 60%,
+    #03000b 100%
   );
   z-index: 0;
 }
-
 /* Animated spotlight glow backdrop */
 .team-spotlight-glow {
   position: absolute;
@@ -147,7 +147,7 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
-  padding: 10px 10px;
+  padding: 15px 10px;
   max-width: 1400px;
   /* Flex properties for curved arrangement */
   perspective: 1200px;

@@ -124,43 +124,28 @@ const MobileTimeline = () => {
   return (
     <div ref={containerRef} className="relative w-full min-h-screen bg-black text-white font-mono pb-20 overflow-hidden">
 
-      {/* Background*/}
-      <div 
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{
-             maskImage: 'linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%)',
-             WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%)'
-        }}
-      >
-          <div className="absolute inset-0 bg-black/90 z-0"></div>
-          {/* First gd */}
-          <div className="absolute top-[5%] left-[-20%] w-[90vw] h-[80vw] rounded-full bg-violet-950/30 blur-[120px] z-0"></div>
-          {/* second gd */}
-          <div className="absolute top-[25%] right-[-20%] w-[90vw] h-[90vw] rounded-full bg-cyan-950/30 blur-[120px] z-0"></div>
-          {/* third gd */}
-          <div className="absolute bottom-[25%] left-[-15%] w-[90vw] h-[90vw] rounded-full bg-violet-950/30 blur-[100px] z-0"></div>
-          {/* Last gd */}
-          <div className="absolute bottom-[2%] right-[-20%] w-[90vw] h-[80vw] rounded-full bg-cyan-950/30 blur-[100px] z-0"></div>
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-size-[3rem_3rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-10 z-0"></div>
-          <Particles />
-      </div>
-      
-      {/* Bottom Gradient*/}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-black-950/20 via-transparent to-transparent z-20 pointer-events-none"></div>
+{/* Background */}
+<div className="absolute inset-0 z-0 pointer-events-none">
+    <div className="absolute inset-0 bg-[#030712] z-0"></div>
+    
+    <div className="absolute top-[5%] left-[-20%] w-[90vw] h-[80vw] rounded-full bg-violet-900/50 blur-[120px] z-0"></div>
+    <div className="absolute top-[25%] right-[-15%] w-[90vw] h-[100vw] rounded-full bg-cyan-900/60 blur-[120px] z-0"></div>
+    <div className="absolute bottom-[25%] left-[-15%] w-[90vw] h-[100vw] rounded-full bg-violet-900/40 blur-[120px] z-0"></div>
+    <div className="absolute bottom-[5%] right-[-20%] w-[105vw] h-[90vw] rounded-full bg-cyan-900/30 blur-[100px] z-0"></div>
+    <div className="absolute bottom-[2%] right-[-15%] w-full h-[10vw] rounded-full bg-[#030712] blur-[100px] z-0"></div>
+    <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-size-[3rem_3rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-10 z-0"></div>
+    <Particles />
+</div>
 
       {/*Header*/}
       <div className="relative z-50 pt-20 pb-8 flex flex-col items-center justify-center">
-          {/* <div className="flex items-center gap-2 mb-2">
-            <div className="w-1.5 h-1.5 bg-red-500 animate-pulse rounded-full"></div>
-            <span className="text-[10px] text-cyan-500 tracking-[0.3em] uppercase">Status: Online</span>
-          </div> */}
-          <h1 className="text-5xl font-black tracking-tighter uppercase text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600">
+          <h1 className="text-5xl font-black tracking-tighter uppercase text-transparent bg-clip-text bg-linear-to-b from-white to-gray-400 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">
             Timeline
           </h1>
           <div className="w-50 h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent  mt-2"></div>
       </div>
 
-      {/* --- RAIL --- */}
+      {/* rail */}
       <div ref={railContainerRef} className="absolute top-50 left-0 w-20 h-full z-0 pointer-events-none">
           <div
             className="absolute top-0 left-1/2 translate-x-2 w-px bg-gray-900 transition-[height]"
@@ -222,7 +207,7 @@ const MobileTimeline = () => {
                           }
                       `}>
                           
-                          <div className="relative bg-black/80 backdrop-blur-md p-1 group transition-all duration-300">
+                          <div className="relative bg-[#0a0b14]/60 backdrop-blur-md p-1 group transition-all duration-300">
                               
                               <div className={`absolute inset-0 border transition-colors duration-300 
                                    ${isActive ? 'border-cyan-500/30' : 'border-white/5'}`}
@@ -248,7 +233,7 @@ const MobileTimeline = () => {
                                       <h2 className="text-3xl font-bold text-white tracking-tighter drop-shadow-lg">
                                           {event.date.split(' ')[1]}
                                       </h2>
-                                      <span className="text-lg text-gray-500 font-light uppercase tracking-widest">
+                                      <span className="text-sm text-gray-500 font-light uppercase tracking-widest">
                                           {event.date.split(' ')[0]}
                                       </span>
                                    </div>

@@ -112,7 +112,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
             </ul>
            {/* ---------------- SEPARATOR ---------------- */}
             <div 
-              className={`h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-4 w-full transform transition-all duration-700 ${isOpen ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}`}
+              className={`h-px bg-linear-to-r from-transparent via-white/20 to-transparent my-4 w-full transform transition-all duration-700 ${isOpen ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}`}
               style={{ transitionDelay: isOpen ? `${200 + links.length * 50}ms` : "0ms" }}
             />
 
@@ -127,7 +127,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                       className={`${authButtonStyle} ${
                         isOpen
                           ? "translate-y-0 opacity-100"
-                          : "translate-y-[100%] opacity-0"
+                          : "translate-y-full opacity-0"
                       }`}
                       style={{
                         transitionDelay: isOpen
@@ -166,10 +166,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                     <Link
                         href="/register"
                         onClick={(e) => onLinkClick(e, "/register")}
-                        className={`${authButtonStyle} bg-white! !text-black hover:!bg-gray-200 border-transparent ${
+                        className={`${authButtonStyle} bg-white! text-black! hover:bg-gray-200! border-transparent ${
                         isOpen
                             ? "translate-y-0 opacity-100"
-                            : "translate-y-[100%] opacity-0"
+                            : "translate-y-full opacity-0"
                         }`}
                         style={{
                         transitionDelay: isOpen
