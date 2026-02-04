@@ -50,10 +50,10 @@ export default function Home() {
     <main className="bg-black w-full min-h-screen">
       <HeroSection />
       <HomeAbout />
-      <section id="timeline" className='scroll-mt-0'><Timeline /></section>
+      <Timeline/>
       <Team />
-      {/* <section id="gallery" className='scroll-mt-20'><Gallery /></section> */}
-      <section id="sponsors" className='scroll-mt-0'><Sponsors /></section>
+      <Gallery/>
+      <Sponsors/>
       <FaqSection />
       {/* {shouldLoadBot && <WhiteBot />} */}
       <Footer />
