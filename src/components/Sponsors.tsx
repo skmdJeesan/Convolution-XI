@@ -56,6 +56,7 @@ const Sponsors: React.FC = () => {
           </h2>
           <div className="h-1 w-24 mx-auto bg-linear-to-r from-transparent via-cyan-500 to-transparent rounded-full opacity-70"></div>
         </motion.div>
+
         <div className="w-full h-full flex flex-col items-center justify-center">
           <motion.p 
             variants={sectionVariants}
@@ -63,7 +64,9 @@ const Sponsors: React.FC = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
             className="text-white text-center text-2xl mb-4 w-fit"
-          ><FlipLink>Main&nbsp;Sponsor</FlipLink></motion.p>
+          >
+            <FlipLink>Main&nbsp;Sponsor</FlipLink>
+          </motion.p>
           <motion.div 
             variants={sectionVariants}
             initial="hidden"
@@ -81,7 +84,7 @@ const Sponsors: React.FC = () => {
                 alt="megatherm image"
                 className="object-cover h-full w-full"
               ></Image> */}
-              <p className="text-white/80">Coming Soon.</p>
+              <p className="text-white/80 text-center">Coming Soon..</p>
             </a>
             
           </motion.div>
@@ -92,7 +95,10 @@ const Sponsors: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
-            className="text-white text-center text-2xl mb-4 w-fit"><FlipLink >Co-Sponsor</FlipLink></motion.p>
+            className="text-white text-center text-2xl mb-4 w-fit"
+          >
+            <FlipLink >Co-Sponsor</FlipLink>
+          </motion.p>
           <motion.div 
             variants={sectionVariants}
             initial="hidden"
@@ -103,14 +109,14 @@ const Sponsors: React.FC = () => {
               // href="https://www.raydus.com/"
               href="/"
               target="_blank"
-              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-20 w-30"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg"
             >
               {/* <Image
                 src={raydus}
                 alt="exide image"
                 className="h-full w-full object-cover "
               ></Image> */}
-              <p className="text-white/80">Coming Soon.</p>
+              <p className="text-white/80 text-center">Coming Soon..</p>
             </a> 
           </motion.div>
 
@@ -120,7 +126,10 @@ const Sponsors: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
-            className="text-white text-center text-xl mb-4 w-fit"><FlipLink>Associate&nbsp;Sponsor</FlipLink></motion.p>
+            className="text-white text-center text-xl mb-4 w-fit"
+          >
+            <FlipLink>Associate&nbsp;Sponsor</FlipLink>
+          </motion.p>
           <motion.div 
             variants={containerVariants}
             initial="hidden"
@@ -132,28 +141,28 @@ const Sponsors: React.FC = () => {
               // href="https://www.exideindustries.com/"
               href="/"
               target="_blank"
-              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-14 w-40"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg"
             >
               {/* <Image
                 src={exide}
                 alt="exide image"
                 className="h-full w-full object-cover"
               ></Image> */}
-              <p className="text-white/80">Coming Soon.</p>
+              <p className="text-white/80 text-center">Coming Soon..</p>
             </motion.a>
             <motion.a
               variants={itemVariants}
               //href="https://www.techno.co.in/"
               href="/"
               target="_blank"
-              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-14 w-40"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg"
             >
               {/* <Image
                 src={techEle}
                 alt="exide image"
                 className="h-full w-full object-cover"
               ></Image> */}
-              <p className="text-white/80">Coming Soon.</p>
+              <p className="text-white/80 text-center">Coming Soon..</p>
             </motion.a>
           </motion.div>
 
@@ -163,7 +172,10 @@ const Sponsors: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
-            className="text-white text-center text-xl mb-4 mt-10 w-fit"><FlipLink>Event&nbsp;Partners</FlipLink></motion.p>
+            className="text-white text-center text-xl mb-4 mt-10 w-fit"
+          >
+            <FlipLink>Event&nbsp;Partners</FlipLink>
+          </motion.p>
           <motion.div 
             variants={containerVariants}
             initial="hidden"
@@ -174,15 +186,16 @@ const Sponsors: React.FC = () => {
               variants={itemVariants}
               href="https://www.theiet.org/"
               target="_blank"
-              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-22 w-40"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg"
             >
-              <Image
+              {/* <Image
                 src={iet}
                 alt="exide image"
                 className="h-full w-full object-cover"
-              ></Image>
+              ></Image> */}
+              <p className="text-white/80 text-center">Coming Soon..</p>
             </motion.a>
-            <motion.a
+            {/* <motion.a
               variants={itemVariants}
               href="http://ieeepeskolkata.org/#:~:text=The%20Power%20%26%20Energy%20Society%20"
               target="_blank"
@@ -241,7 +254,7 @@ const Sponsors: React.FC = () => {
                 alt="exide image"
                 className="h-full w-full object-cover"
               ></Image>
-            </motion.a>
+            </motion.a> */}
           </motion.div>
 
           {/* ---------------------------------media partners--------------------- */}
@@ -260,13 +273,14 @@ const Sponsors: React.FC = () => {
             <a
               href="https://www.telegraphindia.com/edugraph"
               target="_blank"
-              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-24 w-60"
+              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg"
             >
-              <Image
+              {/* <Image
                 src={telegraph}
                 alt="megatherm image"
                 className="h-full w-full object-cover"
-              ></Image>
+              ></Image> */}
+              <p className="text-white/80 text-center">Coming Soon..</p>
             </a>
           </motion.div>
         </div>
