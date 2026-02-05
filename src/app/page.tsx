@@ -2,12 +2,12 @@
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Footer from "@/components/Footer";
+import Gallery from "@/components/Gallery";
 import HeroSection from "@/components/HeroSection";
 import HomeAbout from "@/components/HomeAbout";
 import Sponsors from '@/components/Sponsors';
 import Timeline from '@/components/TimeLine';
 import Team from '@/components/Team';
-import Gallery from '@/components/Gallery';
 import FaqSection from '@/components/FaqSection';
 
 // Dynamically import WhiteBot with SSR disabled
@@ -35,7 +35,8 @@ export default function Home() {
   return (
     <main className="bg-black w-full min-h-screen">
       <HeroSection />
-      <HomeAbout />
+      {/* <HomeAbout /> */}
+      {/* <EventShowcase /> */}
       <Timeline/>
       <Team />
       <Gallery/>
