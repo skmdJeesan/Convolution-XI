@@ -41,7 +41,7 @@ export default function Home() {
       <Gallery/>
       <Sponsors/>
       <FaqSection />
-      {shouldLoadBot && <WhiteBot />}
+      {shouldLoadBot && <WhiteBot />}  
       <Footer />
     </main>
   );
