@@ -222,6 +222,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    cursor: none;
   }
 }
 
