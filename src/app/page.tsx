@@ -34,15 +34,15 @@ export default function Home() {
 
   return (
     <main className="bg-black w-full min-h-screen">
-      <HeroSection />
+      {/* <HeroSection /> */}
       {/* <HomeAbout /> */}
       {/* <EventShowcase /> */}
-      <Timeline/>
+      {/* <Timeline/> */}
       <Team />
       <Gallery/>
       <Sponsors/>
       <FaqSection />
-      {shouldLoadBot && <WhiteBot />}
+      {/* {shouldLoadBot && <WhiteBot />} */}
       <Footer />
     </main>
   );
