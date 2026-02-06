@@ -138,7 +138,7 @@ const DesktopTimeline = () => {
 
        {/* --- HEADER --- */}
        <div className="absolute top-[2vh] z-50 flex flex-col items-center pointer-events-none select-none">
-          <h1 className="text-center text-xl sm:text-3xl md:text-5xl font-black tracking-tight uppercase text-transparent bg-clip-text bg-linear-to-b from-white to-gray-400 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">
+          <h1 className="text-center text-xl sm:text-3xl md:text-5xl font-black tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-400 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">
             Timeline
             <div className="w-60 h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent  mt-2"></div>
           </h1>

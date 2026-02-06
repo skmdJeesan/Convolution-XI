@@ -1,0 +1,99 @@
+.outer-container-scroll {
+    display: grid;
+    min-block-size: 100vh;
+    place-content: center;
+    min-height: auto;
+    /* background: #030022; */
+}
+
+
+.scroller {
+    width: 100%;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+.scroller__inner {
+    display: grid;
+    grid-auto-flow: column dense;
+    grid-template-rows: repeat(4, 22vh);
+    grid-template-columns: 1px;
+    grid-auto-columns: 22vh;
+    grid-gap: 15px;
+}
+
+.item {
+    border-radius: 10px;
+}
+
+.item.big {
+    grid-column-end: span 2;
+    grid-row-end: span 2;
+}
+
+.item:not(.big) {
+    grid-column-end: span 2;
+    grid-row-end: span 1;
+}
+
+.scroller[data-animated="true"] .scroller__inner {
+    width: max-content;
+    flex-wrap: nowrap;
+    animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+}
+
+.scroller[data-direction="right"] {
+    --_animation-direction: reverse;
+}
+
+.scroller[data-direction="left"] {
+    --_animation-direction: forwards;
+}
+
+.scroller[data-speed="fast"] {
+    --_animation-duration: 60s;
+}
+
+.scroller[data-animated="true"] {
+    overflow: hidden;
+    -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+@keyframes scroll {
+    to {
+        transform: translate(calc(-50% - 0.5rem));
+    }
+}
+
+@media (max-width: 767px) {
+    .scroller__inner {
+        display: grid;
+        grid-auto-flow: column dense;
+        grid-template-rows: repeat(4, 18vh);
+        grid-template-columns: 1px;
+        grid-auto-columns: 16vh;
+        grid-gap: 15px;
+    }
+
+    .scroller[data-animated="true"] {
+        overflow: hidden;
+        -webkit-mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
+        mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
+    }
+
+    .scroller[data-speed="fast"] {
+        --_animation-duration: 30s;
+    }
+}
+
+.galleryContainer {
+    padding: 30px;
+    padding-top: 0;
+}
+
+@media (max-width: 500px) {
+    .galleryContainer {
+        padding: 30px 10px;
+    }
+}

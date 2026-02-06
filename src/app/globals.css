@@ -222,6 +222,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    cursor: none;
   }
 }
 
@@ -558,4 +559,24 @@ html {
   animation-name: particle;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+}
+
+/* Added marqee effect  in faq section by Jeesan. do not change or remove it */
+@keyframes marquee-infinite {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee-infinite {
+  animation: marquee-infinite 20s linear infinite;
+}
+
+.group:hover .animate-marquee-infinite {
+  animation-play-state: paused;
+}
+
+/* Apply to all text on the website */
+::selection {
+  background-color: black;
+  color: #FFD700; /* Gold hex code */
 }

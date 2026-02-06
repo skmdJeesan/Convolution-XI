@@ -174,7 +174,7 @@ const TabletTimeline = () => {
 
       {/* --- HEADER --- */}
       <div className="relative z-50 pt-24 pb-16 flex flex-col items-center justify-center">
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase text-transparent bg-clip-text bg-linear-to-b from-white to-gray-400 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">
+          <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-transparent bg-clip-text bg-linear-to-b from-white to-gray-400 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">
             Timeline
           </h1>
           <div className="w-24 h-1 bg-linear-to-r from-transparent via-cyan-500 to-transparent mt-4"></div>
