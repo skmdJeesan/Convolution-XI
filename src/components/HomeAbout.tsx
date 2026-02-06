@@ -1,313 +1,276 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import Image from "next/image";
-import { ReactLenis } from "lenis/react";
-// Import the desktop image
-import AboutBlackhole from "../assets/images/AboutBlackhole.jpg";
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useInView, useSpring, useMotionValue, Variants } from 'framer-motion';
+import { CalendarClock, Users, Trophy, Mouse, ChevronDown, Cpu } from 'lucide-react';
 
-// --- 1. SPARKLES COMPONENT ---
-const Sparkles = ({
-  density = 80, // Increased density slightly
-  speed = 0.5,
-  minSize = 0.6,
-  maxSize = 2.2 // Increased max size for brighter effect
-}) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+const EVENT_DATE = "2026-03-20T09:00:00"; 
+const BASE_REGISTRATIONS = 200;           
+const DB_REGISTRATIONS = 0;             
+// Add from database --> 
+const TOTAL_REGISTRATIONS = BASE_REGISTRATIONS + DB_REGISTRATIONS; 
+
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { 
+      staggerChildren: 0.25, 
+      delayChildren: 0.2,
+      when: "beforeChildren"
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 40, opacity: 0, filter: "blur(10px)" },
+  visible: { 
+    y: 0, opacity: 1, filter: "blur(0px)",
+    transition: { duration: 0.8, ease: "easeOut" }
+  },
+};
+
+const imageRevealVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.9, filter: "blur(20px)" },
+  visible: { 
+    opacity: 1, scale: 1, filter: "blur(0px)",
+    transition: { duration: 1.2, ease: "easeOut", delay: 0.5 }
+  },
+};
+
+
+
+const AnimatedCounter = ({ from, to, delay = 0 }: { from: number; to: number, delay?: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  
+  const motionValue = useMotionValue(from);
+  const springValue = useSpring(motionValue, { damping: 30, stiffness: 100 });
+  const displayValue = useTransform(springValue, (latest) => Math.floor(latest));
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (isInView) {
+      const timer = setTimeout(() => {
+        motionValue.set(to);
+      }, delay * 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView, to, motionValue, delay]);
 
-    let animationId: number;
-    let particles: Array<{
-      x: number;
-      y: number;
-      size: number;
-      opacity: number;
-      speedY: number;
-      speedX: number;
-      opacitySpeed: number;
-      brightness: number;
-    }> = [];
+  return <motion.span ref={ref} className="tabular-nums">{displayValue}</motion.span>;
+};
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
+const DaysCounter = () => {
+  const [status, setStatus] = useState("");
 
-    const createParticles = () => {
-      particles = [];
-      for (let i = 0; i < density; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * (maxSize - minSize) + minSize,
-          opacity: Math.random(),
-          speedY: (Math.random() - 0.5) * speed,
-          speedX: (Math.random() - 0.5) * speed,
-          opacitySpeed: Math.random() * 0.02 + 0.005,
-          // BRIGHTNESS: Multiplier increased (1.0 to 2.0) for stronger glow
-          brightness: Math.random() * 1.0 + 1.0, 
-        });
+  useEffect(() => {
+    const calculateTime = () => {
+      const difference = +new Date(EVENT_DATE) - +new Date();
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        return `${days} Days`;
       }
+      return "STARTED";
     };
+    setStatus(calculateTime());
+    const timer = setInterval(() => setStatus(calculateTime()), 60000); 
+    return () => clearInterval(timer);
+  }, []);
 
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (!status) return <span className="text-sm">...</span>;
 
-      particles.forEach((p) => {
-        p.y += p.speedY;
-        p.x += p.speedX;
+  if (status === "STARTED") {
+     return <span className="text-lg font-bold tracking-widest text-white animate-pulse">STARTED</span>;
+  }
+  return <span className="text-2xl font-bold tabular-nums tracking-tight">{status}</span>;
+};
 
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-
-        p.opacity += p.opacitySpeed;
-        if (p.opacity > 1 || p.opacity < 0.2) {
-          p.opacitySpeed = -p.opacitySpeed;
-        }
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        
-        // CALCULATION: Allow opacity to go slightly above 1 visually using brightness
-        const visualOpacity = Math.min(Math.abs(p.opacity) * p.brightness, 1);
-        ctx.fillStyle = `rgba(255, 255, 255, ${visualOpacity})`;
-        
-        // GLOW: Add shadow to larger/brighter stars
-        if (p.size > 1.5) {
-            ctx.shadowBlur = 6;
-            ctx.shadowColor = "rgba(255, 255, 255, 0.8)";
-        } else {
-            ctx.shadowBlur = 0;
-        }
-
-        ctx.fill();
-        ctx.shadowBlur = 0; // Reset for next particle
-      });
-
-      animationId = requestAnimationFrame(animate);
-    };
-
-    resizeCanvas();
-    createParticles();
-    animate();
-
-    window.addEventListener("resize", () => {
-      resizeCanvas();
-      createParticles();
-    });
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", resizeCanvas);
-    };
-  }, [density, speed, minSize, maxSize]);
+const Background = () => {
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -100]); 
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none z-0"
-    />
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 bg-[#020203]"></div>
+      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black to-transparent z-10"></div>
+      
+      <motion.div 
+  className="absolute inset-0 opacity-[0.2]" 
+  style={{ 
+    y, 
+    backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, 
+    backgroundSize: '40px 40px' 
+  }}
+>
+</motion.div>
+
+      <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vh] bg-fuchsia-900/20 blur-[120px] rounded-full mix-blend-screen"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vh] bg-cyan-900/20 blur-[120px] rounded-full mix-blend-screen"></div>
+      <div className="absolute top-[30%] left-[30%] w-[40vw] h-[40vh] bg-purple-500/10 blur-[100px] rounded-full mix-blend-screen"></div>
+    </div>
   );
 };
 
-// --- 2. REUSABLE TYPEWRITER COMPONENT ---
-const Typewriter = ({
-  text,
-  start,
-  speed = 30,
-  onComplete,
-  showCursor = true,
-  className = "",
-  cursorClassName = "bg-cyan-400"
-}: {
-  text: string;
-  start: boolean;
-  speed?: number;
-  onComplete?: () => void;
-  showCursor?: boolean;
-  className?: string;
-  cursorClassName?: string;
-}) => {
-  const [displayedText, setDisplayedText] = useState("");
-  const [isComplete, setIsComplete] = useState(false);
+const StatCard = ({ icon: Icon, label, value, colorClass, borderClass }: { icon: any, label: string, value: React.ReactNode, colorClass: string, borderClass: string }) => (
+  <motion.div 
+    variants={itemVariants}
+    whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
+    className={`relative flex flex-col items-start p-4 lg:p-5 border-l-[3px] ${borderClass} overflow-hidden group transition-all bg-[#1a1a20]/60 backdrop-blur-md`}
+  >
+ 
+    <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-br ${colorClass} transition-opacity duration-500`}></div>
+    
+    <div className="flex items-center gap-2 mb-2 lg:mb-3 z-10">
+        <Icon className="w-4 h-4 lg:w-5 lg:h-5 text-white/80 group-hover:text-white transition-colors" />
+        {(label === "Time Remaining") && (
+            <span className="flex h-1.5 w-1.5 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-purple-500"></span>
+            </span>
+        )}
+    </div>
+    <span className={`text-xl lg:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${colorClass} tracking-wider font-mono z-10`}>
+        {value}
+    </span>
+    <span className="text-[9px] lg:text-[10px] text-gray-400 uppercase tracking-widest font-mono mt-1 group-hover:text-gray-200 transition-colors z-10">{label}</span>
+  </motion.div>
+);
 
-  useEffect(() => {
-    if (!start) return;
-
-    if (displayedText.length === 0 && text.length > 0) {
-      setIsComplete(false);
-    }
-
-    if (displayedText.length < text.length) {
-      const timeout = setTimeout(() => {
-        setDisplayedText(text.slice(0, displayedText.length + 1));
-      }, speed);
-      return () => clearTimeout(timeout);
-    } else if (!isComplete) {
-      setIsComplete(true);
-      if (onComplete) onComplete(); 
-    }
-  }, [start, displayedText, text, speed, isComplete, onComplete]);
-
+const DecodingText = ({ text }: { text: string }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   return (
-    <span className={className}>
-      {displayedText}
-      {showCursor && (
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-          className={`inline-block ml-1 w-[3px] md:w-[4px] h-[0.9em] align-middle ${cursorClassName}`}
-        />
-      )}
+    <span ref={ref} className="text-[10px] lg:text-xs font-mono font-bold tracking-[0.2em] text-cyan-400">
+      {text.split("").map((char, index) => (
+        <motion.span key={index} initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ duration: 0.1, delay: index * 0.03 }}>
+          {char}
+        </motion.span>
+      ))}
     </span>
   );
 };
 
-// --- 3. MAIN COMPONENT ---
-export default function HomeAbout() {
-  const [phase, setPhase] = useState(0);
-  const [isAboutTyped, setIsAboutTyped] = useState(false);
-  
-  const [isMobileOrTab, setIsMobileOrTab] = useState(false);
-  const [isIpadPro, setIsIpadPro] = useState(false);
-
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
-
-  useEffect(() => {
-    const checkScreen = () => {
-      const width = window.innerWidth;
-      setIsMobileOrTab(width < 1280);
-      setIsIpadPro(width >= 1024 && width < 1280);
-    };
-    checkScreen();
-    window.addEventListener("resize", checkScreen);
-    return () => window.removeEventListener("resize", checkScreen);
-  }, []);
-
-  useEffect(() => {
-    if (isInView && phase === 0) {
-      const timer = setTimeout(() => setPhase(1), 300);
-      return () => clearTimeout(timer);
-    }
-  }, [isInView, phase]);
-
-  const paragraphText =
-    "At Convo 25 Lution, we bridge the gap between organic cognition and synthetic processing. We envision a future defined by the seamless integration of technology and humanity, unlocking unprecedented possibilities for innovation.";
+export default function AboutSection() {
+  const handleScrollNext = () => {
+    window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+  };
 
   return (
-    <ReactLenis root>
-      <div
-        ref={containerRef}
-        className="relative w-full h-screen bg-black overflow-hidden font-sans flex items-center justify-center selection:bg-cyan-500/30"
-      >
-        {/* --- LAYER 0: SPARKLES (Deepest Layer) --- */}
-        <Sparkles density={100} speed={0.2} minSize={0.8} maxSize={2.5} />
+    <div id='about' className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#020203]">
+      <Background />
 
-        {/* --- LAYER 1: BACKGROUND GRADIENT --- */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#000000_100%)] z-0 pointer-events-none" />
-
-        {/* --- LAYER 2: IMAGES & BLOCKER --- */}
-        <motion.div
-          className="absolute bottom-0 xl:bottom-[0%] right-0 xl:right-[-5%] w-full xl:w-[60vw] z-10 flex items-end justify-center xl:block pointer-events-none"
-          initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
-          animate={phase >= 2 ? { opacity: 1, scale: 1, filter: "blur(0px)" } : {}}
-          transition={{ duration: 2.5, ease: "easeOut" }}
+      <div className="relative z-10 maxWidthForSections grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center pt-5 pb-10">
+        
+        {/* Left*/}
+        <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="space-y-8 lg:space-y-10"
         >
-          <motion.div
-            animate={{ y: [-10, 10, -10], rotate: [0, 2, 0] }}
-            transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
-            className="w-full h-full flex justify-center items-end relative"
+          
+          {/* Heading */}
+          <motion.div variants={itemVariants} className="relative w-full">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter whitespace-nowrap">
+              ABOUT <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-500">US</span>
+            </h2>
+          </motion.div>
+
+          {/* parragraph */}
+          <motion.div 
+            variants={itemVariants} 
+            className="relative p-6 lg:p-8 border-l-4 border-cyan-500/20 bg-gradient-to-r from-cyan-900/10 to-transparent backdrop-blur-sm rounded-r-2xl w-full"
           >
-            {/* --- BLOCKER DIV --- 
-               This black circle sits BEHIND the image but ABOVE the sparkles (z-0).
-               It prevents stars from being visible through the transparent/black parts of the image.
-            */}
-            <div className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-black rounded-full blur-xl left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0" />
+             <div className="absolute top-0 left-[-4px] w-[4px] h-12 bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.6)]"></div>
+             
+             <p className="text-gray-300 text-sm md:text-base lg:text-lg leading-relaxed font-light text-justify">
+              <span className="text-white font-bold tracking-wide">Convolution XI</span> is the <span className="text-purple-300 font-semibold font-mono">11th Edition</span> of the annual techno-management fest organized by the Students' Forum of the Department of Electrical Engineering, <span className="text-cyan-400 font-medium">Jadavpur University</span>. 
+              <br /><br />
+              Convolution acts as an <span className="text-fuchsia-400 font-mono text-xs md:text-sm tracking-wider">UMBRELLA EVENT</span> comprising of several student interaction events, technical competitions, workshops, and has also hosted, in the past, lectures by some of the most illustrious names in <span className="text-white/90 border-b border-purple-500/50 pb-0.5">academia and industry</span> alike.
+            </p>
+          </motion.div>
 
-            {/* Desktop Image */}
-            <Image
-              src={AboutBlackhole}
-              alt="Event Horizon"
-              className="hidden xl:block object-contain mix-blend-screen relative z-10"
-              priority
-            />
 
-            {/* Mobile/Tablet Image */}
-            <Image
-              src="/assets/images/HomeAboutPhonebg.jpg"
-              width={500}
-              height={800}
-              alt="Mobile Background"
-              className="block xl:hidden object-cover w-full h-auto mix-blend-screen contrast-125 brightness-90 translate-y-4 opacity-100 md:opacity-70 relative z-10"
-              priority
-            />
+          <motion.div variants={itemVariants} className="grid grid-cols-3 gap-4 lg:gap-6">
+             <StatCard 
+                icon={Users} 
+                label="Registrations" 
+                value={
+                    <span className="flex items-center">
+                        <AnimatedCounter from={0} to={TOTAL_REGISTRATIONS} delay={1.2} />
+                        <span className="ml-0.5 text-lg md:text-xl">+</span>
+                    </span>
+                }
+                colorClass="from-cyan-400 to-cyan-600"
+                borderClass="border-cyan-500" 
+             />
+             <StatCard 
+                icon={CalendarClock} 
+                label="Time Remaining" 
+                value={<DaysCounter />} 
+                colorClass="from-purple-400 to-purple-600" 
+                borderClass="border-purple-500"
+             />
+             <StatCard 
+                icon={Trophy} 
+                label="Events" 
+                value="30+" 
+                colorClass="from-fuchsia-400 to-fuchsia-600" 
+                borderClass="border-fuchsia-500" 
+             />
           </motion.div>
         </motion.div>
 
-        {/* --- LAYER 3: TEXT CONTENT (Top Layer) --- */}
-        <motion.div
-          className="absolute z-40"
-          initial={{ top: "50%", left: "50%", x: "-50%", y: "-50%", scale: 1.5 }}
-          animate={
-            phase >= 2 
-              ? { 
-                  top: "12%", 
-                  left: isIpadPro ? "3.8%" : (isMobileOrTab ? "4%" : "8%"), 
-                  x: "0%", 
-                  y: "0%", 
-                  scale: 1 
-                } 
-              : { top: "50%", left: "50%", x: "-50%", y: "-50%", scale: 1.5 }
-          }
-          transition={{ duration: 1.5, ease: [0.25, 1, 0.5, 1] }}
-          onAnimationComplete={() => { if (phase === 2) setPhase(3); }}
+        {/*Riht*/}
+        <motion.div 
+           initial="hidden"
+           whileInView="visible"
+           viewport={{ once: true }}
+           className="relative hidden lg:flex justify-center items-center pointer-events-none"
         >
-          <h1 className="font-bold text-white tracking-tighter text-6xl md:text-8xl lg:text-9xl whitespace-nowrap drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">
-            <Typewriter
-              text="ABOUT"
-              start={phase >= 1}
-              speed={60}
-              showCursor={!isAboutTyped}
-              onComplete={() => {
-                setIsAboutTyped(true);
-                setTimeout(() => setPhase(2), 500);
-              }}
-            />
-          </h1>
+        
+
+          <motion.div 
+            variants={imageRevealVariants}
+            className="relative z-10 w-full max-w-md aspect-square flex items-center justify-center"
+          >
+             <div className="relative w-full h-full overflow-hidden [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]">
+                 <img 
+                   src= "../assets/images/AboutBlackhole.jpg"
+                   alt="About Convolution X" 
+                   className="w-full h-full object-cover opacity-100 mix-blend-lighten scale-110 contrast-125 saturate-110"
+                 />
+                 <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-transparent to-fuchsia-500/10 mix-blend-overlay"></div>
+                 <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
+             </div>
+          </motion.div>
         </motion.div>
 
-        <motion.div
-          className="absolute top-[22%] left-[4%] xl:left-[8%] xl:top-[32%] z-30 max-w-xl text-left pr-4 xl:pr-0"
-          initial={{ opacity: 0 }}
-          animate={phase >= 3 ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.div
-            className="w-12 h-1 bg-cyan-500 mb-6"
-            initial={{ width: 0 }}
-            animate={phase >= 3 ? { width: 200 } : { width: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, ease: "circOut" }}
-          />
-
-          <div className="text-lg md:text-2xl text-gray-300 font-light leading-relaxed min-h-[200px] tracking-wide">
-            <Typewriter
-              text={paragraphText}
-              start={phase === 3}
-              speed={15}
-              showCursor={true}
-            />
-          </div>
-        </motion.div>
       </div>
-    </ReactLenis>
+      
+
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 1 }}
+        onClick={handleScrollNext}
+        className="absolute bottom-1 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20 cursor-pointer group"
+      >
+          <div className="relative flex flex-col items-center gap-2">
+            <div className="flex items-center gap-2 px-6 py-2 rounded-full border border-cyan-500/30 bg-[#1a1a20]/80 backdrop-blur-md group-hover:border-cyan-400 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all duration-300">
+                {/* <Mouse className="w-4 h-4 text-cyan-400 animate-pulse" /> */}
+                <span className="text-[10px] font-mono tracking-[0.2em] text-cyan-100/80 group-hover:text-white transition-colors font-bold">
+                    EXPLORE_MORE
+                </span>
+            </div>
+            <div className="flex flex-col items-center -space-y-3 mt-1 opacity-80">
+                <ChevronDown className="w-5 h-5 text-fuchsia-500 animate-bounce delay-0" />
+                <ChevronDown className="w-5 h-5 text-cyan-500 animate-bounce delay-75" />
+            </div>
+          </div>
+      </motion.div>
+    </div>
   );
 }

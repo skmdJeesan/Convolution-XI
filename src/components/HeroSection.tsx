@@ -25,7 +25,7 @@ const SplineScene = dynamic(() => import('@splinetool/react-spline'), {
 });
 
 const BottomFadeOverlay = () => (
-    <div className="absolute bottom-0 left-0 w-full h-32 md:h-30 z-11 pointer-events-none bg-gradient-to-b from-transparent via-black/90 to-black" />
+    <div className="absolute bottom-0 left-0 w-full h-15 md:h-30 z-11 pointer-events-none bg-gradient-to-b from-transparent via-black/90 to-black" />
 );
 
 // --- EXISTING SVG: DATA CORE (Right Side) ---
