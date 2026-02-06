@@ -4,25 +4,10 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { IoLockClosedOutline, IoKeyOutline, IoCheckmarkCircleOutline, IoAlertCircleOutline } from "react-icons/io5";
 import { Microchip, ShieldCheck, Binary } from "lucide-react";
+import DecorativeIcons from "@/components/DecorativeIcons";
+import Particles from "@/components/Particles";
 
-const AnimatedBackground = () => {
-  return (
-    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[#050505]"></div>
-        {/* Grid & Glows */}
-        <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l17.32 10v20L20 40 2.68 30V10z' fill-opacity='0' stroke='%2322d3ee' stroke-width='0.5'/%3E%3C/svg%3E")`, backgroundSize: '40px 40px' }}></div>
-        <div className="absolute top-0 left-0 w-[50vw] h-[50vh] bg-cyan-500/10 blur-[120px] rounded-full mix-blend-screen"></div>
-        <div className="absolute bottom-0 right-0 w-[50vw] h-[50vh] bg-purple-600/10 blur-[120px] rounded-full mix-blend-screen"></div>
-        
-        {/* Floating Icons */}
-        <div className="absolute inset-0 overflow-hidden opacity-30">
-            <Microchip className="absolute top-[15vh] left-[10vw] w-10 h-10 text-cyan-500/20" />
-            <ShieldCheck className="absolute bottom-[20vh] right-[10vw] w-12 h-12 text-purple-500/20" />
-            <Binary className="absolute bottom-[10vh] left-[5vw] w-8 h-8 text-cyan-400/15" />
-        </div>
-    </div>
-  )
-}
+
 
 // --- LOADER ---
 const Loader = () => (
@@ -70,7 +55,8 @@ export default function ResetPassword({ params }: ResetPasswordProps) {
   return (
     <div className='relative min-h-screen w-full flex items-center justify-center overflow-hidden text-cyan-50 bg-[#050505] selection:bg-purple-500/30'>
       
-      <AnimatedBackground />
+      <DecorativeIcons />
+      <Particles/>
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.98 }}
