@@ -26,7 +26,7 @@ export default function CustomCursor() {
   return (
     <div
       ref={cursorRef}
-      className="hidden lg:block fixed top-0 left-0 w-8 h-8 bg-white rounded-full pointer-events-none z-9999 mix-blend-difference"
+      className="hidden lg:block fixed top-0 left-0 w-6 h-6 bg-white/50 rounded-full pointer-events-none z-9999 mix-blend-lighten transition-transform duration-150 ease-out"
       style={{
         // Hardware acceleration hints
         willChange: "transform",

@@ -115,7 +115,7 @@ const DesktopTimeline = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen overflow-hidden flex flex-col items-center bg-[#030712] text-white font-mono selection:bg-cyan-500/30">
+    <div ref={containerRef} className="relative w-full h-screen overflow-hidden flex flex-col items-center bg-[#030712] text-white selection:bg-cyan-500/30">
       
       {/* --- BACKGROUND LAYER --- */}
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -138,10 +138,9 @@ const DesktopTimeline = () => {
 
        {/* --- HEADER --- */}
        <div className="absolute top-[2vh] z-50 flex flex-col items-center pointer-events-none select-none">
-          <h1 className="text-center text-xl sm:text-3xl md:text-5xl font-black tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-400 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">
-            Timeline
-            <div className="w-60 h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent  mt-2"></div>
-          </h1>
+          <h2 className="text-5xl md:text-6xl lg:text-6xl font-semibold text-white/90 tracking-tighter whitespace-nowrap capitalize">
+          <span className="text-transparent w-fit bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">Timeline</span>
+        </h2>
       </div>
 
       {/* Timeline Track*/}

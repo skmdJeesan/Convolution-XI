@@ -73,17 +73,17 @@ export default function FaqSection() {
                     {/* Header */}
                     <div className="text-center mb-12 md:mb-16 space-y-4 flex flex-col items-center">
                         <div className="relative inline-block">
-                            <h1 className="text-center text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-blue-400 to-purple-500 drop-shadow-[0_0_15px_rgba(6,182,212,0.5)] capitalize">
-                                Frequently Asked Questions
-                            </h1>
-                            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent"></span>
+                            <h2 className="text-5xl md:text-6xl lg:text-6xl font-semibold text-white tracking-tighter whitespace-wrap capitalize">
+                                Frequently asked <span className="text-transparent w-fit bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">questions</span>
+                            </h2>
+                            {/* <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent"></span> */}
                         </div>
                     </div>
                     <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 
                         <div className="hidden lg:flex lg:col-span-5 flex-col items-center justify-center lg:sticky lg:top-46 order-1">
                             <div className="relative w-full flex flex-col items-center animate-float_drone">
-                                <div className="relative w-90 h-90 md:w-90 md:h-90 flex items-center justify-center z-10 -mb-10 -mt-15">
+                                <div className="relative md:w-80 md:h-80 flex items-center justify-center z-10 -mb-10 -mt-15">
                                     <Image
                                         src='/faq_robo.png'
                                         alt="Drone"
@@ -181,22 +181,22 @@ export default function FaqSection() {
                 </div>
 
                 {/* Marquee */}
-                <div className="flex px-4 py-2 bg-linear-to-r from-purple-500/90 to-cyan-500/90 rounded-md w-[80vw] overflow-hidden z-20">
+                <div className="flex px-4 py-2 glass-btn rounded-full w-[90vw] lg:w-[85vw] overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
                     {/* Block 1 */}
-                    <div className="animate-marquee-infinite group-hover:[animation-play-state:paused] shrink-0 min-w-full flex items-center pr-10 hover:paused">
+                    <div className="animate-marquee-infinite group-hover:[animation-play-state:paused] shrink-0 min-w-full flex items-center">
                         <span className="text-white text-base font-sans tracking-wide whitespace-nowrap">
                             Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam' for future updates.
                         </span>
                     </div>
                     {/* Block 2 (Duplicate) */}
-                    <div className="group animate-marquee-infinite group-hover:[animation-play-state:paused] shrink-0 min-w-full flex items-center pr-10 hover:paused">
+                    <div className="group animate-marquee-infinite group-hover:[animation-play-state:paused] shrink-0 min-w-full flex items-center">
                         <span className="text-white text-base font-sans tracking-wide whitespace-nowrap">
                             Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam' for future updates.
                         </span>
                     </div>
                 </div>
             </div>
-            
+
         </div>
     );
 }

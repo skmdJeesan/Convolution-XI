@@ -568,7 +568,7 @@ html {
 }
 
 .animate-marquee-infinite {
-  animation: marquee-infinite 20s linear infinite;
+  animation: marquee-infinite 25s linear infinite;
 }
 
 .group:hover .animate-marquee-infinite {

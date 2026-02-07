@@ -5,12 +5,7 @@ import { CalendarClock, Users, Trophy, Mouse, ChevronDown, Cpu } from 'lucide-re
 
 
 const EVENT_DATE = "2026-03-20T09:00:00"; 
-const BASE_REGISTRATIONS = 200;           
-const DB_REGISTRATIONS = 0;             
-// Add from database --> 
-const TOTAL_REGISTRATIONS = BASE_REGISTRATIONS + DB_REGISTRATIONS; 
-
-
+ 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -38,8 +33,6 @@ const imageRevealVariants: Variants = {
     transition: { duration: 1.2, ease: "easeOut", delay: 0.5 }
   },
 };
-
-
 
 const AnimatedCounter = ({ from, to, delay = 0 }: { from: number; to: number, delay?: number }) => {
   const ref = useRef(null);
@@ -156,6 +149,23 @@ export default function AboutSection() {
     window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
   };
 
+  const [userCount, setUserCount] = useState(0);
+
+  useEffect(() => {
+    // Fetch from your own Next.js API route
+    const fetchCount = async () => {
+      try {
+        const res = await fetch('/api/user-count', { cache: 'no-store' });
+        const data = await res.json();
+        setUserCount(data.count);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
+    fetchCount();
+  }, []);
+
   return (
     <div id='about' className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#020203]">
       <Background />
@@ -173,8 +183,8 @@ export default function AboutSection() {
           
           {/* Heading */}
           <motion.div variants={itemVariants} className="relative w-full">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter whitespace-nowrap">
-              ABOUT <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-500">US</span>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter whitespace-nowrap capitalize">
+              About <span className="text-transparent w-fit bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">us</span>
             </h2>
           </motion.div>
 
@@ -199,7 +209,7 @@ export default function AboutSection() {
                 label="Registrations" 
                 value={
                     <span className="flex items-center">
-                        <AnimatedCounter from={0} to={TOTAL_REGISTRATIONS} delay={1.2} />
+                        <AnimatedCounter from={0} to={userCount} delay={1.2} />
                         <span className="ml-0.5 text-lg md:text-xl">+</span>
                     </span>
                 }
