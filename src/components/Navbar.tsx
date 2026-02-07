@@ -77,8 +77,10 @@ const Navbar = () => {
   const startHideTimer = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
-      setIsVisible(false);
-      setActiveDropdown(null);
+      if (window.innerWidth >= 768) {
+        setIsVisible(false);
+        setActiveDropdown(null);
+      }
     }, 2400);
   };
 
@@ -155,62 +157,19 @@ const Navbar = () => {
     };
   }, []);
 
-  // Only the center navigation links hide now
-  const navVisibilityClass = isVisible || isNavOpen ? "translate-y-0" : "translate-y-0 md:-translate-y-[150%]";
+  const navVisibilityClass = isVisible || isNavOpen 
+    ? "translate-y-0" 
+    : "md:-translate-y-full translate-y-0"; 
 
   return (
     <>
-    {/* logo */}
-      <div className="fixed top-6 left-4 md:left-8 z-1000 pointer-events-auto transition-transform hover:scale-105 duration-300">
-        <Link href="/" onClick={(e) => handleScroll(e, "/#home")}>
-          <Image
-            src={ConvoLogo}
-            alt="convo logo"
-            className="object-cover h-10 w-auto drop-shadow-xl"
-          />
-        </Link>
-      </div>
-
-      <div className="fixed top-6 right-4 md:right-8 z-1000 pointer-events-auto flex items-center gap-4">
-        {session ? (
-          <Link href="/profile" className="rounded-full relative group block">
-            <div className="rounded-full border-2 border-white/20 overflow-hidden hover:border-white transition-colors shadow-lg shadow-white/10">
-              <Image
-                src={profileIcon}
-                alt="profile icon"
-                height={45}
-                width={45}
-                className="object-cover"
-              />
-            </div>
-          </Link>
-        ) : (
-          <div className="hidden lg:flex gap-3 items-center">
-            <div
-              onClick={() => router.push("/login")}
-              className="group relative px-6 py-2.5 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#05080f] backdrop-blur-xl shadow-lg text-sm font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer"
-            >
-              <FlipLink>Log in</FlipLink>
-            </div>
-
-            <div
-              onClick={() => router.push("/register")}
-              className="group relative px-6 py-2.5 rounded-full bg-purple-500 hover:bg-purple-400 text-[#05080f] backdrop-blur-xl shadow-lg text-sm font-bold uppercase tracking-widest  transition-all duration-300 ease-out cursor-pointer"
-            >
-              <FlipLink>Register</FlipLink>
-            </div>
-          </div>
-        )}
-
-        <button
-          onClick={toggleNavigation}
-          className="md:hidden text-white bg-white/10 p-3 rounded-full backdrop-blur-md border border-white/20 active:scale-90 transition-all shadow-lg hover:bg-white/20"
-        >
-          <IoMenuOutline className="size-6" />
-        </button>
-      </div>
-      <div
-        className={`fixed top-0 left-0 right-0 z-999 p-4 pt-6 font-sans transition-transform duration-500 ease-in-out ${navVisibilityClass}`}
+      <header
+        className={`
+          fixed top-0 left-0 w-full z-1000 
+          transition-transform duration-500 ease-in-out
+          ${navVisibilityClass}
+          bg-black/20 backdrop-blur-xl border-b border-white/10 md:bg-transparent md:backdrop-blur-none md:border-none
+        `}
         onMouseEnter={() => {
           if (timerRef.current) clearTimeout(timerRef.current);
           setIsVisible(true);
@@ -219,45 +178,37 @@ const Navbar = () => {
           startHideTimer();
         }}
       >
-        <div className="w-full flex justify-center items-center mx-auto pointer-events-none">
-          {/* DESKTOP NAV LINKS */}
-          <nav className={`hidden md:flex pointer-events-auto`}>
-            <ul className="flex items-center gap-x-2 px-3 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl text-xs font-bold uppercase tracking-widest text-gray-200 ring-1 ring-white/10">
+        <div className="flex items-center justify-between px-4 py-2 md:px-8 md:py-6 w-full maxWidthForSections mx-auto">
+          
+          {/*Logo*/}
+          <div className="shrink-0 transition-transform hover:scale-105 duration-300 pointer-events-auto">
+            <Link href="/" onClick={(e) => handleScroll(e, "/#home")}>
+              <Image
+                src={ConvoLogo}
+                alt="convo logo"
+                className="object-contain h-9 w-auto md:h-10 md:drop-shadow-xl"
+              />
+            </Link>
+          </div>
+          {/* center navbar */}
+          <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 pointer-events-auto">
+            <ul className="flex items-center gap-x-2 px-2 py-2.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl text-xs font-bold uppercase tracking-widest text-gray-200 ring-1 ring-white/10">
               {desktopNavLinks.map((item, index) => (
                 <li key={index} className="relative group">
                   {item.subItems ? (
-                    // parent items with submenu
                     <div
-                      className={`
-                        px-6 py-2 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1
-                        ${activeDropdown === item.label ? "bg-white/10 text-white" : "hover:bg-white/10 hover:text-white"}
-                      `}
+                      className={`px-4 py-2 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1 ${activeDropdown === item.label ? "bg-white/10 text-white" : "hover:bg-white/10 hover:text-white"}`}
                       onClick={(e) => handleDropdownToggle(e, item.label)}
                     >
-                      <span>
-                        <FlipLink>{item.label}</FlipLink>
-                      </span>
-                      <IoChevronDownOutline
-                        className={`
-                          size-3 transition-transform duration-300 
-                          ${activeDropdown === item.label ? "rotate-180" : "group-hover:rotate-180"}
-                        `}
-                      />
-
-                      {/* submenu */}
-                      <div
-                        className={`
-                        absolute top-full left-1/2 -translate-x-1/2 pt-6 w-56
-                        ${activeDropdown === item.label ? "block" : "hidden group-hover:block"}
-                      `}
-                      >
+                      <span><FlipLink>{item.label}</FlipLink></span>
+                      <IoChevronDownOutline className={`size-3 transition-transform duration-300 ${activeDropdown === item.label ? "rotate-180" : "group-hover:rotate-180"}`} />
+                      
+                      {/* Submenu */}
+                      <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-6 w-56 ${activeDropdown === item.label ? "block" : "hidden group-hover:block"}`}>
                         <ul className="bg-black backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl p-2 flex flex-col gap-1">
                           {item.subItems.map((sub, subIndex) => (
                             <li key={subIndex}>
-                              <div
-                                onClick={(e) => handleScroll(e, sub.href)}
-                                className="block px-4 py-3 hover:bg-white/5 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[10px] cursor-pointer"
-                              >
+                              <div onClick={(e) => handleScroll(e, sub.href)} className="block px-4 py-3 hover:bg-white/5 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[10px] cursor-pointer">
                                 <FlipLink>{sub.label}</FlipLink>
                               </div>
                             </li>
@@ -266,11 +217,7 @@ const Navbar = () => {
                       </div>
                     </div>
                   ) : (
-                    // Normal links
-                    <div
-                      onClick={(e) => handleScroll(e, item.href)}
-                      className="block px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 hover:text-white cursor-pointer"
-                    >
+                    <div onClick={(e) => handleScroll(e, item.href)} className="block px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 hover:text-white cursor-pointer">
                       <FlipLink>{item.label}</FlipLink>
                     </div>
                   )}
@@ -278,16 +225,51 @@ const Navbar = () => {
               ))}
             </ul>
           </nav>
-        </div>
 
-        {/* ---------------- MOBILE SIDEBAR COMPONENT ---------------- */}
-        <MobileMenu
-          isOpen={isNavOpen}
-          onClose={() => setIsNavOpen(false)}
-          links={mobileNavLinks}
-          onLinkClick={handleScroll}
-        />
-      </div>
+          <div className="flex items-center gap-4 pointer-events-auto">
+            {/* profile */}
+            {session ? (
+              <Link href="/profile" className="rounded-full relative group block">
+                <div className="rounded-full border-2 border-white/20 overflow-hidden hover:border-white transition-colors shadow-lg shadow-white/10">
+                  <Image
+                    src={profileIcon}
+                    alt="profile icon"
+                    height={40}
+                    width={40}
+                    className="object-cover md:h-[45px] md:w-[45px]"
+                  />
+                </div>
+              </Link>
+            ) : (
+              // Login-register
+              <div className="hidden lg:flex gap-3 items-center">
+                <div onClick={() => router.push("/login")} className="group relative px-4 py-2 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#05080f] backdrop-blur-xl shadow-lg text-sm font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
+                  <FlipLink>Log in</FlipLink>
+                </div>
+                <div onClick={() => router.push("/register")} className="group relative px-4 py-2 rounded-full bg-purple-500 hover:bg-purple-400 text-[#05080f] backdrop-blur-xl shadow-lg text-sm font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
+                  <FlipLink>Register</FlipLink>
+                </div>
+              </div>
+            )}
+
+            {/* Humberger */}
+            <button
+              onClick={toggleNavigation}
+              className="lg:hidden text-white bg-transparent p-2.5 rounded-full backdrop-blur-md  active:scale-90 transition-all shadow-lg"
+            >
+              <IoMenuOutline className="size-9" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* ---------------- MOBILE SIDEBAR COMPONENT ---------------- */}
+      <MobileMenu
+        isOpen={isNavOpen}
+        onClose={() => setIsNavOpen(false)}
+        links={mobileNavLinks}
+        onLinkClick={handleScroll}
+      />
     </>
   );
 };

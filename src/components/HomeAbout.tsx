@@ -93,7 +93,7 @@ const Background = () => {
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       <div className="absolute inset-0 bg-[#020203]"></div>
-      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black to-transparent z-10"></div>
+      <div className="absolute top-0 left-0 w-full h-40 bg-linear-to-b from-black to-transparent z-10"></div>
       
       <motion.div 
   className="absolute inset-0 opacity-[0.2]" 
@@ -208,7 +208,7 @@ export default function AboutSection() {
              />
              <StatCard 
                 icon={CalendarClock} 
-                label="Time Remaining" 
+                label="Remaining" 
                 value={<DaysCounter />} 
                 colorClass="from-purple-400 to-purple-600" 
                 borderClass="border-purple-500"
@@ -216,7 +216,7 @@ export default function AboutSection() {
              <StatCard 
                 icon={Trophy} 
                 label="Events" 
-                value="30+" 
+                value="9" 
                 colorClass="from-fuchsia-400 to-fuchsia-600" 
                 borderClass="border-fuchsia-500" 
              />

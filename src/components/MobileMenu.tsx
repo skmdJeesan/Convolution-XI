@@ -68,9 +68,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
         onClick={(e) => e.stopPropagation()}
       >
         {/*Gradients */}
-        <div className="absolute -top-[5%] -right-[10%] w-80 h-120 bg-cyan-700/40 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[4%] -right-[20%] w-80 h-120 bg-cyan-800/20 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute top-[40%] -left-[20%] w-80 h-120 bg-violet-700/30 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute -top-[5%] -right-[10%] w-80 h-120 bg-cyan-600/30 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[4%] -right-[20%] w-80 h-120 bg-cyan-900/20 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-[40%] -left-[20%] w-80 h-120 bg-fuchsia-600/30 rounded-full blur-[120px] pointer-events-none" />
 
         {/*Main content*/}
         <div className="relative h-full flex flex-col p-5 md:p-8">
@@ -99,7 +99,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                   <Link
                     href={item.href}
                     onClick={(e) => onLinkClick(e, item.href)}
-                    className={`block text-2xl md:text-3xl font-medium text-gray-300 hover:text-white
+                    className={`block text-2xl md:text-3xl font-medium text-white
                       transform transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]
                       ${isOpen ? "translate-y-0 opacity-100" : "translate-y-[120%] opacity-0"}
                     `}
@@ -110,13 +110,13 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                 </li>
               ))}
             </ul>
-           {/* ---------------- SEPARATOR ---------------- */}
+           {/* Separator */}
             <div 
               className={`h-px bg-linear-to-r from-transparent via-white/20 to-transparent my-4 w-full transform transition-all duration-700 ${isOpen ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}`}
               style={{ transitionDelay: isOpen ? `${200 + links.length * 50}ms` : "0ms" }}
             />
 
-            {/* ---------------- AUTH SECTION ---------------- */}
+           {/* Auth Part */}
             <div className="flex flex-col gap-4 mt-4 pb-10">
               {session ? (
                 // PROFILE BUTTON
@@ -166,7 +166,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                     <Link
                         href="/register"
                         onClick={(e) => onLinkClick(e, "/register")}
-                        className={`${authButtonStyle} bg-white! text-black! hover:bg-gray-200! border-transparent ${
+                        className={`${authButtonStyle} bg-gray-300! text-black! border-transparent ${
                         isOpen
                             ? "translate-y-0 opacity-100"
                             : "translate-y-full opacity-0"
