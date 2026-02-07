@@ -184,7 +184,7 @@ export default function AboutSection() {
           {/* Heading */}
           <motion.div variants={itemVariants} className="relative w-full">
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter whitespace-nowrap capitalize">
-              About <span className="text-transparent w-fit bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">us</span>
+              About <span className="text-transparent w-fit bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">us<span className='opacity-0'>.</span></span>
             </h2>
           </motion.div>
 
