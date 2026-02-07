@@ -9,6 +9,7 @@ import Sponsors from '@/components/Sponsors';
 import Timeline from '@/components/TimeLine';
 import Team from '@/components/Team';
 import FaqSection from '@/components/FaqSection';
+import Navbar from '@/components/Navbar';
 
 // Dynamically import WhiteBot with SSR disabled
 const WhiteBot = dynamic(() => import("@/components/WhiteBot"), {
@@ -34,6 +35,7 @@ export default function Home() {
 
   return (
     <main className="bg-black w-full min-h-screen">
+      <Navbar/>
       <HeroSection />
       <HomeAbout />
       <Timeline/>

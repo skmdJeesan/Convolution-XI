@@ -73,8 +73,6 @@ export default function Footer() {
       <div 
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
-             // CHANGED: transparent 0% -> black 0%
-             // This ensures the particles and grid start IMMEDIATELY at the junction
              maskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)',
              WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)'
         }}

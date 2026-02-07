@@ -24,9 +24,9 @@ import {
   IoCalendarOutline,
   IoFingerPrintOutline,
   IoEyeOutline,
-  IoEyeOffOutline
+  IoEyeOffOutline,
+  IoArrowBack
 } from 'react-icons/io5';
-import Particles from './Particles';
 import DecorativeIcons from './DecorativeIcons';
 
 // --- LOADER ---
@@ -108,18 +108,23 @@ export default function SignupForm() {
       `}</style>
 
       {/* Background*/}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+     <div className="fixed inset-0 z-0 pointer-events-none">
           <div className="absolute inset-0 bg-[#050505]"></div>
-          
-          {/* Subtle Grid Pattern */}
           <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l17.32 10v20L20 40 2.68 30V10z' fill-opacity='0' stroke='%2322d3ee' stroke-width='0.5'/%3E%3C/svg%3E")`, backgroundSize: '40px 40px' }}></div>
-          
+
           <div className="absolute top-0 left-0 w-[50vw] h-[50vh] bg-cyan-500/10 blur-[120px] rounded-full mix-blend-screen"></div>
           <div className="absolute bottom-0 right-0 w-[50vw] h-[50vh] bg-purple-600/10 blur-[120px] rounded-full mix-blend-screen"></div>
-          <Particles/>
           <DecorativeIcons/>
       </div>
       
+            <Link 
+        href="/" 
+        className="fixed top-6 left-6 z-50 group flex items-center gap-2 px-3 py-2.5 bg-purple-400/30 backdrop-blur-lg border border-purple-500/30 rounded-full hover:border-purple-500/30 hover:bg-purple-400/60 transition-all duration-300 shadow-[0_0_15px_rgba(34,211,238,0.1)] hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] active:scale-95"
+      >
+        <IoArrowBack className="text-white text-lg group-hover:-translate-x-1 transition-transform duration-300" />
+        <span className="text-xs font-bold tracking-[0.15em] text-white group-hover:text-white uppercase transition-colors">Return Home</span>
+      </Link>
+
       <motion.div 
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -144,7 +149,7 @@ export default function SignupForm() {
                 <div className="p-5">
                     
                     <div className="text-center mb-3">
-                         <h1 className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-400 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] mb-1">CREATE ID</h1>
+                         <h1 className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] mb-1">CREATE ID</h1>
                     </div>
 
                     <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
@@ -294,8 +299,8 @@ export default function SignupForm() {
 
                         {/* Github and google */}
                         <div className="grid grid-cols-2 gap-3">
-                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_100%,10px_100%,0_calc(100%-10px))]" onClick={() => signIn('google', { callbackUrl: '/' })}><FaGoogle className='text-base' /><span className='text-[10px] font-semibold tracking-wider'>GOOGLE</span></button>
-                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_calc(100%-10px),calc(100%-10px)_100%,0_100%)]" onClick={() => signIn('github', { callbackUrl: '/' })}><FaGithub className='text-base' /><span className='text-[10px] font-semibold tracking-wider'>GITHUB</span></button>
+                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_100%,10px_100%,0_calc(100%-10px))]" onClick={() => signIn('google', { callbackUrl: '/' })}><FaGoogle className='text-sm' /><span className='text-xs font-semibold tracking-wider'>GOOGLE</span></button>
+                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_calc(100%-10px),calc(100%-10px)_100%,0_100%)]" onClick={() => signIn('github', { callbackUrl: '/' })}><FaGithub className='text-sm' /><span className='text-xs font-semibold tracking-wider'>GITHUB</span></button>
                         </div>
                         
                         <div className="text-center mt-1">
