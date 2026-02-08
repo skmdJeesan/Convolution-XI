@@ -17,6 +17,8 @@ interface IUser {
   isVerified: boolean;
   verifyToken?: string;
   verifyTokenExpiry?: Date;
+  role: string;
+  managedEventId: string;
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -33,6 +35,8 @@ const userSchema = new mongoose.Schema<IUser>({
   isVerified: { type: Boolean, default: false },
   verifyToken: { type: String, required: false, },
   verifyTokenExpiry: { type: Date, index: { expires: '0s' } },
+  role: { type: String, enum: ['USER', 'LEAD',], default: 'USER' },
+  managedEventId: { type: String }, // Optional: link to the event they lead
 }, { timestamps: true });
 
 const User =  mongoose.models?.User || mongoose.model("User", userSchema);

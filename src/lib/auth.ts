@@ -13,10 +13,12 @@ declare module "next-auth" {
     user: {
       id: string;
       isVerified: boolean;
+      role: string;
     } & DefaultSession["user"];
   }
   interface User {
     isVerified: boolean;
+    role: string;
   }
 }
 
@@ -57,6 +59,7 @@ export const authOptions: NextAuthOptions = {
           email: user.email,
           image: user.image || null,
           isVerified: user.isVerified, // Pass this to the token
+          role: user.role,
         };
       },
     }),
@@ -103,6 +106,7 @@ export const authOptions: NextAuthOptions = {
         token.email = user.email;
         token.image = user.image;
         token.isVerified = user.isVerified;
+        token.role = user.role;
       }
 
       // --- CHANGE 3: Refresh Verification Status ---
@@ -126,6 +130,7 @@ export const authOptions: NextAuthOptions = {
         session.user.email = token.email;
         session.user.image = token.image as string | null;
         session.user.isVerified = token.isVerified; // Pass to client
+        session.user.role = token.role as string;
       }
       return session;
     },
