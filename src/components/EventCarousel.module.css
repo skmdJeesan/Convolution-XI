@@ -5,16 +5,16 @@
   --carousel-bg-color-rgb: 0, 0, 0;
   --carousel-shadow-color-rgb: 128, 128, 128;
   /* Adjusted size as per your code */
-  --carousel-item-width: 13rem; 
-  --carousel-item-height: 20rem;
+  --carousel-item-width: 17rem; 
+  --carousel-item-height: 25rem;
   --carousel-item-hover-effect: 1.075;
   --carousel-item-reflection-blur: 0.25rem;
   --carousel-item-empty-color-rgb: 255, 255, 255;
   --carousel-item-glow-color-rgb: 6, 182, 212; /* Cyan glow */
   --carousel-item-glow-size: 5rem;
-  --carousel-diameter: 50rem;
+  --carousel-diameter: 80rem;
   --carousel-3d-perspective: 1000px;
-  --carousel-3d-perspective-origin: 50% 0%;
+  --carousel-3d-perspective-origin: 50% 50%;
   --carousel-control-button-width: 1.25rem;
   --carousel-control-button-height: 4rem;
   --carousel-control-color-rgb: 255, 255, 255;
@@ -52,6 +52,37 @@
   transform: translateY(5rem);
 }
 
+.manualRotater {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* CRITICAL: This restores the 3D depth */
+  transform-style: preserve-3d; 
+  /* Smooth animation for the click rotation */
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Ensures this wrapper doesn't block clicks on the cards */
+  pointer-events: none; 
+}
+
+.carouselManualRotater {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  /* Ensure 3D space is passed down to children */
+  transform-style: preserve-3d;
+  
+  /* Smoothly animate the rotation when state changes */
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  
+  /* Pass clicks through to cards */
+  pointer-events: none;
+}
+
 @media only screen and (max-width: 48rem) {
   .carousel {
       --_diameter: calc(var(--carousel-diameter) * 0.75);
@@ -79,7 +110,7 @@
 .carouselControlButton {
   --_width: var(--carousel-control-button-width);
   --_height: var(--carousel-control-button-height);
-  z-index: 1;
+  z-index: 100;
   width: var(--_width);
   height: var(--_height);
   background-color: rgb(var(--carousel-control-color-rgb));
@@ -118,18 +149,18 @@
 
 .carouselRotationDirection {
   --_direction-animation-play-state: var(--carousel-direction-animation-play-state);
-  --_z: calc(var(--_radius) * -1);
-  transform: translateZ(var(--_z));
+  /* REMOVED: --_z calculation and translateZ */
+  
   transform-style: preserve-3d;
-  animation: carousel-rotation-reverse calc(var(--carousel-animation-duration) / 2) reverse linear infinite var(--_direction-animation-play-state);
+  /* Updated animation name to the "Fixed" version */
+  animation: carousel-rotation-reverse-fixed calc(var(--carousel-animation-duration) / 2) reverse linear infinite var(--_direction-animation-play-state);
   transition: all var(--carousel-transition-duration) var(--carousel-transition-ease);
-  /* FIX: Ensure this container doesn't block clicks */
   pointer-events: none;
 }
 
-@keyframes carousel-rotation-reverse {
-  from { transform: translateZ(var(--_z)) rotateY(0deg); }
-  to { transform: translateZ(var(--_z)) rotateY(360deg); }
+@keyframes carousel-rotation-reverse-fixed {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
 }
 @keyframes carousel-rotation-normal {
   from { transform: rotateY(0deg); }
@@ -207,7 +238,7 @@
   );
   border-radius: 12px;
   color: white;
-  opacity: 0; 
+  opacity: 1; 
   /* Synced transition speed with the card movement for smoother effect */
   transition: opacity var(--carousel-transition-duration) var(--carousel-transition-ease);
   /* 1. Ensure this layer supports 3D children */
@@ -340,42 +371,33 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 58rem;
-  height: 58rem;
+  width: 40rem;
+  height: 40rem;
   
-  /* FIX 1: Adjusted translateY to 14rem. 
-     Because the camera is looking down (perspective-origin: 20%), 
-     items in the back appear higher. We need to push the robot 
-     down significantly to make it look "grounded".
-  */
-  transform: translate(-50%, -50%) translateZ(0) translateY(18rem);
+  /* Keep your Y adjustment */
+  transform: translate(-50%, -50%) translateZ(-5rem) translateY(-10rem);
   
-  z-index: 0;
+  /* Ensure z-index allows cards to pass in front/behind visually */
+  /* In preserve-3d, simple DOM order usually handles this, but translateZ is the real driver */
+  z-index: 1; 
   pointer-events: none;
   transform-style: preserve-3d;
-  pointer-events: none;
 }
 
 .centerPiece {
   position: absolute;
-  /* Use absolute center relative to the ring's origin */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); 
-  width: 35rem; 
-  height: 40rem; 
+  width: 17rem; 
+  height: 30rem;
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none; 
   z-index: 50;
   transform-style: preserve-3d;
-
-  /* COUNTER ROTATION: This cancels out the parent's rotation */
-  /* We use the same duration and timing, but 'reverse' direction of the normal spin */
-  /* animation: carousel-rotation-normal var(--carousel-animation-duration) reverse linear infinite var(--carousel-animation-play-state); */
 }
-
 
 .robotImage {
   width: 100%;
@@ -383,7 +405,7 @@
   object-fit: contain;
   /* Floating animation */
   animation: float-robot 4s ease-in-out infinite;
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.5));
 
   /* === NEW CSS ADDED HERE === */
   position: relative;
@@ -397,8 +419,6 @@
   left: 0;
   width: 100%;
   height: 50%; /* Covers the bottom half of the robot container */
-  /* Linear gradient from transparent to solid black */
-  background: linear-gradient(to bottom, transparent 0%, black 85%);
   z-index: 2; /* Sits on top of the image */
   pointer-events: none; /* Ensures it doesn't block clicks */
   /* Apply same animation so it floats with the robot */
@@ -421,7 +441,7 @@
   background: radial-gradient(
     ellipse at top, 
     rgba(255, 255, 255, 0.4) 0%, 
-    rgba(6, 182, 212, 0.15) 40%, 
+    rgba(8, 130, 122, 0.15) 40%, 
     transparent 70%
   );
   clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);

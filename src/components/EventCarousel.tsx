@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import styles from './EventCarousel.module.css';
 import { 
   FaMicrochip, FaCode, FaLaptopCode, FaLightbulb, 
@@ -6,7 +7,15 @@ import {
   FaCamera, FaArrowRight 
 } from 'react-icons/fa';
 
-const events = [
+interface Event {
+  id: number;
+  title: string;
+  desc: string;
+  icon: React.ReactNode;
+  image: string;
+}
+
+const events: Event[] = [
   { 
     id: 1, 
     title: 'Circuistics', 
@@ -72,70 +81,99 @@ const events = [
   }
 ];
 
-const EventCarousel = () => {
+const EventCarousel: React.FC = () => {
+  // 1. State to track the manual rotation angle
+  const [currDeg, setCurrDeg] = useState<number>(0);
+
+  // 2. Calculate the angle for a single step (360 / 9 = 40 degrees)
+  const stepDeg = 360 / events.length;
+
+  // 3. Handlers to update state
+  const rotateLeft = () => {
+    setCurrDeg((prev) => prev + stepDeg);
+  };
+
+  const rotateRight = () => {
+    setCurrDeg((prev) => prev - stepDeg);
+  };
+
   return (
     <div className={styles.bodyContainer}>
       <div className={styles.carousel}>
         
-        {/* Carousel Control Buttons */}
-        <div className={`${styles.carouselControlButton} ${styles.left}`}>
+        {/* Controls:
+            Added onClick to handle the TypeScript state rotation.
+            Kept the inputs to handle the CSS-only direction reversal.
+        */}
+        <div 
+          className={`${styles.carouselControlButton} ${styles.left}`}
+          onClick={rotateLeft}
+        >
           <input type="radio" name="carousel-control-input" />
         </div>
-        <div className={`${styles.carouselControlButton} ${styles.right}`}>
+        
+        <div 
+          className={`${styles.carouselControlButton} ${styles.right}`}
+          onClick={rotateRight}
+        >
           <input type="radio" name="carousel-control-input" defaultChecked />
         </div>
 
-        {/* 3D Rotating Wrapper */}
-        <div className={styles.carouselRotationDirection}>
-          
-          {/* --- NEW WRAPPER FOR ROBOT --- */}
-          {/* This wrapper sits inside the rotating ring to fix depth sorting (Z-Index),
-              but the CSS counter-rotates it so the robot stays facing forward. */}
-          <div className={styles.centerRobotWrapper}>
+        {/* Robot Center Piece */}
+        <div className={styles.centerRobotWrapper}>
              <div className={styles.centerPiece}>
                 <img 
-                  src="/assets/images/event_robot.png" 
+                  src="/assets/images/event_robot_1.png" 
                   alt="Event Mascot" 
                   className={styles.robotImage} 
                 />
-                {/* === NEW LINE ADDED HERE === */}
-                {/* <div className={styles.robotLegsGradient}></div> */}
-                {/* =========================== */}
+                <div className={styles.robotLegsGradient}></div>
                 <div className={styles.spotlight}></div>
              </div>
-          </div>
-          {/* ----------------------------- */}
-
-          {/* Cards List */}
-          <ul 
-            className={styles.carouselItemWrapper} 
-            style={{ '--_num-elements': events.length } as React.CSSProperties}
-          >
-            {events.map((event, index) => (
-              <li
-                key={event.id}
-                className={styles.carouselItem}
-                style={{
-                  '--_index': index + 1,
-                  '--_image-url': `url('${event.image}')`,
-                } as React.CSSProperties}
-              >
-                <div className={styles.cardContent}>
-                  <div className={styles.iconContainer}>
-                    {event.icon}
-                  </div>
-                  <h3 className={styles.cardTitle}>{event.title}</h3>
-                  <p className={styles.cardDesc}>{event.desc}</p>
-                  <a href={`/events/${event.id}`} className={styles.exploreBtn}>
-                    Explore <FaArrowRight className="ml-2" />
-                  </a>
-                </div>
-              </li>
-            ))}
-            <li className={styles.carouselGround}></li>
-          </ul>
-
         </div>
+
+        {/* 4. NEW WRAPPER: .manualRotater
+            This div physically rotates the entire ring by 40deg steps 
+            when buttons are clicked.
+        */}
+        <div 
+          className={styles.manualRotater}
+          style={{ 
+            transform: `translateZ(calc(var(--carousel-diameter) / -2)) rotateY(${currDeg}deg)` 
+          }}
+        >
+            <div className={styles.carouselRotationDirection}>
+              <ul 
+                className={styles.carouselItemWrapper} 
+                style={{ '--_num-elements': events.length } as React.CSSProperties}
+              >
+                {events.map((event, index) => (
+                  <li
+                    key={event.id}
+                    className={styles.carouselItem}
+                    style={{
+                      '--_index': index + 1,
+                      '--_image-url': `url('${event.image}')`,
+                    } as React.CSSProperties}
+                  >
+                    <div className={styles.cardContent}>
+                      <div className={styles.iconContainer}>
+                        {event.icon}
+                      </div>
+                      <h3 className={styles.cardTitle}>{event.title}</h3>
+                      <p className={styles.cardDesc}>{event.desc}</p>
+                      <a href={`/events/${event.id}`} className={styles.exploreBtn}>
+                        Explore <FaArrowRight className="ml-2" />
+                      </a>
+                    </div>
+                  </li>
+                ))}
+                <li className={styles.carouselGround}></li>
+              </ul>
+            </div>
+        </div>
+        {/* End manualRotater */}
+
       </div>
     </div>
   );
