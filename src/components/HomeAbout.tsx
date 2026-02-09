@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, useSpring, useMotionValue, Variants } from 'framer-motion';
 import { CalendarClock, Users, Trophy, Mouse, ChevronDown, Cpu } from 'lucide-react';
-
+import AboutRobot from "../assets/images/About_Robot.png"
 
 const EVENT_DATE = "2026-03-20T09:00:00"; 
 const BASE_REGISTRATIONS = 200;           
@@ -68,7 +68,7 @@ const DaysCounter = () => {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
         return `${days} Days`;
       }
-      return "STARTED";
+      else return "STARTED";
     };
     setStatus(calculateTime());
     const timer = setInterval(() => setStatus(calculateTime()), 60000); 
@@ -149,9 +149,9 @@ const DecodingText = ({ text }: { text: string }) => {
 };
 
 export default function AboutSection() {
-  const handleScrollNext = () => {
-    window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
-  };
+  // const handleScrollNext = () => {
+  //   window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+  // };
 
   return (
     <div id='about' className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#020203]">
@@ -234,19 +234,19 @@ export default function AboutSection() {
            className="relative hidden lg:flex justify-center items-center pointer-events-none"
         >
         
-
+{/* right */}
          <motion.div 
             variants={imageRevealVariants}
             className="relative z-10 w-full max-w-md aspect-square flex items-center justify-center"
           >
              <div className="relative w-full h-full overflow-hidden [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]">
                  <img 
-                   src= "../assets/images/AboutBlackhole.jpg"
+                   src= {AboutRobot.src}
                    alt="About Convolution X" 
                    className="w-full h-full object-cover opacity-100 mix-blend-lighten scale-110 contrast-125 saturate-110"
                  />
-                 <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-transparent to-fuchsia-500/10 mix-blend-overlay"></div>
-                 <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
+                 <div className="absolute bottom-0 inset-0 bg-gradient-to-tr from-cyan-500/10 via-transparent to-fuchsia-500/10 mix-blend-overlay"></div>
+                 <div className="absolute bottom-0 inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
              </div>
           </motion.div>
         </motion.div>
@@ -255,26 +255,7 @@ export default function AboutSection() {
       </div>
       
 
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 1 }}
-        onClick={handleScrollNext}
-        className="absolute bottom-1 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20 cursor-pointer group"
-      >
-          <div className="relative flex flex-col items-center gap-2">
-            <div className="flex items-center gap-2 px-6 py-2 rounded-full border border-cyan-500/30 bg-[#1a1a20]/80 backdrop-blur-md group-hover:border-cyan-400 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all duration-300">
-                {/* <Mouse className="w-4 h-4 text-cyan-400 animate-pulse" /> */}
-                <span className="text-[10px] font-mono tracking-[0.2em] text-cyan-100/80 group-hover:text-white transition-colors font-bold">
-                    EXPLORE_MORE
-                </span>
-            </div>
-            <div className="flex flex-col items-center -space-y-3 mt-1 opacity-80">
-                <ChevronDown className="w-5 h-5 text-fuchsia-500 animate-bounce delay-0" />
-                <ChevronDown className="w-5 h-5 text-cyan-500 animate-bounce delay-75" />
-            </div>
-          </div>
-      </motion.div>
+
     </div>
   );
 }

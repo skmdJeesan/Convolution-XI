@@ -180,11 +180,11 @@ export default function Footer() {
                     <span className="font-rajdhani text-slate-400   font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">
                         Phone
                     </span>
-                    <a href="tel:+917679880740" className="font-semibold font-rajdhani block text-slate-200 hover:text-white transition-colors">
+                    <a href="tel:+919933671072" className="font-semibold font-rajdhani block text-slate-200 hover:text-white transition-colors">
                         +91 99336 71072
                     </a>
-                    <a href="tel:+919933671072" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
-                        +91 76798 80740
+                    <a href="tel:+917063253983" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
+                        +91 70632 53983
                     </a>
                     </div>
                 </li>
@@ -242,11 +242,11 @@ export default function Footer() {
         <div className="max-w-360 mx-auto ">
             <div className="flex flex-col items-center">
 
-                <div className="text-[12px] md:text-[14px] tracking-wider text-slate-400 text-center md:text-left">
+                <div className="font-rajdhani text-[12px] md:text-[14px] tracking-wider text-slate-400 text-center md:text-left">
                     © 2026 Convolution
                 </div>
 
-                <div className="text-[12px] md:text-[14px] tracking-wider text-slate-400 text-center">
+                <div className="font-rajdhani text-[12px] md:text-[14px] tracking-wider text-slate-400 text-center">
                     Made with ❤️ by <span className="text-white text-[13px] md:text-[16px]">Team Convo</span>
                 </div>
             </div>

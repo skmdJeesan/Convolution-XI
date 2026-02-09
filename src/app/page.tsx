@@ -38,7 +38,7 @@ export default function Home() {
       <Navbar/>
       <HeroSection />
       <HomeAbout />
-      <Timeline/>
+      {/* <Timeline/> */}
       <Team />
       <Gallery/>
       <Sponsors/>
