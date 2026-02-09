@@ -200,7 +200,7 @@ const Navbar = () => {
                       className={`px-4 py-2 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1 ${activeDropdown === item.label ? "bg-white/10 text-white" : "hover:bg-white/10 hover:text-white"}`}
                       onClick={(e) => handleDropdownToggle(e, item.label)}
                     >
-                      <span><FlipLink>{item.label}</FlipLink></span>
+                      <span className="font-orbitron"><FlipLink>{item.label}</FlipLink></span>
                       <IoChevronDownOutline className={`size-3 transition-transform duration-300 ${activeDropdown === item.label ? "rotate-180" : "group-hover:rotate-180"}`} />
                       
                       {/* Submenu */}
@@ -208,7 +208,7 @@ const Navbar = () => {
                         <ul className="bg-black backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl p-2 flex flex-col gap-1">
                           {item.subItems.map((sub, subIndex) => (
                             <li key={subIndex}>
-                              <div onClick={(e) => handleScroll(e, sub.href)} className="block px-4 py-3 hover:bg-white/5 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[10px] cursor-pointer">
+                              <div onClick={(e) => handleScroll(e, sub.href)} className="font-orbitron block px-4 py-3 hover:bg-white/5 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[10px] cursor-pointer">
                                 <FlipLink>{sub.label}</FlipLink>
                               </div>
                             </li>
@@ -217,7 +217,7 @@ const Navbar = () => {
                       </div>
                     </div>
                   ) : (
-                    <div onClick={(e) => handleScroll(e, item.href)} className="block px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 hover:text-white cursor-pointer">
+                    <div onClick={(e) => handleScroll(e, item.href)} className="font-orbitron block px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 hover:text-white cursor-pointer">
                       <FlipLink>{item.label}</FlipLink>
                     </div>
                   )}
@@ -243,10 +243,10 @@ const Navbar = () => {
             ) : (
               // Login-register
               <div className="hidden lg:flex gap-3 items-center">
-                <div onClick={() => router.push("/login")} className="group relative px-4 py-2.5 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#05080f] backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
+                <div onClick={() => router.push("/login")} className="font-orbitron group relative px-4 py-2.5 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#05080f] backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
                   <FlipLink>Log in</FlipLink>
                 </div>
-                <div onClick={() => router.push("/register")} className="group relative px-4 py-2.5 rounded-full bg-purple-500 hover:bg-purple-400 text-[#05080f] backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
+                <div onClick={() => router.push("/register")} className="font-orbitron group relative px-4 py-2.5 rounded-full bg-purple-500 hover:bg-purple-400 text-[#05080f] backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
                   <FlipLink>Register</FlipLink>
                 </div>
               </div>

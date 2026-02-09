@@ -24,11 +24,8 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { y: 40, opacity: 0, filter: "blur(10px)" },
-  visible: { 
-    y: 0, opacity: 1, filter: "blur(0px)",
-    transition: { duration: 0.8, ease: "easeOut" }
-  },
+  hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, staggerChildren: 0.15 } }
 };
 
 const imageRevealVariants: Variants = {
@@ -78,12 +75,12 @@ const DaysCounter = () => {
     return () => clearInterval(timer);
   }, []);
 
-  if (!status) return <span className="text-sm">...</span>;
+  if (!status) return <span className="font-rajdhani text-sm">...</span>;
 
   if (status === "STARTED") {
-     return <span className="text-lg font-bold tracking-widest text-white animate-pulse">STARTED</span>;
+     return <span className="font-rajdhani text-lg font-bold tracking-widest text-white animate-pulse">STARTED</span>;
   }
-  return <span className="text-2xl font-bold tabular-nums tracking-tight">{status}</span>;
+  return <span className="font-rajdhani text-2xl font-bold tabular-nums tracking-tight">{status}</span>;
 };
 
 const Background = () => {
@@ -105,9 +102,9 @@ const Background = () => {
 >
 </motion.div>
 
-      <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vh] bg-fuchsia-900/20 blur-[120px] rounded-full mix-blend-screen"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vh] bg-cyan-900/20 blur-[120px] rounded-full mix-blend-screen"></div>
-      <div className="absolute top-[30%] left-[30%] w-[40vw] h-[40vh] bg-purple-500/10 blur-[100px] rounded-full mix-blend-screen"></div>
+      <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vh] bg-fuchsia-900/30 blur-[120px] rounded-full mix-blend-screen"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vh] bg-cyan-900/30 blur-[120px] rounded-full mix-blend-screen"></div>
+      <div className="absolute top-[30%] left-[30%] w-[40vw] h-[40vh] bg-purple-500/15 blur-[100px] rounded-full mix-blend-screen"></div>
     </div>
   );
 };
@@ -130,7 +127,7 @@ const StatCard = ({ icon: Icon, label, value, colorClass, borderClass }: { icon:
             </span>
         )}
     </div>
-    <span className={`text-xl lg:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${colorClass} tracking-wider font-mono z-10`}>
+    <span className={`text-xl lg:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${colorClass} tracking-wider font-rajdhani  z-10`}>
         {value}
     </span>
     <span className="text-[9px] lg:text-[10px] text-gray-400 uppercase tracking-widest font-mono mt-1 group-hover:text-gray-200 transition-colors z-10">{label}</span>
@@ -172,11 +169,17 @@ export default function AboutSection() {
         >
           
           {/* Heading */}
-          <motion.div variants={itemVariants} className="relative w-full">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter whitespace-nowrap">
-              ABOUT <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-500">US</span>
-            </h2>
-          </motion.div>
+          <motion.div
+                  variants={itemVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="flex flex-col items-center pointer-events-none select-none mb-5">
+                 <h1 className="font-orbitron  font-bold  text-center text-xl sm:text-3xl md:text-5xl tracking-wider text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase ">
+                    About Us
+                    <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
+                  </h1>
+                </motion.div>
 
           {/* parragraph */}
           <motion.div 
@@ -185,20 +188,20 @@ export default function AboutSection() {
           >
              <div className="absolute top-0 left-[-4px] w-[4px] h-12 bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.6)]"></div>
              
-             <p className="text-gray-300 text-sm md:text-base lg:text-lg leading-relaxed font-light text-justify">
-              <span className="text-white font-bold tracking-wide">Convolution XI</span> is the <span className="text-purple-300 font-semibold font-mono">11th Edition</span> of the annual techno-management fest organized by the Students' Forum of the Department of Electrical Engineering, <span className="text-cyan-400 font-medium">Jadavpur University</span>. 
-              <br /><br />
-              Convolution acts as an <span className="text-fuchsia-400 font-mono text-xs md:text-sm tracking-wider">UMBRELLA EVENT</span> comprising of several student interaction events, technical competitions, workshops, and has also hosted, in the past, lectures by some of the most illustrious names in <span className="text-white/90 border-b border-purple-500/50 pb-0.5">academia and industry</span> alike.
+             <p className= " font-rajdhani text-gray-300 text-sm md:text-base lg:text-lg leading-relaxed font-semibold text-justify">
+              Convolution XI is the <span className='text-cyan-300'>11th Edition</span> of the annual techno-management fest organized by the Students' Forum of the Department of Electrical Engineering, Jadavpur University. 
+              <br />
+              Convolution acts as an <span className='text-fuchsia-400'>UMBRELLA EVENT</span> comprising of several student interaction events, technical competitions, workshops, and has also hosted, in the past, lectures by some of the most illustrious names in academia and industry alike.
             </p>
           </motion.div>
 
 
-          <motion.div variants={itemVariants} className="grid grid-cols-3 gap-4 lg:gap-6">
+          <motion.div variants={itemVariants} className="font-rajdhani grid grid-cols-3 gap-4 lg:gap-6">
              <StatCard 
                 icon={Users} 
                 label="Registrations" 
                 value={
-                    <span className="flex items-center">
+                    <span className="font-rajdhani flex items-center">
                         <AnimatedCounter from={0} to={TOTAL_REGISTRATIONS} delay={1.2} />
                         <span className="ml-0.5 text-lg md:text-xl">+</span>
                     </span>
@@ -232,7 +235,7 @@ export default function AboutSection() {
         >
         
 
-          <motion.div 
+         <motion.div 
             variants={imageRevealVariants}
             className="relative z-10 w-full max-w-md aspect-square flex items-center justify-center"
           >
@@ -247,6 +250,7 @@ export default function AboutSection() {
              </div>
           </motion.div>
         </motion.div>
+
 
       </div>
       

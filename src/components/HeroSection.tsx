@@ -198,7 +198,7 @@ const HeadsUpDisplay = () => (
                     <div className="flex flex-col">
                         <div className="flex items-center gap-2 mb-1">
                             <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-ping" />
-                            <span className="text-cyan-300 font-bold text-[10px] tracking-widest uppercase shadow-cyan-glow">
+                            <span className="text-cyan-300 font-rajdhani font-bold text-xs tracking-widest uppercase shadow-cyan-glow">
                                 System Online
                             </span>
                         </div>
@@ -219,7 +219,7 @@ const HeadsUpDisplay = () => (
                     {/* Text Block (Left of Icon) */}
                     <div className="flex flex-col items-end">
                         <div className="flex items-center justify-end gap-2 mb-1">
-                            <span className="text-fuchsia-300 font-bold text-[10px] tracking-widest uppercase shadow-fuchsia-glow">Version 2.6</span>
+                            <span className="text-fuchsia-300 font-rajdhani font-bold text-xs tracking-widest uppercase shadow-fuchsia-glow">Version XI</span>
                             <div className="w-1.5 h-1.5 bg-fuchsia-400 rounded-full animate-pulse" />
                         </div>
                         <div className="text-gray-400 text-[10px] font-mono leading-tight">
@@ -315,7 +315,7 @@ const SciFiButton = ({ label, href, color = "cyan" }: { label: string; href: str
                     opacity-10 animate-pulse`}>
                 </div>
 
-                <span className={`relative z-10 font-mono text-xs md:text-sm tracking-[0.2em] uppercase font-bold ${textClass} transition-colors`}>
+                <span className={`relative z-10 font-orbitron text-xs md:text-sm tracking-[0.2em] uppercase font-bold ${textClass} transition-colors`}>
                     {label}
                 </span>
             </div>

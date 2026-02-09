@@ -101,10 +101,10 @@ export default function Footer() {
               />
             </div>
             <div className="w-full flex flex-col gap-2">
-              <p className="text-cyan-400 font-semibold text-base uppercase tracking-wide">
+              <p className="font-orbitron text-cyan-400 font-semibold text-base uppercase tracking-wide">
                   Innovate. Integrate. Inspire.
                </p>
-               <p className="text-slate-300 mt-4 text-sm md:text-base">
+               <p className="font-rajdhani font-semibold text-slate-300 mt-4 text-sm md:text-base">
                 Department of Electrical Engineering <br />
                 Jadavpur University <br />
                 188, Raja Subodh Chandra Mallick Rd, Jadavpur, <br />
@@ -130,7 +130,7 @@ export default function Footer() {
             
             <div className='flex flex-col items-center sm:items-start md:items-center md:ml-7 lg-ml-2 lg:items-start'>
                 
-                <h3 className="text-[20px] md:text-xl lg:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 uppercase mb-8 relative inline-block whitespace-nowrap sm:ml-11">
+                <h3 className="font-orbitron text-[20px] md:text-xl lg:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 uppercase mb-8 relative inline-block whitespace-nowrap sm:ml-11">
                     Let's Connect
                     <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent "></span>
                 </h3>
@@ -142,10 +142,10 @@ export default function Footer() {
                     <MdOutlineEmail className="text-xl text-cyan-400 mt-0.5 group-hover:text-cyan-300 transition-colors duration-300" />
                     </Link>
                     <div className="text-md">
-                    <span className="text-slate-400   font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">Email</span>
+                    <span className="font-rajdhani text-slate-400   font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">Email</span>
                     <Link 
                     href="mailto:convolutionXI2026@gmail.com" 
-                    className="text-slate-200 hover:text-white transition-colors block break-all"
+                    className="font-rajdhani font-semibold text-slate-200 hover:text-white transition-colors block break-all"
                     >
                     convolutionx2026@gmail.com
                     </Link>
@@ -158,11 +158,11 @@ export default function Footer() {
                         <MdLocationOn className="text-xl text-cyan-400 mt-0.5 group-hover:text-cyan-300 transition-colors duration-300" />
                     </Link>
                     <div className="text-md">
-                    <span className="text-slate-400 font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">Address</span>
+                    <span className="font-rajdhani text-slate-400 font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">Address</span>
                     <Link 
                     href="https://maps.app.goo.gl/wKYjjoLyR1ScsFEq5" 
                     target="_blank"
-                    className="text-slate-200 hover:text-white transition-colors block break-all"
+                    className="font-rajdhani font-semibold text-slate-200 hover:text-white transition-colors block break-all"
                     >
                     Department of Electrical Engineering, <br />
                     Jadavpur University
@@ -177,14 +177,14 @@ export default function Footer() {
                     </a>
 
                     <div className="text-md">
-                    <span className="text-slate-400   font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">
+                    <span className="font-rajdhani text-slate-400   font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">
                         Phone
                     </span>
-                    <a href="tel:+917679880740" className="block text-slate-200 hover:text-white transition-colors">
-                        +91 76798 80740
-                    </a>
-                    <a href="tel:+919933671072" className="text-slate-200 hover:text-white transition-colors  block">
+                    <a href="tel:+917679880740" className="font-semibold font-rajdhani block text-slate-200 hover:text-white transition-colors">
                         +91 99336 71072
+                    </a>
+                    <a href="tel:+919933671072" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
+                        +91 76798 80740
                     </a>
                     </div>
                 </li>
@@ -195,7 +195,7 @@ export default function Footer() {
           {/* Events */}
           <div className='flex flex-col items-center md:items-end w-full'>
              <div className='flex flex-col items-center sm:items-start'>
-                <h3 className="text-[20px] md:text-xl lg:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 uppercase mb-8 relative inline-block -ml-4 sm:ml-0">
+                <h3 className="font-orbitron text-[20px] md:text-xl lg:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 uppercase mb-8 relative inline-block -ml-4 sm:ml-0">
                     events
                     <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent "></span>
                 </h3>
@@ -205,7 +205,7 @@ export default function Footer() {
                   {events.map((event, index) => (
                   <li key={index}>
                     <Link href={event.href} className="group flex items-center justify-between border-b border-transparent hover:border-white/10 pb-0.5 transition-colors gap-x-1" >
-                        <span className="text-md md:text-lg text-slate-300 group-hover:text-cyan-400 transition-colors">
+                        <span className="font-rajdhani text-base font-semibold md:text-lg text-slate-300 group-hover:text-cyan-400 transition-colors">
                             <FlipLink>{event.name}</FlipLink>
                         </span>
                         <span className="hidden md:block text-cyan-400 text-lg opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
@@ -226,7 +226,7 @@ export default function Footer() {
         
         <h1 
             ref={ref as React.RefObject<HTMLHeadingElement>} 
-            className='text-[16vw] md:text-[14vw] lg:text-[16vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#0e7490] [&_span]:to-black/50 tracking-tight font-bold absolute -bottom-6 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
+            className='font-orbitron text-[15vw] md:text-[13vw] lg:text-[15vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#0e7490] [&_span]:to-black/50 tracking-tight font-bold absolute -bottom-6 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
         >
             {text}
         </h1>

@@ -73,10 +73,10 @@ export default function FaqSection() {
                     {/* Header */}
                     <div className="text-center mb-12 md:mb-16 space-y-4 flex flex-col items-center">
                         <div className="relative inline-block">
-                            <h1 className="text-center text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-blue-400 to-purple-500 drop-shadow-[0_0_15px_rgba(6,182,212,0.5)] capitalize">
-                                Frequently Asked Questions
-                            </h1>
-                            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent"></span>
+                           <h1 className="font-orbitron  font-bold  text-center text-xl sm:text-3xl md:text-5xl sm:tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase ">
+          Frequently Asked questions
+          <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
+        </h1>
                         </div>
                     </div>
                     <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
@@ -130,8 +130,8 @@ export default function FaqSection() {
                                                     0{index + 1}
                                                 </div>
 
-                                                <h3 className={`
-                                            flex-1 text-sm sm:text-[15px] font-bold capitalize tracking-wide transition-colors duration-300
+                                                <h3 className={` font-rajdhani
+                                            flex-1 text-sm sm:text-base font-bold capitalize tracking-wider transition-colors duration-300
                                             ${isOpen ? 'text-gray-100' : 'text-gray-400 group-hover:text-gray-200'}
                                         `}>
                                                     {data.question}
@@ -156,8 +156,8 @@ export default function FaqSection() {
                                                             <div className={`absolute top-0 w-full bg-cyan-500/30 transition-all duration-500 ${isOpen ? 'h-full opacity-100' : 'h-0 opacity-0'}`}></div>
                                                         </div>
 
-                                                        <p className={`
-                                                    text-gray-400 text-xs sm:text-sm font-medium leading-relaxed
+                                                        <p className={` font-rajdhani
+                                                    text-gray-400 text-sm sm:text-base font-medium leading-relaxed tracking-wide
                                                     transition-opacity duration-300 delay-100
                                                     ${isOpen ? 'opacity-100' : 'opacity-0'}
                                                 `}>
@@ -166,7 +166,7 @@ export default function FaqSection() {
                                                         {isOpen && (
                                                             <div className="mt-3 inline-flex items-center gap-2">
                                                                 <span className="h-1 w-1 bg-cyan-500 rounded-full animate-pulse"></span>
-                                                                <span className="text-[10px] font-mono text-cyan-700">READ_ONLY_ACCESS</span>
+                                                                <span className="font-rajdhani text-[10px] font-mono text-cyan-700">READ_ONLY_ACCESS</span>
                                                             </div>
                                                         )}
                                                     </div>

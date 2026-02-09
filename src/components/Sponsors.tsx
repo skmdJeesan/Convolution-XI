@@ -50,11 +50,11 @@ const Sponsors: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
-          className="relative z-10 text-center mb-10 space-y-2">
-          <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-blue-400 to-purple-500 drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]">
-            our sponsors
-          </h2>
-          <div className="h-1 w-24 mx-auto bg-linear-to-r from-transparent via-cyan-500 to-transparent rounded-full opacity-70"></div>
+           className="flex flex-col items-center pointer-events-none select-none mb-5">
+          <h1 className="font-orbitron  font-bold  text-center text-xl sm:text-3xl md:text-5xl tracking-wider text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase  ">
+          Our Sponsors
+          <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
+        </h1>
         </motion.div>
 
         <div className="w-full h-full flex flex-col items-center justify-center">
