@@ -5,25 +5,21 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 1. Define Public Routes
-  // CRITICAL: We MUST add '/verify-email' here. 
-  // If we don't, the middleware will try to redirect the user to '/verify-email', 
-  // catch them again, and redirect them again endlessly (Infinite Loop).
   const publicRoutes = [
     '/login', 
     '/register', 
     '/api/auth', 
     '/favicon.ico', 
-    '/_next', 
     '/forget-password', 
     '/reset-password', 
-    '/verify-email' // <--- Added this
+    '/verify-email' 
   ];
 
+  // Helper to check if the current path is public
   const isPublicRoute = publicRoutes.some((path) => pathname.startsWith(path));
   const isHomePage = pathname === '/';
 
   // 2. Public Access Check
-  // If it's a public route or the home page, let them pass immediately.
   if (isPublicRoute || isHomePage) {
     return NextResponse.next();
   }
@@ -31,25 +27,37 @@ export async function proxy(request: NextRequest) {
   // 3. Get Token
   const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
 
-  // 4. Unauthorized Check (No User)
+  // 4. Unauthorized Check (Not Logged In)
   if (!token) {
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('callbackUrl', request.url);
     return NextResponse.redirect(loginUrl);
   }
 
-  // 5. Verification Check (User exists, but is they verified?)
-  // We already know this is NOT a public route (step 2), so we must protect it.
+  // 5. Verification Check (Logged in, but not verified)
+  // Ensure your token actually has 'isVerified'. If your logic relies on DB, this might need adjustment,
+  // but assuming your NextAuth session strategy puts this in the token:
   if (!token.isVerified) {
-    // Redirect unverified users to the verification page
     return NextResponse.redirect(new URL('/verify-email', request.url));
   }
 
+
+  // 6. Check if the user is trying to visit the Lead Dashboard
+  if (pathname.startsWith('/lead-dashboard')) {
+    
+    // If their role is NOT 'LEAD', kick them to the Lead Access page
+    if (token.role !== 'LEAD') {
+      return NextResponse.redirect(new URL('/lead-access', request.url));
+    }
+  }
+
+  // 7. Allow access if all checks pass
   return NextResponse.next();
 }
 
+// Keep your existing matcher config
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|login|signup|node_modules|.*\\..*).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|node_modules|.*\\..*).*)',
   ],
 };

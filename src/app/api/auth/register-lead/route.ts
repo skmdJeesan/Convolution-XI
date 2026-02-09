@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import dbConnect from '@/lib/db'; // Your DB connection helper
-import User from '@/models/user.model';
-import LeadAllowlist from '@/models/lead.model';
+import dbConnect from '@/lib/db'; 
+import User from '@/models/user.model'; // Ensure filename matching (User vs user.model)
+import LeadAllowlist from '@/models/lead.model'; // Ensure filename matching
 import bcrypt from 'bcryptjs';
 
 export async function POST(req: Request) {
@@ -10,70 +10,63 @@ export async function POST(req: Request) {
 
     await dbConnect();
 
-    // 1. Check if this email is in the Lead Allowlist
+    // 1. Check Allowlist
     const allowedLead = await LeadAllowlist.findOne({ email });
 
     if (!allowedLead) {
       return NextResponse.json(
-        { message: "Access Denied. This email is not authorized to be a Lead." },
+        { message: "Access Denied. Email not authorized." },
         { status: 403 }
       );
     }
 
-    if (allowedLead.isRegistered) {
-      return NextResponse.json(
-        { message: "This Lead account has already been claimed." },
-        { status: 400 }
-      );
-    }
-
-    // 2. Check if a User account already exists (standard duplicate check)
+    // 2. Check if user already exists
     const existingUser = await User.findOne({ email });
+
     if (existingUser) {
-      // Update their role and link the event
+      // UPGRADE EXISTING USER
       existingUser.role = 'LEAD';
       existingUser.managedEventId = allowedLead.assignedEvent;
-
-      // Optional: Update password if they provided a new one, 
-      // otherwise keep their old password.
+      
+      // If they provided a password, update it. 
+      // If they left it blank (optional), keep the old one.
       if (password) {
         const hashedPassword = await bcrypt.hash(password, 10);
         existingUser.password = hashedPassword;
       }
 
       await existingUser.save();
-
-      // Mark the invitation as used
-      allowedLead.isRegistered = true;
+      
+      // Mark allowlist as used
+      allowedLead.isRegistered = true; // Uncomment if you want to block re-entry
       await allowedLead.save();
 
       return NextResponse.json(
-        { message: "Existing account upgraded to Lead successfully!" },
+        { message: "Account verified. Redirecting..." },
         { status: 200 }
       );
     }
 
-    // 3. Hash Password
+    // 3. NEW USER CREATION (If they never registered as a normal user first)
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // 4. Create the User with 'LEAD' role
     await User.create({
       name,
       email,
       password: hashedPassword,
       role: 'LEAD',
-      managedEventId: allowedLead.assignedEvent, // Link them to their event automatically
+      managedEventId: allowedLead.assignedEvent,
     });
 
-    // 5. Mark the invitation as used
-    allowedLead.isRegistered = true;
-    await allowedLead.save();
+    // allowedLead.isRegistered = true;
+    // await allowedLead.save();
 
-    return NextResponse.json({ message: "Lead registered successfully!" }, { status: 201 });
+    return NextResponse.json({ message: "Lead registered!" }, { status: 201 });
 
   } catch (error) {
+    console.error(error); // Log error for debugging
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { message: "Server Error" },
       { status: 500 }
     );
   }

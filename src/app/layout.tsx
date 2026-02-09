@@ -32,7 +32,7 @@ export default function RootLayout({
       > 
         <ClientProvider>
           <Navbar/>
-          <CustomCursor />
+          {/* <CustomCursor /> */}
           {children}
         </ClientProvider>
       </body>

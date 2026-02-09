@@ -15,6 +15,7 @@ import {
 } from 'react-icons/io5';
 import DecorativeIcons from '@/components/DecorativeIcons';
 import Particles from '@/components/Particles';
+import { signIn } from 'next-auth/react';
 
 // --- LOADER (Purple-Red Gradient) ---
 const Loader = () => (
@@ -49,13 +50,29 @@ export default function LeadRegistration() {
     setError('');
 
     try {
+      // 1. Call your API to upgrade the user in the Database
       const response = await axios.post('/api/auth/register-lead', formData);
-      if (response.status === 201) {
-        router.push('/login?msg=lead_registered');
+      
+      if (response.status === 200 || response.status === 201) {
+        
+        // 2. CRITICAL STEP: Re-Sign In to update the Session Token
+        // This forces NextAuth to generate a NEW token with role: 'LEAD'
+        const result = await signIn('credentials', {
+          email: formData.email,
+          password: formData.password,
+          redirect: false, // Don't redirect automatically
+        });
+
+        if (result?.ok) {
+          // 3. Now that session is updated, go to the Dashboard
+          router.push('/lead-dashboard'); 
+        } else {
+          setError("Account upgraded, but auto-login failed. Please log in manually.");
+        }
       }
     } catch (err: any) {
       if (err.response) {
-        setError(err.response.data.message || "Registration failed");
+        setError(err.response.data.message || "Verification failed");
       } else {
         setError("Network error. Please try again.");
       }
@@ -120,8 +137,8 @@ export default function LeadRegistration() {
                     </div>
                 </div>
 
-                <div className="p-8">
-                    <div className="text-center mb-6">
+                <div className="p-4">
+                    <div className="text-center mb-4">
                         <h1 className="text-xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-rose-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] mb-1">EVENT LEAD PROTOCOL</h1>
                         <p className="text-[10px] text-rose-500 uppercase tracking-[0.2em] font-medium">// Authorized Personnel Only</p>
                     </div>
@@ -138,7 +155,7 @@ export default function LeadRegistration() {
                       </motion.div>
                     )}
 
-                    <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+                    <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
 
                         {/* Name Input */}
                         <div className='group/input relative'>
@@ -193,33 +210,12 @@ export default function LeadRegistration() {
                                     name="password"
                                     placeholder='********' 
                                     value={formData.password} 
-                                    onChange={handleChange} 
-                                    required 
+                                    onChange={handleChange}  
                                     className='w-full bg-transparent px-2 text-sm text-rose-50 placeholder-rose-900/40 outline-none font-mono tracking-wider' 
                                 />
                                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="pr-4 text-rose-700 hover:text-rose-400 transition-colors focus:outline-none">
                                     {showPassword ? <IoEyeOffOutline size={16} /> : <IoEyeOutline size={16} />}
                                 </button>
-                             </div>
-                        </div>
-
-                        {/* Phone Input */}
-                        <div className='group/input relative'>
-                             <div className="flex justify-between items-end mb-1 px-1">
-                                <label className="text-[10px] text-rose-200/70 font-bold tracking-wider uppercase">Contact</label>
-                             </div>
-                             <div className={inputContainerClass}>
-                                <div className="w-1 h-full absolute left-0 bg-rose-900/40 group-focus-within/input:bg-rose-500 transition-colors duration-300"></div>
-                                <div className={iconClass}><IoCallOutline size={16} /></div>
-                                <input 
-                                    type="tel" 
-                                    name="phone"
-                                    placeholder='+91...' 
-                                    value={formData.phone} 
-                                    onChange={handleChange} 
-                                    required 
-                                    className='w-full bg-transparent px-2 text-sm text-rose-50 placeholder-rose-900/40 outline-none font-mono tracking-wider' 
-                                />
                              </div>
                         </div>
 
