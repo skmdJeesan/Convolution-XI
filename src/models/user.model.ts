@@ -19,6 +19,7 @@ interface IUser {
   verifyTokenExpiry?: Date;
   role: string;
   managedEventId: string;
+  eventsRegistered: [];
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -37,6 +38,7 @@ const userSchema = new mongoose.Schema<IUser>({
   verifyTokenExpiry: { type: Date, index: { expires: '0s' } },
   role: { type: String, enum: ['USER', 'LEAD',], default: 'USER' },
   managedEventId: { type: String }, // Optional: link to the event they lead
+  eventsRegistered: { type: [String],default: [] } // e.g., ["Algomaniac", "Eureka"]
 }, { timestamps: true });
 
 const User =  mongoose.models?.User || mongoose.model("User", userSchema);

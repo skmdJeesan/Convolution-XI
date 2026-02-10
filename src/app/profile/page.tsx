@@ -49,7 +49,7 @@ function page() {
      
 
       <div className='nav flex items-center justify-between text-white w-full'>
-        <h1 className='text-lg lg:text-2xl'>Welcome <span className='text-purple-400 font-bold'>{data?.user?.name} :)</span></h1>
+        <h1 className='text-lg lg:text-2xl'>Welcome <span className='text-purple-400 font-bold'>{data?.user?.name} 🤖</span></h1>
         <button 
           onClick={handleSignOut} 
           disabled={loading}
