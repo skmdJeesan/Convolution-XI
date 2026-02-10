@@ -57,7 +57,7 @@ const Sponsors: React.FC = () => {
           {/* <div className="h-1 w-24 mx-auto bg-linear-to-r from-transparent via-cyan-500 to-transparent rounded-full opacity-70"></div> */}
         </motion.div>
 
-        <div className="w-full h-full flex flex-col items-center justify-center">
+        <div className="opacity-0 w-full h-full flex flex-col items-center justify-center">
           <motion.p 
             variants={sectionVariants}
             initial="hidden"
@@ -284,6 +284,17 @@ const Sponsors: React.FC = () => {
             </a>
           </motion.div>
         </div>
+
+        <motion.div 
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 pointer-events-none">
+          <h2 className="text-5xl md:text-6xl lg:text-8xl font-semibold text-white tracking-tighter whitespace-nowrap capitalize">
+            Comming <span className="text-transparent w-fit bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">soon..</span>
+          </h2>
+        </motion.div>
       </div>
 
     </div>

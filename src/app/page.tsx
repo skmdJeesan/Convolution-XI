@@ -36,7 +36,8 @@ export default function Home() {
     <main className="bg-black w-full min-h-screen">
       <HeroSection />
       <HomeAbout />
-      <Timeline/>
+      {/* <EventShwowcase />
+      <Timeline/> */}
       <Team />
       <Gallery/>
       <Sponsors/>
