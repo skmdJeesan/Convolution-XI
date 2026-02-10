@@ -19,7 +19,7 @@ interface DashboardProps {
   users: User[]; // We will pass the full list from the server
 }
 
-function page({users}: DashboardProps) {
+function page({ users }: DashboardProps) {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   const data = useContext(userData)
@@ -35,7 +35,7 @@ function page({users}: DashboardProps) {
   }, [activeTab, users]);
 
   return (
-    <div className='h-screen bg-zinc-900 flex flex-col gap-1 items-start justify-start px-10 pt-10 font-sans text-white'>
+    <div className='min-h-screen bg-zinc-900 flex flex-col gap-1 items-start justify-start px-10 pt-10 font-sans text-white'>
       <h1 className='text-base md:text-2xl uppercase font-semibold px-4'>This is Leader's dashboard</h1>
       {/* <h1 className='text-lg md:text-2xl'>Welcome <span className='text-purple-400 font-bold'>{data?.user?.name} 🤖</span></h1> */}
 
@@ -67,7 +67,7 @@ function page({users}: DashboardProps) {
       </div>
 
       {/* Data table */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-y-auto w-full mt-2 no-scrollbar">
+      <div className="max-h-[90vh] bg-zinc-900 border border-zinc-800 rounded-xl overflow-y-auto w-full mt-2 no-scrollbar">
         <div className="p-4 border-b border-zinc-800 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">{activeTab}</h2>
           <span className="text-xs bg-zinc-800 text-zinc-400 px-2 py-1 rounded-md">
@@ -97,10 +97,16 @@ function page({users}: DashboardProps) {
                     <td className="px-6 py-4">{user.dept}</td>
                     <td className="px-6 py-4">
                       <div className="flex gap-1 flex-wrap">
-                        {user.eventsRegistered.map(e => (
-                          <span key={e} className="text-[10px] bg-cyan-900/30 text-cyan-400 px-1.5 py-0.5 rounded border border-cyan-800/30">
-                            {e}
-                          </span>
+                        {user.eventsRegistered.map((e) => (
+                          e === '--' ? (
+                            <span key={e} className="text-[10px] bg-red-900/30 text-red-400 px-1.5 py-0.5 rounded border border-red-800/30">
+                              Not Participated
+                            </span>
+                          ) : (
+                            <span key={e} className="text-[10px] bg-cyan-900/30 text-cyan-400 px-1.5 py-0.5 rounded border border-cyan-800/30">
+                              {e}
+                            </span>
+                          )
                         ))}
                       </div>
                     </td>
@@ -118,38 +124,37 @@ function page({users}: DashboardProps) {
         </div>
       </div>
 
-      <footer className="w-full border-t border-zinc-900 bg-zinc-900 py-2 mt-auto">
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-6">
-              
-              {/* Left Side: Branding */}
-              <div className="flex flex-col items-center md:items-start gap-1">
-                  <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-                      <h3 className="text-lg font-bold tracking-noramal text-zinc-200">Convolution XI</h3>
-                  </div>
-                  <p className="text-[10px] text-zinc-600 uppercase tracking-wider font-medium">Official Administration Portal</p>
-              </div>
-
-              {/* Right Side: Developer Credit */}
-              <div className="flex flex-col items-center md:items-end gap-1">
-                  <div className="flex items-center gap-3">
-                      <a href="https://github.com/skmdJeesan" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors p-2 hover:bg-zinc-900 rounded-full">
-                          <FaGithub size={18} />
-                      </a>
-                      <a href="https://www.linkedin.com/in/smjeesan/" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-blue-400 transition-colors p-2 hover:bg-zinc-900 rounded-full">
-                          <FaLinkedin size={18} />
-                      </a>
-                      <a href="https://instagram.com/_skmdjeesan" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-pink-500 transition-colors p-2 hover:bg-zinc-900 rounded-full">
-                          <FaInstagram size={18} />
-                      </a>
-                  </div>
-                  <div className="text-right">
-                      <p className="text-[10px] text-zinc-500 font-medium">
-                          System Architect & Developed by <span className="text-zinc-300 font-bold ml-1">Sk Md Jeesan</span>
-                      </p>
-                  </div>
-              </div>
+      <footer className="w-full bg-zinc-900 py-2 mt-auto">
+        <div className="w-full mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+          {/* Left Side: Branding */}
+          <div className="flex flex-col items-center md:items-start gap-1">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+              <h3 className="text-lg font-bold tracking-noramal text-zinc-200">Convolution XI</h3>
+            </div>
+            <p className="text-[10px] text-zinc-600 uppercase tracking-wider font-medium">Official Administration Portal</p>
           </div>
+
+          {/* Right Side: Developer Credit */}
+          <div className="flex flex-col items-center md:items-end gap-1">
+            <div className="flex items-center gap-3">
+              <a href="https://github.com/skmdJeesan" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors p-2 hover:bg-zinc-900 rounded-full">
+                <FaGithub size={18} />
+              </a>
+              <a href="https://www.linkedin.com/in/smjeesan/" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-blue-400 transition-colors p-2 hover:bg-zinc-900 rounded-full">
+                <FaLinkedin size={18} />
+              </a>
+              <a href="https://instagram.com/_skmdjeesan" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-pink-500 transition-colors p-2 hover:bg-zinc-900 rounded-full">
+                <FaInstagram size={18} />
+              </a>
+            </div>
+            <div className="text-right">
+              <p className="text-[10px] text-zinc-500 font-medium">
+                System Architect & Developed by <span className="text-zinc-300 font-bold ml-1">Sk Md Jeesan</span>
+              </p>
+            </div>
+          </div>
+        </div>
       </footer>
 
     </div>

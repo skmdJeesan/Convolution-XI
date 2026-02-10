@@ -20,7 +20,7 @@ export default async function LeadDashboardPage() {
     institution: user.institution,
     dept: user.department,
     phone: user.phone,
-    eventsRegistered: user.eventsRegistered || ['Null'], // Default to empty array if missing
+    eventsRegistered: user.eventsRegistered || ['--'], // Default to empty array if missing
   }));
 
   return (
