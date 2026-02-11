@@ -14,10 +14,10 @@ const desktopNavLinks = [
   { href: "/#home", label: "Home" },
   { label: "About", href: "/#about" },
   {
-    label: "Events",
+    label: "Event",
     href: "#",
     subItems: [
-      { href: "/#all-events", label: "All Events" },
+      { href: "/#all-events", label: "Events" },
       { href: "/#timeline", label: "Timeline" },
     ],
   },
@@ -77,7 +77,7 @@ const Navbar = () => {
   const startHideTimer = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= 1024) {
         setIsVisible(false);
         setActiveDropdown(null);
       }
@@ -157,9 +157,10 @@ const Navbar = () => {
     };
   }, []);
 
+ 
   const navVisibilityClass = isVisible || isNavOpen 
     ? "translate-y-0" 
-    : "md:-translate-y-full translate-y-0"; 
+    : "lg:-translate-y-full translate-y-0"; 
 
   return (
     <>
@@ -168,7 +169,7 @@ const Navbar = () => {
           fixed top-0 left-0 w-full z-1000 
           transition-transform duration-500 ease-in-out
           ${navVisibilityClass}
-          bg-black/20 backdrop-blur-xl border-b border-white/10 md:bg-transparent md:backdrop-blur-none md:border-none
+          bg-black/20 backdrop-blur-xl border-b border-white/10 lg:bg-transparent lg:backdrop-blur-none lg:border-none
         `}
         onMouseEnter={() => {
           if (timerRef.current) clearTimeout(timerRef.current);
@@ -178,7 +179,7 @@ const Navbar = () => {
           startHideTimer();
         }}
       >
-        <div className="flex items-center justify-between px-4 py-2 md:px-8 md:py-6 w-full maxWidthForSections mx-auto">
+        <div className="flex items-center justify-between px-4 py-2 md:px-8 md:py-3 w-full maxWidthForSections mx-auto">
           
           {/*Logo*/}
           <div className="shrink-0 transition-transform hover:scale-105 duration-300 pointer-events-auto">
@@ -186,12 +187,13 @@ const Navbar = () => {
               <Image
                 src={ConvoLogo}
                 alt="convo logo"
-                className="object-contain h-9 w-auto md:h-10 md:drop-shadow-xl"
+                className="object-contain h-9 w-auto md:h-12 md:drop-shadow-xl"
               />
             </Link>
           </div>
+
           {/* center navbar */}
-          <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 pointer-events-auto">
+          <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 pointer-events-auto">
             <ul className="flex items-center gap-x-2 px-2 py-2.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl text-xs font-bold uppercase tracking-widest text-gray-200 ring-1 ring-white/10">
               {desktopNavLinks.map((item, index) => (
                 <li key={index} className="relative group">
@@ -201,7 +203,7 @@ const Navbar = () => {
                       onClick={(e) => handleDropdownToggle(e, item.label)}
                     >
                       <span className="font-orbitron"><FlipLink>{item.label}</FlipLink></span>
-                      <IoChevronDownOutline className={`size-3 transition-transform duration-300 ${activeDropdown === item.label ? "rotate-180" : "group-hover:rotate-180"}`} />
+                      <IoChevronDownOutline className={`size-3 md:size-5 transition-transform duration-300 ${activeDropdown === item.label ? "rotate-180" : "group-hover:rotate-180"}`} />
                       
                       {/* Submenu */}
                       <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-6 w-56 ${activeDropdown === item.label ? "block" : "hidden group-hover:block"}`}>
@@ -241,7 +243,7 @@ const Navbar = () => {
                 </div>
               </Link>
             ) : (
-              // Login-register
+              // login-register
               <div className="hidden lg:flex gap-3 items-center">
                 <div onClick={() => router.push("/login")} className="font-orbitron group relative px-4 py-2.5 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#05080f] backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
                   <FlipLink>Log in</FlipLink>
@@ -252,12 +254,12 @@ const Navbar = () => {
               </div>
             )}
 
-            {/* Humberger */}
+            {/* Hamburger*/}
             <button
               onClick={toggleNavigation}
               className="lg:hidden text-white bg-transparent p-2.5 rounded-full backdrop-blur-md  active:scale-90 transition-all shadow-lg"
             >
-              <IoMenuOutline className="size-9" />
+              <IoMenuOutline className="size-9 md:size-12" />
             </button>
           </div>
         </div>

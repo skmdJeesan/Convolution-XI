@@ -130,9 +130,9 @@ export default function Footer() {
             
             <div className='flex flex-col items-center sm:items-start md:items-center md:ml-7 lg-ml-2 lg:items-start'>
                 
-                <h3 className="font-orbitron text-[20px] md:text-xl lg:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 uppercase mb-8 relative inline-block whitespace-nowrap sm:ml-11">
+                <h3 className="font-orbitron text-[20px] md:text-xl lg:text-2xl font-bold  text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] uppercase mb-8 relative inline-block whitespace-nowrap sm:ml-11">
                     Let's Connect
-                    <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent "></span>
+                   <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
                 </h3>
 
                 <ul className="flex flex-col gap-4">
@@ -195,10 +195,9 @@ export default function Footer() {
           {/* Events */}
           <div className='flex flex-col items-center md:items-end w-full'>
              <div className='flex flex-col items-center sm:items-start'>
-                <h3 className="font-orbitron text-[20px] md:text-xl lg:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 uppercase mb-8 relative inline-block -ml-4 sm:ml-0">
+                <h3 className="font-orbitron text-[20px] md:text-xl lg:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] uppercase mb-8 relative inline-block -ml-4 sm:ml-0">
                     events
-                    <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent "></span>
-                </h3>
+<span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>                </h3>
         
 
                 <ul className="grid grid-cols-3 md:grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-2">
@@ -226,7 +225,7 @@ export default function Footer() {
         
         <h1 
             ref={ref as React.RefObject<HTMLHeadingElement>} 
-            className='font-orbitron text-[15vw] md:text-[13vw] lg:text-[15vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#0e7490] [&_span]:to-black/50 tracking-tight font-bold absolute -bottom-6 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
+            className='font-orbitron text-[15vw] md:text-[12vw] lg:text-[14vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#0e7490] [&_span]:to-black/50 tracking-tight font-bold absolute -bottom-6 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
         >
             {text}
         </h1>

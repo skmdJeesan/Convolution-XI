@@ -78,7 +78,7 @@ export default function Signin() {
         className="fixed top-6 left-6 z-50 group flex items-center gap-2 px-3 py-2.5 bg-purple-400/30 backdrop-blur-lg border border-purple-500/30 rounded-full hover:border-purple-500/30 hover:bg-purple-400/60 transition-all duration-300 shadow-[0_0_15px_rgba(34,211,238,0.1)] hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] active:scale-95"
       >
         <IoArrowBack className="text-white text-lg group-hover:-translate-x-1 transition-transform duration-300" />
-        <span className="text-xs font-bold tracking-[0.15em] text-white group-hover:text-white uppercase transition-colors">Return Home</span>
+        <span className="font-orbitron text-xs font-bold tracking-[0.15em] text-white group-hover:text-white uppercase transition-colors">Return Home</span>
       </Link>
 
       <motion.div 
@@ -96,34 +96,34 @@ export default function Signin() {
                          <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></div>
                          <div className="w-1.5 h-1.5 bg-purple-500/50 rounded-full"></div>
                     </div>
-                    <span className="text-[10px] tracking-[0.2em] text-cyan-400/80 font-semibold uppercase">Sys_Ready</span>
+                    <span className="font-rajdhani text-[10px] tracking-[0.2em] text-cyan-400/80 font-semibold uppercase">Sys_Ready</span>
                 </div>
 
                 <div className="p-6">
                     <div className="text-center mb-5">
-                        <h1 className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] mb-1">SYSTEM LOGIN</h1>
-                        <p className="text-xs text-cyan-500/50 uppercase tracking-[0.2em] font-medium">// Enter Access Codes</p>
+                        <h1 className="font-orbitron text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] mb-1">SYSTEM LOGIN</h1>
+                        <p className="font-rajdhani text-xs text-cyan-500/50 uppercase tracking-[0.2em] font-medium">// Enter Access Codes</p>
                     </div>
 
                     <form onSubmit={signinHandler} className='flex flex-col gap-3'>
 
                         <div className='group/input relative'>
                              <div className="flex justify-between items-end mb-1 px-1">
-                                <label className="text-xs text-cyan-100/80 font-semibold tracking-wider uppercase">Email</label>
+                                <label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Email</label>
                              </div>
                              <div className={inputContainerClass}>
                                 <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
                                 <div className={iconClass}><IoMailOutline size={18} /></div>
-                                <input type="email" placeholder='name@example.com' name='email' value={formData.email} onChange={handleChange} required className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-mono tracking-wider' />
+                                <input type="email" placeholder='name@example.com' name='email' value={formData.email} onChange={handleChange} required className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' />
                              </div>
                         </div>
 
                         <div className='group/input relative'>
-                             <div className="flex justify-between items-end mb-1 px-1"><label className="text-xs text-cyan-100/80 font-semibold tracking-wider uppercase">Passcode</label></div>
+                             <div className="flex justify-between items-end mb-1 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Passcode</label></div>
                              <div className={inputContainerClass}>
                                 <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
                                 <div className={iconClass}><IoLockClosedOutline size={18} /></div>
-                                <input type={showPassword ? "text" : "password"} placeholder='********' name='password' value={formData.password} onChange={handleChange} required className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-mono tracking-wider' />
+                                <input type={showPassword ? "text" : "password"} placeholder='********' name='password' value={formData.password} onChange={handleChange} required className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' />
                                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="pr-4 text-cyan-400 md:text-cyan-700 md:hover:text-cyan-400 transition-colors focus:outline-none">{showPassword ? <IoEyeOffOutline size={18} /> : <IoEyeOutline size={18} />}</button>
                              </div>
                         </div>
@@ -134,26 +134,26 @@ export default function Signin() {
                                     <input type="checkbox" className="peer absolute opacity-0 w-full h-full cursor-pointer" />
                                     <div className="absolute inset-0.5 bg-cyan-400 scale-0 peer-checked:scale-100 transition-transform duration-150"></div>
                                 </div>
-                                <span className="text-sm sm:text-xs font-medium text-cyan-300 md:text-gray-400 md:group-hover/chk:text-cyan-300 uppercase tracking-wide transition-colors">Remember</span>
+                                <span className="font-rajdhani text-sm sm:text-xs font-medium text-cyan-300 md:text-gray-400 md:group-hover/chk:text-cyan-300 uppercase tracking-wide transition-colors">Remember</span>
                             </label>
-                            <a href="/forget-password" className='text-sm sm:text-xs font-medium text-cyan-300 md:text-gray-400 md:hover:text-cyan-300 uppercase tracking-wide transition-colors'>Recover Key?</a>
+                            <a href="/forget-password" className='font-rajdhani text-sm sm:text-xs font-medium text-cyan-300 md:text-gray-400 md:hover:text-cyan-300 uppercase tracking-wide transition-colors'>Recover Key?</a>
                         </div>
 
-                        <button type="submit" disabled={loading} className="group relative w-full h-10 mt-2 bg-cyan-500 hover:bg-cyan-400 text-[#05080f] text-sm tracking-[0.2em] uppercase font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed [clip-path:polygon(12px_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%,0_12px)] shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] cursor-pointer">
+                        <button type="submit" disabled={loading} className="font-orbitron group relative w-full h-10 mt-2 bg-cyan-500 hover:bg-cyan-400 text-[#05080f] text-sm tracking-widest uppercase font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed [clip-path:polygon(12px_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%,0_12px)] shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] cursor-pointer">
                           <span className="relative z-10 flex items-center justify-center gap-3">{loading ? <Loader /> : <><IoFingerPrintOutline className="text-lg" />Initiate Login</>}</span>
                         </button>
 
-                        <div className="relative flex items-center justify-center py-1.5 opacity-70"><div className="h-px bg-cyan-900/30 w-full absolute"></div><span className="relative bg-[#0d111a] px-3 text-[10px] text-gray-500 uppercase tracking-widest font-semibold">// ALTERNATE LINKS</span></div>
+                        <div className="relative flex items-center justify-center py-1.5 opacity-70"><div className="h-px bg-cyan-900/30 w-full absolute"></div><span className="font-rajdhani relative bg-[#0d111a] px-3 text-sm text-gray-500 uppercase tracking-widest font-semibold">// ALTERNATE LINKS</span></div>
 
                         <div className="grid grid-cols-2 gap-3">
-                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-cyan-50 md:text-gray-400 md:hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_100%,10px_100%,0_calc(100%-10px))]" onClick={() => signIn('google', { callbackUrl: '/' })}><FaGoogle className='text-sm' /><span className='text-xs font-semibold tracking-wider'>GOOGLE</span></button>
-                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-cyan-50 md:text-gray-400 md:hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_calc(100%-10px),calc(100%-10px)_100%,0_100%)]" onClick={() => signIn('github', { callbackUrl: '/' })}><FaGithub className='text-sm' /><span className='text-xs font-semibold tracking-wider'>GITHUB</span></button>
+                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-cyan-50 md:text-gray-400 md:hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_100%,10px_100%,0_calc(100%-10px))]" onClick={() => signIn('google', { callbackUrl: '/' })}><FaGoogle className='text-sm' /><span className='font-orbitron text-xs font-semibold tracking-wider'>GOOGLE</span></button>
+                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-cyan-50 md:text-gray-400 md:hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_calc(100%-10px),calc(100%-10px)_100%,0_100%)]" onClick={() => signIn('github', { callbackUrl: '/' })}><FaGithub className='text-sm' /><span className='font-orbitron text-xs font-semibold tracking-wider'>GITHUB</span></button>
                         </div>
                         
                         <div className="text-center mt-2">
-                            <p className="text-sm sm:text-xs text-gray-500 font-bold uppercase tracking-wide">
+                            <p className="font-rajdhani text-sm sm:text-xs text-gray-500 font-bold uppercase tracking-wide">
                                 No Access ID? 
-                                <Link href="/register" className='text-purple-400 hover:text-purple-300 ml-2 hover:underline underline-offset-4 decoration-purple-500/50 transition-colors'>
+                                <Link href="/register" className='font-orbitron text-purple-400 hover:text-purple-300 ml-2 hover:underline underline-offset-4 decoration-purple-500/50 transition-colors'>
                                     Register User
                                 </Link>
                             </p>
