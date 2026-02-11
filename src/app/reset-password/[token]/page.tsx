@@ -54,9 +54,17 @@ export default function ResetPassword({ params }: ResetPasswordProps) {
 
   return (
     <div className='relative min-h-screen w-full flex items-center justify-center overflow-hidden text-cyan-50 bg-[#050505] selection:bg-purple-500/30'>
-      
-      <DecorativeIcons />
-      <Particles/>
+            {/* Background*/}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 bg-[#050505]"></div>
+          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l17.32 10v20L20 40 2.68 30V10z' fill-opacity='0' stroke='%2322d3ee' stroke-width='0.5'/%3E%3C/svg%3E")`, backgroundSize: '40px 40px' }}></div>
+
+          <div className="absolute top-0 left-0 w-[50vw] h-[50vh] bg-cyan-500/10 blur-[120px] rounded-full mix-blend-screen"></div>
+          <div className="absolute bottom-0 right-0 w-[50vw] h-[50vh] bg-purple-600/10 blur-[120px] rounded-full mix-blend-screen"></div>
+          <DecorativeIcons/>
+          <Particles/>
+      </div>
+
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.98 }}
@@ -65,13 +73,11 @@ export default function ResetPassword({ params }: ResetPasswordProps) {
         className="relative z-10 w-full max-w-md px-4"
       >
         <div className="relative group">
-            {/* Border Gradient (Cyan to Purple) */}
             <div className="absolute -inset-px bg-linear-to-b from-cyan-500/30 via-purple-500/20 to-cyan-500/30 rounded-sm opacity-70 group-hover:opacity-100 transition duration-500 [clip-path:polygon(20px_0,100%_0,100%_calc(100%-20px),calc(100%-20px)_100%,0_100%,0_20px)]"></div>
 
             {/* Main Card */}
             <div className="relative bg-[#080a0f]/95 backdrop-blur-xl [clip-path:polygon(20px_0,100%_0,100%_calc(100%-20px),calc(100%-20px)_100%,0_100%,0_20px)] shadow-2xl">
-                
-                {/* Header Bar */}
+
                 <div className="flex items-center justify-between px-5 py-3 bg-[#0f1219] border-b border-cyan-800/20">
                     <div className="flex gap-1.5">
                          <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></div>
@@ -83,8 +89,8 @@ export default function ResetPassword({ params }: ResetPasswordProps) {
                 <div className="p-8">
                     
                     <div className="text-center mb-6">
-                         <h1 className="text-2xl font-bold text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.1)] mb-2">Reset Password</h1>
-                         <p className="text-xs text-cyan-500/70 uppercase tracking-widest font-medium">Enter New Credentials</p>
+                         <h1 className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] mb-1">Reset Password</h1>
+                         <p className="text-xs text-cyan-500/50 uppercase tracking-widest font-medium">Enter New Credentials</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-5">

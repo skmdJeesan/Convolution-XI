@@ -154,16 +154,17 @@ function Team() {
       {/* Premium dark background with gradient */}
       <div className="team-bg-gradient"></div>
       {/* Header Section */}
+      <div className='maxWidthForSections'>
       <motion.div
         variants={headerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="flex flex-col items-center pointer-events-none select-none mb-5 relative w-full">
-          <h2 className="text-5xl md:text-6xl lg:text-6xl font-semibold text-white tracking-tighter whitespace-nowrap capitalize">
-            Our <span className="text-transparent w-fit bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">team</span>
-          </h2>
-          {/* <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-cyan-500/80 to-transparent"></span> */}
+        className="flex flex-col items-center pointer-events-none select-none mb-5">
+       <h1 className="font-orbitron  font-bold  text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase ">
+          Our Team
+          <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
+        </h1>
       </motion.div>
 
       {/* Curved Cards Container */}
@@ -208,8 +209,8 @@ function Team() {
 
               {/* Info Overlay - Appears on hover */}
               <div className="team-card-info-overlay">
-                <h3 className="team-card-name">{member.name}</h3>
-                <p className="team-card-post">{member.post}</p>
+                <h3 className="font-rajdhani team-card-name">{member.name}</h3>
+                <p className="font-rajdhani team-card-post">{member.post}</p>
 
                 {/* Social Links */}
                 <div className="team-card-socials">
@@ -258,6 +259,7 @@ function Team() {
           </div>
         ))}
       </motion.div>
+      </div>
     </div>
   )
 }

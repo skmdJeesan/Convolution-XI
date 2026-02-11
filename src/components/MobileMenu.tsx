@@ -17,8 +17,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
   const [mounted, setMounted] = useState(false);
 
   const authButtonStyle = `
-    relative group flex items-center justify-center gap-3 w-full px-6 py-3.5 
-    rounded-full font-bold font-sans text-sm tracking-widest Capitalize
+    relative group flex items-center justify-start gap-3 w-full px-6 py-3.5 
+    rounded-full  tracking-widest Capitalize
     border border-white/10 bg-white/5 hover:bg-white/20 hover:border-white/40
     text-white transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]
   `;
@@ -92,15 +92,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex-1 flex flex-col justify-start pl-2 pt-10">
-            <ul className="flex flex-col gap-5 ">
+          <nav className="flex-1 flex flex-col justify-start pl-2 pt-10 md:pt-14">
+            <ul className="flex flex-col gap-6 md:gap-9 ">
               {links.map((item, index) => (
                 <li key={index} className="overflow-hidden">
                   <Link
                     href={item.href}
                     onClick={(e) => onLinkClick(e, item.href)}
-                    className={`block text-2xl md:text-3xl font-medium text-white
-                      transform transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]
+                    className={`font-orbitron font-semibold block text-lg md:text-2xl tracking-wide  text-white transform transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]
                       ${isOpen ? "translate-y-0 opacity-100" : "translate-y-[120%] opacity-0"}
                     `}
                     style={{ transitionDelay: isOpen ? `${400 + (index * 100)}ms` : '0ms' }}
@@ -135,8 +134,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                           : "0ms",
                       }}
                     >
-                      <IoPersonOutline className="text-lg mb-0.5" />
-                      <span>My Profile</span>
+                      <IoPersonOutline className="text-base mb-0.5" />
+                      <span className="font-orbitron text-base font-semibold">My Profile</span>
                     </Link>
                 </div>
               ) : (
@@ -157,8 +156,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                             : "0ms",
                         }}
                     >
-                        <IoLogInOutline className="text-xl mb-0.5" />
-                        <span>Login</span>
+                        <IoLogInOutline className="text-base mb-0.5" />
+                        <span className="font-orbitron text-base font-semibold">Login</span>
                     </Link>
                   </div>
 
@@ -177,8 +176,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                             : "0ms",
                         }}
                     >
-                        <IoPersonAddOutline className="text-lg mb-0.5" />
-                        <span>Register Now</span>
+                        <IoPersonAddOutline className="text-base mb-0.5" />
+                        <span className="font-orbitron text-base font-semibold">Register</span>
                     </Link>
                   </div>
                 </>
