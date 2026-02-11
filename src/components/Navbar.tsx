@@ -9,6 +9,7 @@ import MobileMenu from "./MobileMenu";
 import FlipLink from "./FlipLink";
 import { useSession } from "next-auth/react";
 import ConvoLogo from "../assets/images/Convologo.png";
+import TransitionLink from "./TransitionLink";
 
 const desktopNavLinks = [
   { href: "/#home", label: "Home" },
@@ -190,6 +191,7 @@ const Navbar = () => {
               />
             </Link>
           </div>
+          
           {/* center navbar */}
           <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 pointer-events-auto">
             <ul className="flex items-center gap-x-2 px-2 py-2.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl text-xs font-bold uppercase tracking-widest text-gray-200 ring-1 ring-white/10">
@@ -229,7 +231,7 @@ const Navbar = () => {
           <div className="flex items-center gap-4 pointer-events-auto">
             {/* profile */}
             {session ? (
-              <Link href="/profile" className="rounded-full relative group block">
+              <TransitionLink href="/profile" className="rounded-full relative group block">
                 <div className="rounded-full border-2 border-white/20 overflow-hidden hover:border-white transition-colors shadow-lg shadow-white/10">
                   <Image
                     src={profileIcon}
@@ -239,16 +241,16 @@ const Navbar = () => {
                     className="object-cover md:h-[45px] md:w-[45px]"
                   />
                 </div>
-              </Link>
+              </TransitionLink>
             ) : (
               // Login-register
               <div className="hidden lg:flex gap-3 items-center">
-                <div onClick={() => router.push("/login")} className="group relative px-4 py-2 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#05080f] backdrop-blur-xl shadow-lg text-sm font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
+                <TransitionLink href="/login" className="group relative px-4 py-2 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#05080f] backdrop-blur-xl shadow-lg text-sm font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
                   <FlipLink>Log in</FlipLink>
-                </div>
-                <div onClick={() => router.push("/register")} className="group relative px-4 py-2 rounded-full bg-purple-500 hover:bg-purple-400 text-[#05080f] backdrop-blur-xl shadow-lg text-sm font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
+                </TransitionLink>
+                <TransitionLink href="/register" className="group relative px-4 py-2 rounded-full bg-purple-500 hover:bg-purple-400 text-[#05080f] backdrop-blur-xl shadow-lg text-sm font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
                   <FlipLink>Register</FlipLink>
-                </div>
+                </TransitionLink>
               </div>
             )}
 

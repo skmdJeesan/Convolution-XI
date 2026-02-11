@@ -599,3 +599,22 @@ html {
       scrollbar-width: none;  /* Firefox */
   }
 }
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+body {
+  transition-property: opacity, background-color, transform, filter;
+  transition-timing-function: ease-in-out;
+  transition-duration: 1000ms;
+}
+
+.page-transition {
+  opacity: 0;
+  background-color: black;
+  transform: translateY(40px);
+  filter: blur(12px);
+}
