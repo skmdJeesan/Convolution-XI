@@ -99,8 +99,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                   <Link
                     href={item.href}
                     onClick={(e) => onLinkClick(e, item.href)}
-                    className={`font-orbitron block text-lg md:text-2xl tracking-wide  text-white
-                      transform transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]
+                    className={`font-orbitron font-semibold block text-lg md:text-2xl tracking-wide  text-white transform transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]
                       ${isOpen ? "translate-y-0 opacity-100" : "translate-y-[120%] opacity-0"}
                     `}
                     style={{ transitionDelay: isOpen ? `${400 + (index * 100)}ms` : '0ms' }}
@@ -135,8 +134,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                           : "0ms",
                       }}
                     >
-                      <IoPersonOutline className="text-lg mb-0.5" />
-                      <span className="font-orbitron text-lg">My Profile</span>
+                      <IoPersonOutline className="text-base mb-0.5" />
+                      <span className="font-orbitron text-base font-semibold">My Profile</span>
                     </Link>
                 </div>
               ) : (
@@ -157,8 +156,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                             : "0ms",
                         }}
                     >
-                        <IoLogInOutline className="text-lg mb-0.5" />
-                        <span className="font-orbitron text-lg">Login</span>
+                        <IoLogInOutline className="text-base mb-0.5" />
+                        <span className="font-orbitron text-base font-semibold">Login</span>
                     </Link>
                   </div>
 
@@ -177,8 +176,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                             : "0ms",
                         }}
                     >
-                        <IoPersonAddOutline className="text-lg mb-0.5" />
-                        <span className="font-orbitron text-lg">Register</span>
+                        <IoPersonAddOutline className="text-base mb-0.5" />
+                        <span className="font-orbitron text-base font-semibold">Register</span>
                     </Link>
                   </div>
                 </>

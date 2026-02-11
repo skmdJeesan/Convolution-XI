@@ -94,6 +94,7 @@ const Background = () => {
       <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vh] bg-fuchsia-900/30 blur-[120px] rounded-full mix-blend-screen"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vh] bg-cyan-900/30 blur-[120px] rounded-full mix-blend-screen"></div>
       <div className="absolute top-[30%] left-[30%] w-[40vw] h-[40vh] bg-purple-500/15 blur-[100px] rounded-full mix-blend-screen"></div>
+      <div className="absolute bottom-0 left-0 w-full h-10 pointer-events-none bg-linear-to-b from-transparent to-[#030712b7]" />
     </div>
   );
 };
@@ -117,7 +118,7 @@ const StatCard = ({ icon: Icon, label, value, colorClass, borderClass }: { icon:
     <span className={`text-base sm:text-xl lg:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r ${colorClass} tracking-wider font-rajdhani z-10`}>
         {value}
     </span>
-    <span className="text-[8px] sm:text-[9px] lg:text-[10px] text-gray-400 uppercase tracking-widest font-mono mt-0.5 sm:mt-1 group-hover:text-gray-200 transition-colors z-10 text-center sm:text-left">{label}</span>
+    <span className="text-xs sm:text-sm font-semibold text-gray-400 uppercase tracking-widest font-mono mt-0.5 sm:mt-1 group-hover:text-gray-200 transition-colors z-10 text-center sm:text-left">{label}</span>
   </motion.div>
 );
 
@@ -126,7 +127,6 @@ export default function AboutSection() {
     
     <div id='about' className="relative w-full min-h-fit xl:min-h-screen flex items-center justify-center overflow-hidden bg-[#020203] py-20 xl:py-0">
       <Background />
-      <div className="absolute bottom-0 left-0 w-full h-10 md:h-10 z-11 pointer-events-none bg-gradient-to-b from-transparent via-black/40 to-black" />
       <div className="relative z-10 maxWidthForSections w-full grid grid-cols-1 xl:grid-cols-2 gap-12 xl:gap-20 items-center pt-5 pb-10 min-h-[inherit]">
         
         <motion.div 
@@ -143,8 +143,8 @@ export default function AboutSection() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="flex flex-col items-center xl:items-start pointer-events-none select-none mb-5">
-                 <h1 className="font-orbitron font-bold text-3xl sm:text-5xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase ">
+                  className="flex flex-col items-center pointer-events-none select-none mb-5">
+                 <h1 className="font-orbitron font-bold text-3xl  sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase ">
                    About Us
                    <span className="absolute -bottom-2 left-0 xl:left-0 right-0 xl:right-auto mx-auto xl:mx-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
                  </h1>
@@ -157,7 +157,7 @@ export default function AboutSection() {
           >
               <div className="absolute top-0 left-[-4px] w-[4px] h-12 bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.6)]"></div>
               
-              <p className= "font-rajdhani text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed font-semibold text-center xl:text-justify">
+              <p className= "font-rajdhani text-gray-300 text-sm lg:text-base leading-relaxed font-semibold text-center xl:text-justify">
               Convolution XI is the <span className='text-cyan-300'>11th Edition</span> of the annual techno-management fest organized by the Students' Forum of the Department of Electrical Engineering, Jadavpur University. 
               <br />
               Convolution acts as an <span className='text-fuchsia-400'>UMBRELLA EVENT</span> comprising of several student interaction events, technical competitions, workshops, and has also hosted, in the past, lectures by some of the most illustrious names in academia and industry alike.

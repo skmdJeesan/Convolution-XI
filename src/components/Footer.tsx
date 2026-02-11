@@ -63,11 +63,8 @@ export default function Footer() {
   }, [text, breakTheText]);
 
   return (
-// CHANGED: bg-black -> bg-[#03000b] to match the FAQ bottom
     <div id='contact' className='relative bg-[#03050c] -mt-0.5 flex flex-col pt-5 overflow-hidden z-0'>
       
-      {/* --- NEW: SEAMLESS BLENDER --- */}
-      {/* This creates a soft glow transition that "blends" the FAQ grid into the Footer */}
 <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-[#03050d] via-[#03050d]/30 to-transparent z-10 pointer-events-none"></div>
       {/* --- BACKGROUND LAYER --- */}
       <div 
@@ -78,14 +75,22 @@ export default function Footer() {
         }}
       >
           
-          <div className="absolute top-[10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-violet-900/20 blur-[120px] z-0"></div>
-          <div className="absolute top-[10%] left-1/3 w-[30vw] h-[70vw] rounded-full bg-blue-900/20 blur-[120px] z-0"></div>
-          <div className="absolute bottom-[10%] right-[-10%] w-[50vw] h-[40vw] rounded-full bg-cyan-900/25 blur-[120px] z-0"></div>
+          <div className="hidden sm:block absolute top-[10%] left-[-10%] w-[60vw] h-[50vw] rounded-full bg-fuchsia-900/15 blur-[120px] z-0"></div>
+          <div className="hidden sm:block absolute top-[10%] left-1/3 w-[35vw] h-[70vw] rounded-full bg-purple-900/20 blur-[120px] z-0"></div>
+          <div className="hidden sm:block absolute bottom-[10%] right-[-10%] w-[60vw] h-[40vw] rounded-full bg-cyan-900/25 blur-[120px] z-0"></div>
 
-          {/* Grid */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-5 z-0"></div>
-          
-          {/* <Particles /> */}
+          <div className="block sm:hidden absolute top-[10%] left-[15%] w-[60vw] h-[50vw] rounded-full bg-fuchsia-900/70 blur-[120px] z-0"></div>
+          <div className="block sm:hidden absolute top-[40%] left-1/2 w-[35vw] h-[70vw] rounded-full bg-purple-900/50 blur-[120px] z-0"></div>
+          <div className="block sm:hidden absolute bottom-[10%] right-[10%] w-[60vw] h-[40vw] rounded-full bg-cyan-900/60 blur-[120px] z-0"></div>
+
+        {/* Dotted Pattern Overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.15]" 
+          style={{ 
+            backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, 
+            backgroundSize: '40px 40px' 
+          }}
+        ></div>
       </div>
 
       <div className="w-full maxWidthForSections relative z-20">
@@ -225,7 +230,7 @@ export default function Footer() {
         
         <h1 
             ref={ref as React.RefObject<HTMLHeadingElement>} 
-            className='font-orbitron text-[15vw] md:text-[12vw] lg:text-[14vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#0e7490] [&_span]:to-black/50 tracking-tight font-bold absolute -bottom-6 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
+            className='font-orbitron text-[13vw] md:text-[12vw] lg:text-[14vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#0e7490] [&_span]:to-black/50 tracking-tight font-bold absolute -bottom-3 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
         >
             {text}
         </h1>
