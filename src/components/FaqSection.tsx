@@ -196,8 +196,9 @@ export default function FaqSection() {
                 </div>
 
                 {/* Marquee */}
-                <div className="flex px-4 py-2 bg-linear-to-r from-purple-500/90 to-cyan-500/90 rounded-md w-[80vw] overflow-hidden z-20">
-                    <div className="animate-marquee-infinite group-hover:[animation-play-state:paused] shrink-0 min-w-full flex items-center pr-10 hover:paused">
+                <div className="flex px-4 py-2 glass-btn rounded-full w-[90vw] lg:w-[85vw] overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+                    {/* Block 1 */}
+                    <div className="animate-marquee-infinite group-hover:[animation-play-state:paused] shrink-0 min-w-full flex items-center">
                         <span className="text-white text-base font-sans tracking-wide whitespace-nowrap">
                             Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam' for future updates.
                         </span>
