@@ -28,6 +28,7 @@ import {
   IoArrowBack
 } from 'react-icons/io5';
 import DecorativeIcons from './DecorativeIcons';
+import TransitionLink from './TransitionLink';
 
 // --- LOADER ---
 const Loader = () => (
@@ -117,13 +118,13 @@ export default function SignupForm() {
           <DecorativeIcons/>
       </div>
       
-            <Link 
+        <TransitionLink 
         href="/" 
-        className="fixed top-6 left-6 z-50 group flex items-center gap-2 px-3 py-2.5 bg-purple-400/30 backdrop-blur-lg border border-purple-500/30 rounded-full hover:border-purple-500/30 hover:bg-purple-400/60 transition-all duration-300 shadow-[0_0_15px_rgba(34,211,238,0.1)] hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] active:scale-95"
+        className="fixed top-6 left-6 z-50 flex items-center gap-2 px-4 py-2.5 bg-cyan-950/40  border-cyan-500/50  lg:bg-black/30 lg:border-white/10 lg:hover:border-cyan-500/50 lg:hover:bg-cyan-950/40 lg:hover:shadow-cyan-500/20 backdrop-blur-md border  rounded-full transition-all duration-300 shadow-lg  group cursor-pointer overflow-hidden"
       >
-        <IoArrowBack className="text-white text-lg group-hover:-translate-x-1 transition-transform duration-300" />
-        <span className="font-orbitron text-xs font-bold tracking-[0.15em] text-white group-hover:text-white uppercase transition-colors">Return Home</span>
-      </Link>
+        <IoArrowBack className="text-cyan-400 text-lg group-hover:-translate-x-1 transition-transform duration-300" />
+        <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-cyan-100 group-hover:text-white uppercase transition-colors">Return Home</span>
+      </TransitionLink>
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.98 }}
@@ -168,6 +169,9 @@ export default function SignupForm() {
                                     value={formData.name} 
                                     onChange={handleChange} 
                                     required 
+                                    spellCheck={false}
+                                  autoCorrect="off"  
+                                  autoCapitalize="off" 
                                     className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
                                 />
                              </div>
@@ -187,6 +191,9 @@ export default function SignupForm() {
                                         value={formData.email} 
                                         onChange={handleChange} 
                                         required 
+                                        spellCheck={false}
+                                  autoCorrect="off"  
+                                  autoCapitalize="off" 
                                         className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
                                     />
                                  </div>
@@ -203,6 +210,9 @@ export default function SignupForm() {
                                         value={formData.password} 
                                         onChange={handleChange} 
                                         required 
+                                        spellCheck={false}
+                                  autoCorrect="off"  
+                                  autoCapitalize="off" 
                                         className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
                                     />
                                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="pr-3 text-cyan-700 hover:text-cyan-400 transition-colors focus:outline-none">{showPassword ? <IoEyeOffOutline size={14} /> : <IoEyeOutline size={14} />}</button>
@@ -224,6 +234,9 @@ export default function SignupForm() {
                                         value={formData.phone} 
                                         onChange={handleChange} 
                                         required 
+                                        spellCheck={false}
+                                  autoCorrect="off"  
+                                  autoCapitalize="off" 
                                         className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
                                     />
                                  </div>
@@ -240,6 +253,9 @@ export default function SignupForm() {
                                         value={formData.institution} 
                                         onChange={handleChange} 
                                         required 
+                                        spellCheck={false}
+                                  autoCorrect="off"  
+                                  autoCapitalize="off" 
                                         className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
                                     />
                                  </div>
@@ -260,6 +276,9 @@ export default function SignupForm() {
                                         value={formData.department} 
                                         onChange={handleChange} 
                                         required 
+                                        spellCheck={false}
+                                  autoCorrect="off"  
+                                  autoCapitalize="off" 
                                         className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
                                     />
                                  </div>
@@ -299,16 +318,16 @@ export default function SignupForm() {
 
                         {/* Github and google */}
                         <div className="grid grid-cols-2 gap-3">
-                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_100%,10px_100%,0_calc(100%-10px))]" onClick={() => signIn('google', { callbackUrl: '/' })}><FaGoogle className='text-sm' /><span className='text-xs font-orbitron font-semibold tracking-wider'>GOOGLE</span></button>
-                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_calc(100%-10px),calc(100%-10px)_100%,0_100%)]" onClick={() => signIn('github', { callbackUrl: '/' })}><FaGithub className='text-sm' /><span className='font-orbitron text-xs font-semibold tracking-wider'>GITHUB</span></button>
+                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_100%,10px_100%,0_calc(100%-10px))] cursor-pointer" onClick={() => signIn('google', { callbackUrl: '/' })}><FaGoogle className='text-sm' /><span className='text-xs font-orbitron font-semibold tracking-wider'>GOOGLE</span></button>
+                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_calc(100%-10px),calc(100%-10px)_100%,0_100%)] cursor-pointer" onClick={() => signIn('github', { callbackUrl: '/' })}><FaGithub className='text-sm' /><span className='font-orbitron text-xs font-semibold tracking-wider'>GITHUB</span></button>
                         </div>
                         
                         <div className="text-center mt-1">
                             <p className="font-rajdhani text-sm sm:text-xs text-gray-500 font-bold uppercase tracking-wide">
                                 Existing Entity? 
-                                <Link href="/login" className='font-orbitron text-purple-400 hover:text-purple-300 ml-2 hover:underline underline-offset-4 decoration-purple-500/50 transition-colors drop-shadow-[0_0_5px_rgba(192,132,252,0.5)]'>
+                                <TransitionLink href="/login" className='font-orbitron text-purple-400 hover:text-purple-300 ml-2 hover:underline underline-offset-4 decoration-purple-500/50 transition-colors drop-shadow-[0_0_5px_rgba(192,132,252,0.5)]'>
                                     Access System
-                                </Link>
+                                </TransitionLink>
                             </p>
                         </div>
 

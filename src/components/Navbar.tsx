@@ -195,7 +195,7 @@ const Navbar = () => {
 
           {/* center navbar */}
           <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 pointer-events-auto">
-            <ul className="flex items-center gap-x-2 px-2 py-2.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl text-xs font-bold uppercase tracking-widest text-gray-200 ring-1 ring-white/10">
+            <ul className="flex items-center gap-x-2 px-2 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl text-xs font-bold uppercase tracking-widest text-gray-200 ring-1 ring-white/10">
               {desktopNavLinks.map((item, index) => (
                 <li key={index} className="relative group">
                   {item.subItems ? (
@@ -204,7 +204,7 @@ const Navbar = () => {
                       onClick={(e) => handleDropdownToggle(e, item.label)}
                     >
                       <span className="font-orbitron"><FlipLink>{item.label}</FlipLink></span>
-                      <IoChevronDownOutline className={`size-3 md:size-5 transition-transform duration-300 ${activeDropdown === item.label ? "rotate-180" : "group-hover:rotate-180"}`} />
+                      <IoChevronDownOutline className={`size-3 transition-transform duration-300 ${activeDropdown === item.label ? "rotate-180" : "group-hover:rotate-180"}`} />
                       
                       {/* Submenu */}
                       <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-6 w-56 ${activeDropdown === item.label ? "block" : "hidden group-hover:block"}`}>
@@ -239,7 +239,7 @@ const Navbar = () => {
                     alt="profile icon"
                     height={40}
                     width={40}
-                    className="object-cover md:h-[45px] md:w-[45px]"
+                    className="object-cover md:h-11.25 md:w-11.25"
                   />
                 </div>
               </TransitionLink>
