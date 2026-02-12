@@ -30,7 +30,7 @@ const DataRow = ({ label, value, icon: Icon, fullWidth = false }: { label: strin
     </div>
     <div className="flex flex-col z-10 overflow-hidden w-full">
       <span className="text-sm font-rajdhani font-bold tracking-widest text-gray-400 uppercase group-hover:text-white transition-colors truncate">{label}</span>
-      <span className="text-xs font-rajdhani font-semibold text-gray-100 tracking-wide  truncate w-full" title={value}>{value}</span>
+      <span className="text-sm font-rajdhani  text-gray-100 tracking-wide  truncate w-full" title={value}>{value}</span>
     </div>
     <div className="absolute right-0 top-0 h-full w-1 bg-cyan-500/0 group-hover:bg-cyan-500 transition-all duration-200"></div>
   </div>
