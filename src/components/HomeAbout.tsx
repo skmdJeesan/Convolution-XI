@@ -248,8 +248,36 @@ export default function AboutSection() {
                   alt="About Convolution X"
                   className="h-full w-auto object-contain object-bottom mix-blend-lighten contrast-125 saturate-110"
                 />
+                <div className="video-div flex flex-col items-center gap-1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+                  <div onClick={playVideo}
+                    className="h-14 w-14 rounded-full flex items-center justify-center bg-cyan-300 hover:scale-105 hover:bg-cyan-500 active:scale-95 cursor-pointer pointer-events-auto">
+                    <IoPlay className="h-10 w-10" />
+                  </div>
+                  <h3 className='click text-white text-xs uppercase'>Click Me</h3>
+                </div>
               </motion.div>
             </div>
+            {/* {isVideoOpen && (
+              <div
+                className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-10"
+                onClick={closeVideo} // Clicking anywhere on the black background closes it
+              >
+                <button className="absolute top-5 right-5 text-white/50 hover:text-white transition-colors">
+                  <IoClose size={40} />
+                </button>
+
+                <div className="relative w-full max-w-5xl aspect-video rounded-xl overflow-hidden shadow-[0_0_50px_rgba(6,182,212,0.25)] border border-white/10">
+                  <iframe
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/QmcoPYUfbJ8?autoplay=1&start=9&rel=0"
+                    title="Convolution Teaser"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+            )} */}
           </div>
         </motion.div>
 
