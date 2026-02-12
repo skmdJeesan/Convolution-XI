@@ -196,16 +196,16 @@ export default function FaqSection() {
                 </div>
 
                 {/* Marquee */}
-                <div className="flex px-4 py-2 glass-btn rounded-full w-[90vw] lg:w-[85vw] overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+                <div className="flex px-4 py-2 backdrop-blur-2xl rounded-full w-[90vw] lg:w-[85vw] overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
                     {/* Block 1 */}
                     <div className="animate-marquee-infinite group-hover:[animation-play-state:paused] shrink-0 min-w-full flex items-center">
-                        <span className="text-white text-base font-sans tracking-wide whitespace-nowrap">
+                        <span className="text-white text-sm sm:text-base font-semibold font-rajdhani tracking-wide whitespace-nowrap">
                             Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam' for future updates.
                         </span>
                     </div>
                     {/* Block 2 (Duplicate) */}
                     <div className="group animate-marquee-infinite group-hover:[animation-play-state:paused] shrink-0 min-w-full flex items-center">
-                        <span className="text-white text-base font-sans tracking-wide whitespace-nowrap">
+                        <span className="text-white text-sm sm:text-base font-semibold font-rajdhani tracking-wide whitespace-nowrap">
                             Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam' for future updates.
                         </span>
                     </div>

@@ -166,12 +166,12 @@ export default function ProfilePage() {
                        <p className="font-rajdhani text-sm text-gray-400 tracking-wide max-w-md mx-auto mb-6">
                            No participation records found. Perticipate in a event to populate.
                        </p>
-                       <button 
-                           onClick={() => router.replace('/#all-events')}
+                       <TransitionLink 
+                           href='/#all-events'
                            className="px-6 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-orbitron text-xs font-bold tracking-widest uppercase rounded shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-transform hover:-translate-y-1 cursor-pointer"
                        >
                            Show Events
-                       </button>
+                       </TransitionLink>
                    </div>
                 )}
              </div>

@@ -5,7 +5,7 @@ import { CalendarClock, Users, Trophy } from 'lucide-react';
 import { IoPlay, IoClose } from "react-icons/io5";
 import AboutRobot from "../assets/images/About_Robot.png"
 
-const EVENT_DATE = "2026-03-20T09:00:00";
+const EVENT_DATE = "2026-03-18T09:00:00";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -253,7 +253,7 @@ export default function AboutSection() {
                     className="h-14 w-14 rounded-full flex items-center justify-center bg-cyan-300 hover:scale-105 hover:bg-cyan-500 active:scale-95 cursor-pointer pointer-events-auto">
                     <IoPlay className="h-10 w-10" />
                   </div>
-                  <h3 className='click text-white text-xs uppercase'>Click Me</h3>
+                  <h3 className='click text-fuchsia-600 font-rajdhani font-semibold text-sm uppercase'>Click Me</h3>
                 </div>
               </motion.div>
             </div>

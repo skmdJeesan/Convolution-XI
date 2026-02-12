@@ -209,14 +209,14 @@ export default function Footer() {
                 <ul className="grid grid-cols-3 md:grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-2">
                   {events.map((event, index) => (
                   <li key={index}>
-                    <Link href={event.href} className="group flex items-center justify-between border-b border-transparent hover:border-white/10 pb-0.5 transition-colors gap-x-1" >
+                    <TransitionLink href={event.href} className="group flex items-center justify-between border-b border-transparent hover:border-white/10 pb-0.5 transition-colors gap-x-1" >
                         <span className="font-rajdhani text-base font-semibold md:text-lg text-slate-300 group-hover:text-cyan-400 transition-colors">
                             <FlipLink>{event.name}</FlipLink>
                         </span>
                         <span className="hidden md:block text-cyan-400 text-lg opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
                             →
                         </span>
-                    </Link>
+                    </TransitionLink>
                   </li>
                   ))}
                 </ul>
