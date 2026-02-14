@@ -1,99 +1,118 @@
 .outer-container-scroll {
-    display: grid;
-    min-block-size: 100vh;
-    place-content: center;
-    min-height: auto;
-    /* background: #030022; */
+  display: grid;
+  min-block-size: 100vh;
+  place-content: center;
+  /* Optimized: Removed generic min-height auto as it's redundant with min-block-size */
 }
-
 
 .scroller {
-    width: 100%;
-    margin: 0 auto;
-    overflow-x: hidden;
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+  /* Optimized: Helps browser ignore mouse events during scroll for performance */
+  pointer-events: none; 
 }
 
+/* Re-enable pointer events for the images themselves if needed */
 .scroller__inner {
-    display: grid;
-    grid-auto-flow: column dense;
-    grid-template-rows: repeat(4, 22vh);
-    grid-template-columns: 1px;
-    grid-auto-columns: 22vh;
-    grid-gap: 15px;
+  pointer-events: auto; 
+  display: grid;
+  grid-auto-flow: column dense; /* This creates the masonry effect */
+  grid-template-rows: repeat(4, 22vh); /* 4 Rows fixed height */
+  grid-template-columns: 1px; /* Hack to force dense packing */
+  grid-auto-columns: 22vh; /* Base width of items */
+  grid-gap: 15px;
+  
+  /* GPU Acceleration properties */
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
 }
 
 .item {
-    border-radius: 10px;
+  border-radius: 10px;
+  position: relative; /* Needed for Next/Image 'fill' */
+  overflow: hidden;
+  background-color: #1a1a1a; /* Placeholder color while loading */
 }
 
+/* Layout Logic */
 .item.big {
-    grid-column-end: span 2;
-    grid-row-end: span 2;
+  grid-column-end: span 2;
+  grid-row-end: span 2;
 }
 
 .item:not(.big) {
-    grid-column-end: span 2;
-    grid-row-end: span 1;
+  grid-column-end: span 2;
+  grid-row-end: span 1;
 }
 
+/* Animation Trigger */
 .scroller[data-animated="true"] .scroller__inner {
-    width: max-content;
-    flex-wrap: nowrap;
-    animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+  width: max-content;
+  flex-wrap: nowrap;
+  /* Optimized: Added translate3d to keyframes */
+  animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
 }
 
 .scroller[data-direction="right"] {
-    --_animation-direction: reverse;
+  --_animation-direction: reverse;
 }
 
 .scroller[data-direction="left"] {
-    --_animation-direction: forwards;
+  --_animation-direction: forwards;
 }
 
 .scroller[data-speed="fast"] {
-    --_animation-duration: 60s;
+  --_animation-duration: 60s;
 }
 
+/* Masking (Visual Fade on edges) */
 .scroller[data-animated="true"] {
-    overflow: hidden;
-    -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
-    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  overflow: hidden;
+  -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
 }
 
+/* Optimized Keyframe: Uses translate3d for GPU layering */
 @keyframes scroll {
-    to {
-        transform: translate(calc(-50% - 0.5rem));
-    }
+  to {
+    transform: translate3d(calc(-50% - 7.5px), 0, 0); /* 7.5px is half of grid-gap */
+  }
 }
 
+/* Responsive adjustments */
 @media (max-width: 767px) {
-    .scroller__inner {
-        display: grid;
-        grid-auto-flow: column dense;
-        grid-template-rows: repeat(4, 18vh);
-        grid-template-columns: 1px;
-        grid-auto-columns: 16vh;
-        grid-gap: 15px;
-    }
+  .scroller__inner {
+    grid-template-rows: repeat(4, 18vh);
+    grid-auto-columns: 16vh;
+  }
+  
+  .scroller[data-animated="true"] {
+    -webkit-mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
+    mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
+  }
 
-    .scroller[data-animated="true"] {
-        overflow: hidden;
-        -webkit-mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
-        mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
-    }
-
-    .scroller[data-speed="fast"] {
-        --_animation-duration: 30s;
-    }
+  .scroller[data-speed="fast"] {
+    --_animation-duration: 30s;
+  }
 }
 
 .galleryContainer {
-    padding: 30px;
-    padding-top: 0;
+  padding: 30px;
+  padding-top: 0;
 }
 
 @media (max-width: 500px) {
-    .galleryContainer {
-        padding: 30px 10px;
-    }
+  .galleryContainer {
+    padding: 30px 10px;
+  }
+}
+
+.scroller[data-play-state="paused"] .scroller__inner {
+  animation-play-state: paused;
+}
+
+.scroller[data-play-state="running"] .scroller__inner {
+  animation-play-state: running;
 }
