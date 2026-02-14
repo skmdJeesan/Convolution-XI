@@ -2,7 +2,7 @@
 import { useState, use } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { IoLockClosedOutline, IoKeyOutline } from "react-icons/io5";
+import { IoLockClosedOutline, IoKeyOutline, IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import DecorativeIcons from "@/components/DecorativeIcons";
 
 // --- LOADER COMPONENT
@@ -23,6 +23,7 @@ interface ResetPasswordProps {
 export default function ResetPassword({ params }: ResetPasswordProps) {
   // Backend logic
   const [password, setPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const router = useRouter();
   const { token } = use(params);
@@ -45,7 +46,6 @@ export default function ResetPassword({ params }: ResetPasswordProps) {
       setIsSubmitting(false);
     }
   };
-
 
   const inputContainerClass = "relative flex items-center h-9 bg-[#0a0e14] transition-all duration-300 border border-cyan-500/50 md:border-cyan-800/30 md:group-hover/input:border-cyan-500/50 group-focus-within/input:border-cyan-400 group-focus-within/input:bg-[#080b10] group-focus-within/input:shadow-[inset_0_0_10px_rgba(6,182,212,0.1)] [clip-path:polygon(0_0,100%_0,100%_calc(100%-8px),calc(100%-8px)_100%,0_100%,0_15px)]";
   const iconClass = "pl-4 pr-3 transition-colors text-cyan-400 md:text-cyan-600 group-focus-within/input:text-cyan-400";
@@ -89,16 +89,16 @@ export default function ResetPassword({ params }: ResetPasswordProps) {
                 {/* Header Bar */}
                 <div className="flex items-center justify-between px-5 py-2.5 bg-[#0f1219] border-b border-cyan-800/20">
                     <div className="flex gap-1.5">
-                         <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></div>
-                         <div className="w-1.5 h-1.5 bg-purple-500/50 rounded-full"></div>
+                          <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></div>
+                          <div className="w-1.5 h-1.5 bg-purple-500/50 rounded-full"></div>
                     </div>
                     <span className="font-rajdhani text-[10px] tracking-[0.2em] text-cyan-400/80 font-semibold uppercase">Secure Update</span>
                 </div>
 
                 <div className="p-6">
                     <div className="text-center mb-6">
-                         <h1 className="font-orbitron text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] mb-1">RESET PASSWORD</h1>
-                         <p className="font-rajdhani text-xs text-cyan-500/50 uppercase tracking-[0.2em] font-medium">Enter New Credentials</p>
+                          <h1 className="font-orbitron text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] mb-1">RESET PASSWORD</h1>
+                          <p className="font-rajdhani text-xs text-cyan-500/50 uppercase tracking-[0.2em] font-medium">Enter New Credentials</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -111,7 +111,7 @@ export default function ResetPassword({ params }: ResetPasswordProps) {
                                 <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
                                 <div className={iconClass}><IoLockClosedOutline size={14} /></div>
                                 <input 
-                                    type="password" 
+                                    type={showPassword ? "text" : "password"} 
                                     placeholder="New Password" 
                                     value={password} 
                                     onChange={(e) => setPassword(e.target.value)} 
@@ -121,6 +121,13 @@ export default function ResetPassword({ params }: ResetPasswordProps) {
                                     autoCapitalize="off"
                                     className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
                                 />
+                                <button 
+                                    type="button" 
+                                    onClick={() => setShowPassword(!showPassword)} 
+                                    className="pr-4 text-cyan-400 md:text-cyan-700 md:hover:text-cyan-400 transition-colors outline-none"
+                                >
+                                    {showPassword ? <IoEyeOffOutline size={18} /> : <IoEyeOutline size={18} />}
+                                </button>
                              </div>
                         </div>
 
@@ -149,4 +156,3 @@ export default function ResetPassword({ params }: ResetPasswordProps) {
     </div>
   );
 }
-
