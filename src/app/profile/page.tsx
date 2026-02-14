@@ -6,9 +6,7 @@ import { signOut } from 'next-auth/react'
 import Image from 'next/image'
 import profileIcon from "@/assets/images/Robot_Profile.jpg";
 import React, { useContext, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { IoArrowBack, IoLogOutOutline, IoHardwareChipOutline, IoTimeOutline, IoSchoolOutline, IoCodeSlashOutline, IoWarningOutline, IoMailOutline, IoCallOutline, IoQrCodeOutline } from 'react-icons/io5'
+import { IoArrowBack, IoLogOutOutline, IoHardwareChipOutline, IoTimeOutline, IoSchoolOutline, IoCodeSlashOutline, IoWarningOutline, IoMailOutline, IoCallOutline, IoQrCodeOutline, IoListOutline } from 'react-icons/io5'
 import TransitionLink from '@/components/TransitionLink'
 
 
@@ -17,7 +15,7 @@ const Background = () => (
     <div className="absolute inset-0 bg-[#050508]"></div>
     <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen"></div>
     <div className="block lg:hidden absolute top-[20%] left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] bg-fuchsia-900/20 blur-[120px] rounded-full mix-blend-screen"></div>
-    <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[70vh] bg-cyan-900/25 blur-[100px] rounded-full mix-blend-screen"></div>
+    <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[70vh] bg-cyan-900/20 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[50px_50px] mask-[radial-gradient(ellipse_at_center,black_50%,transparent_90%)]"></div>
   </div>
 );
@@ -38,7 +36,6 @@ const DataRow = ({ label, value, icon: Icon, fullWidth = false }: { label: strin
 
 export default function ProfilePage() {
   const [loading, setLoading] = useState(false)
-  const router = useRouter()
   const data = useContext(userData)
   
   const handleSignOut = async () => {
@@ -52,7 +49,7 @@ export default function ProfilePage() {
   }
 
 
-  const btnShape = "relative flex items-center justify-center gap-2 px-6 py-2.5 rounded-full backdrop-blur-md border transition-all duration-300 shadow-lg group cursor-pointer overflow-hidden";
+  const btnShape = "relative flex items-center justify-center gap-2 px-4 py-2.5 rounded-full backdrop-blur-md border transition-all duration-300 shadow-lg group cursor-pointer overflow-hidden";
   
   
   const navBtnClass = `${btnShape} bg-cyan-950/40  border-cyan-500/50  lg:bg-black/30 lg:border-white/10 lg:hover:border-cyan-500/50 lg:hover:bg-cyan-950/40 lg:hover:shadow-cyan-500/20`;
@@ -138,7 +135,7 @@ export default function ProfilePage() {
           <div className="flex flex-col gap-4 grow">
              <div className="flex items-end justify-between border-b border-white/10 pb-2">
                 <h3 className="font-orbitron text-xl font-bold text-white tracking-wide flex items-center gap-2">
-                   <IoWarningOutline className="text-purple-400" /> MISSION_LOGS
+                   <IoListOutline className="text-purple-400" /> ACTIVE_REGISTRY
                 </h3>
              </div>
 

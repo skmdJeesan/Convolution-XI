@@ -125,14 +125,14 @@ const Navbar = () => {
     setActiveDropdown(activeDropdown === label ? null : label);
   };
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if ("scrollRestoration" in history) {
-        history.scrollRestoration = "manual";
-      }
-      window.scrollTo(0, 0);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     if ("scrollRestoration" in history) {
+  //       history.scrollRestoration = "manual";
+  //     }
+  //     window.scrollTo(0, 0);
+  //   }
+  // }, []);
 
   useEffect(() => {
     const handleScrollEvent = () => {
@@ -170,7 +170,7 @@ const Navbar = () => {
           fixed top-0 left-0 w-full z-1000 
           transition-transform duration-500 ease-in-out
           ${navVisibilityClass}
-          bg-black/20 backdrop-blur-xl border-b border-white/10 lg:bg-transparent lg:backdrop-blur-none lg:border-none
+          bg-black/5 backdrop-blur-xl border-b border-white/10 lg:bg-transparent lg:backdrop-blur-none lg:border-none
         `}
         onMouseEnter={() => {
           if (timerRef.current) clearTimeout(timerRef.current);
@@ -180,7 +180,7 @@ const Navbar = () => {
           startHideTimer();
         }}
       >
-        <div className="flex items-center justify-between px-4 py-2 md:px-8 md:py-3 w-full maxWidthForSections mx-auto">
+        <div className="flex items-center justify-between px-4 pt-2 md:pt-4 w-full mx-auto">
           
           {/*Logo*/}
           <div className="shrink-0 transition-transform hover:scale-105 duration-300 pointer-events-auto">

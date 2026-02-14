@@ -80,7 +80,7 @@ export default function Signin() {
 
       <TransitionLink 
         href="/" 
-        className="fixed top-6 left-6 z-50 flex items-center gap-2 px-6 py-2.5 bg-black/30 backdrop-blur-md border border-white/10 rounded-full hover:border-cyan-500/50 hover:bg-cyan-950/40 transition-all duration-300 shadow-lg group cursor-pointer overflow-hidden"
+        className="absolute top-6 left-6 z-50 flex items-center gap-2 px-4 py-2.5 bg-black/30 backdrop-blur-md border border-white/10 rounded-full hover:border-cyan-500/50 hover:bg-cyan-950/40 transition-all duration-300 shadow-lg group cursor-pointer overflow-hidden"
       >
         <IoArrowBack className="text-cyan-400 text-lg group-hover:-translate-x-1 transition-transform" />
         <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-cyan-100 group-hover:text-white uppercase">Return Home</span>

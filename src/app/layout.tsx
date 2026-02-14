@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Rajdhani, Orbitron } from "next/font/google";
 import "./globals.css";
 import ClientProvider from "@/components/ClientProvider";
+import Preloader from "@/components/Preloader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,7 +41,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${rajdhani.variable} ${orbitron.variable} antialiased bg-black`}
       > 
         <ClientProvider>
-          {/* <CustomCursor /> */}
+          {/* <Preloader/> */}
           {children}
         </ClientProvider>
       </body>

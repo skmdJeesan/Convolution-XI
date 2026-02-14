@@ -32,7 +32,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full py-10 bg-black overflow-hidden">
+    <div id="gallery" className="relative min-h-screen w-full py-10 bg-black overflow-hidden">
 
       {/* Background Section */}
       <div className="absolute inset-0 z-0 pointer-events-none">

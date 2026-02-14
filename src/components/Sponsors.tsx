@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 // import "@/app/sponsors.css";
+// Imports kept for when you uncomment the content later
 import techEle from "@/assets/images/ConvoSponsors/techno ele.webp";
 import exide from "@/assets/images/ConvoSponsors/Exide.webp";
 import megatherm from "@/assets/images/ConvoSponsors/Megatherm.png";
@@ -36,27 +37,32 @@ const Sponsors: React.FC = () => {
   };
 
   return (
-    <div id="sponsors" className="relative w-full min-h-screen">  
+    // Reduced min-height to 60vh as requested
+    <div id="sponsors" className="relative w-full min-h-[60vh] flex flex-col items-center justify-center">  
       {/* <Cursor magnetic /> */}
 
       {/* Grid Background */}
       <div className="tech-grid pointer-events-none" />
-      {/* Decorative Icons */}
-      <DecorativeIcons />
+    {/* Decorative Icons */}
 
-      <div className="py-12 h-full w-full">
+      <div className="py-12 h-full w-full relative z-10 flex flex-col items-center">
         <motion.div
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
-           className="flex flex-col items-center pointer-events-none select-none mb-5">
-          <h1 className="font-orbitron  font-bold  text-center text-3xl sm:text-4xl  tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase  ">
-          Our Sponsors
-          <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
-        </h1>
+           className="flex flex-col items-center pointer-events-none select-none mb-12">
+          <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
+            Our Sponsors
+            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
+          </h1>
         </motion.div>
 
+        {/* =============================================
+            PREVIOUS CONTENT (COMMENTED OUT)
+            =============================================
+        */}
+        {/*
         <div className="opacity-0 w-full h-full flex flex-col items-center justify-center">
           <motion.p 
             variants={sectionVariants}
@@ -74,22 +80,14 @@ const Sponsors: React.FC = () => {
             viewport={{ once: true, amount: 0.5 }}
             className="flex gap-4 justify-center mb-10">
             <a
-              // href="https://megatherm.com/"
               href="/"
               target="_blank"
               className="hover:scale-105 glassmorphism-bg p-3 rounded-lg"
             >
-              {/* <Image
-                src={megatherm}
-                alt="megatherm image"
-                className="object-cover h-full w-full"
-              ></Image> */}
               <p className="text-white/80 text-center">Coming Soon..</p>
             </a>
-            
           </motion.div>
 
-          {/* ----------------------co sponsor---------------- */}
           <motion.p 
             variants={sectionVariants}
             initial="hidden"
@@ -106,21 +104,14 @@ const Sponsors: React.FC = () => {
             viewport={{ once: true, amount: 0.5 }}
             className="flex gap-4 justify-center mb-10">
             <a
-              // href="https://www.raydus.com/"
               href="/"
               target="_blank"
               className="hover:scale-105 glassmorphism-bg p-3 rounded-lg"
             >
-              {/* <Image
-                src={raydus}
-                alt="exide image"
-                className="h-full w-full object-cover "
-              ></Image> */}
               <p className="text-white/80 text-center">Coming Soon..</p>
             </a> 
           </motion.div>
 
-          {/* -----------------------------associate--------------------- */}
           <motion.p 
             variants={sectionVariants}
             initial="hidden"
@@ -138,35 +129,22 @@ const Sponsors: React.FC = () => {
             className="flex gap-4 justify-center">
             <motion.a
               variants={itemVariants}
-              // href="https://www.exideindustries.com/"
               href="/"
               target="_blank"
               className="hover:scale-105 glassmorphism-bg p-3 rounded-lg"
             >
-              {/* <Image
-                src={exide}
-                alt="exide image"
-                className="h-full w-full object-cover"
-              ></Image> */}
               <p className="text-white/80 text-center">Coming Soon..</p>
             </motion.a>
             <motion.a
               variants={itemVariants}
-              //href="https://www.techno.co.in/"
               href="/"
               target="_blank"
               className="hover:scale-105 glassmorphism-bg p-3 rounded-lg"
             >
-              {/* <Image
-                src={techEle}
-                alt="exide image"
-                className="h-full w-full object-cover"
-              ></Image> */}
               <p className="text-white/80 text-center">Coming Soon..</p>
             </motion.a>
           </motion.div>
 
-          {/* -----------------------------event partners--------------------- */}
           <motion.p 
             variants={sectionVariants}
             initial="hidden"
@@ -188,76 +166,10 @@ const Sponsors: React.FC = () => {
               target="_blank"
               className="hover:scale-105 glassmorphism-bg p-3 rounded-lg"
             >
-              {/* <Image
-                src={iet}
-                alt="exide image"
-                className="h-full w-full object-cover"
-              ></Image> */}
               <p className="text-white/80 text-center">Coming Soon..</p>
             </motion.a>
-            {/* <motion.a
-              variants={itemVariants}
-              href="http://ieeepeskolkata.org/#:~:text=The%20Power%20%26%20Energy%20Society%20"
-              target="_blank"
-              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-22 w-40"
-            >
-              <Image
-                src={pes}
-                alt="exide image"
-                className="h-full w-full object-cover"
-              ></Image>
-            </motion.a>
-            <motion.a
-              variants={itemVariants}
-              href="http://www.ieeespskolkata.org/"
-              target="_blank"
-              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-22 w-40"
-            >
-              <Image
-                src={sps}
-                alt="exide image"
-                className="h-full w-full object-cover"
-              ></Image>
-            </motion.a>
-            <motion.a
-              variants={itemVariants}
-              href="https://ewh.ieee.org/r10/calcutta/deis/"
-              target="_blank"
-              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-22 w-40"
-            >
-              <Image
-                src={deis}
-                alt="exide image"
-                className="h-full w-full object-cover"
-              ></Image>
-            </motion.a>
-            <motion.a
-              variants={itemVariants}
-              href="https://www.comsoc.org/"
-              target="_blank"
-              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-22 w-40"
-            >
-              <Image
-                src={comsoc}
-                alt="exide image"
-                className="h-full w-full object-cover"
-              ></Image>
-            </motion.a>
-            <motion.a
-              variants={itemVariants}
-              href="https://www.neoteletronix.com/"
-              target="_blank"
-              className="hover:scale-105 glassmorphism-bg p-3 rounded-lg h-22 w-40"
-            >
-              <Image
-                src={ntpl}
-                alt="exide image"
-                className="h-full w-full object-cover"
-              ></Image>
-            </motion.a> */}
           </motion.div>
 
-          {/* ---------------------------------media partners--------------------- */}
           <motion.p 
             variants={sectionVariants}
             initial="hidden"
@@ -275,22 +187,24 @@ const Sponsors: React.FC = () => {
               target="_blank"
               className="hover:scale-105 glassmorphism-bg p-3 rounded-lg"
             >
-              {/* <Image
-                src={telegraph}
-                alt="megatherm image"
-                className="h-full w-full object-cover"
-              ></Image> */}
               <p className="text-white/80 text-center">Coming Soon..</p>
             </a>
           </motion.div>
         </div>
+        */}
 
+        {/* =============================================
+            ACTIVE COMING SOON TEXT
+            (Modified from original: removed absolute positioning, made opaque)
+            =============================================
+        */}
         <motion.div 
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 pointer-events-none">
+          className="relative mt-8 opacity-100" // Changed from absolute/opacity-30 to relative/opacity-100
+        >
           <h2 className="text-5xl md:text-6xl lg:text-8xl font-rajdhani font-semibold text-white tracking-tighter whitespace-nowrap capitalize">
             Coming <span className="text-transparent font-rajdhani w-fit bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">soon..</span>
           </h2>

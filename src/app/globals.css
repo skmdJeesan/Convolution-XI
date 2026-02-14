@@ -620,3 +620,25 @@ body {
   transform: translateY(40px);
   filter: blur(12px);
 }
+
+/* Custom Scrollbar */
+
+::-webkit-scrollbar {
+  width: 2px; /* Width of the scrollbar */
+  height: 2px; /* Height of the scrollbar (for horizontal scrollbars) */
+}
+
+::-webkit-scrollbar-track {
+  padding: 0;
+  background: #000106c2; /* Background color of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1b5f73; /* Color of the scrollbar thumb */
+  border-radius: 100vw; /* Rounded corners for the thumb */
+}
+
+/* Hover effect (Optional but looks nice) */
+::-webkit-scrollbar-thumb:hover {
+  background: #227690; 
+}
