@@ -5,6 +5,8 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import TransitionLink from "@/components/TransitionLink";
 import { IoArrowBack } from "react-icons/io5";
+import logo from "@/assets/images/SparkHack/Sparkhack logo.webp";
+
 
 export default function About() {
   const { data: session } = useSession();
@@ -45,7 +47,7 @@ export default function About() {
         {/* Logo */}
         <div className="relative w-[80vw] max-w-[450px] h-auto aspect-[3/1.2]">
             <Image
-                src="/SparkHack/Sparkhack logo.webp"
+                src={logo}
                 alt="SparkHack Logo"
                 fill
                 className="object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)]"
@@ -66,7 +68,7 @@ turn that spark into innovation.
         <div className="mt-4">
           {session ? (
         //    user logged in
-            <div className="flex items-center gap-2 px-8 py-3 bg-[#8FE3F0] backdrop-blur-md border border-white/10 rounded-full cursor-not-allowed opacity-70">
+            <div className="flex items-center gap-2 px-8 py-3 bg-[#2c9bac] backdrop-blur-md border border-white/10 rounded-full cursor-not-allowed opacity-70">
               <span className="font-orbitron text-sm md:text-base font-bold  tracking-wide text-white">
                 Registrations not started yet
               </span>
@@ -77,7 +79,7 @@ turn that spark into innovation.
               href="/login"
               className="
 
-              shadow-white/40 hover:bg-white hover:text-[#8FE3F0] hover:text-shadow-light hover:opacity-90 bg-[#8FE3F0]  group flex items-center gap-2 px-5 py-3 
+              shadow-white/40 hover:bg-white hover:text-[#8FE3F0] hover:text-shadow-light hover:opacity-90 bg-[#2c9bac]  group flex items-center gap-2 px-5 py-3 
                  backdrop-blur-md rounded-full 
                 transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
               "
