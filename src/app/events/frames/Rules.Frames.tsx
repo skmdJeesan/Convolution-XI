@@ -2,15 +2,16 @@ import React from "react";
 import Image from "next/image";
 
 const rules = [
-  "This is a competitive programming event.",
-  "There will be two rounds: Prelims and Finals.",
-  "Prelims will be conducted online on 17th February.",
-  "Top 20 participants will be selected for the on-site Finals.",
-  "Individual participation in both rounds (no teams).",
-  "There will be 5-6 questions of varying difficulty in each round, with a time limit of 2 hours.",
-  "Score per question will be based on difficulty, with ties between participants broken by time taken to solve.",
-  "Both rounds will be conducted on Hackerrank.",
-  "Finalists are to carry laptops."
+ "The event has no theme in particular. Photos of any theme will be accepted.",
+  "Format: JPEG/JPG format",
+  "Photo Dimensions: 2×3 / 4×6 / 8×12 (inch)",
+  "Max 2 photos are to be submitted (for each participant).",
+  "Post-Processing: ALLOWED: Color Correction, Removal of dust, Cropping, Reasonable adjustments to exposure and contrast.",
+  "Post-Processing: NOT ALLOWED: Watermarks/Any logo, Borders, Manipulation, Staging or re-enacting events, painting in object details.",
+  "Photo size limit: Within 30 MB",
+  "Photo manipulation and plagiarism will lead to disqualification.",
+  "A caption (in English) is required for the photo, within 25 words, holding 25% weightage during judgment.",
+  "A screenshot of the Metadata of your photo is required. Failure to provide one will result in disqualification (considered as plagiarism)."
 ];
 
 const Rules = () => {

@@ -28,7 +28,7 @@ export default function About() {
         {/* Logo */}
         <div className="relative w-[80vw] max-w-[450px] h-auto aspect-[3/1.2]">
             <Image
-                src="/Algomaniac/logo.png"
+                src="/SparkHack/Sparkhack logo.webp"
                 alt="Algomaniac Logo"
                 fill
                 className="object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)]"
@@ -37,7 +37,13 @@ export default function About() {
         </div>
 
         <p className="font-rajdhani text-white sm:text-xl text-base font-semibold leading-relaxed tracking-wide drop-shadow-md max-w-3xl">
-          An event focusing on competitive programming, this targets participants who wish to challenge their minds by engaging in solving puzzling problems and mind-boggling tasks by what engineers strive for – coding!
+         SparkHack is Eastern India’s flagship hackathon, focused on engineering technological
+solutions to real-world challenges. The event brings together teams to ideate, design, and build
+impactful prototypes with strong relevance in the real world. Participants present their ideas
+before a panel of renowned academicians and industry experts, gaining valuable feedback and
+exposure. If you have an idea that could drive meaningful change, SparkHack is the platform to
+turn that spark into innovation.
+
         </p>
 
         <div className="mt-4">

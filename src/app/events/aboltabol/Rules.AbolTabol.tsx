@@ -1,17 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-const rules = [
-  "This is a competitive programming event.",
-  "There will be two rounds: Prelims and Finals.",
-  "Prelims will be conducted online on 17th February.",
-  "Top 20 participants will be selected for the on-site Finals.",
-  "Individual participation in both rounds (no teams).",
-  "There will be 5-6 questions of varying difficulty in each round, with a time limit of 2 hours.",
-  "Score per question will be based on difficulty, with ties between participants broken by time taken to solve.",
-  "Both rounds will be conducted on Hackerrank.",
-  "Finalists are to carry laptops."
-];
 
 const Rules = () => {
   return (
@@ -48,11 +38,34 @@ const Rules = () => {
           </h1>
           
           <ul className="space-y-4 font-rajdhani text-white text-base md:text-xl font-medium list-disc list-outside ml-4 md:ml-6 marker:text-cyan-400">
-            {rules.map((text, index) => (
-              <li key={index} className="pl-2 leading-relaxed drop-shadow-sm">
-                {text}
-              </li>
-            ))}
+                <li  className="pl-2 leading-relaxed drop-shadow-sm">
+            This event is based on 'Bahfest', for more clarification <span><Link href='http://bahfest.com/' className="underline underline-offset-2">click here</Link></span>
+            </li>
+            <li className="pl-2 leading-relaxed drop-shadow-sm">
+            Event comprises two rounds:
+              <ol  style={{ listStyleType: 'lower-alpha' }} className=" ml-6 list-inside">
+                <li className="pl-2 leading-relaxed drop-shadow-sm">
+                Online Screening round
+                </li>
+                <li className="pl-2 leading-relaxed drop-shadow-sm">
+                Offline Presentation round. Each team can have 1-4 members.
+                </li>
+              </ol>
+            </li>
+            <li>The teams have to submit an abstract for their ideas for the first round. Top 9 teams will be shortlisted for the offline presentation round.
+            </li>
+            <li className="pl-2 leading-relaxed drop-shadow-sm">
+            Judging criteria are as follows:
+              <ol className="ml-6 list-inside" style={{ listStyleType: 'lower-alpha' }}>
+                <li className="pl-2 leading-relaxed drop-shadow-sm">Comic sense of the presentation
+                </li>
+                <li className="pl-2 leading-relaxed drop-shadow-sm">How “logically illogical” the presentation is</li>
+                <li className="pl-2 leading-relaxed drop-shadow-sm">Relevance of the topic in case of a tie</li>
+              </ol>
+            </li>
+            <li className="pl-2 leading-relaxed drop-shadow-sm">
+            There will be a maximum of 20 slides and a minimum of 6 slides for the presentation. Each team will have to complete their presentation within 9 minutes.
+            </li>
           </ul>
         </div>
       </div>

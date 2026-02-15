@@ -4,21 +4,26 @@ import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa6'; 
 
 const Data = [
+   {
+      question: "What makes Abol Tabol suitable for students from different fields?",
+      answer: 
+        "Abol Tabol is designed as a multidisciplinary platform that celebrates the diversity of student interests. The show's content is carefully curated to include a broad spectrum of topics, ensuring that whether you're studying sciences, humanities, arts, engineering, or any other field, there's something intriguing and entertaining for everyone. Abol Tabol creates a space where the intersections of different disciplines lead to unexpected and delightful intellectual hilarity.",
+  },
   {
-        question: "How will the finalists be chosen?",
-        answer: 
-          " The participants of the Prelims will be ordered by their total score, with ties broken by time taken to solve. Top 20 participants in the leaderboard will be selected for the Finals.",
-    },
-    {
-        question: "When and where will the finals be held?",
-        answer: 
-          "The final round is set for February 22, 2024 (Saturday) at the Central Computer Laboratory, Department of Electrical Engineering, Jadavpur University. Please plan your travel accordingly, and on-site parking will be available for your convenience. Looking forward to a successful event!",
-    },
-    {
-        question: "Will I have to carry a laptop for the final round?",
-        answer: 
-          "Finalists are requested to carry their own laptops. Additionally, participants are also encouraged to ensure that their laptops are equipped with the necessary software and configurations for the competition. Please be advised to bring any specific peripherals or adapters that may be required for your devices.",
-    },
+      question: "What types of hypotheses are accepted at Abol Tabol?",
+      answer: 
+        "We welcome hypotheses from all fields of science, ranging from physics and biology to psychology and beyond. The only requirement is that your hypothesis is both scientifically plausible and hilariously absurd!",
+  },
+  {
+      question: "Do I need to be a science major to participate in Abol Tabol?",
+      answer: 
+        "Not at all! Abol Tabol thrives on the rich tapestry of ideas that students from various majors bring to the table. Whether you're majoring in a scientific discipline or pursuing studies in the arts, humanities, or social sciences, your unique perspective is valued. The show is a fantastic opportunity to explore the humorous side of your field or even playfully venture into the realms of other disciplines.",
+  },
+  {
+      question: "How can student participants contribute their ideas to the show?",
+      answer: 
+        "Students can actively engage with Abol Tabol by submitting their whimsical and imaginative ideas related to their respective fields. This can take various forms, such as crafting stand-up comedy routines, creating humorous sketches, or exploring comedic perspectives on specific topics within their majors. The emphasis is on embracing creativity and showcasing the lighter side of intellectual pursuits, fostering a sense of community and shared laughter.",
+  },
 ];
 
 export default function Faq() {

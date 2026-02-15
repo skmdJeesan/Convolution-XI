@@ -28,8 +28,8 @@ export default function About() {
         {/* Logo */}
         <div className="relative w-[80vw] max-w-[450px] h-auto aspect-[3/1.2]">
             <Image
-                src="/Algomaniac/logo.png"
-                alt="Algomaniac Logo"
+                src="/AbolTabol/Abol Tabol logo.webp"
+                alt="AbolTabol Logo"
                 fill
                 className="object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)]"
                 priority
@@ -37,7 +37,12 @@ export default function About() {
         </div>
 
         <p className="font-rajdhani text-white sm:text-xl text-base font-semibold leading-relaxed tracking-wide drop-shadow-md max-w-3xl">
-          An event focusing on competitive programming, this targets participants who wish to challenge their minds by engaging in solving puzzling problems and mind-boggling tasks by what engineers strive for – coding!
+         Inspired by the legendary tradition of MIT’s BAH (Bad Ad Hoc Hypothesis) Fest, Abol Tabol is a
+celebration of brilliantly engineered absurdity where logic is stretched to its limits and
+hypotheses survive on imagination and audacity. Participants are invited to craft and present
+their wildest, most delightfully questionable pseudo-scientific theories—delivered with wit and
+confidence—for a chance to take the spotlight on stage.
+
         </p>
 
         <div className="mt-4">

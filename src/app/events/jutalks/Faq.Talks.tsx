@@ -4,21 +4,26 @@ import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa6'; 
 
 const Data = [
-  {
-      question: "Can cross - year or cross - college teams be formed ?",
+ {
+      question: " What is the objective of JU Talks?",
       answer: 
-        "Teams must consist of students from the same academic year since the competition is year-based. However, forming cross-college teams is permitted. This structure ensures a level playing field by minimizing disparities in experience and resources among participants, while also fostering a stronger sense of camaraderie and collaboration within the teams.",
-  },
-  {
-      question: "What will the participants need to bring for the prelims and finals of the event ?",
+        " JU Talks seeks to unite industry experts, veterans,  technology specialists in a bid to examine the challenges, pace, and advances that characterize our current environment. Such events facilitate the interaction of ideas, thus allowing the participants to get a different outlook.",
+    },
+    {
+      question: "Who will be the speakers at the event?",
       answer: 
-        "Participants only need to bring pens & calculators on the day of Prelims, sheets for rough working will be provided during the test. For the Finals, whatever the participants need will be provided to them, such as electronic components and datasheets.",
-  },
-  {
-      question: "What will be the level of questions asked in the Prelims, and what about the Final problem?",
+        "In the previous editions of JU Talks, various prominent figures have attended such an occasion, ranging from industrialists, veterans to technology specialists & well known faces from artistic fields. The panelists of this edition will be announced soon, so stay tuned !",
+    },
+    {
+      question: "How can the audience participate during JU Talks?",
       answer: 
-        "The Prelims will feature MCQ and NAT-type questions, with difficulty levels tailored to each respective Tier. The questions will be primarily conceptual and formula-based, mostly of a moderate level of difficulty. For the Finals, participants will need logical and circuit-building skills. Be prepared for an exciting challenge!",
-  },
+        "In this podcast method, listeners are expected to  interact with the leaders by asking them questions, expressing confusion, and having meaningful conversations with them. This guarantees a productive and pleasant experience to everyone indeed.",
+    },
+    {
+      question: "Will there be any specified topic?",
+      answer: 
+        "Yes, a topic will be selected by our team related to modern societal issues & our panelists will be giving their valuable insights on that particular subject.",
+    },
 ];
 
 export default function Faq() {

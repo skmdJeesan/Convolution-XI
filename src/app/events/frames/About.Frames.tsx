@@ -28,8 +28,8 @@ export default function About() {
         {/* Logo */}
         <div className="relative w-[80vw] max-w-[450px] h-auto aspect-[3/1.2]">
             <Image
-                src="/Algomaniac/logo.png"
-                alt="Algomaniac Logo"
+                src="/Frames/logo.png"
+                alt="24 Frames Logo"
                 fill
                 className="object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)]"
                 priority
@@ -37,7 +37,12 @@ export default function About() {
         </div>
 
         <p className="font-rajdhani text-white sm:text-xl text-base font-semibold leading-relaxed tracking-wide drop-shadow-md max-w-3xl">
-          An event focusing on competitive programming, this targets participants who wish to challenge their minds by engaging in solving puzzling problems and mind-boggling tasks by what engineers strive for – coding!
+         Unleash your creativity in 24 Frames, an open-theme as well as a particular theme, also
+present this time. A photography contest that invites participants to tell compelling stories
+through their lenses. Submit your photographs along with captions and compete for both the
+Judges’ Choice and People’s Choice awards. The top 24 entries will be shortlisted and
+showcased for public voting. Participants are required to adhere strictly to the event
+guidelines—original work only, with no plagiarism or watermarks. Let your lens do the talking.
         </p>
 
         <div className="mt-4">

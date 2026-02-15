@@ -5,20 +5,25 @@ import { FaPlus } from 'react-icons/fa6';
 
 const Data = [
   {
-      question: "Can cross - year or cross - college teams be formed ?",
-      answer: 
-        "Teams must consist of students from the same academic year since the competition is year-based. However, forming cross-college teams is permitted. This structure ensures a level playing field by minimizing disparities in experience and resources among participants, while also fostering a stronger sense of camaraderie and collaboration within the teams.",
-  },
-  {
-      question: "What will the participants need to bring for the prelims and finals of the event ?",
-      answer: 
-        "Participants only need to bring pens & calculators on the day of Prelims, sheets for rough working will be provided during the test. For the Finals, whatever the participants need will be provided to them, such as electronic components and datasheets.",
-  },
-  {
-      question: "What will be the level of questions asked in the Prelims, and what about the Final problem?",
-      answer: 
-        "The Prelims will feature MCQ and NAT-type questions, with difficulty levels tailored to each respective Tier. The questions will be primarily conceptual and formula-based, mostly of a moderate level of difficulty. For the Finals, participants will need logical and circuit-building skills. Be prepared for an exciting challenge!",
-  },
+        question: "Are cross-college teams allowed to participate in Inquizzitive?",
+        answer: 
+          "Yes, it is open to undergraduate and postgraduate students; cross-college and cross-year teams allowed.",
+    },
+    {
+        question: "What is the format of the quiz?",
+        answer: 
+          "Two rounds: Preliminary Round (top 8 qualify for finals ) and Final Round (top 3 will win cash prizes).",
+    },
+    {
+        question: "When and where will the event be held?",
+        answer: 
+          "Offline on campus; Preliminary Round starts on 20th February 2025 at 2:30 p.m .Finals will follow the prelims.",
+    },
+    {
+        question: "Will questions be asked only on Electrical Engineering subjects?",
+        answer: 
+          "No , not at all. It will be a general knowledge quiz where your wit will be put to the test.",
+    },
 ];
 
 export default function Faq() {

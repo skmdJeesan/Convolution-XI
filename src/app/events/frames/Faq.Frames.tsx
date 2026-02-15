@@ -5,19 +5,19 @@ import { FaPlus } from 'react-icons/fa6';
 
 const Data = [
   {
-      question: "Can cross - year or cross - college teams be formed ?",
+      question: "Is there a registration fee to participate in the contest?",
       answer: 
-        "Teams must consist of students from the same academic year since the competition is year-based. However, forming cross-college teams is permitted. This structure ensures a level playing field by minimizing disparities in experience and resources among participants, while also fostering a stronger sense of camaraderie and collaboration within the teams.",
+        "No, there is no registration fee. The contest is completely free and open to all students.",
   },
   {
-      question: "What will the participants need to bring for the prelims and finals of the event ?",
+      question: "Can I submit photos taken with a smartphone for the event?",
       answer: 
-        "Participants only need to bring pens & calculators on the day of Prelims, sheets for rough working will be provided during the test. For the Finals, whatever the participants need will be provided to them, such as electronic components and datasheets.",
+        "Yes, absolutely! Our photography competition is open to entries captured with any type of camera, including smartphones. We believe that creativity knows no bounds, and stunning images can be produced with a variety of devices.",
   },
   {
-      question: "What will be the level of questions asked in the Prelims, and what about the Final problem?",
+      question: "Is there a specific theme for the photography competition?",
       answer: 
-        "The Prelims will feature MCQ and NAT-type questions, with difficulty levels tailored to each respective Tier. The questions will be primarily conceptual and formula-based, mostly of a moderate level of difficulty. For the Finals, participants will need logical and circuit-building skills. Be prepared for an exciting challenge!",
+        "We encourage diversity and creativity in submissions. There is no specific theme for this competition, allowing photographers to showcase their skills and perspectives across a broad range of subjects. Whether it's portraits, landscapes, abstracts, or street photography, we welcome your unique vision.",
   },
 ];
 

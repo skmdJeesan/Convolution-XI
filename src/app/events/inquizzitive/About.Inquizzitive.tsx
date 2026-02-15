@@ -28,8 +28,8 @@ export default function About() {
         {/* Logo */}
         <div className="relative w-[80vw] max-w-[450px] h-auto aspect-[3/1.2]">
             <Image
-                src="/Algomaniac/logo.png"
-                alt="Algomaniac Logo"
+                src="/Inquizzitive/logo.png"
+                alt="Inquizzitive Logo"
                 fill
                 className="object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)]"
                 priority
@@ -37,7 +37,13 @@ export default function About() {
         </div>
 
         <p className="font-rajdhani text-white sm:text-xl text-base font-semibold leading-relaxed tracking-wide drop-shadow-md max-w-3xl">
-          An event focusing on competitive programming, this targets participants who wish to challenge their minds by engaging in solving puzzling problems and mind-boggling tasks by what engineers strive for – coding!
+          “Does Your Gray Matter?”
+Convolution XI proudly presents its classic quiz event, Inquizzitive - where curiosity meets
+awareness. Designed to challenge and inspire, the quiz spans a diverse range of topics,
+including pop culture, music, entertainment, literature, arts, sports, tech, and even the most
+unexpectedly niche subjects. Emphasizing teamwork and collective thinking, Inquizzitive
+promises every participant an engaging and intellectually stimulating experience.
+Kindly note that this event is strictly a U-25 quiz.
         </p>
 
         <div className="mt-4">

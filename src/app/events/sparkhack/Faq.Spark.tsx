@@ -4,21 +4,36 @@ import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa6'; 
 
 const Data = [
-  {
-      question: "Can cross - year or cross - college teams be formed ?",
+   {
+      question: " Is SparkHack an offline or online event?",
       answer: 
-        "Teams must consist of students from the same academic year since the competition is year-based. However, forming cross-college teams is permitted. This structure ensures a level playing field by minimizing disparities in experience and resources among participants, while also fostering a stronger sense of camaraderie and collaboration within the teams.",
-  },
-  {
-      question: "What will the participants need to bring for the prelims and finals of the event ?",
+        " Round 1 and 2 are conducted online, with teams submitting presentations and pitching ideas remotely. After the results of Round 2 are released on 17th February, the top 10 teams can build their prototypes remotely from 17th to 20th February. However, to be eligible for prizes, the top 10 teams must present their prototypes offline on 21st February at the Electrical Engineering Department of Jadavpur University.",
+    },
+    {
+      question: " Is coding experience required to participate in SparkHack?",
       answer: 
-        "Participants only need to bring pens & calculators on the day of Prelims, sheets for rough working will be provided during the test. For the Finals, whatever the participants need will be provided to them, such as electronic components and datasheets.",
-  },
-  {
-      question: "What will be the level of questions asked in the Prelims, and what about the Final problem?",
+        "SparkHack welcomes beginners-anyone who is enthusiastic about technology with a zeal for learning to try , learn and contribute.",
+    },
+    {
+      question: "Can a team work on multiple problem statements during SparkHack?",
       answer: 
-        "The Prelims will feature MCQ and NAT-type questions, with difficulty levels tailored to each respective Tier. The questions will be primarily conceptual and formula-based, mostly of a moderate level of difficulty. For the Finals, participants will need logical and circuit-building skills. Be prepared for an exciting challenge!",
-  },
+        "No, each team must choose one problem statement to work on throughout the competition.",
+    },
+    {
+      question: "Are only software-based solutions allowed in SparkHack?",
+      answer: 
+        "No, both hardware and software-based solutions are allowed. Teams can choose problem statements based on their expertise and interests, whether they involve hardware implementation, software development, or a combination of both.",
+    },
+    {
+      question: "Will the necessary equipment be provided for the offline round?",
+      answer: 
+        "No, participants must bring their own equipment. Teams working on hardware problem statements are required to bring their own hardware kits, while those working on software problem statements must bring their own laptops.",
+    },
+    {
+      question: "When will registration end?",
+      answer: 
+        "The deadline for registering for SparkHack is on 11th February, 6:30pm while that for the submissions is open till 11th February, 11:59pm .",
+    },
 ];
 
 export default function Faq() {

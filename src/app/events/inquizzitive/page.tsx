@@ -1,11 +1,11 @@
 "use client";
 
 import EventNav from "@/components/EventNavbar";
-import Footer from "./Footer.Algo";
-import Faq from "./Faq.Algo";
-import About from "./About.Algo";
-import Rules from "./Rules.Algo";
-import Team from "./EventLeads.Algo";
+import Footer from "./Footer.Inquizzitive";
+import Faq from "./Faq.Inquizzitive";
+import About from "./About.Inquizzitive";
+import Rules from "./Rules.Inquizzitive";
+import Team from "./EventLeads.Inquizzitive";
 
 function page() {
   return (

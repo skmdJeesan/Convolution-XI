@@ -21,33 +21,6 @@ const events = [
     { name: "24 Frames", href: "/events/frames" },
 ];
 
-//PARTICLES COMPONENT
-const Particles = () => {
-    const [mounted, setMounted] = useState(false);
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-    if (!mounted) return null;
-    const particles = Array.from({ length: 60 });
-    return (
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-            {particles.map((_, i) => (
-                <div
-                    key={i}
-                    className="absolute w-0.5 h-0.5 bg-cyan-400/60 rounded-full animate-particle"
-                    style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 100}%`,
-                        animationDelay: `${Math.random() * 5}s`,
-                        animationDuration: `${10 + Math.random() * 20}s`,
-                        opacity: Math.random() * 0.5 + 0.2,
-                    }}
-                />
-            ))}
-        </div>
-    );
-};
-
 export default function Footer() {
     const { ref, breakTheText } = useWaveText({
         scrub: 4,
