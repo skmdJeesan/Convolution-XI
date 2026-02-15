@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import TransitionLink from "@/components/TransitionLink";
 import { IoArrowBack } from "react-icons/io5";
-import logo from "@/assets/images/SparkHack/Sparkhack logo.webp";
+import logo from "@/assets/images/Sparkhack/Sparkhack logo.webp";
 
 
 export default function About() {
