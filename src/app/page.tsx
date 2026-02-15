@@ -36,14 +36,14 @@ export default function Home() {
   return (
     <main className="bg-black w-full min-h-screen">
       <Navbar/>
-      {/* <HeroSection /> */}
+      <HeroSection />
       <HomeAbout />
       {/* <Timeline/> */}
       <Team />
       <Gallery/>
       <Sponsors/>
       <FaqSection />
-      {/* {shouldLoadBot && <WhiteBot />}   */}
+      {shouldLoadBot && <WhiteBot />}  
       <Footer />
     </main>
   );

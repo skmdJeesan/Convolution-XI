@@ -167,7 +167,7 @@ const Navbar = () => {
     <>
       <header
         className={`
-          fixed top-0 left-0 w-full z-1000 px-4 
+          fixed top-0 left-0 w-full z-1000 
           transition-transform duration-500 ease-in-out
           ${navVisibilityClass}
           bg-black/5 backdrop-blur-xl border-b border-white/10 lg:bg-transparent lg:backdrop-blur-none lg:border-none
@@ -180,7 +180,7 @@ const Navbar = () => {
           startHideTimer();
         }}
       >
-        <div className="flex items-center justify-between px-4 pt-2 md:pt-4 w-full mx-auto">
+        <div className="flex items-center justify-between px-2 lg:px-4 pt-2 md:pt-4 w-full mx-auto">
           
           {/*Logo*/}
           <div className="shrink-0 transition-transform hover:scale-105 duration-300 pointer-events-auto">
@@ -188,7 +188,7 @@ const Navbar = () => {
               <Image
                 src={ConvoLogo}
                 alt="convo logo"
-                className="object-contain h-9 w-auto md:h-12 md:drop-shadow-xl"
+                className="object-contain h-9 w-auto md:h-11 md:drop-shadow-xl"
               />
             </Link>
           </div>

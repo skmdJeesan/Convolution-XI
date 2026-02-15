@@ -367,24 +367,24 @@ function HeroSection() {
     const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop' | null>(null);
 
     // Smart Scroll Logic
-    useEffect(() => {
-        if ('scrollRestoration' in history) {
-            history.scrollRestoration = 'auto';
-        }
+    // useEffect(() => {
+    //     if ('scrollRestoration' in history) {
+    //         history.scrollRestoration = 'auto';
+    //     }
 
-        const handleSmartScroll = () => {
-            const currentScroll = window.scrollY;
-            const heroHeight = window.innerHeight;
+    //     const handleSmartScroll = () => {
+    //         const currentScroll = window.scrollY;
+    //         const heroHeight = window.innerHeight;
 
-            if (currentScroll < heroHeight * 0.9) {
-                window.scrollTo({ top: 0, behavior: 'instant' });
-            }
-        };
+    //         if (currentScroll < heroHeight * 0.9) {
+    //             window.scrollTo({ top: 0, behavior: 'instant' });
+    //         }
+    //     };
 
-        handleSmartScroll();
-        const timer = setTimeout(handleSmartScroll, 50);
-        return () => clearTimeout(timer);
-    }, []);
+    //     handleSmartScroll();
+    //     const timer = setTimeout(handleSmartScroll, 50);
+    //     return () => clearTimeout(timer);
+    // }, []);
 
     useEffect(() => {
         const handleResize = () => {
