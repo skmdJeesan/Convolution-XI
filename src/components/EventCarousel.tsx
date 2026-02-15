@@ -82,13 +82,9 @@ const events: Event[] = [
 ];
 
 const EventCarousel: React.FC = () => {
-  // 1. State to track the manual rotation angle
   const [currDeg, setCurrDeg] = useState<number>(0);
-
-  // 2. Calculate the angle for a single step (360 / 9 = 40 degrees)
   const stepDeg = 360 / events.length;
 
-  // 3. Handlers to update state
   const rotateLeft = () => {
     setCurrDeg((prev) => prev + stepDeg);
   };
@@ -99,12 +95,16 @@ const EventCarousel: React.FC = () => {
 
   return (
     <div className={styles.bodyContainer}>
+      
+      {/* 1. ANGULAR WIDTH BLOCKERS (2D CURTAINS) */}
+      <div className={styles.interactionZoneContainer}>
+        <div ></div>
+        <div ></div>
+      </div>
+
       <div className={styles.carousel}>
         
-        {/* Controls:
-            Added onClick to handle the TypeScript state rotation.
-            Kept the inputs to handle the CSS-only direction reversal.
-        */}
+        {/* Controls */}
         <div 
           className={`${styles.carouselControlButton} ${styles.left}`}
           onClick={rotateLeft}
@@ -132,10 +132,12 @@ const EventCarousel: React.FC = () => {
              </div>
         </div>
 
-        {/* 4. NEW WRAPPER: .manualRotater
-            This div physically rotates the entire ring by 40deg steps 
-            when buttons are clicked.
+        {/* 2. DEPTH BLOCKER (INVISIBLE WALL) 
+            It must be HERE: Inside 'carousel' (for 3D space) 
+            but OUTSIDE 'manualRotater' (so it doesn't spin).
         */}
+        <div className={styles.depthBlocker}></div>
+
         <div 
           className={styles.manualRotater}
           style={{ 
@@ -156,24 +158,29 @@ const EventCarousel: React.FC = () => {
                       '--_image-url': `url('${event.image}')`,
                     } as React.CSSProperties}
                   >
-                    <div className={styles.cardContent}>
-                      <div className={styles.iconContainer}>
-                        {event.icon}
-                      </div>
-                      <h3 className={styles.cardTitle}>{event.title}</h3>
-                      <p className={styles.cardDesc}>{event.desc}</p>
-                      <a href={`/events/${event.id}`} className={styles.exploreBtn}>
-                        Explore <FaArrowRight className="ml-2" />
-                      </a>
+                    <div className={`${styles.cardFace} ${styles.cardFaceFront}`}>
+                        <div className={styles.cardContent}>
+                          <div className={styles.iconContainer}>
+                            {event.icon}
+                          </div>
+                          <h3 className={styles.cardTitle}>{event.title}</h3>
+                          <p className={styles.cardDesc}>{event.desc}</p>
+                          <a href={`/events/${event.id}`} className={styles.exploreBtn}>
+                            Explore <FaArrowRight className="ml-2" />
+                          </a>
+                        </div>
                     </div>
+                    <div className={`${styles.cardFace} ${styles.cardFaceBack}`}></div>
+                    <div className={`${styles.cardFace} ${styles.cardFaceRight}`}></div>
+                    <div className={`${styles.cardFace} ${styles.cardFaceLeft}`}></div>
+                    <div className={`${styles.cardFace} ${styles.cardFaceTop}`}></div>
+                    <div className={`${styles.cardFace} ${styles.cardFaceBottom}`}></div>
                   </li>
                 ))}
                 <li className={styles.carouselGround}></li>
               </ul>
             </div>
         </div>
-        {/* End manualRotater */}
-
       </div>
     </div>
   );

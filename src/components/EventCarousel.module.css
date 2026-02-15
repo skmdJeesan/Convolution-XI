@@ -1,10 +1,11 @@
 /* EventCarousel.module.css */
+
+/* --- CORE VARIABLES & CONTAINER --- */
 .bodyContainer {
   --carousel-transition-duration: 250ms;
   --carousel-transition-ease: ease-out;
   --carousel-bg-color-rgb: 0, 0, 0;
   --carousel-shadow-color-rgb: 128, 128, 128;
-  /* Adjusted size as per your code */
   --carousel-item-width: 17rem; 
   --carousel-item-height: 25rem;
   --carousel-item-hover-effect: 1.075;
@@ -21,7 +22,9 @@
   --carousel-animation-duration: 35s; 
   --carousel-animation-play-state: running;
   --carousel-direction-animation-play-state: paused;
-
+  
+  --card-thickness: 2.5rem; /* 3D Depth */
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,9 +32,68 @@
   background-color: rgb(var(--carousel-bg-color-rgb));
   overflow: hidden;
   position: relative;
+
+  /* --- NEW BACKGROUND AESTHETIC --- */
+  
+  /* 1. Deep "Tech" Base Color */
+  background-color: #000000; /* Deep Slate Black */
+
+  /* 2. Ambient Atmosphere (Cyan Left, Purple Right) */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(6, 182, 212, 0.2), transparent 40%),
+    radial-gradient(circle at 85% 50%, rgba(168, 85, 247, 0.2), transparent 40%);
 }
 
-/* ... Keep existing media queries for responsiveness ... */
+/* --- BACKGROUND DECORATION 1: The "Holodeck" Dot Grid --- */
+.bodyContainer::before {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  
+  /* A precise 30px grid of tiny dots */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.41) 1px, transparent 1px);
+  background-size: 30px 30px;
+  
+  /* Mask it so it's visible in the center but fades to black at edges */
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, black 20%, transparent 100%);
+  
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- BACKGROUND DECORATION 2: The "Reactor" Glow --- */
+/* A pulsing light behind the robot to give the scene life */
+.bodyContainer::after {
+  content: "";
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  width: 40rem; 
+  height: 40rem;
+  
+  /* Subtle cyan glow centered behind the carousel */
+  /* background: radial-gradient(circle, rgba(6, 182, 212, 0.312) 0%, transparent 70%); */
+  /* background: radial-gradient(circle, rgba(160, 1, 246, 0.312) 0%, transparent 70%); */
+  background: radial-gradient(circle, rgba(148, 0, 211, 1) 0%, transparent 70%);
+  /* background: radial-gradient(circle, rgba(255, 255, 255, 0.312) 0%, transparent 70%); */
+  filter: blur(40px);
+  
+  /* Slow "breathing" animation */
+  animation: reactor-pulse 4s ease-in-out infinite;
+  
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes reactor-pulse {
+  0%, 100% { opacity: 0.1; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.3; transform: translate(-50%, -50%) scale(1.1); }
+}
+
 .carousel {
   --_diameter: var(--carousel-diameter);
   --_radius: calc(var(--_diameter) / 2);
@@ -44,11 +106,7 @@
   width: var(--_diameter);
   height: var(--_diameter);
   position: relative;
-  /* CRITICAL FIX 1: Allow mouse events to pass through the container to the 3D items */
   pointer-events: none;
-
-  /* --- ADD THIS LINE --- */
-  /* Adjust '5rem' to '10rem' or higher to move it further down */
   transform: translateY(5rem);
 }
 
@@ -56,33 +114,14 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
+  top: 30;
   left: 0;
-  /* CRITICAL: This restores the 3D depth */
   transform-style: preserve-3d; 
-  /* Smooth animation for the click rotation */
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  /* Ensures this wrapper doesn't block clicks on the cards */
   pointer-events: none; 
 }
 
-.carouselManualRotater {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  
-  /* Ensure 3D space is passed down to children */
-  transform-style: preserve-3d;
-  
-  /* Smoothly animate the rotation when state changes */
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-  
-  /* Pass clicks through to cards */
-  pointer-events: none;
-}
-
+/* --- RESPONSIVENESS --- */
 @media only screen and (max-width: 48rem) {
   .carousel {
       --_diameter: calc(var(--carousel-diameter) * 0.75);
@@ -90,7 +129,6 @@
       --_item-height: calc(var(--carousel-item-height) * 0.75);
   }
 }
-
 @media only screen and (max-width: 32rem) {
   .carousel {
       --_diameter: calc(var(--carousel-diameter) * 0.6);
@@ -98,7 +136,6 @@
       --_item-height: calc(var(--carousel-item-height) * 0.6);
   }
 }
-
 @media only screen and (max-width: 16rem) {
   .carousel {
       --_diameter: calc(var(--carousel-diameter) * 0.25);
@@ -107,6 +144,7 @@
   }
 }
 
+/* --- CONTROLS --- */
 .carouselControlButton {
   --_width: var(--carousel-control-button-width);
   --_height: var(--carousel-control-button-height);
@@ -118,10 +156,8 @@
   transition: opacity var(--carousel-transition-duration) var(--carousel-transition-ease);
   position: absolute;
   cursor: pointer;
-  /* CRITICAL FIX 2: Re-enable events on buttons */
   pointer-events: auto;
 }
-
 .carouselControlButton:hover { opacity: 0.4; }
 .carouselControlButton:has(input:checked) { opacity: 0.8; }
 .carouselControlButton input {
@@ -132,14 +168,12 @@
   height: 100%;
   cursor: pointer;
 }
-
 .left {
   clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
   top: calc(var(--_radius) - var(--_height) / 2);
   left: 0;
 }
 .carousel:has(.left input:checked) { --carousel-direction-animation-play-state: running; }
-
 .right {
   clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
   top: calc(var(--_radius) - var(--_height) / 2);
@@ -147,17 +181,14 @@
 }
 .carousel:has(.right input:checked) { --carousel-direction-animation-play-state: paused; }
 
+/* --- ANIMATION LOOP --- */
 .carouselRotationDirection {
   --_direction-animation-play-state: var(--carousel-direction-animation-play-state);
-  /* REMOVED: --_z calculation and translateZ */
-  
   transform-style: preserve-3d;
-  /* Updated animation name to the "Fixed" version */
   animation: carousel-rotation-reverse-fixed calc(var(--carousel-animation-duration) / 2) reverse linear infinite var(--_direction-animation-play-state);
   transition: all var(--carousel-transition-duration) var(--carousel-transition-ease);
   pointer-events: none;
 }
-
 @keyframes carousel-rotation-reverse-fixed {
   from { transform: rotateY(0deg); }
   to { transform: rotateY(360deg); }
@@ -166,7 +197,6 @@
   from { transform: rotateY(0deg); }
   to { transform: rotateY(360deg); }
 }
-
 .carouselItemWrapper {
   transform-style: inherit;
   width: inherit;
@@ -177,16 +207,14 @@
   transition: all var(--carousel-transition-duration) var(--carousel-transition-ease);
   margin: 0;
   padding: 0;
-  /* FIX: Ensure this container doesn't block clicks */
   pointer-events: none;
 }
-
-/* PAUSE LOGIC: Inherits down to children to pause rotation */
 .carouselRotationDirection:has(.carouselItem:hover) {
   --carousel-animation-play-state: paused;
   --_direction-animation-play-state: paused;
 }
 
+/* --- CAROUSEL ITEM (THE BOX CONTAINER) --- */
 .carouselItem {
   --_width: var(--_item-width);
   --_height: var(--_item-height);
@@ -194,35 +222,174 @@
   left: calc(var(--_radius) - var(--_item-width) / 2);
   top: calc(var(--_radius) - var(--_item-height) / 2);
   transform: rotateY(var(--_rotation)) translateZ(var(--_radius));
-  transform-style: inherit;
+  transform-style: preserve-3d; 
   width: var(--_width);
   height: var(--_height);
   transition: all var(--carousel-transition-duration) var(--carousel-transition-ease);
-  box-shadow: 0 0 var(--carousel-item-glow-size) transparent;
   position: absolute;
-  
-  /* Background Image is set here on the item itself now */
-  background-image: var(--_image-url);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  border-radius: 12px;
-
-  /* CRITICAL FIX 3: Re-enable events on the items themselves so they can be hovered */
   pointer-events: auto;
-  will-change: transform; /* Smoothness hint */
+  will-change: transform;
 }
-
-/* FIXED: Removed z-index: 100. 
-   The 'translateZ' calculation below handles the "pop out" effect physically in 3D space.
-   Adding z-index here caused the "snapping" issue.
-*/
 .carouselItem:hover {
-  box-shadow: 0 0 var(--carousel-item-glow-size) rgb(var(--carousel-item-glow-color-rgb));
   transform: rotateY(var(--_rotation)) translateZ(calc(var(--_radius) * var(--carousel-item-hover-effect)));
 }
 
-/* NEW: Card Content Overlay */
+/* --- 3D FACES (GAP FIX APPLIED) --- */
+
+.cardFace {
+    position: absolute;
+    /* Use visible to allow blended overlap */
+    backface-visibility: visible; 
+    background-color: #1a1a1a;
+}
+
+/* FRONT FACE */
+.cardFaceFront {
+    width: var(--_width);
+    height: var(--_height);
+    transform: translateZ(calc(var(--card-thickness) / 2));
+    background-image: var(--_image-url);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* border-radius: 12px; */
+    box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.3);
+    z-index: 10;
+}
+
+
+.cardFaceRight {
+    height: calc(var(--_height) + 0px); 
+    width: var(--card-thickness);
+    top: 0px; 
+    left: calc((var(--_width) - var(--card-thickness)) / 2);
+    transform: rotateY(90deg) translateZ(calc((var(--_width) / 2) - 0px));
+    background: linear-gradient(to bottom, rgb(5, 46, 46) 1%, rgba(0, 0, 0, 1) 80%);
+    
+}
+
+.cardFaceLeft {
+    height: calc(var(--_height) - 0px);
+    width: var(--card-thickness);
+    top: 0px;
+    left: calc((var(--_width) - var(--card-thickness)) / 2);
+    transform: rotateY(-90deg) translateZ(calc((var(--_width) / 2) - 0px));
+    background: linear-gradient(to bottom, rgb(74, 18, 90) 1%, rgba(0, 0, 0, 1) 80%);
+}
+
+.cardFaceTop {
+    width: calc(var(--_width) - 0px);
+    height: var(--card-thickness);
+    left: 0px;
+    top: calc((var(--_height) - var(--card-thickness)) / 2);
+    transform: rotateX(90deg) translateZ(calc((var(--_height) / 2) - 0px));
+    background-color: #1a1a1a;
+}
+
+.cardFaceBottom {
+    width: calc(var(--_width) - 01px);
+    height: var(--card-thickness);
+    left: 0px;
+    top: calc((var(--_height) - var(--card-thickness)) / 2);
+    transform: rotateX(-90deg) translateZ(calc((var(--_height) / 2) - 0px));
+    background-color: #1a1a1a;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+/* BACK FACE */
+/* .cardFaceBack {
+    width: var(--_width);
+    height: var(--_height);
+    transform: rotateY(180deg) translateZ(calc(var(--card-thickness) / 2));
+    background-color: #0f0f0f;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+} */
+
+/* BACK FACE - The "Monolith" Data Panel */
+.cardFaceBack {
+  width: var(--_width);
+  height: var(--_height);
+  
+  /* Positions the face pointing inward towards the robot */
+  transform: rotateY(180deg) translateZ(calc(var(--card-thickness) / 2));
+
+  /* 1. Deep "Void" Background */
+  /* A very subtle radial gradient that fades into pure black */
+  background: radial-gradient(
+    circle at center, 
+    rgba(20, 25, 40, 1) 0%, 
+    rgba(0, 0, 0, 1) 85%
+  );
+
+  /* 2. Tech Border */
+  /* Thin, precise border. Cyan with low opacity for elegance */
+  border: 1px solid rgba(6, 182, 212, 0.15);
+  
+  /* A very faint outer glow to separate it from the darkness */
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+
+  border-radius: 12px;
+  overflow: hidden;
+  backface-visibility: visible;
+  
+  /* Flexbox to center the elements */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* DECORATION 1: The Subtle Data Grid */
+.cardFaceBack::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* Very subtle grid lines (opacity 0.07) */
+  background-image: 
+    linear-gradient(rgba(255, 0, 255, 0.97) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 255, 0.97) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+  
+  /* Fade the grid out towards the edges */
+  mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* DECORATION 2: The "CONVOLUTION" Typography */
+.cardFaceBack::after {
+  content: 'SUSHHH!!';
+  
+  /* 3. Aesthetic Typography */
+  font-family: sans-serif; /* Uses system font, or 'Orbitron' if you have it imported */
+  font-weight: 700;
+  font-size: 3.2rem;     /* Large and bold */
+  letter-spacing: 0.05em; /* Wide tracking for that cinematic sci-fi look */
+  
+  /* 4. Vertical Orientation */
+  /* Rotating it -90deg fits the tall card format perfectly */
+  transform: rotate(-45deg) translateZ(1px); /* translateZ prevents glitching */
+  
+  /* 5. Gradient Text Fill (Cyan to Purple) */
+  background: linear-gradient(to right, #22d3ee, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  
+  /* 6. Clean Text Shadow (Not too blurry) */
+  filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.3));
+  
+  z-index: 2;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* --- CARD CONTENT & VISUALS --- */
+
 .cardContent {
   display: flex;
   flex-direction: column;
@@ -236,41 +403,23 @@
     rgba(0,0,0,0.3) 20%, 
     rgba(0,0,0,0.9) 100%
   );
-  border-radius: 12px;
+  /* border-radius: 12px; */
   color: white;
   opacity: 1; 
-  /* Synced transition speed with the card movement for smoother effect */
   transition: opacity var(--carousel-transition-duration) var(--carousel-transition-ease);
-  /* 1. Ensure this layer supports 3D children */
   transform-style: preserve-3d;
-  
-  /* 2. Disable interactions when invisible so it doesn't block the card hover trigger */
   pointer-events: none;
+  z-index: 2;
 }
-
-/* Allow interaction with the button inside the card */
-.cardContent a {
-  pointer-events: auto;
-}
-
-/* Show content on hover */
-.carouselItem:hover .cardContent {
-  opacity: 1;
-  /* 3. Enable interaction ONLY when popped out. 
-     This makes the whole text area "solid" to the mouse, preventing flickering. */
-  pointer-events: auto;
-}
-
-/* Always show title slightly if you prefer, but opacity 0->1 is cleaner for 3D */
-/* To make it visible always: change opacity: 0 to opacity: 1 and remove the hover rule above */
+.cardContent a { pointer-events: auto; }
+.carouselItem:hover .cardContent { opacity: 1; pointer-events: auto; }
 
 .iconContainer {
   font-size: 2rem;
   margin-bottom: 0.5rem;
-  color: #06b6d4; /* Cyan-500 */
+  color: #06b6d4;
   filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0.5));
 }
-
 .cardTitle {
   font-family: var(--font-geist-sans);
   font-weight: 700;
@@ -278,7 +427,6 @@
   margin-bottom: 0.25rem;
   text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
-
 .cardDesc {
   font-family: var(--font-geist-sans);
   font-size: 0.8rem;
@@ -290,12 +438,11 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
 .exploreBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 5.4rem;
   background-color: rgba(6, 182, 212, 0.2);
   border: 1px solid rgba(6, 182, 212, 0.5);
   border-radius: 9999px;
@@ -307,43 +454,57 @@
   transition: all 0.2s ease;
   width: fit-content;
   cursor: pointer;
-
-  /* 4. MAGIC FIX: Physically lift the button off the card surface.
-     This ensures it is the absolute front-most element, 
-     preventing hit-test failures with the background. */
-  /* transform: translateZ(20px); */
 }
-
 .exploreBtn:hover {
   background-color: rgba(6, 182, 212, 0.8);
   box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
 }
 
 /* Reflection Effect */
+/* --- RESTORED REFLECTION (Apply to the main item container) --- */
 .carouselItem::before {
   content: '';
   width: inherit;
   height: inherit;
   background-color: rgba(var(--carousel-item-empty-color-rgb), 0.5);
+  
+  /* Reuse the image variable from the parent */
   background-image:
-      linear-gradient(to top, rgba(var(--carousel-bg-color-rgb), 0.25) 0%, rgba(var(--carousel-bg-color-rgb), 1.0) 75%),
+      linear-gradient(to top, rgba(var(--carousel-bg-color-rgb), 0.25) 0%, rgba(var(--carousel-bg-color-rgb), 1.0) 85%),
       var(--_image-url);
+      
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   pointer-events: none;
   filter: blur(var(--carousel-item-reflection-blur));
   transition: filter var(--carousel-transition-duration) var(--carousel-transition-ease);
-  transform-style: inherit;
+  transform-style: preserve-3d;
+  
+  /* ORIGIN: Rotate from the bottom of the card */
   transform-origin: center bottom;
-  transform: rotateX(90deg) rotateZ(180deg) rotateY(180deg);
+  
+  /* TRANSFORM: 
+     1. Rotate X 90deg to lay it flat on the floor.
+     2. Rotate Z/Y 180deg to flip the image so it looks like a mirror reflection.
+     3. Translate Z slightly to ensure it sits below the 3D bottom face.
+  */
+  transform: rotateX(90deg) rotateZ(180deg) rotateY(180deg) translateZ(0.0rem);
+  
   position: absolute;
   border-radius: 12px;
+  top: 0;
+  left: 0;
+  opacity: 0.9; /* Slight transparency for better effect */
 }
 
+/* Blur transition on hover */
 .carouselItem:hover::before {
-  filter: blur(var(--carousel-item-reflection-blur));
+  filter: blur(calc(var(--carousel-item-reflection-blur) * 2));
+  opacity: 0.7;
 }
+
+.carouselItem:hover .cardFaceFront { box-shadow: 0 0 var(--carousel-item-glow-size) rgb(var(--carousel-item-glow-color-rgb)); }
 
 .carouselGround {
   --_width: var(--_diameter);
@@ -359,31 +520,22 @@
   opacity: 0.5;
   transition: opacity var(--carousel-transition-duration) var(--carousel-transition-ease);
   position: absolute;
-  /* FIX: Ensure ground doesn't block events */
   pointer-events: none;
 }
+.carouselItemWrapper:has(.carouselItem:hover) .carouselGround { opacity: 0.75; }
 
-.carouselItemWrapper:has(.carouselItem:hover) .carouselGround {
-  opacity: 0.75;
-}
-
+/* --- ROBOT MASCOT STYLES --- */
 .centerRobotWrapper {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 40rem;
   height: 40rem;
-  
-  /* Keep your Y adjustment */
   transform: translate(-50%, -50%) translateZ(-5rem) translateY(-10rem);
-  
-  /* Ensure z-index allows cards to pass in front/behind visually */
-  /* In preserve-3d, simple DOM order usually handles this, but translateZ is the real driver */
   z-index: 1; 
   pointer-events: none;
   transform-style: preserve-3d;
 }
-
 .centerPiece {
   position: absolute;
   top: 50%;
@@ -398,45 +550,35 @@
   z-index: 50;
   transform-style: preserve-3d;
 }
-
 .robotImage {
   width: 100%;
   height: auto;
   object-fit: contain;
-  /* Floating animation */
   animation: float-robot 4s ease-in-out infinite;
   filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.5));
-
-  /* === NEW CSS ADDED HERE === */
   position: relative;
-  z-index: 1; /* Lower z-index than the gradient */
+  z-index: 1;
 }
-
-/* === ADD THIS NEW CLASS BLOCK === */
 .robotLegsGradient {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 50%; /* Covers the bottom half of the robot container */
-  z-index: 2; /* Sits on top of the image */
-  pointer-events: none; /* Ensures it doesn't block clicks */
-  /* Apply same animation so it floats with the robot */
+  height: 50%;
+  z-index: 2;
+  pointer-events: none;
   animation: float-robot 4s ease-in-out infinite;
 }
-/* ================================ */
-
 @keyframes float-robot {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-15px); }
 }
-
 .spotlight {
   position: absolute;
-  top: -20%;
+  top: -30%;
   left: 50%;
   transform: translateX(-50%);
-  width: 12rem; /* Made slightly wider to look better */
+  width: 12rem;
   height: 25rem;
   background: radial-gradient(
     ellipse at top, 
@@ -449,8 +591,6 @@
   filter: blur(8px);
   mix-blend-mode: overlay;
 }
-
-/* Floor Glow */
 .centerPiece::after {
   content: '';
   position: absolute;
@@ -466,11 +606,9 @@
   );
   filter: blur(10px);
 }
-
-
 .robotGlowBase {
   position: absolute;
-  bottom: 0; /* Aligned to bottom of wrapper */
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%) rotateX(90deg);
   width: 120%;
@@ -481,22 +619,72 @@
   opacity: 0.8;
 }
 
-
-/* Responsiveness for the Robot 
-   We must match the media queries of the carousel diameter
-   so the robot stays in the center as the ring shrinks.
-*/
-
 @media only screen and (max-width: 48rem) {
-  .centerRobotWrapper {
-      width: 14rem;
-      height: 14rem;
-  }
+  .centerRobotWrapper { width: 14rem; height: 14rem; }
+}
+@media only screen and (max-width: 32rem) {
+  .centerRobotWrapper { width: 10rem; height: 10rem; }
 }
 
-@media only screen and (max-width: 32rem) {
-  .centerRobotWrapper {
-      width: 10rem;
-      height: 10rem;
-  }
+/* --- 1. ANGULAR WIDTH CONTROL (The Side Curtains) --- */
+.interactionZoneContainer {
+  /* Controls the width of the active hover area */
+  /* Wider = more side cards can be hovered. Narrower = only center card. */
+  --interaction-zone-width: 20rem; 
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Container lets clicks through */
+  /* High Z-Index ensures curtains sit ON TOP of everything (cards, robot, etc) */
+  z-index: 60; 
+}
+
+.blockerLeft, .blockerRight {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  /* Calculate width to cover everything EXCEPT the center zone */
+  width: calc(50% - (var(--interaction-zone-width) / 0.8));
+  pointer-events: auto; /* Catches the mouse, blocking hovers below */
+  
+  /* Debugging: Uncomment to see the "Curtains" */
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+.blockerLeft { left: 0; }
+.blockerRight { right: 0; }
+
+
+/* --- 2. BACKSIDE CONTROL (The Invisible Depth Wall) --- */
+.depthBlocker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* CRITICAL PLACEMENT:
+     - Front cards are at Z = +40rem (approx)
+     - Robot is at Z = -5rem
+     - Back cards are at Z = -40rem
+     
+     We place the wall at Z = -20rem.
+     This puts it BEHIND the robot/front cards, but IN FRONT of back cards.
+  */
+  transform: translateZ(-10rem);
+  
+  /* This catches clicks meant for the back cards */
+  pointer-events: auto; 
+  
+  /* Since this is inside a preserve-3d container, the browser handles
+     the hit-testing. If a Front Card is in front of this wall, the Card
+     gets the click. If the Wall is in front of a Back Card, the Wall gets it.
+  */
+  transform-style: preserve-3d;
+  
+  /* Debugging: Uncomment to see the "Wall" behind the robot */
+  /* background-color: rgba(0, 255, 0, 0.2); */
 }
