@@ -12,42 +12,42 @@ import ConvoLogo from "../assets/images/Convologo.png";
 import TransitionLink from "./TransitionLink";
 
 const desktopNavLinks = [
-  { href: "/#home", label: "Home" },
-  { label: "About", href: "/#about" },
+  { href: "/", label: "Home" },
+  { label: "About", href: "#about" },
   {
     label: "Event",
     href: "#",
     subItems: [
-      { href: "/#all-events", label: "Events" },
-      { href: "/#timeline", label: "Timeline" },
+      { href: "#timeline", label: "Timeline" },
+      { href: "#rules", label: "Rules" },
     ],
   },
   {
     label: "More",
     href: "#",
     subItems: [
-      { href: "/#team", label: "Team" },
-      { href: "/#sponsors", label: "Sponsors" },
-      { href: "/#gallery", label: "Gallery" },
-      { href: "/#faq", label: "FAQ" },
-      { href: "/#contact", label: "Let's Connect" },
+    { href: "#judges", label: "Judges" },
+    { href: "#prizes", label: "Prizes" },
+    { href: "#team", label: "Team" },
+    { href: "#faq", label: "FAQ" },
+    { href: "#contact", label: "Let's Connect" },
     ],
   },
 ];
 
 const mobileNavLinks = [
-  { href: "/#home", label: "Home" },
-  { href: "/#about", label: "About" },
-  { href: "/#all-events", label: "Events" },
-  { href: "/#timeline", label: "Timeline" },
-  { href: "/#team", label: "Team" },
-  { href: "/#sponsors", label: "Sponsors" },
-  { href: "/#gallery", label: "Gallery" },
-  { href: "/#faq", label: "FAQ" },
-  { href: "/#contact", label: "Let's Connect" },
+  { href: "/", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#rules", label: "Rules" },
+  { href: "#timeline", label: "Timeline" },
+  { href: "#judges", label: "Judges" },
+  { href: "#prizes", label: "Prizes" },
+  { href: "#team", label: "Team" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#contact", label: "Let's Connect" },
 ];
 
-const Navbar = () => {
+const EventNav = () => {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const router = useRouter();
@@ -86,6 +86,12 @@ const Navbar = () => {
   };
 
   const handleScroll = (e: React.MouseEvent<HTMLElement, MouseEvent>, href: string) => {
+    if (href === "/") {
+      e.preventDefault();
+      router.push("/"); // Force navigation to main home
+      setIsNavOpen(false);
+      return;
+    }
     if (href === "#") {
       e.preventDefault();
       return;
@@ -125,14 +131,6 @@ const Navbar = () => {
     setActiveDropdown(activeDropdown === label ? null : label);
   };
 
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     if ("scrollRestoration" in history) {
-  //       history.scrollRestoration = "manual";
-  //     }
-  //     window.scrollTo(0, 0);
-  //   }
-  // }, []);
 
   useEffect(() => {
     const handleScrollEvent = () => {
@@ -184,13 +182,13 @@ const Navbar = () => {
           
           {/*Logo*/}
           <div className="shrink-0 transition-transform hover:scale-105 duration-300 pointer-events-auto">
-            <Link href="/" onClick={(e) => handleScroll(e, "/#home")}>
+            <TransitionLink href="/" onClick={(e) => handleScroll(e, "/#home")}>
               <Image
                 src={ConvoLogo}
                 alt="convo logo"
-                className="object-contain h-9 w-auto md:h-12 md:drop-shadow-xl"
+                className="object-contain h-9 w-auto md:h-10 md:drop-shadow-xl"
               />
-            </Link>
+            </TransitionLink>
           </div>
 
           {/* center navbar */}
@@ -258,7 +256,7 @@ const Navbar = () => {
             {/* Hamburger*/}
             <button
               onClick={toggleNavigation}
-              className="lg:hidden text-white bg-transparent  rounded-full"
+              className="lg:hidden text-white bg-transparent rounded-full"
             >
               <IoMenuOutline className="size-9 md:size-12" />
             </button>
@@ -277,4 +275,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default EventNav;
