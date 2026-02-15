@@ -37,7 +37,7 @@ export default function Footer() {
     }, [text, breakTheText]);
 
     return (
-        <div id='contact' className='relative bg-[#03050c] -mt-0.5 flex flex-col pt-5 overflow-hidden z-0 py-4'>
+        <div id='contact' className='relative bg-[#03050c] -mt-0.5 flex flex-col pt-5 overflow-hidden z-0 pt-4'>
 
             <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-[#03050d] via-[#03050d]/30 to-transparent z-10 pointer-events-none"></div>
             {/* --- BACKGROUND LAYER --- */}
@@ -216,12 +216,12 @@ export default function Footer() {
                 <div className="max-w-360 mx-auto ">
                     <div className="flex flex-col items-center">
 
-                        <div className="font-rajdhani text-[12px] md:text-[14px] tracking-wider text-slate-400 text-center md:text-left">
+                        <div className="font-rajdhani text-sm tracking-wider text-slate-400 text-center md:text-left">
                             © 2026 Convolution
                         </div>
 
-                        <div className="font-rajdhani text-[12px] md:text-[14px] tracking-wider text-slate-400 text-center">
-                            Developed with ❤️ by <span className="text-white text-[13px] md:text-[16px]">Team Convo</span>
+                        <div className="font-rajdhani text-sm tracking-wider text-slate-400 text-center">
+                            Made with ❤️ by <span className="text-white text-sm  font-semibold">Team Convo</span>
                         </div>
                     </div>
                 </div>
