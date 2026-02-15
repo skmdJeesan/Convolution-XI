@@ -46,7 +46,7 @@ export default function About() {
         <div className="relative w-[80vw] max-w-[450px] h-auto aspect-[3/1.2]">
             <Image
                 src="/SparkHack/Sparkhack logo.webp"
-                alt="Algomaniac Logo"
+                alt="SparkHack Logo"
                 fill
                 className="object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)]"
                 priority
