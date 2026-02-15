@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import TransitionLink from "@/components/TransitionLink";
 
 
 const Rules = () => {
@@ -39,7 +40,7 @@ const Rules = () => {
           
           <ul className="space-y-4 font-rajdhani text-white text-base md:text-xl font-medium list-disc list-outside ml-4 md:ml-6 marker:text-cyan-400">
                 <li  className="pl-2 leading-relaxed drop-shadow-sm">
-            This event is based on 'Bahfest', for more clarification <span><Link href='http://bahfest.com/' className="underline underline-offset-2">click here</Link></span>
+            This event is based on 'Bahfest', for more clarification <span><Link href='http://bahfest.com/' target="_blank" className="underline underline-offset-2">click here</Link></span>
             </li>
             <li className="pl-2 leading-relaxed drop-shadow-sm">
             Event comprises two rounds:
@@ -67,8 +68,28 @@ const Rules = () => {
             There will be a maximum of 20 slides and a minimum of 6 slides for the presentation. Each team will have to complete their presentation within 9 minutes.
             </li>
           </ul>
+          
         </div>
+
+        <div className="mt-5">
+          <Link
+              href="https://drive.google.com/file/d/1P9kAtLRj4-xobBpuIdfCKmjOUKcByUpJ/view"
+              target="_blank"
+              className="
+
+              shadow-white/40 hover:shadow-white/30  bg-[#0D30BB] hover:bg-[#0b2ba8]  hover:text-[#041550] group flex items-center gap-2 px-5 py-3 
+                 backdrop-blur-md rounded-full 
+                transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
+              "
+            >
+              <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] capitalize tracking-wide">
+                Know More
+              </span>
+            </Link>
+            </div>
       </div>
+
+      
     </div>
   );
 };

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import TransitionLink from "@/components/TransitionLink";
+import { IoArrowBack } from "react-icons/io5";
 
 export default function About() {
   const { data: session } = useSession();
@@ -11,7 +12,8 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-[#0D30BB] to-[#2a237e] py-20 px-6 overflow-hidden"
+      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-br from-[#DE5C00] via-[#77340F] 
+    via-[#931308] to-[#5B0804] py-20 px-6 overflow-hidden"
     >
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none"
@@ -21,6 +23,20 @@ export default function About() {
         }}
       ></div>
 
+      <TransitionLink 
+        href="/" 
+       className="
+          absolute top-6 left-6 z-50 flex items-center gap-2 px-5 py-3 
+          bg-[#5B0804]/90 backdrop-blur-md border border-[#DE5C00] rounded-full shadow-lg
+          hover:bg-[#DE5C00] hover:border-white 
+          group cursor-pointer overflow-hidden transition-all duration-300
+        "
+      >
+        <IoArrowBack className="text-white text-lg group-hover:-translate-x-1 transition-transform duration-300" />
+        <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-white uppercase transition-colors duration-300">
+          Return Home
+        </span>
+      </TransitionLink>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center gap-10 z-10">

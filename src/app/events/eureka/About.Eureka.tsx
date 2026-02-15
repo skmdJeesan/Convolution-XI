@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import TransitionLink from "@/components/TransitionLink";
+import { IoArrowBack } from "react-icons/io5";
 
 export default function About() {
   const { data: session } = useSession();
@@ -11,7 +12,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-[#0D30BB] to-[#2a237e] py-20 px-6 overflow-hidden"
+      className="relative w-full h-screen flex items-center justify-center bg-[#c4d79f] py-20 px-6 overflow-hidden"
     >
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none"
@@ -21,6 +22,20 @@ export default function About() {
         }}
       ></div>
 
+      <TransitionLink 
+        href="/" 
+       className="
+          absolute top-6 left-6 z-50 flex items-center gap-2 px-5 py-3 
+          bg-[#115211] border border-white/20 rounded-full shadow-lg
+          hover:bg-[#1C971C] hover:scale-105 hover:shadow-xl
+          group cursor-pointer overflow-hidden transition-all duration-300 ease-out
+        "
+      >
+        <IoArrowBack className="text-white text-lg group-hover:-translate-x-1 transition-transform duration-300" />
+        <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-white uppercase transition-colors duration-300">
+          Return Home
+        </span>
+      </TransitionLink>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center gap-10 z-10">
@@ -36,7 +51,7 @@ export default function About() {
             />
         </div>
 
-        <p className="font-rajdhani text-white sm:text-xl text-base font-semibold leading-relaxed tracking-wide drop-shadow-md max-w-3xl">Welcome to Eureka!, the definitive arena for reasoning, logic, and problem-solving at JUEE’s
+        <p className="font-rajdhani text-[#115211] sm:text-xl text-base font-semibold leading-relaxed tracking-wide drop-shadow-md max-w-3xl">Welcome to Eureka!, the definitive arena for reasoning, logic, and problem-solving at JUEE’s
 annual techno-management festival. Packed with challenging riddles, complex puzzles, and
 mind-bending aptitude questions, this event pushes your analytical thinking and mental agility to
 their limits. Assemble your team, sharpen your intellect, and get ready to dive into Eureka’s
@@ -46,8 +61,8 @@ thrilling challenges for an experience that is both unforgettable and intensely 
         <div className="mt-4">
           {session ? (
         //    user logged in
-            <div className="flex items-center gap-2 px-8 py-3 bg-white backdrop-blur-md border border-white/10 rounded-full cursor-not-allowed opacity-70">
-              <span className="font-orbitron text-sm md:text-base font-bold  tracking-wide text-[#0D30BB]">
+            <div className="flex items-center gap-2 px-8 py-3 bg-[#115211]  backdrop-blur-md border border-white/10 rounded-full cursor-not-allowed opacity-70">
+              <span className="font-orbitron text-sm md:text-base font-bold  tracking-wide text-white">
                 Registrations not started yet
               </span>
             </div>
@@ -57,7 +72,7 @@ thrilling challenges for an experience that is both unforgettable and intensely 
               href="/login"
               className="
 
-              shadow-white/40 hover:shadow-white/30  bg-[#0D30BB] hover:bg-[#0b2ba8]  hover:text-[#041550] group flex items-center gap-2 px-5 py-3 
+              shadow-white/70 hover:shadow-white/30  hover:bg-[#1C971C] bg-[#115211]   text-[#ffffff] group flex items-center gap-2 px-5 py-3 
                  backdrop-blur-md rounded-full 
                 transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
               "

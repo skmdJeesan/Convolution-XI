@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <main className="bg-black w-full min-h-screen">
       <Navbar/>
-      <HeroSection />
+      {/* <HeroSection /> */}
       <HomeAbout />
       {/* <Timeline/> */}
       <Team />

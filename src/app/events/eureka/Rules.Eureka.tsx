@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 const rules = [
-    "Each team must comprise 3-4 members (including the Team Lead) from the same or different colleges and/or streams.",
+  "Each team must comprise 3-4 members (including the Team Lead) from the same or different colleges and/or streams.",
   "There will be two rounds: the Screening Round and the Final Round.",
   "Screening Round: This round will test teams on mathematical, analytical and aptitude skills. It will be an on-site pen-and-paper test.",
   "Teams will have 60 questions to answer in 50 minutes. The top 10 teams will be selected for the on-site Final Round.",
