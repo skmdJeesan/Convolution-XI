@@ -45,7 +45,7 @@ const Gallery = () => {
   const isInView = useInView(containerRef, { amount: 0.3, once: false });
 
   return (
-    <div className="relative min-h-[95vh] w-full py-10 bg-black overflow-hidden">
+    <div id="gallery" className="relative min-h-[95vh] w-full py-10 bg-black overflow-hidden">
       
       {/* Background Section - Optimized */}
       <div className="absolute inset-0 z-0 pointer-events-none">
