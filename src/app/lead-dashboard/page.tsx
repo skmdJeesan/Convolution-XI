@@ -1,6 +1,6 @@
 import dbConnect from '@/lib/db'; 
 import User from '@/models/user.model';
-import AdminDashboard from '@/components/LeaderDashboard';
+import LeaderDashboard from '@/components/LeaderDashboard';
 
 export default async function LeadDashboardPage() {
   await dbConnect();
@@ -20,12 +20,12 @@ export default async function LeadDashboardPage() {
     institution: user.institution,
     dept: user.department,
     phone: user.phone,
-    eventsRegistered: user.eventsRegistered || ['--'], // Default to empty array if missing
+    eventsRegistered: (user.eventsRegistered && user.eventsRegistered.length > 0) ? user.eventsRegistered : ['--'],
   }));
 
   return (
     <main>
-      <AdminDashboard users={serializedUsers} />
+      <LeaderDashboard users={serializedUsers} />
     </main>
   );
 }

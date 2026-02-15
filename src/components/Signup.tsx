@@ -147,191 +147,189 @@ export default function SignupForm() {
                     <span className="font-rajdhani text-[10px] tracking-[0.2em] text-cyan-400/80 font-semibold uppercase">Sys_Reg_v4</span>
                 </div>
 
-                <div className="p-5">
-                    
-                    <div className="text-center mb-3">
-                         <h1 className="font-orbitron text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] mb-1">CREATE ID</h1>
+                <div className="p-4">
+                  <div className="text-center mb-3">
+                    <h1 className="font-orbitron text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] mb-1">CREATE ID</h1>
+                  </div>
+
+                  <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
+                    <div className='group/input relative'>
+                          <div className="flex justify-between items-end mb-0.5 px-1">
+                            <label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">User Name</label>
+                          </div>
+                          <div className={inputContainerClass}>
+                            <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
+                            <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoPersonOutline size={14} /></div>
+                            <input 
+                                type="text" 
+                                placeholder='Enter full name' 
+                                name='name' 
+                                value={formData.name} 
+                                onChange={handleChange} 
+                                required 
+                                spellCheck={false}
+                              autoCorrect="off"  
+                              autoCapitalize="off" 
+                                className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                            />
+                          </div>
                     </div>
 
-                    <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
-
+                    {/* Email & Password Grid*/}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div className='group/input relative'>
-                             <div className="flex justify-between items-end mb-0.5 px-1">
-                                <label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">User Name</label>
-                             </div>
-                             <div className={inputContainerClass}>
+                              <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Email</label></div>
+                              <div className={inputContainerClass}>
                                 <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
-                                <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoPersonOutline size={14} /></div>
+                                <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoMailOutline size={14} /></div>
                                 <input 
-                                    type="text" 
-                                    placeholder='Enter full name' 
-                                    name='name' 
-                                    value={formData.name} 
+                                    type="email" 
+                                    placeholder='name@example.com' 
+                                    name='email' 
+                                    value={formData.email} 
                                     onChange={handleChange} 
                                     required 
                                     spellCheck={false}
-                                  autoCorrect="off"  
-                                  autoCapitalize="off" 
+                              autoCorrect="off"  
+                              autoCapitalize="off" 
                                     className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
                                 />
-                             </div>
+                              </div>
                         </div>
-
-                        {/* Email & Password Grid*/}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div className='group/input relative'>
-                                 <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Email</label></div>
-                                 <div className={inputContainerClass}>
-                                    <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
-                                    <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoMailOutline size={14} /></div>
-                                    <input 
-                                        type="email" 
-                                        placeholder='name@example.com' 
-                                        name='email' 
-                                        value={formData.email} 
-                                        onChange={handleChange} 
-                                        required 
-                                        spellCheck={false}
-                                  autoCorrect="off"  
-                                  autoCapitalize="off" 
-                                        className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
-                                    />
-                                 </div>
-                            </div>
-                            <div className='group/input relative'>
-                                 <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Passcode</label></div>
-                                 <div className={inputContainerClass}>
-                                    <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
-                                    <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoLockClosedOutline size={14} /></div>
-                                    <input 
-                                        type={showPassword ? "text" : "password"} 
-                                        placeholder='*******' 
-                                        name='password' 
-                                        value={formData.password} 
-                                        onChange={handleChange} 
-                                        required 
-                                        spellCheck={false}
-                                  autoCorrect="off"  
-                                  autoCapitalize="off" 
-                                        className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
-                                    />
-                                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="pr-3 text-cyan-700 hover:text-cyan-400 transition-colors focus:outline-none">{showPassword ? <IoEyeOffOutline size={14} /> : <IoEyeOutline size={14} />}</button>
-                                 </div>
-                            </div>
+                        <div className='group/input relative'>
+                              <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Passcode</label></div>
+                              <div className={inputContainerClass}>
+                                <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
+                                <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoLockClosedOutline size={14} /></div>
+                                <input 
+                                    type={showPassword ? "text" : "password"} 
+                                    placeholder='*******' 
+                                    name='password' 
+                                    value={formData.password} 
+                                    onChange={handleChange} 
+                                    required 
+                                    spellCheck={false}
+                              autoCorrect="off"  
+                              autoCapitalize="off" 
+                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                />
+                                <button type="button" onClick={() => setShowPassword(!showPassword)} className="pr-3 text-cyan-700 hover:text-cyan-400 transition-colors focus:outline-none">{showPassword ? <IoEyeOffOutline size={14} /> : <IoEyeOutline size={14} />}</button>
+                              </div>
                         </div>
+                    </div>
 
-                        {/* Phone & Institution Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div className='group/input relative'>
-                                 <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Phone Number</label></div>
-                                 <div className={inputContainerClass}>
-                                    <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
-                                    <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoCallOutline size={14} /></div>
-                                    <input 
-                                        type="text" 
-                                        placeholder='+91-xxxx-xxxx-xx' 
-                                        name='phone' 
-                                        value={formData.phone} 
-                                        onChange={handleChange} 
-                                        required 
-                                        spellCheck={false}
-                                  autoCorrect="off"  
-                                  autoCapitalize="off" 
-                                        className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
-                                    />
-                                 </div>
-                            </div>
-                            <div className='group/input relative'>
-                                 <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Institution</label></div>
-                                 <div className={inputContainerClass}>
-                                    <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
-                                    <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoSchoolOutline size={14} /></div>
-                                    <input 
-                                        type="text" 
-                                        placeholder='ex:Jadavpur University' 
-                                        name='institution' 
-                                        value={formData.institution} 
-                                        onChange={handleChange} 
-                                        required 
-                                        spellCheck={false}
-                                  autoCorrect="off"  
-                                  autoCapitalize="off" 
-                                        className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
-                                    />
-                                 </div>
-                            </div>
+                    {/* Phone & Institution Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div className='group/input relative'>
+                              <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Phone Number</label></div>
+                              <div className={inputContainerClass}>
+                                <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
+                                <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoCallOutline size={14} /></div>
+                                <input 
+                                    type="text" 
+                                    placeholder='+91-xxxx-xxxx-xx' 
+                                    name='phone' 
+                                    value={formData.phone} 
+                                    onChange={handleChange} 
+                                    required 
+                                    spellCheck={false}
+                              autoCorrect="off"  
+                              autoCapitalize="off" 
+                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                />
+                              </div>
                         </div>
-
-                        {/* Department & Year Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div className='group/input relative'>
-                                 <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Department</label></div>
-                                 <div className={inputContainerClass}>
-                                    <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
-                                    <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoBusinessOutline size={14} /></div>
-                                    <input 
-                                        type="text" 
-                                        placeholder='ex:Electrical Engineering' 
-                                        name='department' 
-                                        value={formData.department} 
-                                        onChange={handleChange} 
-                                        required 
-                                        spellCheck={false}
-                                  autoCorrect="off"  
-                                  autoCapitalize="off" 
-                                        className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
-                                    />
-                                 </div>
-                            </div>
-                            <div className='group/input relative'>
-                                 <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Year</label></div>
-                                 <div className={inputContainerClass}>
-                                    <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
-                                    <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoCalendarOutline size={14} /></div>
-                                    <Select value={formData.year} onValueChange={handleYearChange}>
-                                        <SelectTrigger className="w-full bg-transparent border-none text-cyan-100 text-sm outline-none font-rajdhani tracking-wider h-full py-0 pl-2 focus:ring-0">
-                                            <SelectValue placeholder="Select year" />
-                                        </SelectTrigger>
-                                        <SelectContent className='bg-[#0a0e14] border border-cyan-800/50 text-cyan-50 font-rajdhani tracking-wide max-h-50'>
-                                            <SelectGroup>
-                                                <SelectItem value="UG1" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">UG1</SelectItem>
-                                                <SelectItem value="UG2" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">UG2</SelectItem>
-                                                <SelectItem value="UG3" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">UG3</SelectItem>
-                                                <SelectItem value="UG4" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">UG4</SelectItem>
-                                                <SelectItem value="PG" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">PG1</SelectItem>
-                                                <SelectItem value="PG" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">PG2</SelectItem>
-                                                <SelectItem value="Other" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">Other</SelectItem>
-                                            </SelectGroup>
-                                        </SelectContent>
-                                    </Select>
-                                 </div>
-                            </div>
+                        <div className='group/input relative'>
+                              <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Institution</label></div>
+                              <div className={inputContainerClass}>
+                                <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
+                                <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoSchoolOutline size={14} /></div>
+                                <input 
+                                    type="text" 
+                                    placeholder='ex:Jadavpur University' 
+                                    name='institution' 
+                                    value={formData.institution} 
+                                    onChange={handleChange} 
+                                    required 
+                                    spellCheck={false}
+                              autoCorrect="off"  
+                              autoCapitalize="off" 
+                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                />
+                              </div>
                         </div>
+                    </div>
 
-                        {/* Submit */}
-                        <button type="submit" disabled={loading} className="font-orbitron group relative w-full h-10 mt-1 bg-cyan-500 hover:bg-cyan-400 text-[#05080f] text-xs tracking-widest uppercase font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed [clip-path:polygon(12px_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%,0_12px)] shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] cursor-pointer">
-                          <span className="relative z-10 flex items-center justify-center gap-3">{loading ? <Loader /> : <><IoFingerPrintOutline className="text-lg" />AUTHORIZE REGISTRATION</>}</span>
-                        </button>
-
-                        {/* Divider */}
-                        <div className="relative flex items-center justify-center py-1 opacity-70"><div className="h-px bg-cyan-900/30 w-full absolute"></div><span className="relative bg-[#0d111a] px-2 font-rajdhani text-sm text-gray-500 uppercase tracking-widest font-semibold">// OR CONNECT WITH</span></div>
-
-                        {/* Github and google */}
-                        <div className="grid grid-cols-2 gap-3">
-                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_100%,10px_100%,0_calc(100%-10px))] cursor-pointer" onClick={() => signIn('google', { callbackUrl: '/' })}><FaGoogle className='text-sm' /><span className='text-xs font-orbitron font-semibold tracking-wider'>GOOGLE</span></button>
-                          <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_calc(100%-10px),calc(100%-10px)_100%,0_100%)] cursor-pointer" onClick={() => signIn('github', { callbackUrl: '/' })}><FaGithub className='text-sm' /><span className='font-orbitron text-xs font-semibold tracking-wider'>GITHUB</span></button>
+                    {/* Department & Year Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div className='group/input relative'>
+                              <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Department</label></div>
+                              <div className={inputContainerClass}>
+                                <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
+                                <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoBusinessOutline size={14} /></div>
+                                <input 
+                                    type="text" 
+                                    placeholder='ex:Electrical Engineering' 
+                                    name='department' 
+                                    value={formData.department} 
+                                    onChange={handleChange} 
+                                    required 
+                                    spellCheck={false}
+                              autoCorrect="off"  
+                              autoCapitalize="off" 
+                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                />
+                              </div>
                         </div>
-                        
-                        <div className="text-center mt-1">
-                            <p className="font-rajdhani text-sm sm:text-xs text-gray-500 font-bold uppercase tracking-wide">
-                                Existing Entity? 
-                                <TransitionLink href="/login" className='font-orbitron text-purple-400 hover:text-purple-300 ml-2 hover:underline underline-offset-4 decoration-purple-500/50 transition-colors drop-shadow-[0_0_5px_rgba(192,132,252,0.5)]'>
-                                    Access System
-                                </TransitionLink>
-                            </p>
+                        <div className='group/input relative'>
+                              <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Year</label></div>
+                              <div className={inputContainerClass}>
+                                <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
+                                <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoCalendarOutline size={14} /></div>
+                                <Select value={formData.year} onValueChange={handleYearChange}>
+                                    <SelectTrigger className="w-full bg-transparent border-none text-cyan-100 text-sm outline-none font-rajdhani tracking-wider h-full py-0 pl-2 focus:ring-0">
+                                        <SelectValue placeholder="Select year" />
+                                    </SelectTrigger>
+                                    <SelectContent className='bg-[#0a0e14] border border-cyan-800/50 text-cyan-50 font-rajdhani tracking-wide max-h-50'>
+                                        <SelectGroup>
+                                            <SelectItem value="UG1" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">UG1</SelectItem>
+                                            <SelectItem value="UG2" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">UG2</SelectItem>
+                                            <SelectItem value="UG3" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">UG3</SelectItem>
+                                            <SelectItem value="UG4" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">UG4</SelectItem>
+                                            <SelectItem value="PG" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">PG1</SelectItem>
+                                            <SelectItem value="PG" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">PG2</SelectItem>
+                                            <SelectItem value="Other" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">Other</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                              </div>
                         </div>
+                    </div>
 
-                    </form>
+                    {/* Submit */}
+                    <button type="submit" disabled={loading} className="font-orbitron group relative w-full h-10 mt-1 bg-cyan-500 hover:bg-cyan-400 text-[#05080f] text-xs tracking-widest uppercase font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed [clip-path:polygon(12px_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%,0_12px)] shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] cursor-pointer">
+                      <span className="relative z-10 flex items-center justify-center gap-3">{loading ? <Loader /> : <><IoFingerPrintOutline className="text-lg" />AUTHORIZE REGISTRATION</>}</span>
+                    </button>
+
+                    {/* Divider */}
+                    {/* <div className="relative flex items-center justify-center py-1 opacity-70"><div className="h-px bg-cyan-900/30 w-full absolute"></div><span className="relative bg-[#0d111a] px-2 font-rajdhani text-sm text-gray-500 uppercase tracking-widest font-semibold">// OR CONNECT WITH</span></div> */}
+
+                    {/* Github and google */}
+                    {/* <div className="grid grid-cols-2 gap-3">
+                      <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_100%,10px_100%,0_calc(100%-10px))] cursor-pointer" onClick={() => signIn('google', { callbackUrl: '/' })}><FaGoogle className='text-sm' /><span className='text-xs font-orbitron font-semibold tracking-wider'>GOOGLE</span></button>
+                      <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_calc(100%-10px),calc(100%-10px)_100%,0_100%)] cursor-pointer" onClick={() => signIn('github', { callbackUrl: '/' })}><FaGithub className='text-sm' /><span className='font-orbitron text-xs font-semibold tracking-wider'>GITHUB</span></button>
+                    </div> */}
+                    
+                    <div className="text-center mt-1">
+                        <p className="font-rajdhani text-sm sm:text-xs text-gray-500 font-bold uppercase tracking-wide">
+                            Existing Entity? 
+                            <TransitionLink href="/login" className='font-orbitron text-purple-400 hover:text-purple-300 ml-2 hover:underline underline-offset-4 decoration-purple-500/50 transition-colors drop-shadow-[0_0_5px_rgba(192,132,252,0.5)]'>
+                                Access System
+                            </TransitionLink>
+                        </p>
+                    </div>
+
+                  </form>
                 </div>
             </div>
         </div>

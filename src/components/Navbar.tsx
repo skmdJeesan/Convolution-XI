@@ -167,7 +167,7 @@ const Navbar = () => {
     <>
       <header
         className={`
-          fixed top-0 left-0 w-full z-1000 
+          fixed top-0 left-0 w-full z-1000 px-4 
           transition-transform duration-500 ease-in-out
           ${navVisibilityClass}
           bg-black/5 backdrop-blur-xl border-b border-white/10 lg:bg-transparent lg:backdrop-blur-none lg:border-none
@@ -246,10 +246,10 @@ const Navbar = () => {
             ) : (
               // login-register
               <div className="hidden lg:flex gap-3 items-center">
-                <TransitionLink href="/login" className="font-orbitron group relative px-4 py-2.5 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#05080f] backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
+                <TransitionLink href="/login" className="text-gray-200 font-orbitron group relative px-4 py-2.5 rounded-full bg-cyan-500 hover:bg-cyan-600 backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
                   <FlipLink>Log in</FlipLink>
                 </TransitionLink>
-                <TransitionLink href="/register" className="font-orbitron group relative px-4 py-2.5 rounded-full bg-purple-500 hover:bg-purple-400 text-[#05080f] backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
+                <TransitionLink href="/register" className="text-gray-200 font-orbitron group relative px-4 py-2.5 rounded-full bg-purple-500 hover:bg-purple-600 backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
                   <FlipLink>Register</FlipLink>
                 </TransitionLink>
               </div>
