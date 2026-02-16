@@ -2,22 +2,23 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { IoMenuOutline, IoChevronDownOutline } from "react-icons/io5";
 import profileIcon from "@/assets/images/Robot_Profile.jpg";
-import MobileMenu from "./MobileMenu"; 
+import MobileMenu from "./MobileMenu";
 import FlipLink from "./FlipLink";
 import { useSession } from "next-auth/react";
-
+import ConvoLogo from "../assets/images/Convologo.png";
+import TransitionLink from "./TransitionLink";
 
 const desktopNavLinks = [
   { href: "/#home", label: "Home" },
   { label: "About", href: "/#about" },
   {
-    label: "Events",
-    href: "/#",
+    label: "Event",
+    href: "#",
     subItems: [
-      { href: "/#all-events", label: "All Events" },
+      { href: "/#all-events", label: "Events" },
       { href: "/#timeline", label: "Timeline" },
     ],
   },
@@ -25,9 +26,10 @@ const desktopNavLinks = [
     label: "More",
     href: "#",
     subItems: [
-      { href: "/#faq", label: "FAQ" },
       { href: "/#team", label: "Team" },
       { href: "/#sponsors", label: "Sponsors" },
+      { href: "/#gallery", label: "Gallery" },
+      { href: "/#faq", label: "FAQ" },
       { href: "/#contact", label: "Let's Connect" },
     ],
   },
@@ -35,34 +37,39 @@ const desktopNavLinks = [
 
 const mobileNavLinks = [
   { href: "/#home", label: "Home" },
+  { href: "/#about", label: "About" },
   { href: "/#all-events", label: "Events" },
   { href: "/#timeline", label: "Timeline" },
-  { href: "/#contact", label: "Contact" },
-  { href: "/#faq", label: "FAQ" },
   { href: "/#team", label: "Team" },
   { href: "/#sponsors", label: "Sponsors" },
+  { href: "/#gallery", label: "Gallery" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/#contact", label: "Let's Connect" },
 ];
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(true);
-  //const [isLoggedin, setIsLoggedin] = useState<boolean>(false);
+  const router = useRouter();
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const lastScrollY = useRef(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
-
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   useEffect(() => {
-    // this runs on every render safely
     if (session) {
       console.log("User logged in");
     }
   }, [session]);
 
-  // if (status === "loading") {
-  //   return null; // or skeleton
-  // }
+  useEffect(() => {
+    const closeDropdown = () => setActiveDropdown(null);
+    if (activeDropdown) {
+      document.addEventListener("click", closeDropdown);
+    }
+    return () => document.removeEventListener("click", closeDropdown);
+  }, [activeDropdown]);
 
   const toggleNavigation = (): void => {
     setIsNavOpen((prevState) => !prevState);
@@ -71,11 +78,20 @@ const Navbar = () => {
   const startHideTimer = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
-      setIsVisible(false);
+      if (window.innerWidth >= 1024) {
+        setIsVisible(false);
+        setActiveDropdown(null);
+      }
     }, 2400);
   };
 
   const handleScroll = (e: React.MouseEvent<HTMLElement, MouseEvent>, href: string) => {
+    if (href === "#") {
+      e.preventDefault();
+      return;
+    }
+    setActiveDropdown(null);
+
     if (href.includes("#")) {
       const targetId = href.substring(href.indexOf("#"));
       const targetPath = href.substring(0, href.indexOf("#"));
@@ -103,6 +119,21 @@ const Navbar = () => {
     }
   };
 
+  const handleDropdownToggle = (e: React.MouseEvent, label: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveDropdown(activeDropdown === label ? null : label);
+  };
+
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     if ("scrollRestoration" in history) {
+  //       history.scrollRestoration = "manual";
+  //     }
+  //     window.scrollTo(0, 0);
+  //   }
+  // }, []);
+
   useEffect(() => {
     const handleScrollEvent = () => {
       const currentScrollY = window.scrollY;
@@ -110,6 +141,7 @@ const Navbar = () => {
 
       if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
         setIsVisible(false);
+        setActiveDropdown(null);
       } else {
         setIsVisible(true);
         startHideTimer();
@@ -126,12 +158,20 @@ const Navbar = () => {
     };
   }, []);
 
-  const navVisibilityClass = isVisible || isNavOpen ? "translate-y-0" : "-translate-y-[150%]";
+ 
+  const navVisibilityClass = isVisible || isNavOpen 
+    ? "translate-y-0" 
+    : "lg:-translate-y-[120%] translate-y-0"; 
 
   return (
     <>
-      <div
-        className={`fixed top-0 left-0 right-0 z-999 p-4 pt-6 font-sans transition-transform duration-500 ease-in-out ${navVisibilityClass}`}
+      <header
+        className={`
+          fixed top-0 left-0 w-full z-1000 
+          transition-transform duration-500 ease-in-out
+          ${navVisibilityClass}
+          bg-black/5 backdrop-blur-xl border-b border-white/10 lg:bg-transparent lg:backdrop-blur-none lg:border-none
+        `}
         onMouseEnter={() => {
           if (timerRef.current) clearTimeout(timerRef.current);
           setIsVisible(true);
@@ -140,26 +180,39 @@ const Navbar = () => {
           startHideTimer();
         }}
       >
-        <div className="w-full flex justify-end items-center mx-auto pointer-events-none">
-          {/* DESKTOP NAV */}
-          <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 pointer-events-auto">
-            <ul className="flex items-center gap-x-2 px-3 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl text-xs font-bold uppercase tracking-widest text-gray-200 ring-1 ring-white/10">
+        <div className="flex items-center justify-between px-2 lg:px-4 pt-2 md:pt-4 w-full mx-auto">
+          
+          {/*Logo*/}
+          <div className="shrink-0 transition-transform hover:scale-105 duration-300 pointer-events-auto">
+            <Link href="/" onClick={(e) => handleScroll(e, "/#home")}>
+              <Image
+                src={ConvoLogo}
+                alt="convo logo"
+                className="object-contain h-9 w-auto md:h-11 md:drop-shadow-xl"
+              />
+            </Link>
+          </div>
+
+          {/* center navbar */}
+          <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 pointer-events-auto">
+            <ul className="flex items-center gap-x-2 px-2 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl text-xs font-bold uppercase tracking-widest text-gray-200 ring-1 ring-white/10">
               {desktopNavLinks.map((item, index) => (
                 <li key={index} className="relative group">
                   {item.subItems ? (
-                    <div className="px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1 hover:text-white">
-                      <span><FlipLink href="">{item.label}</FlipLink></span>
-                      <IoChevronDownOutline className="size-3 group-hover:rotate-180 transition-transform duration-300" />
+                    <div
+                      className={`px-4 py-2 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1 ${activeDropdown === item.label ? "bg-white/10 text-white" : "hover:bg-white/10 hover:text-white"}`}
+                      onClick={(e) => handleDropdownToggle(e, item.label)}
+                    >
+                      <span className="font-orbitron"><FlipLink>{item.label}</FlipLink></span>
+                      <IoChevronDownOutline className={`size-3 transition-transform duration-300 ${activeDropdown === item.label ? "rotate-180" : "group-hover:rotate-180"}`} />
                       
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-6 hidden group-hover:block w-56">
-                        <ul className="bg-black backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden shadow-2xl p-2 flex flex-col gap-1">
+                      {/* Submenu */}
+                      <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-6 w-56 ${activeDropdown === item.label ? "block" : "hidden group-hover:block"}`}>
+                        <ul className="bg-black backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl p-2 flex flex-col gap-1">
                           {item.subItems.map((sub, subIndex) => (
                             <li key={subIndex}>
-                              <div
-                                onClick={(e) => handleScroll(e, sub.href)}
-                                className="block px-4 py-3 hover:bg-white/20 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[10px]"
-                              >
-                                <FlipLink href={sub.href}>{sub.label}</FlipLink>
+                              <div onClick={(e) => handleScroll(e, sub.href)} className="font-orbitron block px-4 py-3 hover:bg-white/5 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[10px] cursor-pointer">
+                                <FlipLink>{sub.label}</FlipLink>
                               </div>
                             </li>
                           ))}
@@ -167,11 +220,8 @@ const Navbar = () => {
                       </div>
                     </div>
                   ) : (
-                    <div
-                      onClick={(e) => handleScroll(e, item.href)}
-                      className="block px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 hover:text-white"
-                    >
-                      <FlipLink href={item.href}>{item.label}</FlipLink>
+                    <div onClick={(e) => handleScroll(e, item.href)} className="font-orbitron block px-6 py-2 hover:bg-white/10 rounded-full transition-all duration-300 hover:text-white cursor-pointer">
+                      <FlipLink>{item.label}</FlipLink>
                     </div>
                   )}
                 </li>
@@ -179,49 +229,50 @@ const Navbar = () => {
             </ul>
           </nav>
 
-          {/* Profile and Toggle */}
-          <div className="flex items-center gap-4 pointer-events-auto z-50">
+          <div className="flex items-center gap-4 pointer-events-auto">
+            {/* profile */}
             {session ? (
-              <Link href="/profile" className="rounded-full relative group block">
+              <TransitionLink href="/profile" className="rounded-full relative group block">
                 <div className="rounded-full border-2 border-white/20 overflow-hidden hover:border-white transition-colors shadow-lg shadow-white/10">
                   <Image
                     src={profileIcon}
                     alt="profile icon"
-                    height={45}
-                    width={45}
-                    className="object-cover"
+                    height={40}
+                    width={40}
+                    className="object-cover md:h-11.25 md:w-11.25"
                   />
                 </div>
-              </Link>
+              </TransitionLink>
             ) : (
-              <div className="hidden lg:flex gap-2 items-center">
-                <div className="py-2.5 px-6 rounded-full glass-btn text-sm">
-                  <FlipLink href="/login">Log in</FlipLink>
-                </div>
-                <div className="py-2.5 px-6 rounded-full glass-btn text-sm">
-                  <FlipLink href="/register">Register&nbsp;now</FlipLink>
-                </div>
+              // login-register
+              <div className="hidden lg:flex gap-3 items-center">
+                <TransitionLink href="/login" className="text-gray-200 font-orbitron group relative px-4 py-2.5 rounded-full bg-cyan-500 hover:bg-cyan-600 backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
+                  <FlipLink>Log in</FlipLink>
+                </TransitionLink>
+                <TransitionLink href="/register" className="text-gray-200 font-orbitron group relative px-4 py-2.5 rounded-full bg-purple-500 hover:bg-purple-600 backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
+                  <FlipLink>Register</FlipLink>
+                </TransitionLink>
               </div>
             )}
 
+            {/* Hamburger*/}
             <button
               onClick={toggleNavigation}
-              className="md:hidden text-white bg-white/10 p-3 rounded-full backdrop-blur-md border border-white/20 active:scale-90 transition-all shadow-lg hover:bg-white/20"
+              className="lg:hidden text-white bg-transparent  rounded-full"
             >
-              <IoMenuOutline className="size-6" />
+              <IoMenuOutline className="size-9 md:size-12" />
             </button>
           </div>
         </div>
+      </header>
 
-        {/* ---------------- MOBILE SIDEBAR COMPONENT ---------------- */}
-        <MobileMenu 
-          isOpen={isNavOpen} 
-          onClose={() => setIsNavOpen(false)} 
-          links={mobileNavLinks} 
-          onLinkClick={handleScroll}
-        />
-        
-      </div>
+      {/* ---------------- MOBILE SIDEBAR COMPONENT ---------------- */}
+      <MobileMenu
+        isOpen={isNavOpen}
+        onClose={() => setIsNavOpen(false)}
+        links={mobileNavLinks}
+        onLinkClick={handleScroll}
+      />
     </>
   );
 };

@@ -1,20 +1,52 @@
-import EventShowcase from "@/components/EventShowcase";
-import FaqSection from "@/components/FAQ";
+'use client';
+import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import Footer from "@/components/Footer";
+import Gallery from "@/components/Gallery";
 import HeroSection from "@/components/HeroSection";
 import HomeAbout from "@/components/HomeAbout";
-import PortalTransition from "@/components/PortalTransition";
 import EventsList from "@/components/EventsList";
 //import { userData } from "@/context/UserContext";
+import Sponsors from '@/components/Sponsors';
+import Timeline from '@/components/TimeLine';
+import Team from '@/components/Team';
+import FaqSection from '@/components/FaqSection';
+import Navbar from '@/components/Navbar';
 
+// Dynamically import WhiteBot with SSR disabled
+const WhiteBot = dynamic(() => import("@/components/WhiteBot"), {
+  ssr: false,
+  loading: () => <div className="h-screen w-full bg-black" />, // Optional placeholder while downloading
+});
 
 export default function Home() {
+  const [shouldLoadBot, setShouldLoadBot] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1400) {
+        setShouldLoadBot(true);
+      } else {
+        setShouldLoadBot(false);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <main className="bg-black w-full h-screen">
-      {/* <HeroSection/> */}
-      {/* <HomeAbout/> */}
+    <main className="bg-black w-full min-h-screen">
+      <Navbar/>
+      <HeroSection />
+      <HomeAbout />
+      {/* <Timeline/> */}
       <EventsList />
-      <FaqSection/>
+      <Team />
+      <Gallery/>
+      <Sponsors/>
+      <FaqSection />
+      {shouldLoadBot && <WhiteBot />}  
       <Footer />
     </main>
   );

@@ -1,7 +1,10 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoPersonOutline, IoLogInOutline, IoPersonAddOutline } from "react-icons/io5";
+import { useSession } from "next-auth/react";
+import TransitionLink from "./TransitionLink";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -11,109 +14,189 @@ interface MobileMenuProps {
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkClick }) => {
-  
-  // Lock body scroll when menu is open
+  const [mounted, setMounted] = useState(false);
+  const { data: session } = useSession(); 
+
+  const authButtonStyle = `
+    relative group flex items-center justify-start gap-3 w-full px-6 py-3.5 
+    rounded-full  tracking-widest Capitalize
+    border border-white/10 bg-white/5 hover:bg-white/20 hover:border-white/40
+    text-white transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]
+  `;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     if (isOpen) {
+      const originalOverflow = window.getComputedStyle(document.body).overflow;
+      
+      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+      
+      document.body.style.touchAction = "none";
+
+      return () => {
+        // Cleanup: Restore styles
+        document.documentElement.style.overflow = "";
+        document.body.style.overflow = ""; // or originalOverflow
+        document.body.style.touchAction = "";
+      };
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
   }, [isOpen]);
 
-  return (
-    <div
-      className={`${
-        isOpen ? "translate-x-0" : "translate-x-full"
-      } transition-transform duration-700 cubic-bezier(0.19, 1, 0.22, 1) fixed top-0 right-0 w-full h-screen z-[1000] flex justify-end pointer-events-auto`}
-      onClick={onClose}
-    >
+  // If not mounted yet return nothing
+  if (!mounted) return null;
+
+  return createPortal(
+    <>
+      {/* Backdrop */}
+      <div 
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[99998] transition-opacity duration-500 ${
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={onClose}
+        aria-hidden="true" 
+        // Prevent scroll propagation on the backdrop itself
+        onTouchMove={(e) => e.preventDefault()} 
+      />
+
+      {/* Side Menu */}
       <div
-        className="min-h-[50%] w-full max-w-sm bg-[#050505]/95 backdrop-blur-sm  flex flex-col py-8 px-8 shadow-2xl relative overflow-hidden"
+        className={`fixed top-0 right-0 h-dvh w-64 md:w-80
+          bg-linear-to-b from-black/95 via-[#0a0a0a]/95 to-black/95 
+          backdrop-blur-2xl shadow-2xl z-99999 
+          overflow-y-auto overflow-x-hidden
+          transform transition-transform duration-700 cubic-bezier(0.19, 1, 0.22, 1) ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="absolute -top-20 -right-20 w-80 h-80 bg-orange-500/10 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
+        {/* Gradients */}
+        <div className="absolute -top-[5%] -right-[10%] w-80 h-120 bg-cyan-600/20 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-[4%] -right-[20%] w-80 h-120 bg-cyan-900/20 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-[40%] -left-[20%] w-80 h-120 bg-fuchsia-600/20 rounded-full blur-[100px] pointer-events-none" />
 
-        <div className="relative flex justify-between items-center mb-10 border-b border-white/10 pb-6 z-10">
-          <span className="text-white/50 text-xs font-bold tracking-[0.2em] uppercase">Menu</span>
-          <button className="group relative" onClick={onClose}>
-            <div className="absolute inset-0 bg-white/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
-            <IoClose className="size-10 text-white hover:text-white transition-transform duration-500 group-hover:rotate-90 relative z-10" />
-          </button>
-        </div>
-
-        
-        <ul className="flex flex-col items-end gap-y-[0.5] z-10 overflow-y-auto pr-[130px]">
-          {links.map((item, index) => (
-            <li
-              key={index}
-              className="group transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"
-              style={{
-                transitionDelay: isOpen ? `${index * 50}ms` : "0ms",
-                opacity: isOpen ? 1 : 0,
-                transform: isOpen ? "translateX(0)" : "translateX(20px)",
-              }}
+        {/* Main content */}
+        <div className="relative h-full flex flex-col p-6 md:p-8">
+          
+          {/* Closing Icon */}
+          <div className="flex justify-end mb-6">
+            <button 
+                onClick={onClose}
+                className="group p-2 focus:outline-none rounded-full hover:bg-white/10 transition-colors"
             >
-              <Link
-                href={item.href}
-                onClick={(e) => onLinkClick(e, item.href)}
-                className="flex items-center justify-between py-3 text-3xl text-gray-300 "
-              >
-                <span>{item.label}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+                <IoClose 
+                    className={`text-3xl md:text-4xl text-gray-400 group-hover:text-white transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] 
+                    ${isOpen 
+                        ? 'rotate-180 scale-100 opacity-100 delay-300' 
+                        : 'rotate-0 scale-50 opacity-0 delay-0'}
+                    `} 
+                />
+            </button>
+          </div>
 
-        <div
-          className="mt-10 ml-[50px] z-10 transition-all duration-500 ease-out"
-          style={{
-            transitionDelay: isOpen ? `${links.length * 50}ms` : "0ms",
-            opacity: isOpen ? 1 : 0,
-            transform: isOpen ? "translateY(0)" : "translateY(5px)",
-          }}
-        >
-          <Link
-            href="/login"
-            onClick={onClose}
-            className="group relative block w-[60%] text-center overflow-hidden rounded-full p-[1px]"
-          >
-            <span className="absolute inset-0 bg-cyan-700  opacity-70 group-hover:opacity-100 animate-gradient-xy transition-opacity" />
-            <div className="relative bg-black rounded-full py-4 transition-colors group-hover:bg-black/80">
-              <span className="font-bold uppercase tracking-[0.2em] text-sm text-white group-hover:scale-105 inline-block transition-transform duration-300">
-                Login
-              </span>
-            </div>
-          </Link>
-        </div>
+          {/* Navigation Links */}
+          <nav className="flex-1 flex flex-col justify-start pt-4 md:pt-8 overflow-y-auto no-scrollbar">
+            <ul className="flex flex-col gap-6 md:gap-8">
+              {links.map((item, index) => (
+                <li key={index} className="overflow-hidden">
+                  <Link
+                    href={item.href}
+                    onClick={(e) => onLinkClick(e, item.href)}
+                    className={`font-orbitron font-bold block text-xl md:text-2xl tracking-wider text-white/90 hover:text-cyan-400 transform transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]
+                      ${isOpen ? "translate-y-0 opacity-100" : "translate-y-[120%] opacity-0"}
+                    `}
+                    style={{ transitionDelay: isOpen ? `${300 + (index * 100)}ms` : '0ms' }}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-        <div
-          className="mt-5 ml-[50px] z-10 transition-all duration-500 ease-out"
-          style={{
-            transitionDelay: isOpen ? `${links.length * 50}ms` : "0ms",
-            opacity: isOpen ? 1 : 0,
-            transform: isOpen ? "translateY(0)" : "translateY(5px)",
-          }}
-        >
-          <Link
-            href="/register"
-            onClick={onClose}
-            className="group relative block w-[60%] text-center overflow-hidden rounded-full p-[1px]"
-          >
-            <span className="absolute inset-0 bg-cyan-700  opacity-70 group-hover:opacity-100 animate-gradient-xy transition-opacity" />
-            <div className="relative bg-black rounded-full py-4 transition-colors group-hover:bg-black/80">
-              <span className="font-bold uppercase tracking-[0.2em] text-sm text-white group-hover:scale-105 inline-block transition-transform duration-300">
-                Register
-              </span>
+            {/* Separator */}
+            <div 
+              className={`h-px bg-linear-to-r from-transparent via-white/10 to-transparent my-8 w-full transform transition-all duration-700 ${isOpen ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}`}
+              style={{ transitionDelay: isOpen ? `${200 + links.length * 50}ms` : "0ms" }}
+            />
+
+            
+            <div className="flex flex-col gap-4 pb-8">
+              {session ? (
+                // PROFILE BUTTON
+                <div className="overflow-hidden">
+                  
+                    <TransitionLink
+                      href="/profile"
+                      onClick={(e) => onLinkClick(e, "/profile")}
+                      className={`${authButtonStyle} ${
+                        isOpen
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-full opacity-0"
+                      }`}
+                      style={{
+                        transitionDelay: isOpen
+                          ? `${200 + (links.length + 1) * 50}ms`
+                          : "0ms",
+                      }}
+                    >
+                      <IoPersonOutline className="text-xl mb-0.5" />
+                      <span className="font-orbitron text-sm font-bold uppercase">My Profile</span>
+                    </TransitionLink>
+                </div>
+              ) : (
+                // LOGIN / REGISTER BUTTONS
+                <>
+                  <div className="overflow-hidden">
+                    <TransitionLink
+                        href="/login"
+                        onClick={(e) => onLinkClick(e, "/login")}
+                        className={`${authButtonStyle} ${
+                        isOpen
+                            ? "translate-y-0 opacity-100"
+                            : "translate-y-full opacity-0"
+                        }`}
+                        style={{
+                        transitionDelay: isOpen
+                            ? `${200 + (links.length + 1) * 50}ms`
+                            : "0ms",
+                        }}
+                    >
+                        <IoLogInOutline className="text-xl mb-0.5" />
+                        <span className="font-orbitron text-sm font-bold uppercase">Login</span>
+                    </TransitionLink>
+                  </div>
+
+                  <div className="overflow-hidden">
+                    <TransitionLink
+                        href="/register"
+                        onClick={(e) => onLinkClick(e, "/register")}
+                        className={`${authButtonStyle} bg-gray-100! hover:bg-white!  text-black! border-transparent ${
+                        isOpen
+                            ? "translate-y-0 opacity-100"
+                            : "translate-y-full opacity-0"
+                        }`}
+                        style={{
+                        transitionDelay: isOpen
+                            ? `${200 + (links.length + 2) * 50}ms`
+                            : "0ms",
+                        }}
+                    >
+                        <IoPersonAddOutline className="text-xl mb-0.5" />
+                        <span className="font-orbitron text-sm font-bold uppercase">Register</span>
+                    </TransitionLink>
+                  </div>
+                </>
+              )}
             </div>
-          </Link>
+          </nav>
+
         </div>
       </div>
-    </div>
+    </>,
+    document.body 
   );
 };
 

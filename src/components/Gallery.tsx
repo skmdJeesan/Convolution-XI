@@ -1,47 +1,110 @@
-"use client"
-import React from "react";
+"use client";
+import React, { useRef } from "react";
 import Image from "next/image";
-// import Galleries from "../assets/images/Galleria/1.webp"
+import { motion, useInView } from "framer-motion";
+import "../app/gallery.css";
 
-// Placeholder data - replace with your images
-const images = [
-  { src: "/assets/images/Galleria/1.webp", span: "col-span-1 md:col-span-2 row-span-2", title: "Keynote" },
-  { src: "/assets/images/Galleria/2.webp", span: "col-span-1", title: "Workshops" },
-  { src: "/assets/images/Galleria/3.webp", span: "col-span-1", title: "Cyber Security" },
-  { src: "/assets/images/Galleria/4.webp", span: "col-span-1 md:col-span-2", title: "Robotics" },
-  { src: "/assets/images/Galleria/5.webp", span: "col-span-1", title: "Networking" },
+// 1. Define Data Structure: Keeps the JSX clean and allows specific styling (big vs small)
+const galleryImages = [
+  { src: "/Galleria/1.webp", isBig: true },
+  { src: "/Galleria/2.webp", isBig: false },
+  { src: "/Galleria/3.webp", isBig: true },
+  { src: "/Galleria/4.webp", isBig: false },
+  { src: "/Galleria/5.webp", isBig: true },
+  { src: "/Galleria/6.webp", isBig: false },
+  { src: "/Galleria/7.webp", isBig: true },
+  { src: "/Galleria/8.webp", isBig: false },
+  { src: "/Galleria/9.webp", isBig: true },
+  { src: "/Galleria/10.webp", isBig: false },
+  { src: "/Galleria/11.webp", isBig: true },
+  { src: "/Galleria/12.webp", isBig: false },
+  { src: "/Galleria/13.webp", isBig: true },
+  { src: "/Galleria/14.webp", isBig: false },
+  { src: "/Galleria/15.webp", isBig: true },
+  { src: "/Galleria/16.webp", isBig: false },
+  { src: "/Galleria/17.webp", isBig: false },
+  { src: "/Galleria/18.webp", isBig: false },
+  { src: "/Galleria/19.webp", isBig: false },
+  { src: "/Galleria/20.webp", isBig: false },
+  { src: "/Galleria/21.webp", isBig: false },
+  { src: "/Galleria/22.webp", isBig: false },
+  { src: "/Galleria/23.webp", isBig: false },
+  { src: "/Galleria/24.webp", isBig: false },
+  { src: "/Galleria/25.webp", isBig: false },
 ];
 
 const Gallery = () => {
-  return (
-    <div className="p-8 bg-[#050505]">
-       <div className="flex justify-between items-end mb-8 border-b border-white/10 pb-4">
-         <h2 className="text-5xl font-black text-white uppercase tracking-tighter">Gallery</h2>
-         <span className="text-gray-500 font-mono text-sm">SCROLL DOWN ↓</span>
-       </div>
+  // 2. Double the array for seamless scrolling
+  // We do this in JS, not DOM manipulation, to respect React's lifecycle
+  const scrollerContent = [...galleryImages, ...galleryImages];
 
-      {/* Columns: 1 on mobile, 2 on tablet, 3 on desktop */}
-      <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-        {images.map((img, i) => (
-          <div key={i} className="break-inside-avoid relative group mb-4">
-            <div className="relative overflow-hidden rounded-lg border border-white/5 bg-gray-900">
-              <Image
-                src={img.src}
-                alt="Gallery Item"
-                width={500}
-                height={500}
-                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
-                <button className="px-6 py-2 border border-white text-white uppercase text-xs tracking-widest hover:bg-white hover:text-black transition-colors">
-                  View
-                </button>
+  // 3. Setup the Ref and InView hook
+  const containerRef = useRef(null);
+  // 'amount: 0.3' means the animation starts when 30% of the gallery is visible
+  // 'once: false' ensures it pauses/plays every time you scroll away/back
+  const isInView = useInView(containerRef, { amount: 0.3, once: false });
+
+  return (
+    <div id="gallery" className="relative min-h-[95vh] w-full py-10 bg-black overflow-hidden">
+      
+      {/* Background Section - Optimized */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[#020203]"></div>
+        {/* Added 'will-change-transform' to reduce GPU repaint cost */}
+        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vh] bg-fuchsia-900/15 blur-[100px] rounded-full mix-blend-screen will-change-transform"></div>
+        <div className="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vh] bg-purple-900/50 blur-[100px] rounded-full mix-blend-screen will-change-transform"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[70vh] bg-cyan-900/20 blur-[100px] rounded-full mix-blend-screen will-change-transform"></div>
+
+        <div
+          className="absolute inset-0 opacity-[0.20]"
+          style={{
+            backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        ></div>
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 flex flex-col items-center pointer-events-none select-none mb-6"
+      >
+        <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
+          Gallery
+          <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-200/60 to-transparent"></span>
+        </h1>
+      </motion.div>
+
+      <div ref={containerRef} className="outer-container-scroll galleryContainer relative z-10 w-full">
+        <div 
+          className="scroller" 
+          data-direction="left" 
+          data-speed="fast" 
+          data-animated="true"
+          data-play-state={isInView ? "running" : "paused"}
+        >
+          <div className="scroller__inner">
+            {scrollerContent.map((item, index) => (
+              <div
+                key={index}
+                className={`item ${item.isBig ? 'big' : ''} relative w-full h-full group`}
+              >
+                <Image 
+                  src={item.src} 
+                  alt="Gallery Item"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width: 768px) 33vw, 20vw"
+                  loading={index < 10 ? "eager" : "lazy"}
+                  // Placeholder blur helps perceived performance
+                  placeholder="empty" 
+                />
               </div>
-            </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );
