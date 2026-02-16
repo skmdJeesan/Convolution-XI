@@ -24,7 +24,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1400) {
+      if (window.innerWidth >= 1200) {
         setShouldLoadBot(true);
       } else {
         setShouldLoadBot(false);
