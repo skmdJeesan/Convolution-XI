@@ -232,7 +232,7 @@ export default function AboutSection() {
                   src={AboutRobot.src}
                   alt="About Convolution X"
                   loading="eager"
-                  className="h-full w-auto object-contain object-bottom contrast-125 saturate-110" 
+                  className="h-full w-auto object-contain object-bottom contrast-125 saturate-110 select-none" 
                 />
                 
                 <div className="video-div flex flex-col items-center gap-1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
