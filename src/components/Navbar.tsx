@@ -18,7 +18,7 @@ const desktopNavLinks = [
     label: "Event",
     href: "#",
     subItems: [
-      { href: "/#all-events", label: "Events" },
+      { href: "/#events", label: "Events" },
       { href: "/#timeline", label: "Timeline" },
     ],
   },
@@ -38,7 +38,7 @@ const desktopNavLinks = [
 const mobileNavLinks = [
   { href: "/#home", label: "Home" },
   { href: "/#about", label: "About" },
-  { href: "/#all-events", label: "Events" },
+  { href: "/#events", label: "Events" },
   { href: "/#timeline", label: "Timeline" },
   { href: "/#team", label: "Team" },
   { href: "/#sponsors", label: "Sponsors" },

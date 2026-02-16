@@ -7,9 +7,10 @@ import {
   FaChess, FaRandom, FaQuestion, FaMicrophone, 
   FaCamera, FaArrowRight 
 } from 'react-icons/fa';
+import TransitionLink from './TransitionLink';
 
 interface Event {
-  id: number;
+  id: string;
   title: string;
   desc: string;
   icon: React.ReactNode;
@@ -18,63 +19,63 @@ interface Event {
 
 const events: Event[] = [
   { 
-    id: 1, 
+    id: "circuistics", 
     title: 'Circuistics', 
     desc: "Master the flow! Design complex circuits and prove your electrical prowess.",
     icon: <FaMicrochip />,
     image: 'https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' 
   },
   { 
-    id: 2, 
+    id: "algomaniac", 
     title: 'Algomaniac', 
     desc: "The ultimate coding showdown. Solve algorithms and race against time.",
     icon: <FaCode />,
     image: 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' 
   },
   { 
-    id: 3, 
+    id: "sparkhack", 
     title: 'SparkHack', 
     desc: "Innovate, Build, Deploy. A 24-hour hackathon to bring ideas to life.",
     icon: <FaLaptopCode />,
     image: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' 
   },
   { 
-    id: 4, 
+    id: "eureka", 
     title: 'Eureka', 
     desc: "Present your groundbreaking research and push the boundaries of tech.",
     icon: <FaLightbulb />,
     image: 'https://images.pexels.com/photos/355948/pexels-photo-355948.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' 
   },
   { 
-    id: 5, 
+    id: "decisia", 
     title: 'Decisia', 
     desc: "Make the strategic choice in this intense business case study battle.",
     icon: <FaChess />,
     image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' 
   },
   { 
-    id: 6, 
+    id: "aboltabol", 
     title: 'Abol Tabol', 
     desc: "Where logic meets absurdity. A fun event for the creative minds.",
     icon: <FaRandom />,
     image: 'https://images.pexels.com/photos/3709370/pexels-photo-3709370.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' 
   },
   { 
-    id: 7, 
+    id: "inquizzitive", 
     title: 'Inquizzitive', 
     desc: "The Grand Tech Quiz. Test your knowledge across all domains.",
     icon: <FaQuestion />,
     image: 'https://images.pexels.com/photos/207756/pexels-photo-207756.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' 
   },
   { 
-    id: 8, 
+    id: "jutalks", 
     title: 'JU Talks', 
     desc: "Inspiring journeys. Listen to industry leaders share their experiences.",
     icon: <FaMicrophone />,
     image: 'https://images.pexels.com/photos/1708936/pexels-photo-1708936.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' 
   },
   { 
-    id: 9, 
+    id: "frames", 
     title: '24 Frames', 
     desc: "Capture the moment. A photography contest for visual storytellers.",
     icon: <FaCamera />,
@@ -193,9 +194,9 @@ const EventCarousel: React.FC = () => {
                               </div>
                               <h3 className={styles.cardTitle}>{event.title}</h3>
                               <p className={styles.cardDesc}>{event.desc}</p>
-                              <a href={`/events/${event.id}`} className={styles.exploreBtn}>
+                              <TransitionLink href={`/events/${event.id}`} className={styles.exploreBtn}>
                                 Explore <FaArrowRight className="ml-2" />
-                              </a>
+                              </TransitionLink>
                             </div>
                         </div>
                         <div className={`${styles.cardFace} ${styles.cardFaceBack}`}></div>
