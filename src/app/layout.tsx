@@ -25,13 +25,6 @@ const orbitron = Orbitron({
   display: "swap",
 });
 
-const orbitron = Orbitron({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-orbitron",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   title: "Convolution-XI",
   description: "The official annual techno-management fest of the Department of Electrical Engineering, Jadavpur University. Where innovation meets circuitry.",
