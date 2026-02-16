@@ -4,6 +4,7 @@ import { motion, useInView, useSpring, useMotionValue, Variants } from 'framer-m
 import { CalendarClock, Users, Trophy } from 'lucide-react';
 import { IoPlay } from "react-icons/io5";
 import AboutRobot from "../assets/images/About_Robot.png"
+import MobileAboutContent from './MobileAbout';
 
 const EVENT_DATE = "2026-03-18T09:00:00";
 
@@ -146,12 +147,16 @@ export default function AboutSection() {
       <Background />
       <div className="relative z-10 maxWidthForSections w-full grid grid-cols-1 xl:grid-cols-2 gap-12 xl:gap-20 items-center pt-5 pb-10 min-h-[inherit]">
 
+        {/* --- MOBILE COMPONENT (Only visible on small screens) --- */}
+        <MobileAboutContent userCount={userCount} />
+
+        {/* --- DESKTOP ORIGINAL CONTENT (Only visible on xl screens) --- */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="space-y-8 xl:space-y-10 flex flex-col justify-center items-center xl:items-start text-center xl:text-left h-auto"
+          className="hidden xl:flex space-y-8 xl:space-y-10 flex-col justify-center items-center xl:items-start text-center xl:text-left h-auto"
         >
           {/* Heading */}
           <motion.div variants={itemVariants} className="flex flex-col items-center pointer-events-none select-none mb-5">
@@ -161,7 +166,7 @@ export default function AboutSection() {
             </h1>
           </motion.div>
 
-          {/* Paragraph Box */}
+          {/* about Box */}
           <motion.div
             variants={itemVariants}
             className="relative p-6 lg:p-8 border-l-4 border-cyan-500/20 bg-linear-to-r from-cyan-900/10 to-transparent backdrop-blur-sm rounded-r-2xl w-full max-w-2xl mx-auto xl:mx-0"
@@ -174,7 +179,6 @@ export default function AboutSection() {
             </p>
           </motion.div>
 
-          {/* Stats Grid */}
           <motion.div
             variants={itemVariants}
             className="font-rajdhani grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 w-full max-w-2xl mx-auto xl:mx-0"
@@ -208,7 +212,6 @@ export default function AboutSection() {
           </motion.div>
         </motion.div>
 
-        {/* Right */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -216,7 +219,7 @@ export default function AboutSection() {
           className="relative hidden xl:flex justify-center items-end h-full pointer-events-none min-h-[600px]"
         >
           <div className="absolute bottom-0 w-full max-w-xl h-[90%] flex items-end justify-center">
-                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-1/4 bg-gradient-to-t from-black/80 via-black/40 to-transparent blur-xl z-0 transform-gpu"></div>
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-1/4 bg-gradient-to-t from-black/80 via-black/40 to-transparent blur-xl z-0 transform-gpu"></div>
             <div 
               className="relative w-full h-full flex items-end justify-center z-10"
               style={{
@@ -230,7 +233,7 @@ export default function AboutSection() {
               >
                 <img
                   src={AboutRobot.src}
-                  alt="About Convolution X"
+                  alt="About Convolution XI"
                   loading="eager"
                   className="h-full w-auto object-contain object-bottom contrast-125 saturate-110 select-none" 
                 />
@@ -244,7 +247,8 @@ export default function AboutSection() {
                 </div>
               </motion.div>
             </div>
-                        {/* {isVideoOpen && (
+
+            {/* {isVideoOpen && (
 
               <div
 
@@ -285,6 +289,7 @@ export default function AboutSection() {
               </div>
 
             )} */}
+            
           </div>
         </motion.div>
 
