@@ -40,51 +40,12 @@ const DataCoreSVG = () => (
 );
 
 
-// --- NEW CREATIVE SVG 2: NEURAL NODE (Mid Left Background) ---
-const NeuralNodeSVG = () => (
-    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full opacity-100">
-        {/* Main Hub */}
-        <circle cx="40" cy="100" r="15" stroke="#a855f7" strokeWidth="2" fill="rgba(168, 85, 247, 0.1)" className="animate-pulse" />
-        <circle cx="40" cy="100" r="8" fill="#a855f7" className='blur-[3px]' />
-
-        {/* Connection Lines with Data Packets */}
-        {/* Line 1: Top Right */}
-        <path d="M55 100 L100 60 L160 60" stroke="#a855f7" strokeWidth="1" opacity="0.5" />
-        <circle cx="55" cy="100" r="2" fill="#fff">
-            <animateMotion path="M0 0 L45 -40 L105 -40" dur="3s" repeatCount="indefinite" />
-        </circle>
-
-        {/* Line 2: Straight Right */}
-        <path d="M55 100 L180 100" stroke="#a855f7" strokeWidth="1" opacity="0.5" />
-        <circle cx="55" cy="100" r="2" fill="#fff">
-            <animateMotion path="M0 0 L125 0" dur="4s" repeatCount="indefinite" begin="1s" />
-        </circle>
-
-        {/* Line 3: Bottom Right */}
-        <path d="M55 100 L100 140 L150 140" stroke="#a855f7" strokeWidth="1" opacity="0.5" />
-        <circle cx="55" cy="100" r="2" fill="#fff">
-            <animateMotion path="M0 0 L45 40 L95 40" dur="5s" repeatCount="indefinite" begin="0.5s" />
-        </circle>
-
-        {/* --- FIXED: 3 Explicit Nodes at the Right --- */}
-        
-        {/* Top Node (Aligned to end of Line 1) */}
-        <circle cx="160" cy="60" r="4" stroke="#d8b4fe" strokeWidth="2" fill="#1a1a2e" />
-
-        {/* Middle Node (Aligned to end of Line 2) */}
-        <circle cx="180" cy="100" r="4" stroke="#d8b4fe" strokeWidth="2" fill="#1a1a2e" />
-
-        {/* Bottom Node (Aligned to end of Line 3) */}
-        <circle cx="150" cy="140" r="4" stroke="#d8b4fe" strokeWidth="2" fill="#1a1a2e" />
-    </svg>
-);
-
 // --- ATOMIC ORBIT (Top Left) ---
 const AtomicOrbit = () => {
     return (
-        <div className="absolute md:top-[30%] md:left-[15%] xl:top-[20%] xl:left-[15%] -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[120px] md:h-[120px] xl:w-[150px] xl:h-[150px] z-0 pointer-events-none opacity-70 md:opacity-80 animate-spin-slow animate-float">
-             {/* We use a 3D perspective wrapper. */}
-            
+        <div className="absolute top-[10%] left-[10%] hidden md:top-[30%] md:left-[15%] xl:top-[20%] xl:left-[15%] -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[120px] md:h-[120px] xl:w-[150px] xl:h-[150px] z-0 pointer-events-none opacity-70 md:opacity-80 animate-spin-slow animate-float">
+            {/* We use a 3D perspective wrapper. */}
+
             {/* Orbit 1: Cyan - Horizontal-ish */}
             <div className="absolute inset-0 flex items-center justify-center [transform:rotateX(70deg)_rotateY(-10deg)]">
                 <div className="w-full h-full rounded-full border-[1px] border-pink-500/100 animate-[spin_3s_linear_infinite]">
@@ -105,7 +66,7 @@ const AtomicOrbit = () => {
                     <div className="absolute inset-0 rounded-full border-t-4 border-l-2 border-transparent border-t-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.8)]"></div>
                 </div>
             </div>
-            
+
             {/* Central Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-15 h-15 bg-pink-400/100 blur-[10px] rounded-full animate-pulse"></div>
         </div>
@@ -132,11 +93,11 @@ const BackgroundGrid = () => (
         <AtomicOrbit />
 
         {/* --- 5. NEW: THE CYBER MOON (Replaces the Wireframe Rings) --- */}
-        <div className="absolute top-[27%] right-[10%] xl:top-[15%] xl:right-[5%] w-[250px] h-[250px] md:w-[80px] md:h-[80px] xl:w-[100px] xl:h-[100px] z-0 pointer-events-none opacity-90 animate-float">
-            
+        <div className="absolute top-[30%] right-[20%] md:top-[27%] md:right-[10%] xl:top-[15%] xl:right-[5%] w-[250px] h-[250px] md:w-[80px] md:h-[80px] xl:w-[100px] xl:h-[100px] z-0 pointer-events-none opacity-100 md:opacity-90 animate-float">
+
             {/* The Main Sphere Gradient (Pink/Purple) */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-fuchsia-600 via-purple-900 to-black opacity-100 shadow-[0_0_60px_rgba(192,38,211,0.4)]"></div>
-            
+
 
             {/* The "Scanline" Overlay (Makes it look digital) */}
             <div className="absolute inset-0 rounded-full bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px] opacity-50"></div>
@@ -146,22 +107,41 @@ const BackgroundGrid = () => (
 
             {/* Orbiting Data Ring (To keep it Sci-Fi) */}
             <div className="absolute inset-[-20px] rounded-full border border-cyan-500/40 border-dashed animate-[spin_30s_linear_infinite]"></div>
-            
+
             {/* A Satellite/Node orbiting the moon */}
             <div className="absolute top-1/2 left-1/2 w-[150%] h-[150%] -translate-x-1/2 -translate-y-1/2 animate-[spin_10s_linear_infinite_reverse]">
-                 <div className="absolute top-0 left-1/2 w-3 h-3 bg-cyan-400 blur-[2px] rounded-full shadow-[0_0_10px_cyan]"></div>
+                <div className="absolute top-0 left-1/2 w-3 h-3 bg-cyan-400 blur-[2px] rounded-full shadow-[0_0_10px_cyan]"></div>
             </div>
         </div>
 
         {/* 6. Ambient Atmosphere Clouds */}
-        {/* <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-fuchsia-500/10 blur-[90px] rounded-full z-0 pointer-events-none mix-blend-screen animate-float" /> */}
+        {/* <div className="absolute top-1/4 left-[20%] w-[300px] h-[300px] bg-fuchsia-500/50 blur-[90px] rounded-full z-0 pointer-events-none md:hidden" /> */}
+
+        {/* NEW OPTIMIZED IMAGE: Fully Controllable */}
+        <div className={`absolute z-0 pointer-events-none md:hidden mix-blend-screen opacity-100 
+            /* 1. POSITION: Adjust these to move it around */
+            top-[25%] left-[15%] 
+            
+            /* 2. BASE SIZE: The physical box holding the image */
+            w-[300] h-[300] 
+            
+            /* 3. SCALE: Zoom the image in or out (e.g., scale-125, scale-150, scale-75) */
+            scale-250
+        `}>
+            <Image
+                src="/assets/images/Pink_blur.png"
+                alt="Atmosphere Glow"
+                fill
+                className="object-contain"
+            />
+        </div>
     </>
 );
 
 // --- HUD & DECORATIONS ---
 const HeadsUpDisplay = () => (
     <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden">
-        
+
         {/* Top Left Decoration */}
         <div className="absolute top-0 left-0 p-1 hidden md:block">
             <div className="w-32 h-32 border-l-2 border-t-2 border-cyan-500/30 rounded-tl-xl relative">
@@ -182,17 +162,17 @@ const HeadsUpDisplay = () => (
         <div className="absolute top-[47%] xl:top-1/3 left-6 z-[1] hidden md:flex flex-col gap-3 animate-slide-in-left">
             <div className="bg-[#0b0b15]/70 backdrop-blur-sm border-l-2 border-cyan-500/50 pl-4 py-3 pr-6 rounded-r-xl">
                 <div className="flex items-center gap-4">
-                    
+
                     {/* CUTE BOT AVATAR WRAPPER */}
                     <div className="relative w-14 h-14 shrink-0 rounded-full border-2 border-cyan-400/50 shadow-[0_0_15px_rgba(34,211,238,0.4)] overflow-hidden bg-black/60">
-                         <Image 
-                            src="/cutebot.svg" 
-                            alt="System AI" 
+                        <Image
+                            src="/cutebot.svg"
+                            alt="System AI"
                             width={56}
                             height={56}
                             className="object-cover p-1 hover:scale-110 transition-transform duration-500"
-                         />
-                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent animate-electric opacity-50 pointer-events-none"></div>
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent animate-electric opacity-50 pointer-events-none"></div>
                     </div>
 
                     <div className="flex flex-col">
@@ -215,7 +195,7 @@ const HeadsUpDisplay = () => (
         <div className="absolute bottom-[20%] xl:bottom-1/3 right-6 z-[1] hidden md:flex flex-col gap-3 text-right items-end animate-slide-in-right">
             <div className="bg-[#0b0b15]/70 backdrop-blur-sm border-r-2 border-fuchsia-500/50 pr-4 pl-6 py-3 rounded-l-xl">
                 <div className="flex items-center justify-end gap-4">
-                    
+
                     {/* Text Block (Left of Icon) */}
                     <div className="flex flex-col items-end">
                         <div className="flex items-center justify-end gap-2 mb-1">
@@ -230,12 +210,12 @@ const HeadsUpDisplay = () => (
 
                     {/* DATA CORE ICON WRAPPER (Right of Text) */}
                     <div className="relative w-14 h-14 shrink-0 rounded-full border-2 border-fuchsia-400/50 shadow-[0_0_15px_rgba(232,121,249,0.4)] overflow-hidden bg-black/60 flex items-center justify-center">
-                         {/* Using the Custom SVG Component */}
-                         <div className="w-full h-full hover:scale-110 transition-transform duration-500">
-                             <DataCoreSVG />
-                         </div>
-                         {/* Holographic Scan Overlay (Fuchsia) */}
-                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-pink-400/70 to-transparent animate-electric opacity-90 pointer-events-none"></div>
+                        {/* Using the Custom SVG Component */}
+                        <div className="w-full h-full hover:scale-110 transition-transform duration-500">
+                            <DataCoreSVG />
+                        </div>
+                        {/* Holographic Scan Overlay (Fuchsia) */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-pink-400/70 to-transparent animate-electric opacity-90 pointer-events-none"></div>
                     </div>
 
                 </div>
@@ -257,9 +237,9 @@ const SciFiButton = ({ label, href, color = "cyan" }: { label: string; href: str
             e.preventDefault();
             const targetId = href.replace('#', '');
             const element = document.getElementById(targetId);
-            
+
             if (element) {
-                element.scrollIntoView({ 
+                element.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
@@ -268,24 +248,24 @@ const SciFiButton = ({ label, href, color = "cyan" }: { label: string; href: str
     };
 
     return (
-        <Link 
-            href={href || "#"} 
+        <Link
+            href={href || "#"}
             onClick={handleScroll}
             className="relative group block w-full md:w-auto h-[45px] md:h-[50px] min-w-[130px] md:min-w-[160px]"
         >
-            <div 
-                className="absolute inset-0 opacity-100 animate-pulse lg:hidden" 
-                style={{ 
-                    ...clipStyle, 
+            <div
+                className="absolute inset-0 opacity-100 animate-pulse lg:hidden"
+                style={{
+                    ...clipStyle,
                     backgroundColor: color === 'fuchsia' ? '#d946ef' : '#06b6d4',
-                    filter: `blur(8px)` 
-                }} 
+                    filter: `blur(8px)`
+                }}
             />
 
             <div className={`absolute inset-0 bg-white/20 transition-all duration-300 ${color === 'fuchsia' ? 'lg:group-hover:bg-fuchsia-400/50' : 'lg:group-hover:bg-cyan-400/50'}`} style={clipStyle} />
-            
+
             <div className={`absolute inset-[1px] bg-[#0b0b15]/90 backdrop-blur-md flex items-center justify-center overflow-hidden transition-all duration-300 ${bgHover}`} style={clipStyle}>
-                
+
                 {/* Mobile Scanline */}
                 <div className={`
                     absolute inset-0 w-full h-full 
@@ -403,15 +383,13 @@ function HeroSection() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const MOBILE_VIDEO_PATH = "/assets/videos/hero_robot_mobile_15.mp4";
-
     return (
         <div id='home' className="h-[100dvh] w-full relative overflow-hidden mx-auto bg-[#000000] font-sans selection:bg-cyan-500/30">
             <BackgroundGrid />
             <HeadsUpDisplay />
 
             {/* Logo */}
-            <div className="absolute top-[20%] md:top-[15%] xl:top-[23%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 md:z-10 pointer-events-none select-none flex justify-center w-full">
+            <div className="absolute top-[15%] md:top-[15%] xl:top-[23%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 md:z-10 pointer-events-none select-none flex justify-center w-full">
                 <div className="relative group w-full flex justify-center">
                     <div className="absolute -inset-10 md:-inset-32 bg-gradient-to-r from-cyan-500/20 to-fuchsia-500/20 blur-[60px] md:blur-[100px] rounded-full opacity-0" />
                     <Image
@@ -425,17 +403,23 @@ function HeroSection() {
 
             {/* --- MEDIA LAYER --- */}
             <div className="absolute inset-0 z-10 w-full h-full pointer-events-auto">
-                
+
                 {/* 1. Mobile Video (< 768px) */}
                 {deviceType === 'mobile' && (
-                    <video
-                        key="mobile-video"
-                        className="absolute inset-0 w-full h-full"
-                        autoPlay loop muted playsInline preload="auto"
-                        style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-                    >
-                        <source src={MOBILE_VIDEO_PATH} type="video/mp4" />
-                    </video>
+                    <div className="w-full h-full flex items-center justify-center pointer-events-none">
+                        
+                        {/* Added 'scale-125' to force it 25% larger */}
+                        {/* You can change 125 to 110, 150, or even [2.0] for double size */}
+                        <div className="relative w-full h-full scale-250 mt-10 bottom-[-100]"> 
+                            <Image
+                                src="/assets/images/NexBot_Home.png"
+                                alt="NexBot Hero Mobile"
+                                fill
+                                className="object-contain drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]" 
+                                priority
+                            />
+                        </div>
+                    </div>
                 )}
 
                 {/* 2. Tablet & Desktop (>= 768px) - 3D Scene */}
