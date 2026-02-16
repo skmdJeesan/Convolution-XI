@@ -45,7 +45,7 @@ export default function FaqSection() {
                 <div className="hidden md:block absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vh] bg-purple-900/20 blur-[80px] rounded-full mix-blend-screen"></div>
                 <div className="hidden md:block absolute bottom-[10%] right-[-10%] w-[50vw] h-[70vh] bg-cyan-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
 
-                <div className="block md:hidden absolute top-[20%] left-[-10%] w-[50vw] h-[50vh] bg-fuchsia-900/35 blur-[100px] rounded-full mix-blend-screen"></div>
+                <div className="block md:hidden absolute top-[20%] left-[-10%] w-[50vw] h-[50vh] bg-fuchsia-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
                 <div className="block md:hidden absolute -bottom-[20%] left-[30%] w-[50vw] h-[50vh] bg-fuchsia-900/20 blur-[100px] rounded-full mix-blend-screen"></div>
                 <div className="block md:hidden absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vh] bg-purple-900/40 blur-[80px] rounded-full mix-blend-screen"></div>
                 <div className="block md:hidden absolute bottom-[10%] right-[-10%] w-[50vw] h-[70vh] bg-cyan-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
@@ -70,7 +70,7 @@ export default function FaqSection() {
                     {/* Header */}
                     <div className="text-center mb-12 md:mb-16 space-y-4 flex flex-col items-center">
                         <div className="relative inline-block">
-                            <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-blue-200 to-purple-200 drop-shadow-sm sm:whitespace-nowrap uppercase">
+                            <h1 className="font-orbitron font-bold text-center text-2xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-blue-200 to-purple-200 drop-shadow-sm sm:whitespace-nowrap uppercase">
                                 Frequently Asked questions
                                 <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-200/60 to-transparent"></span>
                             </h1>
@@ -116,7 +116,7 @@ export default function FaqSection() {
                                             <div className={`absolute bottom-0 left-0 w-3 h-3 border-b border-l transition-colors duration-300 ${isOpen ? 'border-cyan-400' : 'border-white/20'}`}></div>
                                     
                                             {/* Question Header */}
-                                            <div className="flex items-center justify-between p-5 relative z-10">
+                                            <div className="flex items-center justify-between px-2 py-4 relative z-10">
                                                 <div className="flex items-center gap-4 md:gap-6 flex-1">
                                                     {/* Number Box */}
                                                     <div className={`
@@ -181,9 +181,9 @@ export default function FaqSection() {
                 </div>
 
                 {/* Marque */}
-                <div className="hidden md:flex px-4 py-2 backdrop-blur-2xl rounded-full w-[90vw] lg:w-[85vw] overflow-hidden bg-[#a046ef] [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] transform-gpu will-change-transform">
-                    <div className="animate-marquee-infinite group-hover:[animation-play-state:paused] shrink-0 min-w-full flex items-center">
-                        <span className="text-white text-sm sm:text-base font-semibold font-rajdhani tracking-wide whitespace-nowrap">Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam' for future updates.</span></div><div className="group animate-marquee-infinite group-hover:[animation-play-state:paused] shrink-0 min-w-full flex items-center"><span className="text-white text-sm sm:text-base font-semibold font-rajdhani tracking-wide whitespace-nowrap">Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam' for future updates.</span></div></div>
+                <div className="hidden md:flex px-4 py-2 backdrop-blur-2xl rounded-full w-[90vw] lg:w-[85vw] overflow-hidden bg-[#a046ef] mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] transform-gpu will-change-transform">
+                    <div className="animate-marquee-infinite group-hover:paused shrink-0 min-w-full flex items-center">
+                        <span className="text-white text-sm sm:text-base font-semibold font-rajdhani tracking-wide whitespace-nowrap">Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam' for future updates.</span></div><div className="group animate-marquee-infinite group-hover:paused shrink-0 min-w-full flex items-center"><span className="text-white text-sm sm:text-base font-semibold font-rajdhani tracking-wide whitespace-nowrap">Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam' for future updates.</span></div></div>
 
                 <div className="block md:hidden mt-4 px-4 py-3 bg-black/40 rounded-full border border-white/5 mx-4 max-w-3xl text-center">
                     <span className="text-white/80 text-sm sm:text-base font-semibold font-rajdhani tracking-wide">
