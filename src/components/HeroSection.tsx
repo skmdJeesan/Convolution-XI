@@ -43,7 +43,7 @@ const DataCoreSVG = () => (
 // --- ATOMIC ORBIT (Top Left) ---
 const AtomicOrbit = () => {
     return (
-        <div className="absolute top-[10%] left-[10%] hidden md:top-[30%] md:left-[15%] xl:top-[20%] xl:left-[15%] -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[120px] md:h-[120px] xl:w-[150px] xl:h-[150px] z-0 pointer-events-none opacity-70 md:opacity-80 animate-spin-slow animate-float">
+        <div className="absolute top-[10%] left-[10%] hidden md:block md:top-[30%] md:left-[15%] xl:top-[20%] xl:left-[15%] -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[120px] md:h-[120px] xl:w-[150px] xl:h-[150px] z-0 pointer-events-none opacity-70 md:opacity-80 animate-spin-slow animate-float">
             {/* We use a 3D perspective wrapper. */}
 
             {/* Orbit 1: Cyan - Horizontal-ish */}
@@ -384,7 +384,7 @@ function HeroSection() {
     }, []);
 
     return (
-        <div id='home' className="h-[100dvh] w-full relative overflow-hidden mx-auto bg-[#000000] font-sans selection:bg-cyan-500/30">
+        <div id='home' className="h-[100dvh] w-full relative overflow-hidden mx-auto bg-[#000000] font-sans select-none">
             <BackgroundGrid />
             <HeadsUpDisplay />
 
