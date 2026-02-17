@@ -2,20 +2,18 @@
 import React from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
-interface ConvolutionCardProps {
-  data: {
-    id: string;
-    category: string;
-    title: string;
-    description: string;
-    image: string;
-  };
+interface Event {
+  id: string;
+  title: string;
+  desc: string;
+  icon: React.ReactNode;
+  image: string;
 }
 
-const ConvolutionCard = ({ data }: ConvolutionCardProps) => {
+const ConvolutionCard = ({ data }: {data: Event}) => {
   return (
     // OUTER WRAPPER
-    <div className="relative group w-full h-full perspective-1000">
+    <div className="relative group w-full h-1/2 perspective-1000">
       
       {/* 1. DYNAMIC BACK GLOW (The Light Source) */}
       <div className="absolute -inset-1 bg-linear-to-r from-purple-600 via-cyan-600 to-purple-500 rounded-[2rem] md:rounded-[2.5rem] blur-xl opacity-30 md:opacity-20 md:group-hover:opacity-50 transition duration-1000 md:group-hover:duration-500 animate-tilt" />
@@ -23,7 +21,7 @@ const ConvolutionCard = ({ data }: ConvolutionCardProps) => {
       {/* 2. THE MAIN CARD CHASSIS */}
       {/* NUCLEAR FIX: bg-[#080808] is solid opaque. No transparency here. 
           This acts as the light blocker. */}
-      <div className="relative w-full h-full bg-[#080808] border border-white/10 md:group-hover:border-purple-500/50 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden flex flex-col md:flex-row transition-all duration-500 shadow-2xl">
+      <div className="relative w-full h-1/2 bg-[#080808] border border-white/10 md:group-hover:border-purple-500/50 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden flex flex-col md:flex-row transition-all duration-500 shadow-2xl">
         
         {/* --- IMAGE SECTION (Left - 45%) --- */}
         {/* Z-INDEX 20: Sits ON TOP of the text section to hide the seam overlap */}
@@ -50,7 +48,7 @@ const ConvolutionCard = ({ data }: ConvolutionCardProps) => {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
                 </span>
                 <span className="text-cyan-50 font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
-                  {data.category}
+                  {data.icon}
                 </span>
             </div>
           </div>
@@ -89,7 +87,7 @@ const ConvolutionCard = ({ data }: ConvolutionCardProps) => {
 
               {/* Description */}
               <p className="text-stone-400 text-sm md:text-base leading-relaxed font-medium line-clamp-3 md:line-clamp-4 max-w-lg mb-6 md:mb-8">
-                {data.description}
+                {data.desc}
               </p>
 
               {/* ACTION BUTTON */}
