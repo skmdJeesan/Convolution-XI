@@ -1,5 +1,6 @@
 'use client';
 import EventCarousel from "./EventCarousel";
+import EventsMobile from "./EventsMobile";
 // import EventsMobile from "./EventsMobile";
 
 export default function EventsList() {
@@ -11,9 +12,9 @@ export default function EventsList() {
       </div>
 
       {/* Displays by default (mobile), hidden on medium screens (tablet/desktop) and up */}
-      {/* <div className="block md:hidden">
+      /* <div className="block md:hidden">
         <EventsMobile />
-      </div> */}
+      </div>
     </div>
   );
 }
