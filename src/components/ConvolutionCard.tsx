@@ -93,14 +93,13 @@ const ConvolutionCard = ({ data }: {data: Event}) => {
 
               {/* ACTION BUTTON */}
               <div>
-                <TransitionLink href={`/events/${data.id}`}  className="group/btn relative w-full md:w-auto px-6 py-3 md:px-8 md:py-4 bg-transparent overflow-hidden rounded-xl border border-white/20 active:scale-95 md:hover:border-purple-500 transition-all duration-300">
-                  <div className="absolute inset-0 w-0 bg-linear-to-r from-purple-600 to-cyan-600 transition-all duration-[400ms] ease-out group-hover/btn:w-full" />
-                  
-                  <span className="relative z-10 text-white font-bold tracking-[0.25em] uppercase text-xs md:text-xs flex items-center justify-center gap-3">
+                <button  className="group/btn relative w-full md:w-auto px-6 py-3 md:px-8 md:py-4 bg-transparent overflow-hidden rounded-xl border border-white/20 active:scale-95 md:hover:border-purple-500 transition-all duration-300">
+                  <div className="absolute inset-0 w-0 bg-linear-to-r from-purple-600 to-cyan-600 transition-all duration-400 ease-out group-hover/btn:w-full" />
+                  <TransitionLink href={`/events/${data.id}`} className="relative z-10 text-white font-bold tracking-[0.25em] uppercase text-xs md:text-xs flex items-center justify-center gap-3">
                     Explore Mission 
                     <ArrowRight className="w-4 h-4 md:group-hover/btn:translate-x-2 transition-transform duration-300" />
-                  </span>
-                </TransitionLink>
+                  </TransitionLink>
+                </button>
               </div>
 
           </div>
