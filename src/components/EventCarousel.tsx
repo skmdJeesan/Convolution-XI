@@ -26,13 +26,8 @@ const EventCarousel = ({events}: {events: Event[]}) => {
   const [currDeg, setCurrDeg] = useState<number>(0);
   const stepDeg = 360 / events.length;
 
-  const rotateLeft = () => {
-    setCurrDeg((prev) => prev + stepDeg);
-  };
-
-  const rotateRight = () => {
-    setCurrDeg((prev) => prev - stepDeg);
-  };
+  const rotateLeft = () => { setCurrDeg((prev) => prev + stepDeg); };
+  const rotateRight = () => { setCurrDeg((prev) => prev - stepDeg); };
 
   return (
     <div className={styles.bodyContainer}>
@@ -49,38 +44,30 @@ const EventCarousel = ({events}: {events: Event[]}) => {
         </h1>
       </motion.div>
 
-      {/* 1. ANGULAR WIDTH BLOCKERS (2D CURTAINS) */}
+      {/* BLOCKERS */}
       <div className={styles.interactionZoneContainer}>
-        <div></div>
-        <div></div>
+        <div className={styles.blockerLeft}></div>
+        <div className={styles.blockerRight}></div>
+      </div>
+
+      {/* CONTROLS */}
+      <div 
+        className={`${styles.carouselControlButton} ${styles.left}`}
+        onClick={rotateLeft}
+      >
+        <input type="radio" name="carousel-control-input" />
+      </div>
+      
+      <div 
+        className={`${styles.carouselControlButton} ${styles.right}`}
+        onClick={rotateRight}
+      >
+        <input type="radio" name="carousel-control-input" defaultChecked />
       </div>
 
       <div className={styles.carousel}>
-        
-        {/* Controls */}
-        <div 
-          className={`${styles.carouselControlButton} ${styles.left}`}
-          onClick={rotateLeft}
-        >
-          <input type="radio" name="carousel-control-input" />
-        </div>
-        
-        <div 
-          className={`${styles.carouselControlButton} ${styles.right}`}
-          onClick={rotateRight}
-        >
-          <input type="radio" name="carousel-control-input" defaultChecked />
-        </div>
-
-        {/* 2. DEPTH BLOCKER (INVISIBLE WALL) 
-            It must be HERE: Inside 'carousel' (for 3D space) 
-            but OUTSIDE 'sceneCenter' so it stays fixed.
-        */}
         <div className={styles.depthBlocker}></div>
 
-
-        {/* --- NEW SHARED 3D PIVOT CENTER --- */}
-        {/* This pushes everything (robot AND cards) to the exact center of the circle */}
         <div 
           className={styles.sceneCenter}
           style={{ transform: `scale(var(--scene-scale, 1)) translateZ(calc(var(--carousel-diameter) / -2))` }}
@@ -94,11 +81,11 @@ const EventCarousel = ({events}: {events: Event[]}) => {
                       className={styles.robotImage} 
                     />
                     <div className={styles.robotLegsGradient}></div>
-                    <div className={styles.spotlight}></div>
+                    {/* SPOTLIGHT DIV REMOVED HERE */}
                  </div>
             </div>
 
-            {/* Manual Rotater - NOW ONLY HANDLES ROTATION */}
+            {/* Manual Rotater */}
             <div 
               className={styles.manualRotater}
               style={{ transform: `rotateY(${currDeg}deg)` }}
@@ -119,9 +106,7 @@ const EventCarousel = ({events}: {events: Event[]}) => {
                       >
                         <div className={`${styles.cardFace} ${styles.cardFaceFront}`}>
                             <div className={styles.cardContent}>
-                              <div className={styles.iconContainer}>
-                                {event.icon}
-                              </div>
+                              <div className={styles.iconContainer}>{event.icon}</div>
                               <h3 className={styles.cardTitle}>{event.title}</h3>
                               <p className={styles.cardDesc}>{event.desc}</p>
                               <TransitionLink href={`/events/${event.id}`} className={styles.exploreBtn}>
