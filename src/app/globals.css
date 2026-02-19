@@ -160,7 +160,7 @@
 }
 
 .animate-electric {
-  animation: electric-sweep 10s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  animation: electric-sweep 7s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes pulse-slow {
