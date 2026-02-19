@@ -73,12 +73,12 @@ export default function About() {
             <TransitionLink
               href="/login"
               className="
-              shadow-white/40 hover:shadow-white/30  bg-[#0D30BB] hover:bg-[#0b2ba8]  hover:text-[#041550] group flex items-center gap-2 px-5 py-3 
+              hover:bg-[#3122B1] shadow-white hover:shadow-[#3122B1]   bg-white hover:opacity-90 text-[#3122B1] group flex items-center gap-2 px-5 py-3 
                  backdrop-blur-md rounded-full 
                 transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
               "
             >
-              <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] uppercase tracking-wide">
+              <span className="font-orbitron text-sm md:text-base font-bold text-[#3122B1] group-hover:text-white uppercase tracking-wide">
                 Register Now
               </span>
             </TransitionLink>

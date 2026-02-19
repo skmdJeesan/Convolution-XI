@@ -27,7 +27,7 @@ export default function About() {
         href="/" 
        className="
           absolute top-6 left-6 z-50 flex items-center gap-2 px-5 py-3 
-          bg-[#5B0804]/90 backdrop-blur-md border border-[#DE5C00] rounded-full shadow-lg
+          bg-[#7b0d07]/80 backdrop-blur-md border border-[#DE5C00] rounded-full shadow-lg
           hover:bg-[#DE5C00] hover:border-white 
           group cursor-pointer overflow-hidden transition-all duration-300
         "
@@ -74,7 +74,7 @@ ideas, decision-making skills, and business acumen in a competitive environment.
               href="/login"
               className="
 
-              shadow-white/40 hover:shadow-white/30  bg-[#0D30BB] hover:bg-[#0b2ba8]  hover:text-[#041550] group flex items-center gap-2 px-5 py-3 
+              hover:bg-[#D11100] shadow-[#D11100] hover:shadow-[#5B0804] text-shadow-dark bg-[#DE5C00] hover:opacity-90 text-white group flex items-center gap-2 px-5 py-3 
                  backdrop-blur-md rounded-full 
                 transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
               "

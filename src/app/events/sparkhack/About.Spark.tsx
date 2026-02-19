@@ -78,13 +78,13 @@ turn that spark into innovation.
             <TransitionLink
               href="/login"
               className="
-
-              shadow-white/40 hover:bg-white hover:text-[#8FE3F0] hover:text-shadow-light hover:opacity-90 bg-[#2c9bac]  group flex items-center gap-2 px-5 py-3 
+              group
+              shadow-white/40 hover:bg-white  hover:text-shadow-light hover:opacity-90 bg-[#2c9bac]  group flex items-center gap-2 px-5 py-3 
                  backdrop-blur-md rounded-full 
                 transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
               "
             >
-              <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] uppercase tracking-wide">
+              <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] group-hover:text-[#77ccd8] uppercase tracking-wide">
                 Register Now
               </span>
             </TransitionLink>

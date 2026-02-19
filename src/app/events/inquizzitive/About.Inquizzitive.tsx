@@ -73,13 +73,13 @@ Kindly note that this event is strictly a U-25 quiz.
             // didnt log in
             <TransitionLink
               href="/login"
-              className="
-shadow-white/70 hover:shadow-white/30  hover:bg-[#34246B] bg-[#ffff]  hover:text-white text-[#34246B] group flex items-center gap-2 px-5 py-3 
+              className=" group
+shadow-white/70 hover:shadow-white/30  hover:bg-[#34246B] bg-[#ffff]  group-hover:text-white  group flex items-center gap-2 px-5 py-3 
                  backdrop-blur-md rounded-full 
                 transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
               "
             >
-              <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] uppercase tracking-wide">
+              <span className="font-orbitron text-sm md:text-base font-bold group-hover:text-white text-[#34246B] uppercase tracking-wide">
                 Register Now
               </span>
             </TransitionLink>

@@ -72,13 +72,12 @@ guidelines—original work only, with no plagiarism or watermarks. Let your lens
             // didnt log in
             <TransitionLink
               href="/login"
-              className="
-hover:bg-[#ffff] text-[#1BA0E8]  shadow-[#ffff] hover:shadow-[#fff]/90 bg-white hover:opacity-80 group flex items-center gap-2 px-5 py-3 
+              className="hover:bg-[#ffff]  shadow-[#ffff] hover:shadow-[#fff]/90 bg-white hover:opacity-80 group flex items-center gap-2 px-5 py-3 
                  backdrop-blur-md rounded-full 
                 transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
               "
             >
-              <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] uppercase tracking-wide">
+              <span className="font-orbitron text-sm md:text-base font-bold text-[#1BA0E8] uppercase tracking-wide">
                 Register Now
               </span>
             </TransitionLink>
