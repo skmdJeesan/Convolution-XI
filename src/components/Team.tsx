@@ -26,7 +26,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "Dipjyoti Dash",
     post: "Joint secretary",
-    image: "./peoplePics/Dipjyoti.jpeg",
+    image: "./peoplePics/dipjyoti.jpeg",
     linkedin: "https://www.linkedin.com/in/dipjyoti-dash-22508227a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://www.instagram.com/dipjyotidash?igsh=djh2Nml1NDdwMnQ4",
     x: "",
@@ -74,7 +74,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "Diganta Sadhukhan",
     post: "Logistics Lead",
-    image: "./peoplePics/Diganta.jpeg",
+    image: "./peoplePics/diganta.jpeg",
     linkedin: "https://www.linkedin.com/in/diganta-sadhukhan-6700b4353?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     instagram: "https://www.instagram.com/smile_of_icarus?igsh=MWJld254dXlrM3Zpdw==",
     x: "",
