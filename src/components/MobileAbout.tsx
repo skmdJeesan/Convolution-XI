@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, Variants } from 'framer-motion';
 import { CalendarClock, Users, Trophy } from 'lucide-react';
 
-const EVENT_DATE = "2026-03-18T09:00:00";
+const EVENT_DATE = "2026-03-27T09:00:00";
 
 const stackContainerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -29,23 +29,33 @@ const stackItemVariants: Variants = {
 };
 
 
-const MobileRefCounter = ({ from, to }: { from: number; to: number }) => {
+const MobileRefCounter = ({ from, to, delay = 0 }: { from: number; to: number; delay?: number }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
   
   useEffect(() => {
     if (!isInView || !ref.current) return;
-    const duration = 1500; 
-    let startTime: number;
-    const step = (timestamp: number) => {
-        if (!startTime) startTime = timestamp;
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        const current = Math.floor(from + (to - from) * (1 - Math.pow(1 - progress, 3)));
-        if (ref.current) ref.current.textContent = current.toString();
-        if (progress < 1) window.requestAnimationFrame(step);
-    };
-    window.requestAnimationFrame(step);
-  }, [isInView, from, to]);
+        const timer = setTimeout(() => {
+        const duration = 2500; 
+        let startTime: number;
+        
+        const step = (timestamp: number) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const current = Math.floor(from + (to - from) * (1 - Math.pow(1 - progress, 3)));
+            
+            if (ref.current) ref.current.textContent = current.toString();
+            
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        
+        window.requestAnimationFrame(step);
+    }, delay * 1000);
+    return () => clearTimeout(timer);
+    
+  }, [isInView, from, to, delay]);
 
   return <span ref={ref} className="tabular-nums">{from}</span>;
 };
@@ -59,13 +69,19 @@ const MobileDaysCounter = () => {
   return <span className="font-rajdhani text-base font-bold tabular-nums">{days}</span>;
 };
 
-const MobileStatCard = ({ icon: Icon, label, value, colorClass, borderClass }: any) => (
-  <div className={`relative flex flex-col items-center p-3 border-l-2 ${borderClass} bg-[#1a1a20]/95 w-full rounded-r-lg`}>
-    <div className={`absolute inset-0 opacity-10 bg-gradient-to-br ${colorClass}`}></div>
+const CardBackground = ({ bgColorClass }: { bgColorClass: string }) => (
+  <div 
+    className={`absolute inset-0 opacity-10 bg-linear-to-r ${bgColorClass} pointer-events-none`} 
+  />
+);
+
+const MobileStatCard = ({ icon: Icon, label, value, colorClass,bgColorClass, borderClass }: any) => (
+  <div className={`relative flex flex-col items-center p-3 border-l-2 ${borderClass} bg-[#1a1a20]/70 w-full `}>
+    <CardBackground bgColorClass={bgColorClass} />
     <div className="flex items-center gap-1.5 mb-2 z-10">
       <Icon className="w-4 h-4 text-white/80" />
     </div>
-    <span className={`text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${colorClass} font-rajdhani z-10`}>
+    <span className={`text-base font-bold bg-clip-text text-transparent bg-linear-to-r ${colorClass} font-rajdhani z-10`}>
       {value}
     </span>
     <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest font-mono mt-1 z-10">{label}</span>
@@ -102,9 +118,10 @@ export default function MobileAboutContent({ userCount }: { userCount: number })
         <MobileStatCard
           icon={Users}
           label="Registrations"
-          value={<span className="flex items-center justify-center"><MobileRefCounter from={0} to={userCount + 199} /><span className="ml-0.5">+</span></span>}
+          value={<span className="flex items-center justify-center"><MobileRefCounter from={0} to={userCount + 199} delay={1} /><span className="ml-0.5">+</span></span>}
           colorClass="from-cyan-400 to-cyan-600"
           borderClass="border-cyan-500"
+          bgColorClass="from-cyan-400 to-cyan-800/50"
         />
         <MobileStatCard
           icon={CalendarClock}
@@ -112,6 +129,7 @@ export default function MobileAboutContent({ userCount }: { userCount: number })
           value={<MobileDaysCounter />}
           colorClass="from-purple-400 to-purple-600"
           borderClass="border-purple-500"
+          bgColorClass="from-purple-600 to-purple-800"
         />
         <MobileStatCard
           icon={Trophy}
@@ -119,6 +137,7 @@ export default function MobileAboutContent({ userCount }: { userCount: number })
           value="9"
           colorClass="from-fuchsia-400 to-fuchsia-600"
           borderClass="border-fuchsia-500"
+          bgColorClass="from-fuchsia-500 to-fucshia-800"
         />
       </motion.div>
     </motion.div>

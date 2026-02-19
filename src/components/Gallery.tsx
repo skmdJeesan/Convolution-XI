@@ -47,16 +47,17 @@ const Gallery = () => {
   return (
     <div id="gallery" className="relative min-h-[95vh] w-full py-10 bg-black overflow-hidden">
       
-      {/* Background Section - Optimized */}
+      {/* Background*/}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-[#020203]"></div>
-        {/* Added 'will-change-transform' to reduce GPU repaint cost */}
-        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vh] bg-fuchsia-900/15 blur-[100px] rounded-full mix-blend-screen will-change-transform"></div>
-        <div className="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vh] bg-purple-900/50 blur-[100px] rounded-full mix-blend-screen will-change-transform"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[70vh] bg-cyan-900/20 blur-[100px] rounded-full mix-blend-screen will-change-transform"></div>
-
+        <div 
+        className="absolute inset-0"
+        style={{
+            background: 'linear-gradient(to bottom, black 0%,rgba(72, 33, 103, 0.25) 15%,rgba(115, 12, 197, 0.25) 25%, rgba(170, 37, 178, 0.25) 40%,   rgba(145, 54, 150, 0.25) 50%,rgba(105, 13, 177, 0.25) 65%, rgba(73, 19, 114, 0.25) 75%,rgba(70, 21, 109, 0.25) 90%, #020203 100%)'
+        }}
+    ></div>
         <div
-          className="absolute inset-0 opacity-[0.20]"
+          className="absolute inset-0 opacity-[0.1] md:opacity-[0.15]"
           style={{
             backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`,
             backgroundSize: '40px 40px'
@@ -71,9 +72,9 @@ const Gallery = () => {
         transition={{ duration: 0.6 }}
         className="relative z-10 flex flex-col items-center pointer-events-none select-none mb-6"
       >
-        <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
+        <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
           Gallery
-          <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-200/60 to-transparent"></span>
+          <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
         </h1>
       </motion.div>
 
@@ -111,3 +112,8 @@ const Gallery = () => {
 };
 
 export default Gallery;
+
+
+{/* <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vh] bg-fuchsia-900/15 blur-[100px] rounded-full mix-blend-screen will-change-transform"></div>
+        <div className="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vh] bg-purple-900/50 blur-[100px] rounded-full mix-blend-screen will-change-transform"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[70vh] bg-cyan-900/20 blur-[100px] rounded-full mix-blend-screen will-change-transform"></div> */}

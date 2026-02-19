@@ -8,6 +8,9 @@ import { useEffect, useState } from 'react';
 import { useWaveText } from '@/hooks/useWaveText';
 import FlipLink from './FlipLink';
 import TransitionLink from './TransitionLink';
+import  fds1 from "@/assets/images/bgs/fds-1.png"
+import  fds2 from "@/assets/images/bgs/fds-2.png"
+import  fds3 from "@/assets/images/bgs/fds-3.png"
 
 const events = [
     { name: "Algomaniac", href: "/events/algomaniac" },
@@ -39,34 +42,58 @@ export default function Footer() {
     return (
         <div id='contact' className='relative bg-[#03050c] -mt-0.5 flex flex-col pt-5 overflow-hidden z-0 pt-4'>
 
-            <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-[#03050d] via-[#03050d]/30 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute top-0 left-0 w-full h-15 bg-linear-to-b from-[#03050d] via-[#03050d]/30 to-transparent z-10 pointer-events-none"></div>
             {/* --- BACKGROUND LAYER --- */}
-            <div
-                className="absolute inset-0 z-0 pointer-events-none"
-                style={{
-                    maskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)',
-                    WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)'
-                }}
-            >
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+    
+    {/* --- MASK FADE --- */}
+    <div 
+        className="absolute inset-0 z-10"
+        style={{
+            maskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)'
+        }}
+    >
+        
+        <div 
+            className="hidden md:block absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] z-0"
+            style={{
+                background: 'radial-gradient(circle, rgba(112, 26, 117, 0.2) 0%, transparent 70%)' 
+            }}
+        ></div>
+        <div 
+            className="hidden md:block absolute top-[-10%] left-[30%] w-[50vw] h-[60vw] z-0"
+            style={{
+                background: 'radial-gradient(circle, rgba(88, 28, 135, 0.25) 0%, transparent 70%)'
+            }}
+        ></div>
 
-                <div className="hidden sm:block absolute top-[10%] left-[-10%] w-[60vw] h-[50vw] rounded-full bg-fuchsia-900/15 blur-[120px] z-0"></div>
-                <div className="hidden sm:block absolute top-[10%] left-1/3 w-[35vw] h-[70vw] rounded-full bg-purple-900/20 blur-[120px] z-0"></div>
-                <div className="hidden sm:block absolute bottom-[10%] right-[-10%] w-[60vw] h-[40vw] rounded-full bg-cyan-900/25 blur-[120px] z-0"></div>
+        <div 
+            className="hidden md:block absolute bottom-[-10%] right-[-10%] w-[60vw] h-[50vw] z-0"
+            style={{
+                background: 'radial-gradient(circle, rgba(22, 78, 99, 0.25) 0%, transparent 70%)'
+            }}
+        ></div>
 
-                <div className="block sm:hidden absolute top-[10%] left-[15%] w-[60vw] h-[50vw] rounded-full bg-fuchsia-900/70 blur-[120px] z-0"></div>
-                <div className="block sm:hidden absolute top-[40%] left-1/2 w-[35vw] h-[70vw] rounded-full bg-purple-900/50 blur-[120px] z-0"></div>
-                <div className="block sm:hidden absolute bottom-[10%] right-[10%] w-[60vw] h-[40vw] rounded-full bg-cyan-900/60 blur-[120px] z-0"></div>
+        {/* for mobile */}
+                <div className="block md:hidden absolute top-[7%] left-[7%] w-[86vw] h-[78vw] rounded-full bg-fuchsia-950/50 blur-[100px] z-0"></div>
 
-                {/* Dotted Pattern Overlay */}
-                <div
-                    className="absolute inset-0 opacity-[0.15]"
-                    style={{
-                        backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`,
-                        backgroundSize: '40px 40px'
-                    }}
-                ></div>
-            </div>
+                <div className="block md:hidden absolute top-[40%] left-[10%] w-[100vw] h-[70vw] rounded-full bg-purple-950/40 blur-[100px] z-0"></div>
 
+                <div className="block md:hidden absolute bottom-[5%] right-[2%] w-[100vw] h-[50vw] rounded-full bg-cyan-900/30 blur-[100px] z-0"></div>
+                
+
+                {/* Grid */}
+        <div
+
+            className="absolute inset-0 z-0 opacity-[0.1] md:opacity-[0.15]"
+            style={{
+                backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`,
+                backgroundSize: '40px 40px'
+            }}
+        ></div>
+    </div>
+</div>
             <div className="w-full maxWidthForSections relative z-20">
                 <div className="flex flex-col md:grid md:grid-cols-3 gap-8 mt-4 w-full">
 
@@ -92,13 +119,13 @@ export default function Footer() {
                             </p>
                         </div>
                         <div className="flex justify-center md:justify-start gap-4">
-                            <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                            <Link target='_blank' href="https://www.instagram.com/convolution26/" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
                                 <FaInstagram size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors" />
                             </Link>
-                            <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                            <Link target='_blank' href="https://www.facebook.com/share/15Mh8tfiC7/?mibextid=LQQJ4d" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
                                 <FaFacebook size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors" />
                             </Link>
-                            <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                            <Link target='_blank' href="https://www.linkedin.com/company/convolution-juee/" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
                                 <FaLinkedin size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors" />
                             </Link>
                         </div>
@@ -123,10 +150,10 @@ export default function Footer() {
                                     <div className="text-md">
                                         <span className="font-rajdhani text-slate-400   font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">Email</span>
                                         <Link
-                                            href="mailto:convolutionXI2026@gmail.com"
+                                            href="mailto:convolutionxi@gmail.com"
                                             className="font-rajdhani font-semibold text-slate-200 hover:text-white transition-colors block break-all"
                                         >
-                                            convolutionx2026@gmail.com
+                                            convolutionxi@gmail.com
                                         </Link>
                                     </div>
                                 </li>

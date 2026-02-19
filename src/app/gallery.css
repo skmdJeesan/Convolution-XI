@@ -1,6 +1,6 @@
 .outer-container-scroll {
   display: grid;
-  min-block-size: 100vh;
+  min-block-size: 70vh;
   place-content: center;
   /* Optimized: Removed generic min-height auto as it's redundant with min-block-size */
 }
@@ -21,7 +21,7 @@
   grid-template-rows: repeat(4, 22vh); /* 4 Rows fixed height */
   grid-template-columns: 1px; /* Hack to force dense packing */
   grid-auto-columns: 22vh; /* Base width of items */
-  grid-gap: 15px;
+  grid-gap: 8px;
   
   /* GPU Acceleration properties */
   will-change: transform;
@@ -64,14 +64,14 @@
 }
 
 .scroller[data-speed="fast"] {
-  --_animation-duration: 60s;
+  --_animation-duration: 40s;
 }
 
 /* Masking (Visual Fade on edges) */
 .scroller[data-animated="true"] {
   overflow: hidden;
-  -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
-  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  -webkit-mask: linear-gradient(90deg, transparent, white 2%, white 98%, transparent);
+  mask: linear-gradient(90deg, transparent, white 2%, white 98%, transparent);
 }
 
 /* Optimized Keyframe: Uses translate3d for GPU layering */
@@ -99,13 +99,13 @@
 }
 
 .galleryContainer {
-  padding: 30px;
+  padding: 10px;
   padding-top: 0;
 }
 
 @media (max-width: 500px) {
   .galleryContainer {
-    padding: 30px 10px;
+    padding: 10px;
   }
 }
 

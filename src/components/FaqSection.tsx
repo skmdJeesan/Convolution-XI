@@ -11,7 +11,7 @@ const Data = [
     },
     {
         question: "When and where is Convolution happening?",
-        answer: "Convolution will take place from 18th to 20nd March, 2026 at the Department of Electrical Engineering, Jadavpur University. Further updates about the time, date and venue of specific events will be available on our website soon.",
+        answer: "Convolution will take place from 27th to 29th March, 2026 at the Department of Electrical Engineering, Jadavpur University. Further updates about the time, date and venue of specific events will be available on our website soon.",
     },
     {
         question: "Who can participate in Convolution?",
@@ -41,22 +41,65 @@ export default function FaqSection() {
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <div className="absolute inset-0 bg-[#020203]"></div>
                 
-                <div className="hidden md:block absolute top-[20%] left-[-10%] w-[50vw] h-[50vh] bg-fuchsia-900/20 blur-[100px] rounded-full mix-blend-screen"></div>
-                <div className="hidden md:block absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vh] bg-purple-900/20 blur-[80px] rounded-full mix-blend-screen"></div>
-                <div className="hidden md:block absolute bottom-[10%] right-[-10%] w-[50vw] h-[70vh] bg-cyan-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
+                {/* Desktop */}
+    <div 
+        className="hidden sm:block absolute top[2%] left-[-21%] w-[78vw] h-[90vh]"
+        style={{ 
+            background: 'radial-gradient(closest-side, rgba(112, 26, 117, 0.3), transparent)' 
+        }}
+    ></div>
+    <div 
+        className="hidden sm:block absolute top-[70%] left-[55%] -translate-x-1/2 -translate-y-1/2 w-[74vw] h-[77vh]"
+        style={{ 
+            background: 'radial-gradient(closest-side, rgba(88, 28, 135, 20%), transparent)' 
+        }}
+    ></div>
 
-                <div className="block md:hidden absolute top-[20%] left-[-10%] w-[50vw] h-[50vh] bg-fuchsia-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
-                <div className="block md:hidden absolute -bottom-[20%] left-[30%] w-[50vw] h-[50vh] bg-fuchsia-900/20 blur-[100px] rounded-full mix-blend-screen"></div>
-                <div className="block md:hidden absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vh] bg-purple-900/40 blur-[80px] rounded-full mix-blend-screen"></div>
-                <div className="block md:hidden absolute bottom-[10%] right-[-10%] w-[50vw] h-[70vh] bg-cyan-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
+    <div 
+        className="hidden sm:block absolute bottom-[-16%] right-[-26%] w-[78vw] h-[90vh]"
+        style={{ 
+            background: 'radial-gradient(closest-side, rgba(21, 77, 98, 0.30), transparent)' 
+        }}
+    ></div>
+
+{/* mobile */}
+    {/*fuchsia top*/}
+    <div 
+        className="block sm:hidden absolute top-0 left-[-27%] w-[75vw] h-[66vh]"
+        style={{ 
+            background: 'radial-gradient(closest-side, rgba(112, 26, 117, 0.3), transparent)' 
+        }}
+    ></div>
+
+    {/*fuchsia bottom*/}
+    <div 
+        className="block sm:hidden absolute -bottom-[5%] left-[5%] w-[96vw] h-[57vh]"
+        style={{ 
+            background: 'radial-gradient(closest-side, rgba(90, 20, 95, 0.36), transparent)' 
+        }}
+    ></div>
+
+    {/*purple*/}
+    <div 
+        className="block sm:hidden absolute top-[26%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[57vh]"
+        style={{ 
+        background: 'radial-gradient(closest-side, rgba(60, 3, 102, 0.4), transparent)' 
+          
+        }}
+    ></div>
+    {/* cyan */}
+    <div 
+        className="block sm:hidden absolute bottom-[12%] right-[-30%] w-[73vw] h-[51vh]"
+        style={{ 
+            background: 'radial-gradient(closest-side, rgba(22, 78, 99, 20%), transparent)' 
+        }}
+    ></div>
                 
-                {/* Gradients */}
                 <div className="absolute z-10 bottom-0 left-0 w-full h-10 bg-gradient-to-b from-transparent to-[#030712]" />
                 <div className="absolute z-10 top-0 left-0 w-full h-25 bg-gradient-to-t from-transparent to-[#000000]" />
 
-                {/* Dotted Pattern */}
                 <div 
-                    className="absolute inset-0 opacity-[0.15]" 
+                    className="absolute inset-0 opacity-[0.1] md:opacity-[0.15] " 
                     style={{ 
                         backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, 
                         backgroundSize: '40px 40px' 
@@ -109,7 +152,7 @@ export default function FaqSection() {
                                             transition-all duration-300 ease-in-out
                                             ${isOpen 
                                                 ? 'bg-black/40 border-cyan-400 shadow-lg' 
-                                                : 'bg-white/[0.05] md:backdrop-blur-md border-white/10 hover:border-white/30 hover:bg-white/[0.08]'}
+                                                : 'bg-white/[0.05] sm:backdrop-blur-md border-white/10 hover:border-white/30 hover:bg-white/[0.08]'}
                                         `}>
                                             
                                             <div className={`absolute top-0 right-0 w-3 h-3 border-t border-r transition-colors duration-300 ${isOpen ? 'border-cyan-400' : 'border-white/20'}`}></div>
@@ -181,11 +224,11 @@ export default function FaqSection() {
                 </div>
 
                 {/* Marque */}
-                <div className="hidden md:flex px-4 py-2 backdrop-blur-2xl rounded-full w-[90vw] lg:w-[85vw] overflow-hidden bg-[#a046ef] mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] transform-gpu will-change-transform">
+                <div className="hidden sm:flex px-4 py-2 backdrop-blur-2xl rounded-full w-[90vw] lg:w-[85vw] overflow-hidden bg-[#a046ef] mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] transform-gpu will-change-transform">
                     <div className="animate-marquee-infinite group-hover:paused shrink-0 min-w-full flex items-center">
                         <span className="text-white text-sm sm:text-base font-semibold font-rajdhani tracking-wide whitespace-nowrap">Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam' for future updates.</span></div><div className="group animate-marquee-infinite group-hover:paused shrink-0 min-w-full flex items-center"><span className="text-white text-sm sm:text-base font-semibold font-rajdhani tracking-wide whitespace-nowrap">Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam' for future updates.</span></div></div>
 
-                <div className="block md:hidden mt-4 px-4 py-3 bg-black/40 rounded-full border border-white/5 mx-4 max-w-3xl text-center">
+                <div className="block sm:hidden mt-4 px-4 py-3 bg-black/40 rounded-full border border-white/5 mx-4 max-w-3xl text-center">
                     <span className="text-white/80 text-sm sm:text-base font-semibold font-rajdhani tracking-wide">
                         ℹ️ Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam'.
                     </span>

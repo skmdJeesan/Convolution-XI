@@ -6,7 +6,7 @@ import { IoPlay } from "react-icons/io5";
 import AboutRobot from "../assets/images/About_Robot.png"
 import MobileAboutContent from './MobileAbout';
 
-const EVENT_DATE = "2026-03-18T09:00:00";
+const EVENT_DATE = "2026-03-27T09:00:00";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -86,18 +86,42 @@ const Background = () => {
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none transform-gpu translate-z-0">
       <div className="absolute inset-0 bg-[#020203]"></div>
-      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black to-transparent z-10"></div>
+      <div className="absolute top-0 left-0 w-full h-20 bg-linear-to-b from-black to-transparent z-10"></div>
       
       <div
-        className="absolute inset-0 opacity-[0.2]"
+        className="absolute inset-0 opacity-[0.13] md:opacity-[0.15]"
         style={{ backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, backgroundSize: '40px 40px' }}
       ></div>
 
-      <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vh] bg-fuchsia-900/30 blur-[100px] rounded-full mix-blend-screen transform-gpu translate-z-0"></div>
+      {/* <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vh] bg-fuchsia-900/30 blur-[100px] rounded-full mix-blend-screen transform-gpu translate-z-0"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vh] bg-cyan-900/30 blur-[100px] rounded-full mix-blend-screen transform-gpu translate-z-0"></div>
-      <div className="absolute top-[30%] left-[30%] w-[40vw] h-[40vh] bg-purple-500/15 blur-[80px] rounded-full mix-blend-screen transform-gpu translate-z-0"></div>
+      <div className="absolute top-[30%] left-[30%] w-[40vw] h-[40vh] bg-purple-500/15 blur-[80px] rounded-full mix-blend-screen transform-gpu translate-z-0"></div> */}
+
+      {/* purple */}
+      <div 
+        className="absolute top-[-7%] left-[-15%] w-[71vw] h-[60vh] lg:h-[103vh] mix-blend-screen transform-gpu translate-z-0"
+        style={{
+          background: 'radial-gradient(closest-side, rgba(112, 26, 117, 35%), transparent)'
+        }}
+      ></div>
+
+    {/* cyan */}
+      <div 
+        className="absolute bottom-[-10%] right-[-15%] w-[65vw] h-[79vh] mix-blend-screen transform-gpu translate-z-0"
+        style={{
+          background: 'radial-gradient(closest-side, rgba(22, 78, 99, 30%), transparent)'
+        }}
+      ></div>
+
+      {/* fucshia */}
+      <div 
+        className="absolute top-[6%] left-[24%] w-[64vw] h-[50vh] lg:h-[89vh] mix-blend-screen transform-gpu translate-z-0"
+        style={{
+          background: 'radial-gradient(closest-side, rgba(168, 85, 247, 0.20), transparent)'
+        }}
+      ></div>
       
-      <div className="absolute bottom-0 left-0 w-full h-10 pointer-events-none bg-gradient-to-b from-transparent to-[#030712b7]" />
+      <div className="absolute bottom-0 left-0 w-full h-20 pointer-events-none bg-gradient-to-b from-transparent to-[#030712b7]" />
     </div>
   );
 };
@@ -119,7 +143,7 @@ const StatCard = ({ icon: Icon, label, value, colorClass, borderClass }: { icon:
     <span className={`text-base sm:text-xl lg:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${colorClass} tracking-wider font-rajdhani z-10`}>
       {value}
     </span>
-    <span className="text-xs sm:text-sm font-semibold text-gray-400 uppercase tracking-widest font-mono mt-0.5 sm:mt-1 group-hover:text-gray-200 transition-colors z-10 text-center sm:text-left">{label}</span>
+    <span className="text-xs sm:text-sm font-semibold text-gray-400 uppercase tracking-widest font-rajdhani mt-0.5 sm:mt-1 group-hover:text-gray-200 transition-colors z-10 text-center sm:text-left">{label}</span>
   </motion.div>
 );
 
@@ -187,8 +211,8 @@ export default function AboutSection() {
               icon={Users}
               label="Registrations"
               value={
-                <span className="font-rajdhani flex items-center justify-center xl:justify-start">
-                  <AnimatedCounter from={0} to={userCount + 199} delay={0.5} />
+                <span className="text-base sm:text-xl lg:text-2xl font-rajdhani flex items-center justify-center xl:justify-start">
+                  <AnimatedCounter from={0} to={userCount + 199} delay={0.8} />
                   <span className="ml-0.5 text-base sm:text-xl">+</span>
                 </span>
               }
