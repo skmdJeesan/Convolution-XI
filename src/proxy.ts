@@ -12,7 +12,8 @@ export async function proxy(request: NextRequest) {
     '/favicon.ico', 
     '/forget-password', 
     '/reset-password', 
-    '/verify-email' 
+    '/verify-email',
+    '/events' 
   ];
 
   // Helper to check if the current path is public

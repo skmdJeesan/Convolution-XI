@@ -142,8 +142,10 @@ const TeamCard = memo(({ member, variants }: { member: TeamMember, variants: any
 
         {/* Info Overlay */}
         <div className="team-card-info-overlay">
-          <h3 className="font-rajdhani team-card-name">{member.name}</h3>
-          <p className="font-rajdhani team-card-post">{member.post}</p>
+          <div className="team-card-name-post">
+            <h3 className="font-rajdhani team-card-name">{member.name}</h3>
+            <p className="font-rajdhani team-card-post">({member.post})</p>
+          </div>
 
           {/* Social Links */}
           <div className="team-card-socials">
@@ -189,7 +191,7 @@ function Team() {
           variants={headerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.5 }}
           className="flex flex-col items-center pointer-events-none select-none mb-5"
         >
           <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
