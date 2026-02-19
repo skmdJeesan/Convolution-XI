@@ -41,12 +41,12 @@ export default function Home() {
       <HeroSection />
       <HomeAbout />
       {/* <Timeline/> */}
-      <EventsList />
+      {/* <EventsList /> */}
       <Team />
       <Gallery/>
       <Sponsors/>
       <FaqSection />
-      {shouldLoadBot && <WhiteBot />}  
+      {/* {shouldLoadBot && <WhiteBot />}   */}
       <Footer />
     </main>
   );

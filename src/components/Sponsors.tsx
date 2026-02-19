@@ -198,17 +198,13 @@ const Sponsors: React.FC = () => {
             (Modified from original: removed absolute positioning, made opaque)
             =============================================
         */}
-        <motion.div 
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
+        <div
           className="relative mt-8 opacity-100" // Changed from absolute/opacity-30 to relative/opacity-100
         >
           <h2 className="text-5xl md:text-6xl lg:text-8xl font-rajdhani font-semibold text-white tracking-tighter whitespace-nowrap capitalize">
             Coming <span className="text-transparent font-rajdhani w-fit bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap">soon..</span>
           </h2>
-        </motion.div>
+        </div>
       </div>
 
     </div>

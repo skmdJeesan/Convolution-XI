@@ -224,11 +224,11 @@ export default function FaqSection() {
                 </div>
 
                 {/* Marque */}
-                <div className="hidden sm:flex px-4 py-2 backdrop-blur-2xl rounded-full w-[90vw] lg:w-[85vw] overflow-hidden bg-[#a046ef] mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] transform-gpu will-change-transform">
+                <div className="hidden px-4 py-2 backdrop-blur-2xl rounded-full w-[90vw] lg:w-[85vw] overflow-hidden bg-[#a046ef] mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] transform-gpu will-change-transform">
                     <div className="animate-marquee-infinite group-hover:paused shrink-0 min-w-full flex items-center">
                         <span className="text-white text-sm sm:text-base font-semibold font-rajdhani tracking-wide whitespace-nowrap">Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam' for future updates.</span></div><div className="group animate-marquee-infinite group-hover:paused shrink-0 min-w-full flex items-center"><span className="text-white text-sm sm:text-base font-semibold font-rajdhani tracking-wide whitespace-nowrap">Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam' for future updates.</span></div></div>
 
-                <div className="block sm:hidden mt-4 px-4 py-3 bg-black/40 rounded-full border border-white/5 mx-4 max-w-3xl text-center">
+                <div className="block mt-4 px-4 py-3 bg-black/40 rounded-full border border-white/5 mx-4 max-w-3xl text-center">
                     <span className="text-white/80 text-sm sm:text-base font-semibold font-rajdhani tracking-wide">
                         ℹ️ Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam'.
                     </span>

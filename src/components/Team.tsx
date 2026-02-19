@@ -8,7 +8,7 @@ type TeamMember = {
   name: string;
   post: string;
   instagram: string;
-  facebook: string;
+  x: string;
   linkedin: string;
   image: string;
 };
@@ -21,15 +21,15 @@ const teamMembers: TeamMember[] = [
     image: "./peoplePics/jahid.png",
     linkedin: "https://www.linkedin.com/in/jahid-mamud/",
     instagram: "https://www.instagram.com/jem_.__/profilecard/?igsh=b2o0ZjlqZ3pkeW5t",
-    facebook: "",
+    x: "",
   },
   {
-    name: "Ritam Kundu",
+    name: "Dipjyoti Dash",
     post: "Joint secretary",
-    image: "./peoplePics/ritam.png",
-    linkedin: "https://www.linkedin.com/in/ritam-kundu-394612257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    instagram: "https://www.instagram.com/ritamkundu.__/profilecard/?igsh=MTJxZ2NibmMxcW1pNw==",
-    facebook: "",
+    image: "./peoplePics/Dipjyoti.jpeg",
+    linkedin: "https://www.linkedin.com/in/dipjyoti-dash-22508227a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "https://www.instagram.com/dipjyotidash?igsh=djh2Nml1NDdwMnQ4",
+    x: "",
   },
   {
     name: "Siddhanta Ghosh",
@@ -37,47 +37,47 @@ const teamMembers: TeamMember[] = [
     image: "./peoplePics/sid.png",
     linkedin: "https://www.linkedin.com/in/siddhanta-ghosh",
     instagram: "https://www.instagram.com/ghosh_siddhanta2k3/",
-    facebook: "https://www.facebook.com/profile.php?id=100089382764364&mibextid=ZbWKwL",
+    x: "https://www.facebook.com/profile.php?id=100089382764364&mibextid=ZbWKwL",
   },
   {
-    name: "Akash Bag",
+    name: "Sayan Indra",
     post: "Tech Lead",
-    image: "./peoplePics/akash.png",
-    linkedin: "https://www.linkedin.com/in/akashbag0903/",
-    instagram: "https://www.instagram.com/akash09.dev/",
-    facebook: "",
+    image: "./peoplePics/Sayan.jpeg",
+    linkedin: "https://www.linkedin.com/in/sayan-indra-a41319369/",
+    instagram: "https://www.instagram.com/sayanindra143/",
+    x: "",
   },
   {
-    name: "Arindam Pradhan",
+    name: "Aneesh Banerjee",
     post: "Design Lead",
-    image: "./peoplePics/arindam.png",
-    linkedin: "https://www.linkedin.com/in/arindam-pradhan/?originalSubdomain=in",
-    instagram: "https://www.instagram.com/arindam_ju01/",
-    facebook: "",
+    image: "./peoplePics/Aneesh.jpeg",
+    linkedin: "https://www.linkedin.com/in/aneesh-banerjee-0a0727374?trk=contact-info",
+    instagram: "https://www.instagram.com/asneeze98?igsh=NWV5amFyb2R6OGpr",
+    x: "https://x.com/ruddy168",
   },
   {
-    name: "Aritra Kumar Dutta",
+    name: "Pratham Das",
     post: "Sponsorship Lead",
-    image: "./peoplePics/aritra.png",
-    linkedin: "https://www.linkedin.com/in/aritra-dutta-1752b4304?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    instagram: "https://www.instagram.com/_travelling.tesla/profilecard/?igsh=cnJpM3BtMzkycW90",
-    facebook: "https://www.facebook.com/share/19VD7DQ6Ei/",
+    image: "./peoplePics/Pratham.jpeg",
+    linkedin: "https://www.linkedin.com/in/pratham-das-409aa4286?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "",
+    x: "",
   },
   {
-    name: "Reejul Chattaraj",
+    name: "Aakash Bose",
     post: "Content Lead",
-    image: "./peoplePics/rc.png",
-    linkedin: "https://www.linkedin.com/in/reejul-chattaraj-85a09727a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    instagram: "https://www.instagram.com/_reeejul?igsh=MW8xNG51N3pnbDNpMw%3D%3D&utm_source=qr",
-    facebook: "https://www.facebook.com/share/19gMsP3Ce7/?mibextid=LQQJ4d",
+    image: "./peoplePics/Aakash.jpeg",
+    linkedin: "https://www.linkedin.com/in/aakash-bose-8311292a0?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    instagram: "https://www.instagram.com/_aakashbose_?igsh=MWhpMXVmazl2b3B4cw==",
+    x: "",
   },
   {
-    name: "Sinjan Dinda",
+    name: "Diganta Sadhukhan",
     post: "Logistics Lead",
-    image: "./peoplePics/dinda.png",
-    linkedin: "https://www.linkedin.com/in/sinjan-dinda-a70861276?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    instagram: "https://www.instagram.com/dinda_sinjan?igsh=bWc4eGJnMDJ0MTc4",
-    facebook: "https://www.facebook.com/share/15soztURSb/",
+    image: "./peoplePics/Diganta.jpeg",
+    linkedin: "https://www.linkedin.com/in/diganta-sadhukhan-6700b4353?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    instagram: "https://www.instagram.com/smile_of_icarus?igsh=MWJld254dXlrM3Zpdw==",
+    x: "",
   },
   {
     name: "Arunava Roy",
@@ -85,7 +85,7 @@ const teamMembers: TeamMember[] = [
     image: "./peoplePics/arunava.png",
     linkedin: "https://www.linkedin.com/in/arunava-roy-176a4527b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://www.instagram.com/arunava_roy_10/profilecard/?igsh=MTA0azFiODJsa2huMw==",
-    facebook: "https://www.facebook.com/share/1BLg4SPrKK/",
+    x: "https://www.facebook.com/share/1BLg4SPrKK/",
   },
 ];
 
@@ -96,9 +96,9 @@ const Icons = {
       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.646.069 4.85 0 3.204-.012 3.584-.07 4.85-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.322a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z" />
     </svg>
   ),
-  facebook: (
+  x: (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
     </svg>
   ),
   linkedin: (
@@ -144,13 +144,13 @@ const TeamCard = memo(({ member, variants }: { member: TeamMember, variants: any
         <div className="team-card-info-overlay">
           <div className="team-card-name-post">
             <h3 className="font-rajdhani team-card-name">{member.name}</h3>
-            <p className="font-rajdhani team-card-post">({member.post})</p>
+            <p className="font-rajdhani team-card-post">{member.post}</p>
           </div>
 
           {/* Social Links */}
           <div className="team-card-socials">
             {member.instagram && <SocialLink href={member.instagram} title="Instagram" icon={Icons.instagram} />}
-            {member.facebook && <SocialLink href={member.facebook} title="Facebook" icon={Icons.facebook} />}
+            {member.x && <SocialLink href={member.x} title="X" icon={Icons.x} />}
             {member.linkedin && <SocialLink href={member.linkedin} title="LinkedIn" icon={Icons.linkedin} />}
           </div>
         </div>
