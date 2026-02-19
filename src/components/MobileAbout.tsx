@@ -134,7 +134,7 @@ export default function MobileAboutContent({ userCount }: { userCount: number })
         <MobileStatCard
           icon={Trophy}
           label="Events"
-          value="9"
+          value="9"  
           colorClass="from-fuchsia-400 to-fuchsia-600"
           borderClass="border-fuchsia-500"
           bgColorClass="from-fuchsia-500 to-fucshia-800"
