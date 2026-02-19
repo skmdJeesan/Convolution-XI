@@ -36,7 +36,7 @@ const MobileRefCounter = ({ from, to, delay = 0 }: { from: number; to: number; d
   useEffect(() => {
     if (!isInView || !ref.current) return;
         const timer = setTimeout(() => {
-        const duration = 2500; 
+        const duration = 1500; 
         let startTime: number;
         
         const step = (timestamp: number) => {
