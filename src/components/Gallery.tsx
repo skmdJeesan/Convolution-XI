@@ -57,7 +57,7 @@ const Gallery = () => {
         }}
     ></div>
         <div
-          className="absolute inset-0 opacity-[0.1] md:opacity-[0.15]"
+          className="absolute inset-0 opacity-[0.13] md:opacity-[0.15]"
           style={{
             backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`,
             backgroundSize: '40px 40px'

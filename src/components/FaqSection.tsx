@@ -99,7 +99,7 @@ export default function FaqSection() {
                 <div className="absolute z-10 top-0 left-0 w-full h-25 bg-gradient-to-t from-transparent to-[#000000]" />
 
                 <div 
-                    className="absolute inset-0 opacity-[0.1] md:opacity-[0.15] " 
+                    className="absolute inset-0 opacity-[0.13] md:opacity-[0.15] " 
                     style={{ 
                         backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, 
                         backgroundSize: '40px 40px' 
