@@ -1,0 +1,29 @@
+import React from 'react';
+import "./loader.css";
+
+export default function Ui() {
+  return (
+     <div className="h-svh w-full relative overflow-hidden flex items-center justify-center cinematic-bg"> 
+<div className="clouds">
+  <div className="cloud cloud1"></div>
+  <div className="cloud cloud2"></div>
+  <div className="cloud cloud3"></div>
+  <div className="cloud cloud4"></div>
+  <div className="cloud cloud5"></div>
+</div>
+
+<div className="loader">
+  <span><span></span><span></span><span></span><span></span></span>
+  <div className="base">
+    <span></span>
+    <div className="face"></div>
+  </div>
+</div>
+
+<div className="longfazers">
+  <span></span><span></span><span></span><span></span>
+</div>
+
+    </div>
+  )
+}

@@ -21,7 +21,7 @@ const SplineLoader = () => (
 // Lazy load Spline
 const SplineScene = dynamic(() => import('@splinetool/react-spline'), {
     ssr: false,
-    loading: SplineLoader
+    // loading: SplineLoader
 });
 
 const BottomFadeOverlay = () => (
@@ -435,7 +435,7 @@ function HeroSection() {
                 )}
 
                 {/* Loading State */}
-                {deviceType === null && <SplineLoader />}
+                {/* {deviceType === null && <SplineLoader />} */}
             </div>
 
             <BottomFadeOverlay />

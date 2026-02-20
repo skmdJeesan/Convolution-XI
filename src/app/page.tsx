@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Footer from "@/components/Footer";
 import Gallery from "@/components/Gallery";
@@ -12,6 +12,7 @@ import Timeline from '@/components/TimeLine';
 import Team from '@/components/Team';
 import FaqSection from '@/components/FaqSection';
 import Navbar from '@/components/Navbar';
+import Loading from "@/app/loading";
 
 // Dynamically import WhiteBot with SSR disabled
 const WhiteBot = dynamic(() => import("@/components/WhiteBot"), {
@@ -36,18 +37,21 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="bg-black w-full min-h-screen">
+    <Suspense fallback={<Loading />}>
+       <main className="bg-black w-full min-h-screen">
       <Navbar/>
       <HeroSection />
       <HomeAbout />
       {/* <Timeline/> */}
-      <EventsList />
+      {/* <EventsList /> */}
       <Team />
       <Gallery/>
       <Sponsors/>
       <FaqSection />
-      {shouldLoadBot && <WhiteBot />}  
+      {/* {shouldLoadBot && <WhiteBot />}   */}
       <Footer />
     </main>
+    </Suspense>
+   
   );
 }
