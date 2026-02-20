@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, useSpring, useMotionValue, Variants } from 'framer-motion';
-import { CalendarClock, Users, Trophy } from 'lucide-react';
+import { CalendarClock, Users, Trophy, Sparkles } from 'lucide-react';
 import { IoPlay } from "react-icons/io5";
 import AboutRobot from "../assets/images/About_Robot.png"
 import MobileAboutContent from './MobileAbout';
@@ -93,10 +93,6 @@ const Background = () => {
         style={{ backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, backgroundSize: '40px 40px' }}
       ></div>
 
-      {/* <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vh] bg-fuchsia-900/30 blur-[100px] rounded-full mix-blend-screen transform-gpu translate-z-0"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vh] bg-cyan-900/30 blur-[100px] rounded-full mix-blend-screen transform-gpu translate-z-0"></div>
-      <div className="absolute top-[30%] left-[30%] w-[40vw] h-[40vh] bg-purple-500/15 blur-[80px] rounded-full mix-blend-screen transform-gpu translate-z-0"></div> */}
-
       {/* purple */}
       <div 
         className="absolute top-[-7%] left-[-15%] w-[71vw] h-[60vh] lg:h-[103vh] mix-blend-screen transform-gpu translate-z-0"
@@ -167,14 +163,14 @@ export default function AboutSection() {
   const playVideo = () => { setIsVideoOpen(true); };
 
   return (
-    <div id='about' className="relative w-full min-h-fit xl:min-h-screen flex items-center justify-center overflow-hidden bg-[#020203] py-20 xl:py-0">
+    <div id='about' className="relative w-full min-h-fit xl:min-h-screen flex items-center justify-center overflow-hidden bg-[#020203] py-10 xl:py-0">
       <Background />
       <div className="relative z-10 maxWidthForSections w-full grid grid-cols-1 xl:grid-cols-2 gap-12 xl:gap-20 items-center pt-5 pb-10 min-h-[inherit]">
 
-        {/* --- MOBILE COMPONENT (Only visible on small screens) --- */}
+        {/*mobile below xl*/}
         <MobileAboutContent userCount={userCount} />
 
-        {/* --- DESKTOP ORIGINAL CONTENT (Only visible on xl screens) --- */}
+        {/* Desktop after xl*/}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -233,6 +229,27 @@ export default function AboutSection() {
               colorClass="from-fuchsia-400 to-fuchsia-600"
               borderClass="border-fuchsia-500"
             />
+            
+            {/*prize pool*/}
+            <motion.div variants={itemVariants} className="col-span-3 relative flex items-center justify-between p-4 mt-2 border border-amber-500/20 rounded-lg bg-[#111115]/90 w-full overflow-hidden shadow-[0_4px_25px_rgba(245,158,11,0.07)]">
+              <div className="absolute -inset-1 bg-linear-to-r from-amber-600/10 via-orange-500/5 to-amber-600/10 blur-xl"></div>
+              
+              <div className="relative flex flex-col z-10 text-left">
+                <div className="flex items-center gap-1.5 mb-0.5">
+                  <Sparkles className="w-5 h-5 text-amber-400 animate-pulse" />
+                  <span className="text-xl font-bold text-amber-400 uppercase tracking-wide font-rajdhani">
+                    The Grand Bounty
+                  </span>
+                </div>
+                <span className="text-base font-rajdhani text-gray-300 font-medium ml-7">
+                  Claim your share of glory
+                </span>
+              </div>
+              <div className="relative z-10 font-orbitron font-black text-2xl sm:text-3xl tracking-wide bg-clip-text text-transparent bg-linear-to-b from-amber-100 via-amber-400 to-orange-600 drop-shadow-[0_0_12px_rgba(245,158,11,0.5)]">
+                ₹2 LAKH+
+              </div>
+            </motion.div>
+
           </motion.div>
         </motion.div>
 
@@ -243,7 +260,7 @@ export default function AboutSection() {
           className="relative hidden xl:flex justify-center items-end h-full pointer-events-none min-h-[600px]"
         >
           <div className="absolute bottom-0 w-full max-w-xl h-[90%] flex items-end justify-center">
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-1/4 bg-gradient-to-t from-black/80 via-black/40 to-transparent blur-xl z-0 transform-gpu"></div>
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-1/4 bg-linear-to-t from-black/80 via-black/40 to-transparent blur-xl z-0 transform-gpu"></div>
             <div 
               className="relative w-full h-full flex items-end justify-center z-10"
               style={{

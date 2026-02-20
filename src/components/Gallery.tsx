@@ -54,7 +54,7 @@ const Gallery = () => {
         <div 
         className="absolute inset-0"
         style={{
-            background: 'linear-gradient(to bottom, black 0%,rgba(72, 33, 103, 0.25) 15%,rgba(115, 12, 197, 0.25) 25%, rgba(170, 37, 178, 0.25) 40%,   rgba(145, 54, 150, 0.25) 50%,rgba(105, 13, 177, 0.25) 65%, rgba(73, 19, 114, 0.25) 75%,rgba(70, 21, 109, 0.25) 90%, #020203 100%)'
+            background: 'linear-gradient(to bottom, rgba(5, 0, 19, 1) 0%,rgba(72, 33, 103, 0.25) 15%,rgba(115, 12, 197, 0.25) 25%, rgba(170, 37, 178, 0.25) 40%,   rgba(145, 54, 150, 0.25) 50%,rgba(105, 13, 177, 0.25) 65%, rgba(73, 19, 114, 0.25) 75%,rgba(70, 21, 109, 0.25) 90%, #020203 100%)'
         }}
     ></div>
         <div

@@ -1,41 +1,37 @@
 "use client";
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useInView, Variants } from 'framer-motion';
-import { CalendarClock, Users, Trophy } from 'lucide-react';
+import { CalendarClock, Users, Trophy, Sparkles } from 'lucide-react';
 
 const EVENT_DATE = "2026-03-27T09:00:00";
 
-const stackContainerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const stackItemVariants: Variants = {
-  hidden: { opacity: 0, y: 40 }, 
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { 
-      duration: 0.6, 
-      ease: "easeOut" 
-    } 
-  }
-};
-
-
 const MobileRefCounter = ({ from, to, delay = 0 }: { from: number; to: number; delay?: number }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
+  const [isInView, setIsInView] = useState(false);
   
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect(); 
+        }
+      },
+      { threshold: 0.1 }
+    );
+    
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     if (!isInView || !ref.current) return;
-        const timer = setTimeout(() => {
+    
+    let animationFrameId: number;
+    
+    const timer = setTimeout(() => {
         const duration = 1500; 
         let startTime: number;
         
@@ -47,13 +43,20 @@ const MobileRefCounter = ({ from, to, delay = 0 }: { from: number; to: number; d
             if (ref.current) ref.current.textContent = current.toString();
             
             if (progress < 1) {
-                window.requestAnimationFrame(step);
+                animationFrameId = window.requestAnimationFrame(step);
             }
         };
         
-        window.requestAnimationFrame(step);
+        animationFrameId = window.requestAnimationFrame(step);
+        
     }, delay * 1000);
-    return () => clearTimeout(timer);
+    
+    return () => {
+        clearTimeout(timer);
+        if (animationFrameId) {
+            window.cancelAnimationFrame(animationFrameId); 
+        }
+    };
     
   }, [isInView, from, to, delay]);
 
@@ -75,7 +78,7 @@ const CardBackground = ({ bgColorClass }: { bgColorClass: string }) => (
   />
 );
 
-const MobileStatCard = ({ icon: Icon, label, value, colorClass,bgColorClass, borderClass }: any) => (
+const MobileStatCard = ({ icon: Icon, label, value, colorClass, bgColorClass, borderClass }: any) => (
   <div className={`relative flex flex-col items-center p-3 border-l-2 ${borderClass} bg-[#1a1a20]/70 w-full `}>
     <CardBackground bgColorClass={bgColorClass} />
     <div className="flex items-center gap-1.5 mb-2 z-10">
@@ -90,31 +93,26 @@ const MobileStatCard = ({ icon: Icon, label, value, colorClass,bgColorClass, bor
 
 export default function MobileAboutContent({ userCount }: { userCount: number }) {
   return (
-    <motion.div
-      variants={stackContainerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      className="xl:hidden flex flex-col justify-center items-center text-center space-y-8 w-full  md:px-20 lg:px-32"
+    <div
+      className="xl:hidden  flex flex-col justify-center items-center text-center space-y-8 w-full md:px-20 lg:px-32"
     >
-      <motion.div variants={stackItemVariants} className="flex flex-col items-center pointer-events-none select-none mb-2">
+      <div className="flex flex-col items-center pointer-events-none select-none mb-2">
         <h1 className="relative font-orbitron font-bold text-3xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 uppercase">
           About Us
           <span className="absolute -bottom-2 left-0 right-0 mx-auto w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
         </h1>
-      </motion.div>
+      </div>
 
-
-      <motion.div variants={stackItemVariants} className="relative p-6 border-l-4 border-cyan-500/20 bg-linear-to-r from-cyan-900/10 to-transparent rounded-r-2xl w-full">
-        <div className="absolute top-0 left-[-4px] w-[4px] h-12 bg-cyan-400"></div>
+      <div className="relative p-6 border-l-4 border-cyan-500/20 bg-linear-to-r from-cyan-900/10 to-transparent rounded-r-2xl w-full">
+        <div className="absolute top-0 -left-1 w-1 h-12 bg-cyan-400"></div>
         <p className="font-rajdhani text-gray-300 text-sm leading-relaxed font-semibold">
           Convolution XI is the <span className='text-cyan-300'>11th Edition</span> of the annual techno-management fest organized by the Students' Forum of the Department of Electrical Engineering, Jadavpur University.
           <br />
           Convolution acts as an <span className='text-fuchsia-400'>UMBRELLA EVENT</span> comprising of student interaction events, technical competitions, and workshops.
         </p>
-      </motion.div>
+      </div>
 
-      <motion.div variants={stackItemVariants} className="font-rajdhani grid grid-cols-3 gap-2 w-full">
+      <div className="font-rajdhani grid grid-cols-3 gap-2 w-full">
         <MobileStatCard
           icon={Users}
           label="Registrations"
@@ -139,7 +137,26 @@ export default function MobileAboutContent({ userCount }: { userCount: number })
           borderClass="border-fuchsia-500"
           bgColorClass="from-fuchsia-500 to-fucshia-800"
         />
-      </motion.div>
-    </motion.div>
+      <div className="col-span-3 relative flex items-center justify-between p-4 mt-2 border border-amber-500/20 rounded-lg bg-[#111115]/90 w-full overflow-hidden shadow-[0_4px_25px_rgba(245,158,11,0.07)]">
+          <div className="absolute -inset-1 bg-linear-to-r from-amber-600/10 via-orange-500/5 to-amber-600/10 blur-xl"></div>
+          
+          <div className="relative flex flex-col z-10 text-left">
+            <div className="flex items-center gap-1.5 mb-0.5">
+              <Sparkles className="w-5 h-5 text-amber-400 animate-pulse" />
+              <span className="text-lg font-bold text-amber-400 uppercase tracking-wide font-rajdhani">
+                The Grand Bounty
+              </span>
+            </div>
+            <span className="text-sm font-rajdhani text-gray-300 font-medium ml-5">
+              Claim your share of glory
+            </span>
+          </div>
+          <div className="relative z-10 font-orbitron font-black text-2xl sm:text-3xl tracking-wide bg-clip-text text-transparent bg-linear-to-b from-amber-100 via-amber-400 to-orange-600 drop-shadow-[0_0_12px_rgba(245,158,11,0.5)]">
+            ₹2 LAKH+
+          </div>
+        </div>
+
+      </div>
+    </div>
   );
 }
