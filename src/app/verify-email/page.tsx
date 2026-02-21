@@ -71,16 +71,16 @@ const VerifyPageContent = () => {
         
         {status === "waiting" && (
           <div>
-             <h1 className="text-2xl font-orbitron text-white font-bold mb-4">Check your email</h1>
-             <p className="text-gray-400 font-rajdhani text-sm font-medium mb-6">
+             <h1 className="text-2xl text-white font-bold mb-4">Check your email</h1>
+             <p className="text-gray-400 mb-6">
                We've sent a verification link to <br/>
-               <span className="text-white font-rajdhani">{session?.user?.email}</span>
+               <span className="text-white font-mono">{session?.user?.email}</span>
              </p>
              
              <button
                onClick={handleResendEmail}
                disabled={isResending}
-               className="w-full px-4 py-2 bg-blue-600 text-white font-orbitron font-base font-medium  rounded hover:bg-blue-700 disabled:opacity-50 transition mb-4"
+               className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 transition mb-4"
              >
                {isResending ? "Sending..." : "Resend Verification Email"}
              </button>
@@ -89,10 +89,10 @@ const VerifyPageContent = () => {
 
              {/* what if the user registerd with wrong gmail or typo */}
              <div className="border-t border-gray-700 pt-4 mt-4">
-               <p className="text-gray-400 font-rajdhani text-sm font-medium mb-2">Did you enter the wrong email?</p>
+               <p className="text-sm text-gray-500 mb-2">Did you enter the wrong email?</p>
                <button
                  onClick={() => signOut({ callbackUrl: "/register" })} 
-                 className="font-orbitron font-medium text-sm text-red-400 hover:text-red-300 hover:underline"
+                 className="text-sm text-red-400 hover:text-red-300 hover:underline"
                >
                  Log out & Register again
                </button>
