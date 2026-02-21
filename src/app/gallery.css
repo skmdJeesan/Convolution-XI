@@ -21,7 +21,7 @@
   grid-template-rows: repeat(4, 22vh); /* 4 Rows fixed height */
   grid-template-columns: 1px; /* Hack to force dense packing */
   grid-auto-columns: 22vh; /* Base width of items */
-  grid-gap: 8px;
+  grid-gap: 12px;
   
   /* GPU Acceleration properties */
   will-change: transform;
