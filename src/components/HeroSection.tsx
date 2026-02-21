@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import Image from "next/image";
 import ConvoLogo from "@/assets/images/Convologo.png";
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 // --- 1. UTILITY & AESTHETIC COMPONENTS ---
 
@@ -304,15 +305,27 @@ const SciFiButton = ({ label, href, color = "cyan" }: { label: string; href: str
 };
 
 const CommandDeck = () => {
+    const { data: session, status } = useSession();
+    const isAuthenticated = status === "authenticated"
     return (
-        <div className="absolute bottom-0 left-0 w-full z-50 p-0 xl:p-12 pointer-events-none">
+        <div className="absolute -bottom-6 left-0 w-full z-50 p-0 xl:p-12 pointer-events-none">
             {/* --- MOBILE LAYOUT --- */}
-            <div className="md:hidden w-full flex flex-col items-center justify-end pb-0 pointer-events-auto">
+            <div className="md:hidden w-full flex flex-col items-center justify-end pb-10 pointer-events-auto">
                 <div className="grid grid-cols-2 gap-3 w-full max-w-[360px]">
+                    {!isAuthenticated ? (
+                        <>
+                            <SciFiButton label="Log in" href={"/login"} color="cyan" />
+                            <SciFiButton label="Register" href={"/register"} color="cyan" />
+                        </>
+                    ) :
+                        <>
+                            <SciFiButton label="Gallery" href="#gallery" color="cyan" />
+                            <SciFiButton label="Sponsors" href="#sponsors" color="fuchsia" />
+                        </>
+                    }
                     <SciFiButton label="Timeline" href="#timeline" color="cyan" />
-                    <SciFiButton label="Gallery" href="#gallery" color="cyan" />
                     <SciFiButton label="Events" href="#all-events" color="fuchsia" />
-                    <SciFiButton label="Sponsors" href="#sponsors" color="fuchsia" />
+
                 </div>
                 <div className="mt-4 w-32 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
             </div>
@@ -377,47 +390,53 @@ function HeroSection() {
                 setDeviceType('desktop');
             }
         };
-
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     return (
-        <div id='home' className="h-[100dvh] w-full relative overflow-hidden mx-auto bg-[#000000] font-sans select-none">
+        <div id='home' className="h-dvh w-full relative overflow-hidden mx-auto bg-[#000000] font-sans select-none ">
             <BackgroundGrid />
             <HeadsUpDisplay />
 
             {/* Logo */}
-            <div className="absolute top-[15%] md:top-[15%] xl:top-[23%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 md:z-10 pointer-events-none select-none flex justify-center w-full">
+            <div className={`absolute ${deviceType == 'mobile' ? 'top-[45%]' : 'top-[20%]'} md:top-[15%] xl:top-[23%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 md:z-10 pointer-events-none select-none flex justify-center w-full`}>
                 <div className="relative group w-full flex justify-center">
-                    <div className="absolute -inset-10 md:-inset-32 bg-gradient-to-r from-cyan-500/20 to-fuchsia-500/20 blur-[60px] md:blur-[100px] rounded-full opacity-0" />
+                    <div className="absolute inset-0 md:-inset-32 bg-linear-to-r from-cyan-500/20 to-fuchsia-500/20 blur-[60px] md:blur-[100px] rounded-full opacity-0" />
                     <Image
                         src={ConvoLogo}
                         alt="Convolution Logo Center"
-                        className="w-[75vw] md:w-[55vw] xl:w-[35vw] max-w-[300px] md:max-w-5xl h-auto object-contain relative z-10 drop-shadow-[0_0_30px_rgba(6,182,212,0.6)]"
+                        className="w-[75vw] md:w-[55vw] xl:w-[35vw] max-w-75 md:max-w-5xl h-auto object-contain relative z-10 drop-shadow-[0_0_30px_rgba(6,182,212,0.6)]"
                         priority
                     />
                 </div>
             </div>
-
             {/* --- MEDIA LAYER --- */}
             <div className="absolute inset-0 z-10 w-full h-full pointer-events-auto">
 
                 {/* 1. Mobile (< 768px) */}
                 {deviceType === 'mobile' && (
                     <div className="w-full h-full flex items-center justify-center pointer-events-none">
-                        
+
                         {/* Added 'scale-125' to force it 25% larger */}
                         {/* You can change 125 to 110, 150, or even [2.0] for double size */}
-                        <div className="relative w-full h-full scale-250 mt-10 bottom-[-100]"> 
-                            <Image
-                                src="/assets/images/NexBot_Home.png"
+                        <div className="relative w-150 h-200">
+                            {/* <Image
+                                src="/hero_robo.png"
+                                alt="NexBot Hero Mobile"
+                                height={180} width={180}
+                                className="object-cover absolute bottom-12 -right-10  shrink-0" 
+                                priority
+                            /> */}
+                            {/* <Image
+                                src="/bg_for_mobile3.png"
                                 alt="NexBot Hero Mobile"
                                 fill
-                                className="object-contain drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]" 
+                                className="object-contain animate-in"
                                 priority
-                            />
+                            /> */}
+
                         </div>
                     </div>
                 )}

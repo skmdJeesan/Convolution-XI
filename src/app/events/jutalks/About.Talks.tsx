@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import TransitionLink from "@/components/TransitionLink";
 import { IoArrowBack } from "react-icons/io5";
+import FlipLink from "@/components/FlipLink";
 
 export default function About() {
   const { data: session } = useSession();
@@ -34,7 +35,7 @@ export default function About() {
       >
         <IoArrowBack className="text-[#FCF0C4] text-lg group-hover:text-[#512511] group-hover:-translate-x-1 transition-transform duration-300" />
         <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-[#FCF0C4] group-hover:text-[#512511] uppercase transition-colors duration-300">
-          Return Home
+          <FlipLink>Return&nbsp;Home</FlipLink>
         </span>
       </TransitionLink>
 

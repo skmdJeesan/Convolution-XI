@@ -67,7 +67,7 @@ export default function ProfilePage() {
       <nav className="relative z-20 w-full max-w-7xl px-6 py-8 flex justify-between items-center">
         <TransitionLink href="/" className={navBtnClass}>
           <IoArrowBack className="text-cyan-400 text-lg group-hover:-translate-x-1 transition-transform" />
-          <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-cyan-100 group-hover:text-white uppercase">Return Home</span>
+          <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-cyan-100 group-hover:text-white uppercase"><FlipLink>Return&nbsp;Home</FlipLink></span>
         </TransitionLink>
       </nav>
 
@@ -167,7 +167,7 @@ export default function ProfilePage() {
                            href='/#all-events'
                            className="px-6 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-orbitron text-xs font-bold tracking-widest uppercase rounded shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-transform hover:-translate-y-1 cursor-pointer"
                        >
-                           Show Events
+                           <FlipLink>Show&nbsp;Events</FlipLink>
                        </TransitionLink>
                    </div>
                 )}

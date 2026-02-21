@@ -31,7 +31,7 @@ const desktopNavLinks = [
       { href: "/#sponsors", label: "Sponsors" },
       { href: "/#gallery", label: "Gallery" },
       { href: "/#faq", label: "FAQ" },
-      { href: "/#contact", label: "Let's Connect" },
+      { href: "/#contact", label: "Let's-Connect" },
     ],
   },
 ];

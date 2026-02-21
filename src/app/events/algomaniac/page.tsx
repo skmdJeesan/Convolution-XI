@@ -9,7 +9,7 @@ import Team from "./EventLeads.Algo";
 
 function page() {
   return (
-    <div className='bg-gradient-to-b from-[#0D30BB] via-[#2a237e] to-[#7c3aed] w-full min-h-screen'>
+    <div className='bg-linear-to-b from-[#0D30BB] via-[#2a237e] to-[#7c3aed] w-full min-h-screen'>
       {/* <EventNav/> */}
       <About/>
       {/* <Rules/>
