@@ -20,7 +20,7 @@ interface Event {
 const EventsMobile = ({events}: {events: Event[]}) => {
 
   return (
-    <div id="all-events" className="w-full bg-[#030303] flex flex-col items-center justify-start overflow-x-hidden relative">
+    <div id="events" className="w-full bg-[#030303] flex flex-col items-center justify-start overflow-x-hidden relative">
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 bg-[linear-linear(to_right,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-size-[25%_100%]" />
         <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-purple-900/15 via-cyan-900/10 to-transparent pointer-events-none" />

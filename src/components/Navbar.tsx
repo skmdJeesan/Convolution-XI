@@ -31,7 +31,7 @@ const desktopNavLinks = [
       { href: "/#sponsors", label: "Sponsors" },
       { href: "/#gallery", label: "Gallery" },
       { href: "/#faq", label: "FAQ" },
-      { href: "/#contact", label: "Let's-Connect" },
+      { href: "/#contact", label: "Let'sConnect" },
     ],
   },
 ];
@@ -181,7 +181,7 @@ const Navbar = () => {
           startHideTimer();
         }}
       >
-        <div className="flex items-center justify-between px-2 lg:px-4 pt-2 md:pt-4 w-full mx-auto">
+        <div className="flex items-center justify-between px-2 lg:px-4 pt-4 pb-2  md:pt-4 w-full mx-auto">
           
           {/*Logo*/}
           <div className="shrink-0 transition-transform hover:scale-105 duration-300 pointer-events-auto">

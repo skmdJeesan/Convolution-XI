@@ -38,12 +38,12 @@ const Sponsors: React.FC = () => {
 
   return (
     // Reduced min-height to 60vh as requested
-    <div id="sponsors" className="relative w-full min-h-[60vh] flex flex-col items-center justify-center">  
+    <div id="sponsors" className="relative w-full h-auto flex flex-col items-center justify-center">  
       {/* <Cursor magnetic /> */}
 
       {/* Grid Background */}
       <div className="tech-grid pointer-events-none" />
-    {/* Decorative Icons */}
+              <div className="absolute top-0 left-0 bg-linear-to-b from-black/90 to-transparent h-15 w-full pointer-events-none z-69"></div>
 
       <div className="py-12 h-full w-full relative z-10 flex flex-col items-center">
         <motion.div
@@ -193,11 +193,7 @@ const Sponsors: React.FC = () => {
         </div>
         */}
 
-        {/* =============================================
-            ACTIVE COMING SOON TEXT
-            (Modified from original: removed absolute positioning, made opaque)
-            =============================================
-        */}
+        
         <div
           className="relative mt-8 opacity-100" // Changed from absolute/opacity-30 to relative/opacity-100
         >

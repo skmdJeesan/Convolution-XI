@@ -293,7 +293,7 @@ export default function SignupForm() {
                                     </SelectTrigger>
                                     <SelectContent className='bg-[#0a0e14] border border-cyan-800/50 text-cyan-50 font-rajdhani tracking-wide max-h-50'>
                                         <SelectGroup>
-                                            <SelectItem value="School" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">School</SelectItem>
+                                            {/* <SelectItem value="School" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">School</SelectItem> */}
                                             <SelectItem value="UG1" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">UG1</SelectItem>
                                             <SelectItem value="UG2" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">UG2</SelectItem>
                                             <SelectItem value="UG3" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">UG3</SelectItem>
@@ -322,14 +322,12 @@ export default function SignupForm() {
                       <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_calc(100%-10px),calc(100%-10px)_100%,0_100%)] cursor-pointer" onClick={() => signIn('github', { callbackUrl: '/' })}><FaGithub className='text-sm' /><span className='font-orbitron text-xs font-semibold tracking-wider'>GITHUB</span></button>
                     </div> */}
                     
-                    <div className="text-center mt-1">
-                        <p className="font-rajdhani text-sm sm:text-xs text-gray-500 font-bold uppercase tracking-wide">
-                            Existing Entity? 
-                            <TransitionLink href="/login" className='font-orbitron text-purple-400 hover:text-purple-300 ml-2 hover:underline underline-offset-4 decoration-purple-500/50 transition-colors drop-shadow-[0_0_5px_rgba(192,132,252,0.5)]'>
-                                Access System
-                            </TransitionLink>
-                        </p>
-                    </div>
+                    <div className="text-center mt-2">
+                            <p className="font-rajdhani text-sm sm:text-xs text-gray-500 font-bold uppercase tracking-wide">
+                                Existing Entity? 
+                                <TransitionLink href="/login" className='font-orbitron text-purple-400 hover:text-purple-300 ml-2 hover:underline underline-offset-4 decoration-purple-500/50 transition-colors'>Access System</TransitionLink>
+                            </p>
+                        </div>
 
                   </form>
                 </div>
