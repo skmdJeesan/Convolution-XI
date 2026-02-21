@@ -14,14 +14,15 @@ import TransitionLink from "./TransitionLink";
 const desktopNavLinks = [
   { href: "/#home", label: "Home" },
   { label: "About", href: "/#about" },
-  {
-    label: "Event",
-    href: "#",
-    subItems: [
-      { href: "/#events", label: "Events" },
-      { href: "/#timeline", label: "Timeline" },
-    ],
-  },
+  // {
+  //   label: "Event",
+  //   href: "#",
+  //   subItems: [
+  //     { href: "/#events", label: "Events" },
+  //     { href: "/#timeline", label: "Timeline" },
+  //   ],
+  // },
+  {label: "Events", href:"/#events"},
   {
     label: "More",
     href: "#",
@@ -39,7 +40,7 @@ const mobileNavLinks = [
   { href: "/#home", label: "Home" },
   { href: "/#about", label: "About" },
   { href: "/#events", label: "Events" },
-  { href: "/#timeline", label: "Timeline" },
+  // { href: "/#timeline", label: "Timeline" },
   { href: "/#team", label: "Team" },
   { href: "/#sponsors", label: "Sponsors" },
   { href: "/#gallery", label: "Gallery" },
@@ -233,7 +234,7 @@ const Navbar = () => {
             {/* profile */}
             {session ? (
               <TransitionLink href="/profile" className="rounded-full relative group block">
-                <div className="rounded-full border-2 border-white/20 overflow-hidden hover:border-white transition-colors shadow-lg shadow-white/10">
+                <div className="rounded-full borde border-white/20 overflow-hidden hover:border-white transition-colors">
                   <Image
                     src={profileIcon}
                     alt="profile icon"

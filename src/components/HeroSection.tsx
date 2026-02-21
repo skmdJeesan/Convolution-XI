@@ -7,16 +7,16 @@ import Link from 'next/link';
 
 // --- 1. UTILITY & AESTHETIC COMPONENTS ---
 
-const SplineLoader = () => (
-    <div className="absolute inset-0 flex items-center justify-center bg-[#0b0b15] z-50">
-        <div className="relative">
-            <div className="w-20 h-20 border-4 border-transparent border-t-cyan-400 border-b-fuchsia-500 rounded-full animate-spin"></div>
-            <div className="absolute inset-0 flex items-center justify-center text-white font-bold tracking-widest text-xs animate-pulse">
-                LOADING
-            </div>
-        </div>
-    </div>
-);
+// const SplineLoader = () => (
+//     <div className="absolute inset-0 flex items-center justify-center bg-[#0b0b15] z-50">
+//         <div className="relative">
+//             <div className="w-20 h-20 border-4 border-transparent border-t-cyan-400 border-b-fuchsia-500 rounded-full animate-spin"></div>
+//             <div className="absolute inset-0 flex items-center justify-center text-white font-bold tracking-widest text-xs animate-pulse">
+//                 LOADING
+//             </div>
+//         </div>
+//     </div>
+// );
 
 // Lazy load Spline
 const SplineScene = dynamic(() => import('@splinetool/react-spline'), {
@@ -404,7 +404,7 @@ function HeroSection() {
             {/* --- MEDIA LAYER --- */}
             <div className="absolute inset-0 z-10 w-full h-full pointer-events-auto">
 
-                {/* 1. Mobile Video (< 768px) */}
+                {/* 1. Mobile (< 768px) */}
                 {deviceType === 'mobile' && (
                     <div className="w-full h-full flex items-center justify-center pointer-events-none">
                         

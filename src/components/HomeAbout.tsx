@@ -279,13 +279,13 @@ export default function AboutSection() {
                   className="h-full w-auto object-contain object-bottom contrast-125 saturate-110 select-none" 
                 />
                 
-                <div className="video-div flex flex-col items-center gap-1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+                {/* <div className="video-div flex flex-col items-center gap-1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
                   <div onClick={playVideo}
                     className="h-14 w-14 rounded-full flex items-center justify-center bg-cyan-300 hover:scale-105 hover:bg-cyan-500 active:scale-95 cursor-pointer pointer-events-auto transition-transform">
                     <IoPlay className="h-10 w-10 text-black" />
                   </div>
                   <h3 className='click text-fuchsia-600 font-rajdhani font-semibold text-sm uppercase'>Click Me</h3>
-                </div>
+                </div> */}
               </motion.div>
             </div>
 
