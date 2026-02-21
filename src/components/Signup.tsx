@@ -29,6 +29,7 @@ import {
 } from 'react-icons/io5';
 import DecorativeIcons from './DecorativeIcons';
 import TransitionLink from './TransitionLink';
+import FlipLink from './FlipLink';
 
 // --- LOADER ---
 const Loader = () => (
@@ -123,7 +124,7 @@ export default function SignupForm() {
         className="absolute top-6 left-6 z-50 flex items-center gap-2 px-4 py-2.5 bg-cyan-950/40  border-cyan-500/50  lg:bg-black/30 lg:border-white/10 lg:hover:border-cyan-500/50 lg:hover:bg-cyan-950/40 lg:hover:shadow-cyan-500/20 backdrop-blur-md border  rounded-full transition-all duration-300 shadow-lg  group cursor-pointer overflow-hidden"
       >
         <IoArrowBack className="text-cyan-400 text-lg group-hover:-translate-x-1 transition-transform duration-300" />
-        <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-cyan-100 group-hover:text-white uppercase transition-colors">Return Home</span>
+        <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-cyan-100 group-hover:text-white uppercase transition-colors"><FlipLink>Return&nbsp;Home</FlipLink></span>
       </TransitionLink>
 
       <motion.div 

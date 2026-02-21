@@ -6,6 +6,7 @@ import Link from "next/link";
 import TransitionLink from "@/components/TransitionLink";
 import { IoArrowBack } from "react-icons/io5";
 import logo from "@/assets/images/Sparkhack/Sparkhack logo.webp";
+import FlipLink from "@/components/FlipLink";
 
 
 export default function About() {
@@ -36,7 +37,7 @@ export default function About() {
       >
         <IoArrowBack className="text-[#2CB1DF] text-lg group-hover:text-white group-hover:-translate-x-1 transition-transform duration-300" />
         <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-[#2CB1DF] group-hover:text-white uppercase transition-colors duration-300">
-          Return Home
+          <FlipLink>Return&nbsp;Home</FlipLink>
         </span>
       </TransitionLink>
 
