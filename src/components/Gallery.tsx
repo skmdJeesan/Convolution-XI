@@ -10,7 +10,7 @@ const galleryImages = [
   { src: "/Galleria/2.jpg", isBig: false },
   { src: "/Galleria/3.jpg", isBig: false },
   { src: "/Galleria/4.jpg", isBig: true },
-  { src: "/Galleria/5.jpg", isBig: true },
+  { src: "/Galleria/5.JPG", isBig: true },
   { src: "/Galleria/6.jpg", isBig: true },
   { src: "/Galleria/7.jpg", isBig: false },
   { src: "/Galleria/8.jpg", isBig: true },
