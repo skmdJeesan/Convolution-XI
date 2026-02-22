@@ -7,30 +7,30 @@ import "../app/gallery.css";
 // 1. Define Data Structure: Keeps the JSX clean and allows specific styling (big vs small)
 const galleryImages = [
   { src: "/Galleria/1.jpg", isBig: true },
-  { src: "/Galleria/2.jpg", isBig: true },
-  { src: "/Galleria/3.jpg", isBig: true },
-  { src: "/Galleria/4.webp", isBig: false },
-  { src: "/Galleria/5.jpg", isBig: false },
+  { src: "/Galleria/2.jpg", isBig: false },
+  { src: "/Galleria/3.jpg", isBig: false },
+  { src: "/Galleria/4.JPG", isBig: false },
+  { src: "/Galleria/5.jpg", isBig: true },
   { src: "/Galleria/6.jpg", isBig: true },
-  { src: "/Galleria/7.jpg", isBig: true },
-  { src: "/Galleria/8.jpg", isBig: false },
+  { src: "/Galleria/7.jpg", isBig: false },
+  { src: "/Galleria/8.jpg", isBig: true },
   { src: "/Galleria/9.jpg", isBig: true },
   { src: "/Galleria/10.jpg", isBig: false },
   { src: "/Galleria/11.jpg", isBig: false },
-  { src: "/Galleria/12.jpg", isBig: false },
+  { src: "/Galleria/12.jpg", isBig: true },
   { src: "/Galleria/13.jpg", isBig: true },
-  { src: "/Galleria/14.jpg", isBig: false },
-  { src: "/Galleria/15.jpg", isBig: true },
+  { src: "/Galleria/14.jpg", isBig: true },
+  { src: "/Galleria/15.jpg", isBig: false },
   { src: "/Galleria/16.jpg", isBig: false },
-  { src: "/Galleria/17.jpg", isBig: false },
-  { src: "/Galleria/18.jpg", isBig: true },
-  { src: "/Galleria/19.jpg", isBig: false },
-  { src: "/Galleria/20.jpg", isBig: false },
+  { src: "/Galleria/17.jpg", isBig: true },
+  { src: "/Galleria/18.jpg", isBig: false },
+  { src: "/Galleria/19.jpg", isBig: true },
+  { src: "/Galleria/20.jpg", isBig: true },
   { src: "/Galleria/21.jpg", isBig: true },
-  { src: "/Galleria/22.jpg", isBig: true },
-  { src: "/Galleria/23.webp", isBig: true },
-  { src: "/Galleria/24.jpg", isBig: true },
-  { src: "/Galleria/25.jpg", isBig: false },
+  { src: "/Galleria/22.jpg", isBig: false },
+  { src: "/Galleria/23.webp", isBig: false },
+  { src: "/Galleria/24.jpg", isBig: false },
+  { src: "/Galleria/25.jpg", isBig: true },
   { src: "/Galleria/26.jpg", isBig: false },
 ];
 
@@ -51,10 +51,11 @@ const Gallery = () => {
       {/* Background*/}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-[#020203]"></div>
+        <div className="absolute bottom-0 left-0 bg-linear-to-t from-black/90 to-transparent h-15 w-full pointer-events-none z-69"></div>
         <div 
         className="absolute inset-0"
         style={{
-            background: 'linear-gradient(to bottom, rgba(5, 0, 19, 1) 0%,rgba(72, 33, 103, 0.25) 15%,rgba(115, 12, 197, 0.25) 25%, rgba(170, 37, 178, 0.25) 40%,   rgba(145, 54, 150, 0.25) 50%,rgba(105, 13, 177, 0.25) 65%, rgba(73, 19, 114, 0.25) 75%,rgba(70, 21, 109, 0.25) 90%, #020203 100%)'
+            background: 'linear-gradient(to bottom, rgba(5, 0, 19, 1) 0%,rgba(72, 33, 103, 0.25) 15%,rgba(115, 12, 197, 0.25) 25%, rgba(170, 37, 178, 0.25) 40%,   rgba(145, 54, 150, 0.25) 50%,rgba(105, 13, 177, 0.25) 65%, rgba(73, 19, 114, 0.25) 75%,rgba(70, 21, 109, 0.25) 90%, rgba(13, 13, 22, .4) 100%)'
         }}
     ></div>
         <div

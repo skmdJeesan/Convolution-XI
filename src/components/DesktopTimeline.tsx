@@ -4,7 +4,6 @@ import React, { useRef, useState, useLayoutEffect, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { events } from '../components/Timeline_Data';
-import Particles from './Particles';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -127,21 +126,19 @@ const DesktopTimeline = () => {
           }}
         >
             <div className="absolute inset-0 bg-[#00040f]/95 z-0"></div>
-            <div className="absolute top-[-10%] left-[20%] w-[60vw] h-100 bg-violet-950/30 blur-[120px] z-0"></div>
-            <div className="absolute bottom-[-10%] right-[20%] w-[60vw] h-100 bg-cyan-950/30 blur-[120px] z-0"></div>
-            <div className="absolute bottom-[2%] right-[-15%] w-[90vw] h-[20vw] rounded-full bg-[#030712] blur-[120px] z-0"></div>
+            <div className="absolute top-[-10%] left-[20%] w-[60vw] h-100 bg-fuchsia-950/30 blur-[100px] z-0"></div>
+            <div className="absolute bottom-[-10%] right-[20%] w-[60vw] h-100 bg-cyan-950/30 blur-[100px] z-0"></div>
+            <div className="absolute bottom-0 left-0 w-full h-15 bg-linear-to-t from-[#030712e5]  to-transparent z-69"></div>
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#22d3ee_1px,transparent_1px),linear-gradient(to_bottom,#22d3ee_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-[0.05] z-0"></div>
-            
-            <Particles/>
           </div>
         </div>
 
        {/* --- HEADER --- */}
-       <div className="absolute top-[2vh] z-50 flex flex-col items-center pointer-events-none select-none">
-          <h1 className="font-orbitron  font-bold  text-center text-xl sm:text-3xl md:text-5xl tracking-wider text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase ">
-          Timeline
-          <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
-        </h1>
+       <div className="absolute top-[5vh] z-50 flex flex-col items-center pointer-events-none select-none">
+           <h1 className="font-orbitron font-bold text-center text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
+            Timeline
+            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
+          </h1>
       </div>
 
       {/* Timeline Track*/}
@@ -212,33 +209,33 @@ const DesktopTimeline = () => {
                   <div className={`absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 transition-colors duration-300 ${isActive ? 'border-cyan-400' : 'border-gray-700'}`}></div>
 
                   {/* Inner Content */}
-                  <div className="relative p-4 z-10" style={{ clipPath: 'polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)' }}>
+                  <div className="relative px-4 py-3 z-10" style={{ clipPath: 'polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)' }}>
                       
-                      <div className="flex justify-between items-center mb-3 border-b border-cyan-900/30 pb-2">
-                          <span className="text-[10px] font-mono font-bold text-cyan-500/80 tracking-widest uppercase flex items-center gap-2">
-                            <span className="w-1 h-1 bg-cyan-500 rounded-full animate-pulse"></span>
+                      <div className="flex justify-between items-center mb-1.5 border-b border-cyan-900/30 pb-1">
+                          <span className="text-xs font-mono font-bold text-cyan-600 tracking-widest uppercase flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
                             LOG_0{event.id}
                           </span>
-                          <span className={`text-[10px] font-mono px-1.5 py-0.5 border ${isActive ? 'border-cyan-500/30 bg-cyan-500/10 text-cyan-300' : 'border-gray-800 text-gray-600'} rounded-none uppercase tracking-wider`}>
+                          <span className={`text-sm font-rajdhani font-semibold px-1 py-0.5 border ${isActive ? 'border-cyan-500/30 bg-cyan-500/10 text-cyan-300' : 'border-gray-800 text-gray-600'} rounded-none uppercase tracking-wider`}>
                              {event.time}
                           </span>
                       </div>
 
-                      <div className="flex items-baseline gap-3 mb-3">
-                          <h2 className="text-3xl font-black text-white tracking-tighter drop-shadow-lg">
+                      <div className="flex items-baseline gap-3 mb-2">
+                          <h2 className="text-2xl font-semibold font-orbitron text-white tracking-tighter drop-shadow-lg">
                               {event.date.split(' ')[1]}
                           </h2>
-                          <span className="text-xs font-mono text-cyan-200/50 uppercase tracking-[0.2em]">
+                          <span className="text-sm font-orbitron text-gray-400 font-medium uppercase tracking-widest">
                               {event.date.split(' ')[0]}
                           </span>
                       </div>
 
-                      <div className="space-y-2">
+                      <div className="space-y-0.5">
                           {event.items.map((item, i) => (
                              <div key={i} className="flex items-center gap-2 group/item">
                                 <div className={`w-1 h-1 bg-cyan-500 transition-all duration-300 ${isActive ? 'group-hover/item:w-3 group-hover/item:bg-violet-400' : ''}`}></div>
-                                <span className={`text-xs font-medium tracking-wide uppercase transition-all duration-300
-                                    ${isActive ? 'text-gray-400 group-hover/item:text-white group-hover/item:translate-x-1' : 'text-gray-700'}`}>
+                                <span className={`text-base font-semibold font-rajdhani tracking-wide capitalize transition-all duration-300
+                                    ${isActive ? 'text-gray-300 group-hover/item:text-white group-hover/item:translate-x-1' : 'text-gray-700'}`}>
                                     {item}
                                 </span>
                              </div>

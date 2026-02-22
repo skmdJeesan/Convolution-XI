@@ -294,7 +294,7 @@ const SciFiButton = ({ label, href, color = "cyan" }: { label: string; href: str
                     opacity-10 animate-pulse`}>
                 </div>
 
-                <span className={`relative z-10 font-orbitron text-xs md:text-sm tracking-[0.2em] uppercase font-bold ${textClass} transition-colors`}>
+                <span className={`relative z-10 font-orbitron text-sm md:text-sm tracking-wideest uppercase font-bold ${textClass} transition-colors`}>
                     {label}
                 </span>
             </div>
@@ -312,16 +312,16 @@ const CommandDeck = () => {
                 <div className="grid grid-cols-2 gap-3 w-full max-w-[360px]">
                     {!isAuthenticated ? (
                         <>
-                            <SciFiButton label="Log in" href={"/login"} color="cyan" />
+                            <SciFiButton label="Login" href={"/login"} color="fuchsia" />
                             <SciFiButton label="Register" href={"/register"} color="cyan" />
                         </>
                     ) :
                         <>
+                            <SciFiButton label="Team" href="#team" color="fuchsia" />
                             <SciFiButton label="Gallery" href="#gallery" color="cyan" />
-                            <SciFiButton label="Sponsors" href="#sponsors" color="fuchsia" />
                         </>
                     }
-                    <SciFiButton label="Timeline" href="#timeline" color="cyan" />
+                    <SciFiButton label="FAQ" href="#faq" color="cyan" />
                     <SciFiButton label="Events" href="#all-events" color="fuchsia" />
 
                 </div>
@@ -334,7 +334,12 @@ const CommandDeck = () => {
                     <div className="absolute right-0 -top-1 w-2 h-2 bg-cyan-500 rounded-full"></div>
                 </div>
                 <div className="flex flex-col gap-3">
-                    <SciFiButton label="Timeline" href="#timeline" color="cyan" />
+                    {!isAuthenticated? (
+                        <SciFiButton label="Login" href={"/login"} color="cyan" />
+                    ):
+                        <SciFiButton label="Team" href="#team" color="cyan" />
+                    }
+                    
                     <SciFiButton label="Events" href="#events" color="fuchsia" />
                 </div>
             </div>
@@ -344,8 +349,13 @@ const CommandDeck = () => {
                     <div className="absolute left-0 -top-1 w-2 h-2 bg-fuchsia-500 rounded-full"></div>
                 </div>
                 <div className="flex flex-col gap-3 items-end">
-                    <SciFiButton label="Gallery" href="#gallery" color="cyan" />
-                    <SciFiButton label="Sponsors" href="#sponsors" color="fuchsia" />
+                    {!isAuthenticated? (
+                        <SciFiButton label="Register" href={"/register"} color="cyan" />
+                    ):
+                        <SciFiButton label="Gallery" href="#gallery" color="cyan" />
+                    }
+                    
+                    <SciFiButton label="FAQ" href="#faq" color="fuchsia" />
                 </div>
             </div>
         </div>
