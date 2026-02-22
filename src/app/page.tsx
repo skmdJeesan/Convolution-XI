@@ -43,7 +43,7 @@ export default function Home() {
       <HeroSection />
       <HomeAbout />
       <EventsList />
-      {/* <Timeline/> */}
+      <Timeline/>
       <Team />
       <Gallery/>
       <Sponsors/>
