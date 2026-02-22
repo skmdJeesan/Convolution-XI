@@ -100,8 +100,8 @@ const Gallery = () => {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="(max-width: 768px) 33vw, 20vw"
-                  loading={index < 10 ? "eager" : "lazy"}
-                  // Placeholder blur helps perceived performance
+                  quality={60}
+                  loading={index < 5 ? "eager" : "lazy"} 
                   placeholder="empty" 
                 />
               </div>

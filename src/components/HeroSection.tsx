@@ -91,13 +91,6 @@ const BackgroundGrid = () => (
                     priority
                 />
             </div>
-            {/* <div 
-        className="absolute bottom-[-10%] right-[-15%] w-[65vw] h-[79vh] mix-blend-screen transform-gpu translate-z-0"
-        style={{
-          background: 'radial-gradient(closest-side, rgba(22, 78, 99, 30%), transparent)'
-        }}
-      ></div> */}
-
             {/* The Main Sphere Gradient (Pink/Purple) - CSS SHADOW REMOVED HERE */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-fuchsia-600 via-purple-900 to-black opacity-100"></div>
 
@@ -137,6 +130,7 @@ const BackgroundGrid = () => (
                 priority
             />
         </div>
+
     </>
 );
 
