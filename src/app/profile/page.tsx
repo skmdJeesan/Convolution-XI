@@ -164,7 +164,7 @@ export default function ProfilePage() {
                            No participation records found. Perticipate in a event to populate.
                        </p>
                        <TransitionLink 
-                           href='/#all-events'
+                           href='/#events'
                            className="px-6 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-orbitron text-xs font-bold tracking-widest uppercase rounded shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-transform hover:-translate-y-1 cursor-pointer"
                        >
                            <FlipLink>Show&nbsp;Events</FlipLink>
