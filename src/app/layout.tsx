@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     siteName: "Convolution JUEE",
     images: [
       {
-        url: "https://www.convolutionjuee.com/Convologo.png",
+        url: "https://www.convolutionjuee.com/opengraph_img.png",
         width: 1200,
         height: 630,
         alt: "Convolution 2026 Logo",
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Convolution 11 | Annual Techno-Management Fest of JUEE",
     description: "Celebrate creativity and innovation at Convolution-11 , JUEE's annual technical fest.",
-    images: ["https://www.convolutionjuee.com/Convologo.png"],
+    images: ["https://www.convolutionjuee.com/opengraph_img.png"],
   },
 };
 
