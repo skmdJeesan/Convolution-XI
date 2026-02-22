@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useInView, useSpring, useMotionValue, Variants } from 'framer-motion';
+import { motion, useInView, useSpring, useMotionValue, Variants, useTransform } from 'framer-motion';
 import { CalendarClock, Users, Trophy, Sparkles } from 'lucide-react';
 import { IoPlay } from "react-icons/io5";
 import AboutRobot from "../assets/images/About_Robot.png"
@@ -26,11 +26,10 @@ const itemVariants: Variants = {
 };
 
 const imageRevealVariants: Variants = {
-  hidden: { opacity: 0, y: 50, filter: "blur(5px)" },
+  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: { duration: 1.0, ease: "easeOut", delay: 0.2 }
   },
 };
@@ -40,14 +39,9 @@ const AnimatedCounter = ({ from, to, delay = 0 }: { from: number; to: number, de
   const isInView = useInView(ref, { once: true });
   const motionValue = useMotionValue(from);
   const springValue = useSpring(motionValue, { damping: 30, stiffness: 100 });
-  const [displayValue, setDisplayValue] = useState(from);
-
-  useEffect(() => {
-    const unsubscribe = springValue.on("change", (latest) => {
-      setDisplayValue(Math.floor(latest));
-    });
-    return () => unsubscribe();
-  }, [springValue]);
+  
+  // OPTIMIZATION: Bypasses React state entirely. Framer Motion updates the DOM node directly.
+  const displayValue = useTransform(springValue, (latest) => Math.floor(latest));
 
   useEffect(() => {
     if (isInView) {
@@ -58,7 +52,8 @@ const AnimatedCounter = ({ from, to, delay = 0 }: { from: number; to: number, de
     }
   }, [isInView, to, motionValue, delay]);
 
-  return <span ref={ref} className="tabular-nums">{displayValue}</span>;
+  // Use motion.span here so it can accept the raw useTransform value
+  return <motion.span ref={ref} className="tabular-nums">{displayValue}</motion.span>;
 };
 
 const DaysCounter = () => {
@@ -95,7 +90,7 @@ const Background = () => {
 
       {/* purple */}
       <div 
-        className="absolute top-[-7%] left-[-15%] w-[71vw] h-[60vh] lg:h-[103vh] mix-blend-screen transform-gpu translate-z-0"
+        className="absolute top-[-7%] left-[-15%] w-[71vw] h-[60vh] lg:h-[103vh]  transform-gpu translate-z-0"
         style={{
           background: 'radial-gradient(closest-side, rgba(112, 26, 117, 35%), transparent)'
         }}
@@ -103,7 +98,7 @@ const Background = () => {
 
     {/* cyan */}
       <div 
-        className="absolute bottom-[-10%] right-[-15%] w-[65vw] h-[79vh] mix-blend-screen transform-gpu translate-z-0"
+        className="absolute bottom-[-10%] right-[-15%] w-[65vw] h-[79vh]  transform-gpu translate-z-0"
         style={{
           background: 'radial-gradient(closest-side, rgba(22, 78, 99, 30%), transparent)'
         }}
@@ -111,7 +106,7 @@ const Background = () => {
 
       {/* fucshia */}
       <div 
-        className="absolute top-[6%] left-[24%] w-[64vw] h-[50vh] lg:h-[89vh] mix-blend-screen transform-gpu translate-z-0"
+        className="absolute top-[6%] left-[24%] w-[64vw] h-[50vh] lg:h-[89vh]  transform-gpu translate-z-0"
         style={{
           background: 'radial-gradient(closest-side, rgba(168, 85, 247, 0.20), transparent)'
         }}

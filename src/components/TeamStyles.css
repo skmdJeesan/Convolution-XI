@@ -352,8 +352,18 @@
   .team-title { font-size: 2rem; }
   .team-cards-container { gap: 20px; padding: 20px 12px; }
   .team-card { width: 220px; height: 290px; }
-  .team-spotlight-glow { width: 500px; height: 500px; }
-  .team-card-wrapper { transform: rotateZ(0deg) translateY(0px) !important; }
+  .team-spotlight-glow { 
+    width: 500px; 
+    height: 500px; 
+    animation: none;
+  }
+  .team-spotlight-glow {
+    display: none !important; 
+  }
+  .team-card-wrapper { 
+    transform: rotateZ(0deg) translateY(0px) !important; 
+    animation: none !important;
+  }
   .team-card-wrapper:hover .team-card { transform: scale(1.05) translateZ(10px) !important; }
 }
 
@@ -375,4 +385,42 @@
 @media (prefers-reduced-motion: reduce) {
   .team-card-wrapper, .team-spotlight-glow { animation: none !important; }
   .team-card, .team-card-wrapper, .team-card-info-overlay, .team-social-link { transition: none !important; }
+}
+
+/* .team-card-wrapper {
+  animation: none !important;
+  transform: none !important;
+} */
+
+/* 2. Kill the massive pulsing background gradient everywhere */
+.team-spotlight-glow {
+  display: none !important;
+  animation: none !important;
+}
+
+/* 3. Strip all 'will-change' properties globally to free up GPU RAM */
+.team-card,
+.team-card-wrapper,
+.team-spotlight-glow,
+.team-card-image {
+  will-change: auto !important; 
+}
+
+/* 4. Flatten the 3D perspective to standard 2D */
+.team-cards-container {
+  perspective: none !important;
+}
+
+/* 5. Simplify the base card shadow and flatten it */
+.team-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important;
+  transform-style: flat !important;
+}
+
+/* 6. Replace the heavy 3D hover flip with a clean, lightweight 2D pop-up for Desktop */
+@media (hover: hover) and (pointer: fine) {
+  .team-card-wrapper:hover .team-card {
+    transform: translateY(-8px) !important; 
+    box-shadow: 0 16px 30px rgba(6, 182, 212, 0.25) !important;
+  }
 }

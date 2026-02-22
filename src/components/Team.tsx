@@ -2,6 +2,7 @@
 import React, { memo } from 'react'
 import { motion, easeInOut } from "framer-motion"
 import './TeamStyles.css'
+import Image from 'next/image';
 
 // -- Types --
 type TeamMember = {
@@ -18,7 +19,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "Arkaroop Nag",
     post: "Secretary",
-    image: "./peoplePics/chaiwala.jpg",
+    image: "/peoplePics/chaiwala.jpg",
     linkedin: "https://www.linkedin.com/in/jahid-mamud/",
     instagram: "https://www.instagram.com/jem_.__/profilecard/?igsh=b2o0ZjlqZ3pkeW5t",
     x: "",
@@ -26,7 +27,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "Dipjyoti Dash",
     post: "Joint secretary",
-    image: "./peoplePics/dipjyoti.jpeg",
+    image: "/peoplePics/dipjyoti.jpeg",
     linkedin: "https://www.linkedin.com/in/dipjyoti-dash-22508227a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://www.instagram.com/dipjyotidash?igsh=djh2Nml1NDdwMnQ4",
     x: "",
@@ -34,7 +35,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "Rahiul Islam",
     post: "Treasurer",
-    image: "./peoplePics/chaiwala.jpg",
+    image: "/peoplePics/chaiwala.jpg",
     linkedin: "https://www.linkedin.com/in/siddhanta-ghosh",
     instagram: "https://www.instagram.com/ghosh_siddhanta2k3/",
     x: "https://www.facebook.com/profile.php?id=100089382764364&mibextid=ZbWKwL",
@@ -42,7 +43,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "Sayan Indra",
     post: "Tech Lead",
-    image: "./peoplePics/Sayan.jpeg",
+    image: "/peoplePics/Sayan.jpeg",
     linkedin: "https://www.linkedin.com/in/sayan-indra-a41319369/",
     instagram: "https://www.instagram.com/sayanindra143/",
     x: "",
@@ -50,7 +51,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "Aneesh Banerjee",
     post: "Design Lead",
-    image: "./peoplePics/Aneesh.jpeg",
+    image: "/peoplePics/Aneesh.jpeg",
     linkedin: "https://www.linkedin.com/in/aneesh-banerjee-0a0727374?trk=contact-info",
     instagram: "https://www.instagram.com/asneeze98?igsh=NWV5amFyb2R6OGpr",
     x: "https://x.com/ruddy168",
@@ -58,7 +59,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "Pratham Das",
     post: "Sponsorship Lead",
-    image: "./peoplePics/Pratham.jpeg",
+    image: "/peoplePics/Pratham.jpeg",
     linkedin: "https://www.linkedin.com/in/pratham-das-409aa4286?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "",
     x: "",
@@ -66,7 +67,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "Aakash Bose",
     post: "Content Lead",
-    image: "./peoplePics/Aakash.jpeg",
+    image: "/peoplePics/Aakash.jpeg",
     linkedin: "https://www.linkedin.com/in/aakash-bose-8311292a0?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     instagram: "https://www.instagram.com/_aakashbose_?igsh=MWhpMXVmazl2b3B4cw==",
     x: "",
@@ -74,7 +75,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "Diganta Sadhukhan",
     post: "Logistics Lead",
-    image: "./peoplePics/diganta.jpeg",
+    image: "/peoplePics/diganta.jpeg",
     linkedin: "https://www.linkedin.com/in/diganta-sadhukhan-6700b4353?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     instagram: "https://www.instagram.com/smile_of_icarus?igsh=MWJld254dXlrM3Zpdw==",
     x: "",
@@ -82,7 +83,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "Apurba Nandi",
     post: "PR Lead",
-    image: "./peoplePics/Apurba.jpeg",
+    image: "/peoplePics/Apurba.jpeg",
     linkedin: "https://www.linkedin.com/in/apurbanandi",
     instagram: " https://www.instagram.com/just.apurba",
     x: "https://www.x.com/apurbanandi_",
@@ -124,13 +125,14 @@ const TeamCard = memo(({ member, variants }: { member: TeamMember, variants: any
         {/* Image/Avatar Section */}
         <div className="team-card-image-container">
           {member.image ? (
-            <img
-              src={member.image}
-              alt={member.name}
-              className="team-card-image"
-              loading="lazy" // Optimization: Lazy load
-              decoding="async" // Optimization: Async decoding
-            />
+            <Image
+      src={member.image}
+      alt={member.name}
+      fill
+      sizes="(max-width: 640px) 160px, 240px"
+      className="team-card-image object-cover"
+      loading="lazy"
+    />
           ) : (
             <div className="team-card-avatar">
               <span className="team-card-avatar-text">

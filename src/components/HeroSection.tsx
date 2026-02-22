@@ -71,8 +71,8 @@ const BackgroundGrid = () => (
         {/* 2. The "Holodeck" Grid Pattern */}
         <div className="absolute inset-0 z-0 opacity-100 
             bg-[radial-gradient(#4f4f4f_1px,transparent_1px)] 
-            [background-size:40px_40px] 
-            [mask-image:radial-gradient(ellipse_100%_100%_at_50%_0%,#000_70%,transparent_100%)]">
+            bg-size-[35px_35px]
+            mask-[radial-gradient(ellipse_100%_100%_at_50%_0%,#000_70%,transparent_100%)]">
         </div>
 
         <AtomicOrbit />

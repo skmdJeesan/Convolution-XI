@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     "Convolution Jadavpur University",
     "Jadavpur University",
     "JUEE",
+    "Kolkata",
+    "Electrical Engineering",
+    "Techfest",
     "Jadavpur University Techfest",
     "JU EE Techfest",
     "fest",
@@ -64,9 +67,9 @@ export const metadata: Metadata = {
   },
   publisher: "Jadavpur University Electrical Engineering Students' Forum",
   
-  // OpenGraph for WhatsApp, Discord, LinkedIn previews
+  // for whatsapp, linkedin, twitter, discord preview
   openGraph: {
-    title: "Convolution 2026 | JUEE Tech Fest",
+    title: "Convolution 2026",
     description: "Celebrate creativity and innovation at Convolution-11, JUEE's annual technical fest.",
     url: "https://www.convolutionjuee.com",
     siteName: "Convolution JUEE",

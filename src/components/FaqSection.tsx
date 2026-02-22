@@ -95,8 +95,8 @@ export default function FaqSection() {
         }}
     ></div>
                 
-                <div className="absolute z-10 bottom-0 left-0 w-full h-10 bg-gradient-to-b from-transparent to-[#030712]" />
-                <div className="absolute z-10 top-0 left-0 w-full h-25 bg-gradient-to-t from-transparent to-[#000000]" />
+                <div className="absolute z-10 bottom-0 left-0 w-full h-10 bg-linear-to-t to-transparent from-[#0307126f]" />
+                <div className="absolute z-10 top-0 left-0 w-full h-25 bg-linear-to-t from-transparent to-[#000000]" />
 
                 <div 
                     className="absolute inset-0 opacity-[0.13] md:opacity-[0.15] " 
