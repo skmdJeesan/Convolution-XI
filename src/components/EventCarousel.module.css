@@ -1,4 +1,17 @@
-/* EventCarousel.module.css */
+/* --- HEADER ANIMATION --- */
+.headerBase {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.headerAnimate {
+  animation: fadeInUp 0.8s ease-out forwards; 
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* --- CORE VARIABLES & CONTAINER --- */
 .bodyContainer {
@@ -6,12 +19,12 @@
   --carousel-transition-ease: ease-out;
   --carousel-bg-color-rgb: 0, 0, 0;
   --carousel-shadow-color-rgb: 128, 128, 128;
-  --carousel-item-width: 17rem; 
+  --carousel-item-width: 17rem;
   --carousel-item-height: 22rem;
   --carousel-item-hover-effect: 1.055;
   --carousel-item-reflection-blur: 0.25rem;
   --carousel-item-empty-color-rgb: 255, 255, 255;
-  --carousel-item-glow-color-rgb: 6, 182, 212; 
+  --carousel-item-glow-color-rgb: 6, 182, 212;
   --carousel-item-glow-size: 5rem;
   --carousel-diameter: 80rem;
   --carousel-3d-perspective: 1000px;
@@ -19,29 +32,27 @@
   --carousel-control-button-width: 1.25rem;
   --carousel-control-button-height: 4rem;
   --carousel-control-color-rgb: 255, 255, 255;
-  --carousel-animation-duration: 35s; 
+  --carousel-animation-duration: 35s;
   --carousel-animation-play-state: running;
   --carousel-direction-animation-play-state: paused;
-  
-  --card-thickness: 2.5rem; 
-  
+  --card-thickness: 2.5rem;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 110dvh; 
+  height: 110dvh;
   min-height: 700px;
   max-height: 900px;
-  background-color: #000000; 
+  background-color: #000000;
   overflow: hidden;
   position: relative;
 
-  /* Ambient Atmosphere */
-  background-image: 
+  /* NOTE: For maximum production optimization, consider baking these 3 background layers into a single WebP image */
+  background-image:
     radial-gradient(circle at 15% 50%, rgba(6, 182, 212, 0.2), transparent 40%),
     radial-gradient(circle at 85% 50%, rgba(168, 85, 247, 0.2), transparent 40%);
 }
 
-/* --- BACKGROUND DECORATIONS --- */
 .bodyContainer::before {
   content: "";
   position: absolute;
@@ -49,20 +60,17 @@
   background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
   background-size: 30px 30px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, black 20%, transparent 100%);
-  pointer-events: none;
-  z-index: 0;
+  pointer-events: none; z-index: 0;
 }
 
 .bodyContainer::after {
   content: "";
   position: absolute;
-  top: 50%; left: 50%; 
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   width: 40rem; height: 40rem;
-  background: radial-gradient(circle, rgba(148, 0, 211, 0.3) 0%, transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
-  z-index: 0;
+  background: radial-gradient(circle, rgba(148, 0, 211, 0.45) 0%, rgba(148, 0, 211, 0.05) 40%, transparent 70%);
+  pointer-events: none; z-index: 0;
 }
 
 .carousel {
@@ -89,11 +97,27 @@
   transform-origin: 50% 50%;
   transform-style: preserve-3d;
   margin: 0; padding: 0;
+  will-change: transform;
 }
 
 .manualRotater {
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  pointer-events: none; 
+  pointer-events: none;
+}
+
+/* --- OPTIMIZATION: Pure CSS Pause States --- */
+/* Pauses when user scrolls away (via JS adding .paused to .carousel) */
+.carousel.paused .carouselItemWrapper,
+.carousel.paused .carouselRotationDirection {
+  animation-play-state: paused !important;
+}
+
+/* Bulletproof pause: stops the track if any card is hovered */
+@media (hover: hover) and (pointer: fine) {
+  .carousel:has(.carouselItem:hover) .carouselItemWrapper,
+  .carousel:has(.carouselItem:hover) .carouselRotationDirection {
+    animation-play-state: paused !important;
+  }
 }
 
 /* --- CONTROLS --- */
@@ -109,33 +133,27 @@
   position: absolute;
   cursor: pointer;
   pointer-events: auto;
-  
-  /* Centering Logic */
   top: 50%;
   transform: translateY(-50%);
   margin-top: 5rem;
 }
+
 .carouselControlButton:hover { opacity: 0.4; }
 .carouselControlButton:has(input:checked) { opacity: 0.8; }
 .carouselControlButton input {
-  -webkit-appearance: none;
-  appearance: none;
-  opacity: 0;
-  width: 100%; height: 100%;
-  cursor: pointer;
+  -webkit-appearance: none; appearance: none;
+  opacity: 0; width: 100%; height: 100%; cursor: pointer;
 }
 
 .left {
   clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
-  left: 3.5rem; 
-  right: auto;
+  left: 3.5rem; right: auto;
 }
 .carousel:has(.left input:checked) { --carousel-direction-animation-play-state: running; }
 
 .right {
   clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
-  right: 3.5rem;
-  left: auto;
+  right: 3.5rem; left: auto;
 }
 .carousel:has(.right input:checked) { --carousel-direction-animation-play-state: paused; }
 
@@ -143,22 +161,33 @@
 .carouselRotationDirection {
   --_direction-animation-play-state: var(--carousel-direction-animation-play-state);
   animation: carousel-rotation-reverse-fixed calc(var(--carousel-animation-duration) / 2) reverse linear infinite var(--_direction-animation-play-state);
-  transition: all var(--carousel-transition-duration) var(--carousel-transition-ease);
+  
+  /* --- FIX 2: Changed from 'all' to 'transform' to stop lag --- */
+  transition: transform var(--carousel-transition-duration) var(--carousel-transition-ease);
+  
   pointer-events: none;
+  transform-style: preserve-3d; /* Added back to ensure 3D mouse events work */
 }
+
 @keyframes carousel-rotation-reverse-fixed {
   from { transform: rotateY(0deg); }
   to { transform: rotateY(360deg); }
 }
+
 @keyframes carousel-rotation-normal {
   from { transform: rotateY(0deg); }
   to { transform: rotateY(360deg); }
 }
+
 .carouselItemWrapper {
   list-style-type: none;
   animation: carousel-rotation-normal var(--carousel-animation-duration) normal linear infinite var(--carousel-animation-play-state);
-  transition: all var(--carousel-transition-duration) var(--carousel-transition-ease);
+  
+  /* --- FIX 2: Changed from 'all' to 'transform' to stop lag --- */
+  transition: transform var(--carousel-transition-duration) var(--carousel-transition-ease);
+  
   pointer-events: none;
+  transform-style: preserve-3d; /* CRITICAL: Must be preserve-3d for hover detection */
 }
 
 /* --- CAROUSEL ITEM --- */
@@ -166,18 +195,35 @@
   --_width: var(--_item-width);
   --_height: var(--_item-height);
   --_rotation: calc(360 / var(--_num-elements) * var(--_index) * 1deg);
-  
+
   top: 50%; left: 50%;
   margin-top: calc(var(--_item-height) / -2);
   margin-left: calc(var(--_item-width) / -2);
-  
+
   transform: rotateY(var(--_rotation)) translateZ(var(--_radius));
-  transform-style: preserve-3d; 
-  width: var(--_width); height: var(--_height);
-  transition: all var(--carousel-transition-duration) var(--carousel-transition-ease);
+  transform-style: preserve-3d;
+  width: var(--_width);
+  height: var(--_height);
+  
+  /* --- FIX 2: Changed from 'all' to 'transform' to stop lag --- */
+  transition: transform var(--carousel-transition-duration) var(--carousel-transition-ease);
+  
   position: absolute;
   pointer-events: auto;
-  will-change: transform;
+}
+
+/* --- FIX 1: The Hitbox Shield --- */
+/* This creates an invisible padded area around the card to prevent hover loss jitter */
+.carouselItem::after {
+  content: '';
+  position: absolute;
+  top: -15%; 
+  left: -15%;
+  width: 130%; 
+  height: 130%;
+  background: transparent;
+  z-index: 100;
+  transform: translateZ(10px); /* Keeps the shield slightly in front */
 }
 
 /* --- HOVER EFFECTS (DESKTOP) --- */
@@ -185,158 +231,149 @@
   .carouselItem:hover {
     transform: rotateY(var(--_rotation)) translateZ(calc(var(--_radius) * var(--carousel-item-hover-effect)));
   }
-  .carouselRotationDirection:has(.carouselItem:hover) {
-    --carousel-animation-play-state: paused;
-    --_direction-animation-play-state: paused;
+
+  .carouselItem:hover .cardContent {
+    opacity: 1; pointer-events: auto;
   }
-  .carouselItem:hover .cardContent { opacity: 1; pointer-events: auto; }
-  .carouselItem:hover::before {
-    filter: blur(calc(var(--carousel-item-reflection-blur) * 2));
-    opacity: 0.7;
-  }
-  .carouselItem:hover .cardFaceFront { 
-    box-shadow: 0 0 var(--carousel-item-glow-size) rgb(var(--carousel-item-glow-color-rgb)); 
+  .carouselItem:hover::before { opacity: 0.9; }
+  .carouselItem:hover .cardFaceFront {
+    box-shadow: 0 0 var(--carousel-item-glow-size) rgb(var(--carousel-item-glow-color-rgb));
   }
 }
 
 /* Reflection Effect */
-.carouselItem::before {
-  content: '';
-  width: inherit; height: inherit;
-  background-color: rgba(var(--carousel-item-empty-color-rgb), 0.5);
-  background-image:
-      linear-gradient(to top, rgba(var(--carousel-bg-color-rgb), 0.25) 0%, rgba(var(--carousel-bg-color-rgb), 1.0) 85%),
-      var(--_image-url);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  pointer-events: none;
-  filter: blur(var(--carousel-item-reflection-blur));
-  transition: filter var(--carousel-transition-duration) var(--carousel-transition-ease);
+.reflectionWrapper {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  top: 0; 
+  left: 0;
   transform-style: preserve-3d;
   transform-origin: center bottom;
+  /* Exact same 3D math you were already using */
   transform: rotateX(90deg) rotateZ(180deg) rotateY(180deg) translateZ(0.0rem);
-  position: absolute;
-  border-radius: 12px;
-  top: 0; left: 0;
+  pointer-events: none;
   opacity: 0.9;
+  border-radius: 12px;
+  overflow: hidden; /* Ensures the Next Image respects the rounded corners */
+}
+
+.reflectionOverlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 10;
+  /* Exact same gradients you used in your ::before element */
+  background-color: rgba(var(--carousel-item-empty-color-rgb), 0.15);
+  background-image: linear-gradient(
+    to top, 
+    rgba(var(--carousel-bg-color-rgb), 0) 0%, 
+    rgba(var(--carousel-bg-color-rgb), 1.0) 70%
+  );
+}
+
+/* Ensure the hover effect still targets the reflection properly */
+@media (hover: hover) and (pointer: fine) {
+  .carouselItem:hover .reflectionWrapper { 
+    opacity: 1; /* Or whatever opacity bump you want on hover */
+  }
 }
 
 /* --- 3D FACES --- */
 .cardFace {
-   position: absolute;
-   backface-visibility: visible; 
-   background-color: #1a1a1a;
+  position: absolute;
+  backface-visibility: hidden;
+  background-color: #1a1a1a;
 }
+
 .cardFaceFront {
-   width: var(--_width); height: var(--_height);
-   transform: translateZ(calc(var(--card-thickness) / 2));
-   background-image: var(--_image-url);
-   background-repeat: no-repeat;
-   background-position: center;
-   background-size: cover;
-   box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.3);
-   z-index: 10;
+  width: var(--_width);
+  height: var(--_height);
+  transform: translateZ(calc(var(--card-thickness) / 2));
+  box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.3);
+  z-index: 10;
+  overflow: hidden;
+  backface-visibility: hidden;
+  
+  /* --- FIX 3: Added transition for the box-shadow glow --- */
+  transition: box-shadow 0.5s ease;
 }
+
 .cardFaceRight {
-   height: var(--_height); width: var(--card-thickness);
-   top: 0; left: calc((var(--_width) - var(--card-thickness)) / 2);
-   transform: rotateY(90deg) translateZ(calc(var(--_width) / 2));
-   background: linear-gradient(to bottom, rgb(5, 46, 46) 1%, rgba(0, 0, 0, 1) 80%);
+  height: var(--_height);
+  width: var(--card-thickness);
+  top: 0;
+  left: calc((var(--_width) - var(--card-thickness)) / 2);
+  transform: rotateY(90deg) translateZ(calc(var(--_width) / 2));
+  background: linear-gradient(to bottom, rgb(5, 46, 46) 1%, rgba(0, 0, 0, 1) 80%);
 }
+
 .cardFaceLeft {
-   height: var(--_height); width: var(--card-thickness);
-   top: 0; left: calc((var(--_width) - var(--card-thickness)) / 2);
-   transform: rotateY(-90deg) translateZ(calc(var(--_width) / 2));
-   background: linear-gradient(to bottom, rgb(74, 18, 90) 1%, rgba(0, 0, 0, 1) 80%);
+  height: var(--_height);
+  width: var(--card-thickness);
+  top: 0;
+  left: calc((var(--_width) - var(--card-thickness)) / 2);
+  transform: rotateY(-90deg) translateZ(calc(var(--_width) / 2));
+  background: linear-gradient(to bottom, rgb(74, 18, 90) 1%, rgba(0, 0, 0, 1) 80%);
 }
-.cardFaceTop {
-   width: var(--_width); height: var(--card-thickness);
-   left: 0; top: calc((var(--_height) - var(--card-thickness)) / 2);
-   transform: rotateX(90deg) translateZ(calc(var(--_height) / 2));
-   background-color: #1a1a1a;
-}
-.cardFaceBottom {
-   width: var(--_width); height: var(--card-thickness);
-   left: 0; top: calc((var(--_height) - var(--card-thickness)) / 2);
-   transform: rotateX(-90deg) translateZ(calc(var(--_height) / 2));
-   background-color: #1a1a1a;
-   box-shadow: 0 0 20px rgba(0,0,0,0.8);
-}
+
 .cardFaceBack {
-  width: var(--_width); height: var(--_height);
+  width: var(--_width);
+  height: var(--_height);
   transform: rotateY(180deg) translateZ(calc(var(--card-thickness) / 2));
   background: radial-gradient(circle at center, rgba(20, 25, 40, 1) 0%, rgba(0, 0, 0, 1) 85%);
   border: 1px solid rgba(6, 182, 212, 0.15);
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
   border-radius: 12px;
   overflow: hidden;
-  backface-visibility: visible;
+  backface-visibility: hidden;
   display: flex;
-  align-items: center; justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
+
 .cardFaceBack::before {
   content: '';
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background-image: 
-    linear-gradient(rgba(255, 0, 255, 0.97) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 0, 255, 0.97) 1px, transparent 1px);
-  background-size: 2rem 2rem;
-  mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
-  pointer-events: none;
-  z-index: 1;
-}
-.cardFaceBack::after {
-  content: 'SURGE!!';
-  font-family: sans-serif; font-weight: 800; font-size: 3.2rem;    
-  letter-spacing: 0.05em; 
-  transform: rotate(-45deg) translateZ(1px); 
-  background: linear-gradient(to right, #22d3ee, #c084fc);
-  -webkit-background-clip: text; background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.3));
-  z-index: 2;
-  white-space: nowrap;
-  pointer-events: none;
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('/assets/images/CardsBackFace_1.png');
+  background-size: cover;
+  transform: scale(1.2);
+  pointer-events: none; z-index: 1;
 }
 
 /* --- CARD CONTENT --- */
 .cardContent {
   display: flex; flex-direction: column; justify-content: flex-end;
   height: 100%; width: 100%; padding: 1rem;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0.9) 100%);
-  color: white;
-  opacity: 1; 
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.95) 100%);
+  color: white; opacity: 1;
   transition: opacity var(--carousel-transition-duration) var(--carousel-transition-ease);
-  transform-style: preserve-3d;
   pointer-events: none;
-  z-index: 2;
+  backface-visibility: hidden;
 }
-.cardContent a { pointer-events: auto; }
 
+.cardContent a { pointer-events: auto; }
 .iconContainer {
   font-size: 2rem; margin-bottom: 0.5rem; color: #06b6d4;
-  filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0.5));
 }
 .cardTitle {
   font-family: var(--font-geist-sans); font-weight: 700; font-size: 1.25rem;
-  margin-bottom: 0.25rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  margin-bottom: 0.25rem; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 .cardDesc {
   font-family: var(--font-geist-sans); font-size: 0.8rem; color: #e5e5e5;
   margin-bottom: 1rem; line-height: 1.2;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
+
 .exploreBtn {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 0.5rem 5.4rem;
-  background-color: rgba(6, 182, 212, 0.2);
+  background-color: rgba(6, 182, 212, 0.35);
   border: 1px solid rgba(6, 182, 212, 0.5);
   border-radius: 9999px; color: white;
   text-decoration: none; font-size: 0.8rem; font-weight: 600;
-  backdrop-filter: blur(4px);
-  transition: all 0.2s ease;
-  width: fit-content; cursor: pointer;
+  transition: all 0.2s ease; width: fit-content; cursor: pointer;
 }
 .exploreBtn:hover {
   background-color: rgba(6, 182, 212, 0.8);
@@ -344,131 +381,119 @@
 }
 
 .carouselGround {
-  --_width: var(--_diameter);
-  --_height: var(--_diameter);
-  --_rotation: 90deg;
+  --_width: var(--_diameter); --_height: var(--_diameter); --_rotation: 90deg;
   top: 50%; left: 50%;
-  margin-top: calc(var(--_height) / -2);
-  margin-left: calc(var(--_width) / -2);
+  margin-top: calc(var(--_height) / -2); margin-left: calc(var(--_width) / -2);
   transform: rotateX(var(--_rotation)) translateZ(calc(var(--_item-height) / -2));
   width: var(--_width); height: var(--_height);
   border-radius: 50%;
   background: radial-gradient(rgba(var(--carousel-shadow-color-rgb), 0.75) 15%, rgba(var(--carousel-bg-color-rgb), 0) 60%);
   opacity: 0.5;
   transition: opacity var(--carousel-transition-duration) var(--carousel-transition-ease);
-  position: absolute;
-  pointer-events: none;
+  position: absolute; pointer-events: none;
 }
 .carouselItemWrapper:has(.carouselItem:hover) .carouselGround { opacity: 0.75; }
 
 .sceneCenter {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  transform-style: preserve-3d;
-  pointer-events: none;
+  transform-style: preserve-3d; pointer-events: none;
 }
 
 /* --- ROBOT MASCOT STYLES --- */
 .centerRobotWrapper {
-  position: absolute; top: 50%; left: 50%; width: 40rem; height: 40rem;
+  position: absolute; top: 50%; left: 50%;
+  width: 40rem; height: 40rem;
   transform: translate(-50%, -50%) translateY(-17rem) scale(1.4);
   z-index: 1; pointer-events: none; transform-style: preserve-3d;
 }
+
 .centerPiece {
   position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%); 
-  width: 17rem; height: 30rem;
+  transform: translate(-50%, -50%); width: 17rem; height: 30rem;
   display: flex; align-items: center; justify-content: center;
   pointer-events: none; z-index: 50; transform-style: preserve-3d;
 }
+
 .robotImage {
   width: 100%; height: auto; object-fit: contain;
   animation: float-robot 4s ease-in-out infinite;
-  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.5));
   position: relative; z-index: 1;
 }
+
 .robotLegsGradient {
   position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
   z-index: 2; pointer-events: none;
   animation: float-robot 4s ease-in-out infinite;
 }
+
 @keyframes float-robot {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-15px); }
 }
-/* REMOVED: .spotlight class */
 
 .centerPiece::after {
-  content: '';
-  position: absolute; bottom: 0; left: 50%;
+  content: ''; 
+  position: absolute; 
+  bottom: 0; left: 50%;
   transform: translateX(-50%) rotateX(90deg);
-  width: 10rem; height: 10rem;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, transparent 70%);
-  filter: blur(10px);
+  width: 15rem; 
+  height: 15rem;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.6) 0%, rgba(6, 182, 212, 0) 60%); 
 }
 
 /* --- BLOCKERS --- */
 .interactionZoneContainer {
-  --interaction-zone-width: 20rem; 
+  --interaction-zone-width: 20rem;
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none; z-index: 60;
 }
+
 .blockerLeft, .blockerRight {
   position: absolute; top: 0; height: 100%;
-  width: calc(50% - (var(--interaction-zone-width) / 0.95));
+  width: calc(50% - (var(--interaction-zone-width) / 0.75));
   pointer-events: auto; opacity: 40%;
+  /* background-color: red; */
 }
 .blockerLeft { left: 0; }
 .blockerRight { right: 0; }
 
 .depthBlocker {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  transform: scale(var(--scene-scale, 1)) translateZ(-5rem);
+  transform: scale(var(--scene-scale, 1)) translateZ(-9rem);
   pointer-events: auto; transform-style: preserve-3d; opacity: 40%;
+  /* background-color: green; */
 }
 
 /* --- RESPONSIVENESS --- */
-
-/* Large Tablets */
 @media only screen and (max-width: 64rem) {
-  .bodyContainer { height: 750px; min-height: 750px; max-height: none; --scene-scale: 0.65; }
+  .bodyContainer {
+    height: 750px; min-height: 750px; max-height: none;
+    --scene-scale: 0.65;
+  }
   .carousel { transform: translateY(5rem); }
   .centerRobotWrapper { transform: translate(-50%, -50%) translateY(-20rem) scale(1.6); }
-  
-  .carouselItem:hover { transform: rotateY(var(--_rotation)) translateZ(var(--_radius)) !important; }
-  .carouselRotationDirection:has(.carouselItem:hover) {
-    --carousel-animation-play-state: running !important;
-    --_direction-animation-play-state: var(--carousel-direction-animation-play-state) !important;
-  }
-  .carouselItem:hover .cardFaceFront { box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.3) !important; }
-  .carouselItem:hover::before { filter: blur(var(--carousel-item-reflection-blur)) !important; opacity: 0.9 !important; }
+  /* Hover overrides removed so laptops keep the 3D pop and glow effect */
 }
 
-/* Small Tablets */
 @media only screen and (max-width: 50rem) {
-  .bodyContainer { height: 680px; min-height: 680px; --scene-scale: 0.55; }
+  .bodyContainer {
+    height: 680px; min-height: 680px;
+    --scene-scale: 0.55;
+  }
   .carousel { transform: translateY(4rem); }
   .centerRobotWrapper { transform: translate(-50%, -50%) translateY(-20rem) scale(1.6); }
-
-  .carouselItem:hover { transform: rotateY(var(--_rotation)) translateZ(var(--_radius)) !important; }
-  .carouselRotationDirection:has(.carouselItem:hover) {
-    --carousel-animation-play-state: running !important;
-    --_direction-animation-play-state: var(--carousel-direction-animation-play-state) !important;
-  }
-  .carouselItem:hover .cardFaceFront { box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.3) !important; }
-  .carouselItem:hover::before { filter: blur(var(--carousel-item-reflection-blur)) !important; opacity: 0.9 !important; }
+  /* Hover overrides removed here as well */
 }
-
-/* Device Tweaks (Cleaned: Spotlight logic removed) */
 
 @media only screen and (max-width: 1140px) and (orientation: landscape) {
   .bodyContainer { min-height: 650px; }
 }
 
 @media only screen and (max-width: 712px) {
-  .bodyContainer { min-height: 450px; } 
+  .bodyContainer { min-height: 450px; }
 }
 
 @media only screen and (max-width: 540px) {
-  .bodyContainer { min-height: 400px; } 
+  .bodyContainer { min-height: 400px; }
   .centerRobotWrapper { transform: translate(-50%, -50%) translateY(-4rem) scale(1.6); }
 }

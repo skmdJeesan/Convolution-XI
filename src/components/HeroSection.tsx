@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import Image from "next/image";
 import ConvoLogo from "@/assets/images/Convologo.png";
@@ -8,21 +8,9 @@ import { useSession } from 'next-auth/react';
 
 // --- 1. UTILITY & AESTHETIC COMPONENTS ---
 
-// const SplineLoader = () => (
-//     <div className="absolute inset-0 flex items-center justify-center bg-[#0b0b15] z-50">
-//         <div className="relative">
-//             <div className="w-20 h-20 border-4 border-transparent border-t-cyan-400 border-b-fuchsia-500 rounded-full animate-spin"></div>
-//             <div className="absolute inset-0 flex items-center justify-center text-white font-bold tracking-widest text-xs animate-pulse">
-//                 LOADING
-//             </div>
-//         </div>
-//     </div>
-// );
-
 // Lazy load Spline
 const SplineScene = dynamic(() => import('@splinetool/react-spline'), {
     ssr: false,
-    // loading: SplineLoader
 });
 
 const BottomFadeOverlay = () => (
@@ -87,17 +75,28 @@ const BackgroundGrid = () => (
             [mask-image:radial-gradient(ellipse_100%_100%_at_50%_0%,#000_70%,transparent_100%)]">
         </div>
 
-        {/* 3. Central Spotlight (Highlights the Robot) */}
-        <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-cyan-500/20 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
+        {/* 3. Central Spotlight REMOVED */}
 
         {/* 4. Left Side: Your Atomic Orbit (Kept as is) */}
         <AtomicOrbit />
 
-        {/* --- 5. NEW: THE CYBER MOON (Replaces the Wireframe Rings) --- */}
+        {/* --- 5. THE CYBER MOON (UPDATED FOR PERFORMANCE) --- */}
         <div className="absolute top-[30%] right-[20%] md:top-[27%] md:right-[10%] xl:top-[15%] xl:right-[5%] w-[250px] h-[250px] md:w-[80px] md:h-[80px] xl:w-[100px] xl:h-[100px] z-0 pointer-events-none opacity-100 md:opacity-90 animate-float">
 
-            {/* The Main Sphere Gradient (Pink/Purple) */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-fuchsia-600 via-purple-900 to-black opacity-100 shadow-[0_0_60px_rgba(192,38,211,0.4)]"></div>
+            {/* --- NEW: PERFORMANCE FIX - IMAGE BASED GLOW --- */}
+            {/* Placed behind the moon using z-[-1]. Negative insets make it larger than the moon container. Adjust opacity for intensity. */}
+            <div className="absolute -inset-20 md:-inset-20 z-[-1] opacity-100">
+                 <Image
+                    src="/assets/images/Pink_blur.png"
+                    alt="Moon Glow"
+                    fill
+                    className="object-contain"
+                    priority
+                />
+            </div>
+
+            {/* The Main Sphere Gradient (Pink/Purple) - CSS SHADOW REMOVED HERE */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-fuchsia-600 via-purple-900 to-black opacity-100"></div>
 
 
             {/* The "Scanline" Overlay (Makes it look digital) */}
@@ -115,25 +114,24 @@ const BackgroundGrid = () => (
             </div>
         </div>
 
-        {/* 6. Ambient Atmosphere Clouds */}
-        {/* <div className="absolute top-1/4 left-[20%] w-[300px] h-[300px] bg-fuchsia-500/50 blur-[90px] rounded-full z-0 pointer-events-none md:hidden" /> */}
-
-        {/* NEW OPTIMIZED IMAGE: Fully Controllable */}
-        <div className={`absolute z-0 pointer-events-none md:hidden mix-blend-screen opacity-100 
-            /* 1. POSITION: Adjust these to move it around */
-            top-[25%] left-[15%] 
-            
-            /* 2. BASE SIZE: The physical box holding the image */
-            w-[300] h-[300] 
-            
-            /* 3. SCALE: Zoom the image in or out (e.g., scale-125, scale-150, scale-75) */
-            scale-250
-        `}>
+        {/* --- 6. NEW: PINK BLUR BEHIND ROBOT --- */}
+        {/* CONTROLS: Adjust the top, left, width, height, and scale below to easily position the image */}
+        <div 
+            className="absolute z-[5] pointer-events-none mix-blend-screen opacity-80"
+            style={{
+                top: '65%',           // ⬅️ Adjust vertical position (e.g. 50%, 65%)
+                left: '50%',          // ⬅️ Adjust horizontal position
+                width: '600px',       // ⬅️ Base width of the image wrapper
+                height: '600px',      // ⬅️ Base height of the image wrapper
+                transform: 'translate(-50%, -50%) scale(1.5)', // ⬅️ Change 'scale(1.5)' to zoom the blur in or out
+            }}
+        >
             <Image
-                src="/assets/images/Pink_blur.png"
+                src="/assets/images/Cyan_blur.png"
                 alt="Atmosphere Glow"
                 fill
                 className="object-contain"
+                priority
             />
         </div>
     </>
@@ -359,25 +357,9 @@ const CommandDeck = () => {
 function HeroSection() {
     const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop' | null>(null);
 
-    // Smart Scroll Logic
-    // useEffect(() => {
-    //     if ('scrollRestoration' in history) {
-    //         history.scrollRestoration = 'auto';
-    //     }
-
-    //     const handleSmartScroll = () => {
-    //         const currentScroll = window.scrollY;
-    //         const heroHeight = window.innerHeight;
-
-    //         if (currentScroll < heroHeight * 0.9) {
-    //             window.scrollTo({ top: 0, behavior: 'instant' });
-    //         }
-    //     };
-
-    //     handleSmartScroll();
-    //     const timer = setTimeout(handleSmartScroll, 50);
-    //     return () => clearTimeout(timer);
-    // }, []);
+    // Visibility state and reference to track scrolling
+    const [isSplineVisible, setIsSplineVisible] = useState(true);
+    const heroRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleResize = () => {
@@ -395,66 +377,90 @@ function HeroSection() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    // Observer to track when the Hero Section leaves the viewport
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsSplineVisible(entry.isIntersecting);
+            },
+            {
+                threshold: 0.05,
+                rootMargin: '200px 0px'
+            }
+        );
+
+        if (heroRef.current) observer.observe(heroRef.current);
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <div id='home' className="h-dvh w-full relative overflow-hidden mx-auto bg-[#000000] font-sans select-none ">
+        <div id='home' ref={heroRef} className="h-dvh w-full relative overflow-hidden mx-auto bg-[#000000] font-sans select-none ">
             <BackgroundGrid />
             <HeadsUpDisplay />
 
             {/* Logo */}
             <div className={`absolute ${deviceType == 'mobile' ? 'top-[45%]' : 'top-[20%]'} md:top-[15%] xl:top-[23%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 md:z-10 pointer-events-none select-none flex justify-center w-full`}>
-                <div className="relative group w-full flex justify-center">
+                <div className="relative group w-full flex justify-center items-center">
+                    
                     <div className="absolute inset-0 md:-inset-32 bg-linear-to-r from-cyan-500/20 to-fuchsia-500/20 blur-[60px] md:blur-[100px] rounded-full opacity-0" />
+
+                    {/* --- NEW: LOGO BLUR / DROP SHADOW --- */}
+                    {/* CONTROLS: Adjust top, left, width, height, and scale to position the drop shadow */}
+                    <div 
+                        className="absolute z-[5] pointer-events-none mix-blend-screen opacity-80"
+                        style={{
+                            top: '50%',           // ⬅️ Adjust vertical position relative to the logo
+                            left: '50%',          // ⬅️ Adjust horizontal position relative to the logo
+                            width: '750px',       // ⬅️ Base width of the blur wrapper
+                            height: '400px',      // ⬅️ Base height of the blur wrapper
+                            transform: 'translate(-50%, -50%) scale(1.1)', // ⬅️ Adjust 'scale(1.1)' to spread the shadow out
+                        }}
+                    >
+                        <Image
+                            src="/assets/images/Logo_blur.png"
+                            alt="Logo Blur Shadow"
+                            fill
+                            className="object-contain"
+                            priority
+                        />
+                    </div>
+
+                    {/* Main Logo */}
                     <Image
                         src={ConvoLogo}
                         alt="Convolution Logo Center"
-                        className="w-[75vw] md:w-[55vw] xl:w-[35vw] max-w-75 md:max-w-5xl h-auto object-contain relative z-10 drop-shadow-[0_0_30px_rgba(6,182,212,0.6)]"
+                        className="w-[75vw] md:w-[55vw] xl:w-[35vw] max-w-75 md:max-w-5xl h-auto object-contain relative z-10"
                         priority
                     />
                 </div>
             </div>
+            
             {/* --- MEDIA LAYER --- */}
             <div className="absolute inset-0 z-10 w-full h-full pointer-events-auto">
 
                 {/* 1. Mobile (< 768px) */}
                 {deviceType === 'mobile' && (
                     <div className="w-full h-full flex items-center justify-center pointer-events-none">
-
-                        {/* Added 'scale-125' to force it 25% larger */}
-                        {/* You can change 125 to 110, 150, or even [2.0] for double size */}
                         <div className="relative w-150 h-200">
-                            {/* <Image
-                                src="/hero_robo.png"
-                                alt="NexBot Hero Mobile"
-                                height={180} width={180}
-                                className="object-cover absolute bottom-12 -right-10  shrink-0" 
-                                priority
-                            /> */}
-                            {/* <Image
-                                src="/bg_for_mobile3.png"
-                                alt="NexBot Hero Mobile"
-                                fill
-                                className="object-contain animate-in"
-                                priority
-                            /> */}
-
+                            {/* Fallback image/assets can be uncommented here */}
                         </div>
                     </div>
                 )}
 
-                {/* 2. Tablet & Desktop (>= 768px) - 3D Scene */}
+                {/* 2. Tablet & Desktop (>= 768px) - 3D Scene conditionally visible */}
                 {(deviceType === 'tablet' || deviceType === 'desktop') && (
-                    <div className="w-full h-full relative transition-transform duration-1000 ease-out 
+                    <div className={`w-full h-full relative transition-transform duration-1000 ease-out 
                         md:scale-95 md:translate-y-[5%]
-                        xl:scale-100 xl:translate-y-[3%]">
+                        xl:scale-100 xl:translate-y-[3%]
+                        ${!isSplineVisible ? 'invisible' : 'visible'}
+                    `}>
                         <SplineScene
                             scene="https://prod.spline.design/sUHCRF2aYfkFBahz/scene.splinecode"
                             className="w-full h-full"
                         />
                     </div>
                 )}
-
-                {/* Loading State */}
-                {/* {deviceType === null && <SplineLoader />} */}
             </div>
 
             <BottomFadeOverlay />

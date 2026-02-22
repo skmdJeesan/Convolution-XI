@@ -1,18 +1,9 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import Image from 'next/image';
 import styles from './EventCarousel.module.css';
-import { motion, Variants } from 'framer-motion';
 import TransitionLink from './TransitionLink';
 import { FaArrowRight } from 'react-icons/fa6';
-
-const headerVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: "easeOut" } 
-  }
-};
 
 interface Event {
   id: string;
@@ -22,27 +13,113 @@ interface Event {
   image: string;
 }
 
-const EventCarousel = ({events}: {events: Event[]}) => {
+const EventCarousel = ({ events }: { events: Event[] }) => {
   const [currDeg, setCurrDeg] = useState<number>(0);
   const stepDeg = 360 / events.length;
+
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+  const [isCarouselVisible, setIsCarouselVisible] = useState(true);
+
+  const headerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Observer for Header Animation
+    const headerObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsHeaderVisible(true);
+          if (headerRef.current) headerObserver.unobserve(headerRef.current);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    // Observer to pause 3D animation when out of view
+    const containerObserver = new IntersectionObserver(
+      ([entry]) => {
+        setIsCarouselVisible(entry.isIntersecting);
+      },
+      { threshold: 0.05 } 
+    );
+
+    if (headerRef.current) headerObserver.observe(headerRef.current);
+    if (containerRef.current) containerObserver.observe(containerRef.current);
+
+    return () => {
+      headerObserver.disconnect();
+      containerObserver.disconnect();
+    };
+  }, []);
 
   const rotateLeft = () => { setCurrDeg((prev) => prev + stepDeg); };
   const rotateRight = () => { setCurrDeg((prev) => prev - stepDeg); };
 
-  return (
-    <div className={styles.bodyContainer}>
-      <motion.div
-        variants={headerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="absolute top-8 left-1/2 -translate-x-1/2 z-100 flex flex-col items-center pointer-events-none select-none"
+  const memoizedEvents = useMemo(() => {
+    return events.map((event, index) => (
+      <li
+        key={event.id}
+        className={styles.carouselItem}
+        style={{
+          '--_index': index + 1,
+        } as React.CSSProperties}
       >
-        <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
-          EVENTS
-          <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
-        </h1>
-      </motion.div>
+        <div className={`${styles.cardFace} ${styles.cardFaceFront}`}>
+          <Image
+            src={event.image}
+            alt={event.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 300px"
+            className="object-cover z-0 rounded-[inherit]"
+            decoding="async" /* OPTIMIZATION: Async decoding prevents main-thread blocking */
+          />
+          <div className={`${styles.cardContent} relative z-10`}>
+            <div className={styles.iconContainer}>{event.icon}</div>
+            <h3 className={styles.cardTitle}>{event.title}</h3>
+            <p className={styles.cardDesc}>{event.desc}</p>
+            <TransitionLink href={`/events/${event.id}`} className={styles.exploreBtn}>
+              Explore <FaArrowRight className="ml-2" />
+            </TransitionLink>
+          </div>
+        </div>
+        <div className={`${styles.cardFace} ${styles.cardFaceBack}`}></div>
+        <div className={`${styles.cardFace} ${styles.cardFaceRight}`}></div>
+        <div className={`${styles.cardFace} ${styles.cardFaceLeft}`}></div>
+        
+        {/* OPTIMIZATION: Next.js Image for Reflection instead of CSS background-image */}
+        <div className={styles.reflectionWrapper}>
+          <Image
+            src={event.image}
+            alt={`${event.title} reflection`}
+            fill
+            sizes="(max-width: 768px) 100vw, 300px"
+            className="object-cover z-0"
+            decoding="async"
+          />
+          <div className={styles.reflectionOverlay}></div>
+        </div>
+      </li>
+    ));
+  }, [events]);
+
+  // OPTIMIZATION: Removed JS hover state entirely. Pause is now handled by IntersectionObserver (JS) and :hover (CSS).
+  const isPaused = !isCarouselVisible;
+
+  return (
+    <div className={styles.bodyContainer} ref={containerRef}>
+      
+      {/* HEADER WITH NATIVE OBSERVER */}
+      <div className="absolute top-8 left-1/2 -translate-x-1/2 z-[100] flex flex-col items-center pointer-events-none select-none">
+        <div 
+          ref={headerRef}
+          className={`${styles.headerBase} ${isHeaderVisible ? styles.headerAnimate : ''}`}
+        >
+          <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-cyan-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
+            EVENTS
+            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-200/60 to-transparent"></span>
+          </h1>
+        </div>
+      </div>
 
       {/* BLOCKERS */}
       <div className={styles.interactionZoneContainer}>
@@ -65,7 +142,8 @@ const EventCarousel = ({events}: {events: Event[]}) => {
         <input type="radio" name="carousel-control-input" defaultChecked />
       </div>
 
-      <div className={styles.carousel}>
+      {/* OPTIMIZATION: Applied dynamic class to pause animations only when out of viewport */}
+      <div className={`${styles.carousel} ${isPaused ? styles.paused : ''}`}>
         <div className={styles.depthBlocker}></div>
 
         <div 
@@ -75,13 +153,15 @@ const EventCarousel = ({events}: {events: Event[]}) => {
             {/* Robot Center Piece */}
             <div className={styles.centerRobotWrapper}>
                  <div className={styles.centerPiece}>
-                    <img 
+                    <Image 
                       src="/assets/images/event_robot_1.png" 
                       alt="Event Mascot" 
-                      className={styles.robotImage} 
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className={`${styles.robotImage} object-contain`} 
+                      priority
                     />
                     <div className={styles.robotLegsGradient}></div>
-                    {/* SPOTLIGHT DIV REMOVED HERE */}
                  </div>
             </div>
 
@@ -95,32 +175,7 @@ const EventCarousel = ({events}: {events: Event[]}) => {
                     className={styles.carouselItemWrapper} 
                     style={{ '--_num-elements': events.length } as React.CSSProperties}
                   >
-                    {events.map((event, index) => (
-                      <li
-                        key={event.id}
-                        className={styles.carouselItem}
-                        style={{
-                          '--_index': index + 1,
-                          '--_image-url': `url('${event.image}')`,
-                        } as React.CSSProperties}
-                      >
-                        <div className={`${styles.cardFace} ${styles.cardFaceFront}`}>
-                            <div className={styles.cardContent}>
-                              <div className={styles.iconContainer}>{event.icon}</div>
-                              <h3 className={styles.cardTitle}>{event.title}</h3>
-                              <p className={styles.cardDesc}>{event.desc}</p>
-                              <TransitionLink href={`/events/${event.id}`} className={styles.exploreBtn}>
-                                Explore <FaArrowRight className="ml-2" />
-                              </TransitionLink>
-                            </div>
-                        </div>
-                        <div className={`${styles.cardFace} ${styles.cardFaceBack}`}></div>
-                        <div className={`${styles.cardFace} ${styles.cardFaceRight}`}></div>
-                        <div className={`${styles.cardFace} ${styles.cardFaceLeft}`}></div>
-                        <div className={`${styles.cardFace} ${styles.cardFaceTop}`}></div>
-                        <div className={`${styles.cardFace} ${styles.cardFaceBottom}`}></div>
-                      </li>
-                    ))}
+                    {memoizedEvents}
                     <li className={styles.carouselGround}></li>
                   </ul>
                 </div>
