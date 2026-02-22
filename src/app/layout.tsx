@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     siteName: "Convolution JUEE",
     images: [
       {
-        url: "/Convologo.png",
+        url: "https://www.convolutionjuee.com/Convologo.png",
         width: 1200,
         height: 630,
         alt: "Convolution 2026 Logo",
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Convolution 11 | Annual Techno-Management Fest of JUEE",
     description: "Celebrate creativity and innovation at Convolution-11 , JUEE's annual technical fest.",
-    images: ["/Convologo.png"],
+    images: ["https://www.convolutionjuee.com/Convologo.png"],
   },
 };
 
@@ -100,7 +100,7 @@ export default function RootLayout({
     "@type": "Organization",
     "name": "Convolution JUEE",
     "url": "https://www.convolutionjuee.com",
-    "logo": "https://www.convolutionjuee.com/Convologo.png",
+    "logo": "https://www.convolutionjuee.com/favicon.ico",
   };
 
   return (
