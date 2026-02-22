@@ -90,7 +90,7 @@ const Background = () => {
       
       <div
         className="absolute inset-0 opacity-[0.13] md:opacity-[0.15]"
-        style={{ backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, backgroundSize: '40px 40px' }}
+        style={{ backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, backgroundSize: '30px 30px' }}
       ></div>
 
       {/* purple */}
@@ -117,7 +117,7 @@ const Background = () => {
         }}
       ></div>
       
-      <div className="absolute bottom-0 left-0 w-full h-20 pointer-events-none bg-gradient-to-b from-transparent to-[#030712b7]" />
+      <div className="absolute bottom-0 left-0 w-full h-10 pointer-events-none bg-gradient-to-b from-transparent to-[#030712b7]" />
     </div>
   );
 };

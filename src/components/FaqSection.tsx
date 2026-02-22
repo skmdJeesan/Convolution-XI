@@ -102,7 +102,7 @@ export default function FaqSection() {
                     className="absolute inset-0 opacity-[0.13] md:opacity-[0.15] " 
                     style={{ 
                         backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, 
-                        backgroundSize: '40px 40px' 
+                        backgroundSize: '30px 30px' 
                     }}
                 ></div>
             </div>

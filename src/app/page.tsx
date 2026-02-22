@@ -26,7 +26,7 @@ export default function Home() {
         <Gallery/>
         <Sponsors/>
         <FaqSection />
-        <Playground />
+        {/* <Playground /> */}
         <Footer />
       </main>
     </Suspense>

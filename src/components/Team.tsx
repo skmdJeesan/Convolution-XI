@@ -16,9 +16,9 @@ type TeamMember = {
 // -- Data --
 const teamMembers: TeamMember[] = [
   {
-    name: "Jahid Mamud",
+    name: "Arkaroop Nag",
     post: "Secretary",
-    image: "./peoplePics/jahid.png",
+    image: "./peoplePics/chaiwala.jpg",
     linkedin: "https://www.linkedin.com/in/jahid-mamud/",
     instagram: "https://www.instagram.com/jem_.__/profilecard/?igsh=b2o0ZjlqZ3pkeW5t",
     x: "",
@@ -32,9 +32,9 @@ const teamMembers: TeamMember[] = [
     x: "",
   },
   {
-    name: "Siddhanta Ghosh",
+    name: "Rahiul Islam",
     post: "Treasurer",
-    image: "./peoplePics/sid.png",
+    image: "./peoplePics/chaiwala.jpg",
     linkedin: "https://www.linkedin.com/in/siddhanta-ghosh",
     instagram: "https://www.instagram.com/ghosh_siddhanta2k3/",
     x: "https://www.facebook.com/profile.php?id=100089382764364&mibextid=ZbWKwL",
@@ -80,12 +80,12 @@ const teamMembers: TeamMember[] = [
     x: "",
   },
   {
-    name: "Arunava Roy",
+    name: "Apurba Nandi",
     post: "PR Lead",
-    image: "./peoplePics/arunava.png",
-    linkedin: "https://www.linkedin.com/in/arunava-roy-176a4527b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    instagram: "https://www.instagram.com/arunava_roy_10/profilecard/?igsh=MTA0azFiODJsa2huMw==",
-    x: "https://www.facebook.com/share/1BLg4SPrKK/",
+    image: "./peoplePics/Apurba.jpeg",
+    linkedin: "https://www.linkedin.com/in/apurbanandi",
+    instagram: " https://www.instagram.com/just.apurba",
+    x: "https://www.x.com/apurbanandi_",
   },
 ];
 
