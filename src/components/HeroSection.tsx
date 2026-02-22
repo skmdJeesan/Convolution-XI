@@ -117,7 +117,7 @@ const BackgroundGrid = () => (
         {/* --- 6. NEW: PINK BLUR BEHIND ROBOT --- */}
         {/* CONTROLS: Adjust the top, left, width, height, and scale below to easily position the image */}
         <div 
-            className="absolute z-[5] pointer-events-none mix-blend-screen opacity-80"
+            className="absolute z-[5] pointer-events-none mix-blend-screen opacity-80 hidden md:block"
             style={{
                 top: '65%',           // ⬅️ Adjust vertical position (e.g. 50%, 65%)
                 left: '50%',          // ⬅️ Adjust horizontal position
@@ -418,7 +418,7 @@ function HeroSection() {
                     {/* --- NEW: LOGO BLUR / DROP SHADOW --- */}
                     {/* CONTROLS: Adjust top, left, width, height, and scale to position the drop shadow */}
                     <div 
-                        className="absolute z-[5] pointer-events-none mix-blend-screen opacity-80"
+                        className="absolute z-[5] pointer-events-none mix-blend-screen opacity-80 hidden md:block"
                         style={{
                             top: '50%',           // ⬅️ Adjust vertical position relative to the logo
                             left: '50%',          // ⬅️ Adjust horizontal position relative to the logo
