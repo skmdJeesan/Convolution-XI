@@ -129,6 +129,7 @@ const DesktopTimeline = () => {
             <div className="absolute top-[-10%] left-[20%] w-[60vw] h-100 bg-fuchsia-950/30 blur-[100px] z-0"></div>
             <div className="absolute bottom-[-10%] right-[20%] w-[60vw] h-100 bg-cyan-950/30 blur-[100px] z-0"></div>
             <div className="absolute bottom-0 left-0 w-full h-15 bg-linear-to-t from-[#030712e5]  to-transparent z-69"></div>
+            <div className="absolute top-0 left-0 w-full h-15 bg-linear-to-b from-[#030712e5]  to-transparent z-69"></div>
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#22d3ee_1px,transparent_1px),linear-gradient(to_bottom,#22d3ee_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-[0.05] z-0"></div>
           </div>
         </div>

@@ -114,10 +114,10 @@ const EventCarousel = ({ events }: { events: Event[] }) => {
           ref={headerRef}
           className={`${styles.headerBase} ${isHeaderVisible ? styles.headerAnimate : ''}`}
         >
-          <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-cyan-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
-            EVENTS
-            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-200/60 to-transparent"></span>
-          </h1>
+          <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
+          Events
+          <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
+        </h1>
         </div>
       </div>
 
@@ -182,6 +182,7 @@ const EventCarousel = ({ events }: { events: Event[] }) => {
             </div>
         </div>
       </div>
+      <div className="absolute bottom-0 left-0 w-full h-30 bg-linear-to-t from-[#030712e5]  to-transparent z-69"></div>
     </div>
   );
 };
