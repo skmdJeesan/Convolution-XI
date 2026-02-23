@@ -33,13 +33,13 @@ export async function POST(req: NextRequest) {
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: 'team.convoxi@gmail.com',
+        user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
     });
 
     const message = {
-      from: `Support <team.convoxi@gmail.com>`,
+      from: `Support <${process.env.EMAIL_USER}>`,
       to: user.email,
       subject: "Password Reset Request",
       text: `You requested a password reset. Please go to this link to reset your password: \n\n ${resetUrl} \n\n This link expires in 1 hour.`,
