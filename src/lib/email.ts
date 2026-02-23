@@ -12,7 +12,8 @@ export const sendVerificationEmail = async (email: string, token: string) => {
     },
   });
 
-  const verificationUrl = `${process.env.APP_URL}/verify-email?token=${token}`;
+  const baseUrl = process.env.APP_URL || "https://www.convolutionjuee.com";
+  const verificationUrl = `${baseUrl}/verify-email?token=${token}`;
 
   const mailOptions = {
     from: '"Convolution tech team" <no-reply@myapp.com>',
