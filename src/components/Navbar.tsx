@@ -28,8 +28,8 @@ const desktopNavLinks = [
     href: "#",
     subItems: [
       { href: "/#team", label: "Team" },
-      { href: "/#sponsors", label: "Sponsors" },
       { href: "/#gallery", label: "Gallery" },
+      { href: "/#sponsors", label: "Sponsors" },
       { href: "/#faq", label: "FAQ" },
       { href: "/#contact", label: "Let'sConnect" },
     ],
@@ -42,8 +42,8 @@ const mobileNavLinks = [
   { href: "/#events", label: "Events" },
   // { href: "/#timeline", label: "Timeline" },
   { href: "/#team", label: "Team" },
-  { href: "/#sponsors", label: "Sponsors" },
   { href: "/#gallery", label: "Gallery" },
+  { href: "/#sponsors", label: "Sponsors" },
   { href: "/#faq", label: "FAQ" },
   { href: "/#contact", label: "Let's Connect" },
 ];
