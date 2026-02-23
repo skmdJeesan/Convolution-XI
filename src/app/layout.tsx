@@ -29,13 +29,14 @@ const orbitron = Orbitron({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.convolutionjuee.com"),
-  title: "Convolution 2026 | JUEE's Tech Fest",
+  title: "Convolution 2026 | JUEE's Annual Techfest",
   description:
-    "INNOVATE.INTEGRATE.INSPIRE. | Convolution, the annual technical fest of JUEE, is a vibrant celebration of talent, creativity, and innovation, showcasing a diverse range of competitions, events, and activities.",
+    "INNOVATE. INTEGRATE. INSPIRE. | Convolution, the annual technical fest of JUEE, is a vibrant celebration of talent, creativity, and innovation, showcasing a diverse range of competitions, events, and activities.",
   keywords: [
     "Convolution 2026",
     "Convolution 26",
     "Convolution",
+    "convolution",
     "Convolution juee",
     "Convolution ju ee",
     "Convolution Jadavpur",
@@ -43,17 +44,27 @@ export const metadata: Metadata = {
     "Convolution 11.0",
     "Convolution XI",
     "Convolution 11",
+    "Convolution-11",
     "Convolutionxi",
+    "Convolution xi",
+    "Convolution-xi",
     "Convolution-XI",
     "Convolution JUEE",
     "Convolution JU EE",
     "Convolution Jadavpur University",
     "Jadavpur University",
     "JUEE",
+    "juee",
     "Kolkata",
+    "Kolkata techfest",
+    "West Bengal techfest",
+    "convolution kolkata",
     "Electrical Engineering",
     "Techfest",
     "Jadavpur University Techfest",
+    "Jadavpur University techfest",
+    "JU techfest",
+    "ju techfest",
     "JU EE Techfest",
     "fest",
     "technical fest",
@@ -80,8 +91,8 @@ export const metadata: Metadata = {
   },
   // for whatsapp, linkedin, twitter, discord preview
   openGraph: {
-    title: "Convolution 2026 | JUEE's Tech Fest",
-    description: "INNOVATE.INTEGRATE.INSPIRE. | Celebrate creativity and innovation at Convolution 11, JUEE's annual technical fest.",
+    title: "Convolution 2026 | JUEE's Annual Techfest",
+    description: "Celebrate creativity and innovation at Convolution 11, JUEE's annual technical fest.",
     url: "https://www.convolutionjuee.com",
     siteName: "Convolution JUEE",
     images: [
@@ -99,7 +110,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Convolution 11 | Annual Techno-Management Fest of JUEE",
-    description: "INNOVATE.INTEGRATE.INSPIRE. | Celebrate creativity and innovation at Convolution 11 , JUEE's annual technical fest.",
+    description: "Celebrate creativity and innovation at Convolution 11 , JUEE's annual technical fest.",
     images: ["https://www.convolutionjuee.com/opengraph_img.png"],
   },
 };

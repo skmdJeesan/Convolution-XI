@@ -234,7 +234,7 @@ const Navbar = () => {
             {/* profile */}
             {session ? (
               <TransitionLink href="/profile" className="rounded-full relative group block">
-                <div className="rounded-full borde border-white/20 overflow-hidden hover:border-white transition-colors">
+                <div className="rounded-full border border-white/20 overflow-hidden hover:border-white  transition-colors">
                   <Image
                     src={profileIcon}
                     alt="profile icon"
