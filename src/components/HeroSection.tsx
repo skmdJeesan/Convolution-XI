@@ -239,6 +239,7 @@ const SciFiButton = ({ label, href, color = "cyan" }: { label: string; href: str
                     behavior: 'smooth',
                     block: 'start'
                 });
+                // window.history.pushState(null, '', href);
             }
         }
     };

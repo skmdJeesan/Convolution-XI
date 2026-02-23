@@ -16,38 +16,51 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // promise for minimum time for loading animation
-    const minTimePromise = new Promise((resolve) => setTimeout(resolve, 1500));
+    if (sessionStorage.getItem('hasSeenLoader')) {
+      setIsLoading(false);
+      return; 
+    }
 
-    //wait for the actual browser to finish downloading all assets
+    const minTimePromise = new Promise((resolve) => setTimeout(resolve, 1500));
     const pageLoadPromise = new Promise((resolve) => {
-      // if the page somehow already finished before this ran, resolve instantlyy
       if (document.readyState === 'complete') {
         resolve("loaded");
       } else {
-        // Otherwise, wait for the window 'load' event
         window.addEventListener('load', () => resolve("loaded"));
       }
     });
 
-    // PROMISE.ALL: Wait for BOTH conditions to be true!
-    // - Fast internet: Waits 1.5s for the animation, then loads.
-    // - Slow internet: Timer finishes in 1.5s, but waits 8s for images, THEN loads.
     Promise.all([minTimePromise, pageLoadPromise]).then(() => {
+      sessionStorage.setItem('hasSeenLoader', 'true');
       setIsLoading(false);
     });
 
-    // Cleanup listener to prevent memory leaks
     return () => {
       window.removeEventListener('load', () => {});
     };
   }, []);
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  // This ensures that when the "curtain" lifts, we snap to the correct section if there is a hash in the URL
+  useEffect(() => {
+    if (!isLoading && window.location.hash) {
+      const id = window.location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        // We use 'auto' instead of 'smooth' so it jumps instantly without a weird sliding animation
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }, 50); 
+      }
+    }
+  }, [isLoading]);
 
   return (
+    <>
+    {isLoading && (
+        <div className="fixed inset-0 z-9999 bg-black w-full h-full flex items-center justify-center">
+          <Loading />
+        </div>
+      )}
     <main className="bg-black w-full min-h-screen">
       <Navbar/>
       <HeroSection />
@@ -61,5 +74,6 @@ export default function Home() {
       {/* <Playground /> */}
       <Footer />
     </main>
+    </>
   );
 }

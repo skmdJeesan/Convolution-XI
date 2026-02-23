@@ -1,11 +1,12 @@
 'use client'
 import FlipLink from '@/components/FlipLink'
 import Loader from '@/components/Loader'
+import Loading from "@/app/loading";
 import { userData } from '@/context/UserContext'
 import { signOut } from 'next-auth/react'
 import Image from 'next/image'
 import profileIcon from "@/assets/images/Robot_Profile.jpg";
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react' // Added useEffect
 import { IoArrowBack, IoLogOutOutline, IoHardwareChipOutline, IoTimeOutline, IoSchoolOutline, IoCodeSlashOutline, IoWarningOutline, IoMailOutline, IoCallOutline, IoQrCodeOutline, IoListOutline } from 'react-icons/io5'
 import TransitionLink from '@/components/TransitionLink'
 
@@ -41,6 +42,18 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(false)
   const data = useContext(userData)
   
+  // state for userData fetching
+  const [isDataFetching, setIsDataFetching] = useState(true)
+
+  // turn off loader once data populates
+  useEffect(() => {
+    // If context successfully populates the user object, stop loading!
+    if (data?.user) {
+      setIsDataFetching(false)
+    }
+  }, [data?.user])
+
+  
   const handleSignOut = async () => {
     setLoading(true)
     try {
@@ -58,9 +71,19 @@ export default function ProfilePage() {
   const navBtnClass = `${btnShape} bg-cyan-950/40  border-cyan-500/50  lg:bg-black/30 lg:border-white/10 lg:hover:border-cyan-500/50 lg:hover:bg-cyan-950/40 lg:hover:shadow-cyan-500/20`;
   const logoutBtnClass = `${btnShape} border-red-500 bg-red-500/20 lg:bg-red-950/20 lg:border-red-500/30 lg:hover:border-red-500 lg:hover:bg-red-500/20 lg:hover:shadow-red-500/20`;
 
-  const hasEvents = false; 
+  
   // Here the events will be added
   const eventsList = []; 
+  const hasEvents = eventsList.length ? true : false; 
+
+  // If user is still waiting on the context, block the page render
+  if (isDataFetching) {
+    return (
+      <div className="min-h-screen w-full bg-[#050508] flex items-center justify-center">
+        <Loading /> 
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen w-full relative text-white font-sans flex flex-col items-center overflow-x-hidden selection:bg-cyan-500/30 pb-10">
@@ -155,7 +178,11 @@ export default function ProfilePage() {
 
                 {hasEvents ? (
                    <div className="grid gap-4">
-                      {/* Event Items */}
+                    {/* {eventsList.map((e, index) => (
+               <div key={index} className="p-4 bg-white/5 border border-white/10 rounded-xl">
+                 {e}
+               </div>
+             ))} */}
                    </div>
                 ) : (
                    <div className="grow flex flex-col items-center justify-center text-center border border-dashed border-white/10 rounded-xl bg-black/10 p-8">

@@ -20,7 +20,7 @@ const events: Event[] = [
   { 
     id: "circuistics", 
     title: 'Circuistics', 
-    desc: "Master the flow! Design complex circuits and prove your electrical prowess.",
+    desc: "Master the flow! Design complex circuits and prove your electrical powers.",
     icon: <FaMicrochip />,
     image: '/assets/images/circuistics.webp',
     color: '#06b6d4' // Cyan
@@ -36,7 +36,7 @@ const events: Event[] = [
   { 
     id: "sparkhack", 
     title: 'SparkHack', 
-    desc: "Innovate, Build, Deploy. A 24-hour hackathon to bring ideas to life.",
+    desc: "Turn bold ideas into real-world innovation and pitch them to the minds that matter.",
     icon: <FaLaptopCode />,
     image: '/assets/images/sparkhack.webp',
     color: '#DD6E0F' // ADeep Orange
@@ -44,7 +44,7 @@ const events: Event[] = [
   { 
     id: "eureka", 
     title: 'Eureka', 
-    desc: "Present your groundbreaking research and push the boundaries of tech.",
+    desc: "Crack the chaos — where only razor-sharp minds survive the puzzle storm.",
     icon: <FaLightbulb />,
     image: '/assets/images/eureka.jpeg',
     color: '#eab308' // Yellow
@@ -52,7 +52,7 @@ const events: Event[] = [
   { 
     id: "decisia", 
     title: 'Decisia', 
-    desc: "Make the strategic choice in this intense business case study battle.",
+    desc: "Pitch bold, think big, and face the boardroom that could make or break your empire.",
     icon: <FaChess />,
     image: '/assets/images/decisia.webp',
     color: '#6366f1' // Indigo
@@ -68,7 +68,7 @@ const events: Event[] = [
   { 
     id: "inquizzitive", 
     title: 'Inquizzitive', 
-    desc: "The Grand Tech Quiz. Test your knowledge across all domains.",
+    desc: "Think you know it all? Prove it. Test your knowledge across all domains.",
     icon: <FaQuestion />,
     image: '/assets/images/inquizzitive.webp',
     color: '#7F00FF' // Violet
