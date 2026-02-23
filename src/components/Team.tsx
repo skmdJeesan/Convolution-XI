@@ -33,7 +33,7 @@ const teamMembers: TeamMember[] = [
     x: "",
   },
   {
-    name: "Rahiul Islam",
+    name: "Md Rahiul Islam",
     post: "Treasurer",
     image: "/peoplePics/rahiul.jpg",
     linkedin: "",
