@@ -96,7 +96,7 @@ export default function ProfilePage() {
 
             <div className="text-center space-y-4 relative z-10">
               <div>
-                 <h2 className="font-orbitron text-2xl font-bold text-white tracking-wide uppercase">{data?.user?.name}</h2>
+                 <h2 className="font-orbitron text-2xl font-bold text-white tracking-wide capitalize">{data?.user?.name}</h2>
               </div>
               <div className="flex items-center justify-between bg-white/5 border border-white/10 rounded-lg p-3">
                   <div className="flex items-center gap-2">
