@@ -52,7 +52,7 @@ export default function Home() {
       <Navbar/>
       <HeroSection />
       <HomeAbout />
-      {/* <EventsList /> */}
+      <EventsList />
       {/* <Timeline/> */}
       <Team />
       <Gallery/>
