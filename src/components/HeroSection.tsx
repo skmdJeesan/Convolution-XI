@@ -5,6 +5,7 @@ import Image from "next/image";
 import ConvoLogo from "@/assets/images/Convologo.png";
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import { scale } from 'framer-motion';
 
 // --- 1. UTILITY & AESTHETIC COMPONENTS ---
 
@@ -31,10 +32,19 @@ const DataCoreSVG = () => (
 
 // --- ATOMIC ORBIT (Top Left) ---
 const AtomicOrbit = () => {
+    // --- FLUID RESPONSIVE SIZE & POSITIONING ---
     return (
-        <div className="absolute top-[10%] left-[10%] hidden md:block md:top-[30%] md:left-[15%] xl:top-[20%] xl:left-[15%] -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[120px] md:h-[120px] xl:w-[150px] xl:h-[150px] z-0 pointer-events-none opacity-70 md:opacity-80 animate-spin-slow animate-float">
-            {/* We use a 3D perspective wrapper. */}
-
+        <div className={`
+            absolute z-0 pointer-events-none opacity-100 md:opacity-80 animate-spin-slow animate-float
+            
+            /* MOBILE POSITIONING & FLUID SIZE */
+            top-[45%] left-[5%] -translate-x-1/2 -translate-y-1/2 
+            w-[95vw] h-[95vw] 
+            
+            /* DESKTOP POSITIONING & FIXED SIZE */
+            md:top-[30%] md:left-[15%] xl:top-[20%] xl:left-[15%] 
+            md:w-[120px] md:h-[120px] xl:w-[150px] xl:h-[150px]
+        `}>
             {/* Orbit 1: Cyan - Horizontal-ish */}
             <div className="absolute inset-0 flex items-center justify-center [transform:rotateX(70deg)_rotateY(-10deg)]">
                 <div className="w-full h-full rounded-full border-[1px] border-pink-500/100 animate-[spin_3s_linear_infinite]">
@@ -57,7 +67,7 @@ const AtomicOrbit = () => {
             </div>
 
             {/* Central Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-15 h-15 bg-pink-400/100 blur-[10px] rounded-full animate-pulse"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[25%] h-[25%] bg-pink-400/100 blur-[10px] rounded-full animate-pulse"></div>
         </div>
     );
 };
@@ -77,13 +87,28 @@ const BackgroundGrid = () => (
 
         <AtomicOrbit />
 
-        {/* --- 5. THE CYBER MOON (UPDATED FOR PERFORMANCE) --- */}
-        <div className="absolute top-[30%] right-[20%] md:top-[27%] md:right-[10%] xl:top-[15%] xl:right-[5%] w-[250px] h-[250px] md:w-[80px] md:h-[80px] xl:w-[100px] xl:h-[100px] z-0 pointer-events-none opacity-100 md:opacity-90 animate-float">
+        {/* --- 5. THE CYBER MOON (UPDATED FOR PERFORMANCE & RESPONSIVENESS) --- */}
+        <div className={`
+    absolute z-0 pointer-events-none opacity-100 md:opacity-90 animate-float
+    
+    /* MOBILE POSITIONING (Centered behind robot) */
+    top-[17%] left-[80%] -translate-x-1/2 -translate-y-1/2 
+    
+    /* MOBILE FLUID SIZE (65% of screen width, perfectly square) */
+    w-[25vw] h-[25vw]
+    
+    /* DESKTOP POSITIONING (Top Right) */
+    md:top-[27%] md:left-auto md:right-[10%] md:translate-x-0 md:translate-y-0 
+    xl:top-[15%] xl:right-[5%] 
+    
+    /* DESKTOP FIXED SIZE */
+    md:w-[80px] md:h-[80px] xl:w-[100px] xl:h-[100px] 
+`}>
 
             {/* --- NEW: PERFORMANCE FIX - IMAGE BASED GLOW --- */}
             {/* Placed behind the moon using z-[-1]. Negative insets make it larger than the moon container. Adjust opacity for intensity. */}
             <div className="absolute -inset-20 md:-inset-10 z-[-1] opacity-100">
-                 <Image
+                <Image
                     src="/assets/images/Pink_blur.png"
                     alt="Moon Glow"
                     fill
@@ -110,17 +135,23 @@ const BackgroundGrid = () => (
             </div>
         </div>
 
-        {/* --- 6. NEW: PINK BLUR BEHIND ROBOT --- */}
-        {/* CONTROLS: Adjust the top, left, width, height, and scale below to easily position the image */}
-        <div 
-            className="absolute z-[5] pointer-events-none mix-blend-screen opacity-80 hidden md:block"
-            style={{
-                top: '65%',           // ⬅️ Adjust vertical position (e.g. 50%, 65%)
-                left: '50%',          // ⬅️ Adjust horizontal position
-                width: '600px',       // ⬅️ Base width of the image wrapper
-                height: '600px',      // ⬅️ Base height of the image wrapper
-                transform: 'translate(-50%, -50%) scale(1.5)', // ⬅️ Change 'scale(1.5)' to zoom the blur in or out
-            }}
+        {/* --- 6. NEW: CYAN BLUR BEHIND ROBOT (RESPONSIVE) --- */}
+        <div
+            className={`
+                absolute z-[5] pointer-events-none mix-blend-screen opacity-80
+                
+                /* COMMON CENTERING */
+                left-1/2 -translate-x-1/2 -translate-y-1/2
+                
+                /* MOBILE CONTROLS: Fluid sizing for the phone screen */
+                /* Positioned slightly higher (55%) to sit directly behind the mobile robot's torso */
+                top-[55%]
+                w-[150vw] h-[150vw] scale-[1.0]
+                
+                /* TABLET & DESKTOP CONTROLS: Fixed sizing matching your original design */
+                md:top-[65%]
+                md:w-[600px] md:h-[600px] md:scale-[1.5]
+            `}
         >
             <Image
                 src="/assets/images/Cyan_blur.png"
@@ -331,12 +362,12 @@ const CommandDeck = () => {
                     <div className="absolute right-0 -top-1 w-2 h-2 bg-cyan-500 rounded-full"></div>
                 </div>
                 <div className="flex flex-col gap-3">
-                    {!isAuthenticated? (
+                    {!isAuthenticated ? (
                         <SciFiButton label="Login" href={"/login"} color="cyan" />
-                    ):
+                    ) :
                         <SciFiButton label="Team" href="#team" color="cyan" />
                     }
-                    
+
                     <SciFiButton label="Events" href="#events" color="fuchsia" />
                 </div>
             </div>
@@ -346,12 +377,12 @@ const CommandDeck = () => {
                     <div className="absolute left-0 -top-1 w-2 h-2 bg-fuchsia-500 rounded-full"></div>
                 </div>
                 <div className="flex flex-col gap-3 items-end">
-                    {!isAuthenticated? (
+                    {!isAuthenticated ? (
                         <SciFiButton label="Register" href={"/register"} color="cyan" />
-                    ):
+                    ) :
                         <SciFiButton label="Gallery" href="#gallery" color="cyan" />
                     }
-                    
+
                     <SciFiButton label="FAQ" href="#faq" color="fuchsia" />
                 </div>
             </div>
@@ -407,22 +438,26 @@ function HeroSection() {
             <HeadsUpDisplay />
 
             {/* Logo */}
-            <div className={`absolute ${deviceType == 'mobile' ? 'top-[45%]' : 'top-[20%]'} md:top-[15%] xl:top-[23%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 md:z-10 pointer-events-none select-none flex justify-center w-full`}>
+            <div className={`absolute ${deviceType == 'mobile' ? 'top-[20%]' : 'top-[20%]'} md:top-[15%] xl:top-[23%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 md:z-10 pointer-events-none select-none flex justify-center w-full`}>
                 <div className="relative group w-full flex justify-center items-center">
-                    
+
                     <div className="absolute inset-0 md:-inset-32 bg-linear-to-r from-cyan-500/20 to-fuchsia-500/20 blur-[60px] md:blur-[100px] rounded-full opacity-0" />
 
                     {/* --- NEW: LOGO BLUR / DROP SHADOW --- */}
-                    {/* CONTROLS: Adjust top, left, width, height, and scale to position the drop shadow */}
-                    <div 
-                        className="absolute z-[5] pointer-events-none mix-blend-screen opacity-80 hidden md:block"
-                        style={{
-                            top: '50%',           // ⬅️ Adjust vertical position relative to the logo
-                            left: '50%',          // ⬅️ Adjust horizontal position relative to the logo
-                            width: '750px',       // ⬅️ Base width of the blur wrapper
-                            height: '400px',      // ⬅️ Base height of the blur wrapper
-                            transform: 'translate(-50%, -50%) scale(1.1)', // ⬅️ Adjust 'scale(1.1)' to spread the shadow out
-                        }}
+                    <div
+                        className={`
+        absolute z-[5] pointer-events-none mix-blend-screen opacity-90 md:opacity-80
+        
+        /* COMMON CENTERING (Relative to the logo container) */
+        top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+        
+        /* MOBILE CONTROLS: Fluid sizing so it scales with the phone screen */
+        /* Adjust w-[...] and h-[...] to change base size, and scale-[...] for intensity */
+        w-[80vw] h-[50vw] scale-[1.2]
+        
+        /* TABLET & DESKTOP CONTROLS: Fixed sizing to match your original design */
+        md:w-[750px] md:h-[400px] md:scale-[1.1]
+    `}
                     >
                         <Image
                             src="/assets/images/Logo_blur.png"
@@ -442,15 +477,33 @@ function HeroSection() {
                     />
                 </div>
             </div>
-            
+
             {/* --- MEDIA LAYER --- */}
             <div className="absolute inset-0 z-10 w-full h-full pointer-events-auto">
 
                 {/* 1. Mobile (< 768px) */}
                 {deviceType === 'mobile' && (
-                    <div className="w-full h-full flex items-center justify-center pointer-events-none">
-                        <div className="relative w-150 h-200">
-                            {/* Fallback image/assets can be uncommented here */}
+                    <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+                        {/* THE SAFE ZONE: Anchored strictly below the logo and above the buttons */}
+                        <div
+                            className="absolute pointer-events-auto z-[5] flex items-center justify-center"
+                            style={{
+                                top: '45%',     // Pinned safely below the Convolution logo
+                                bottom: '0%',  // Pinned safely above the Command Deck buttons
+                                left: '0',
+                                right: '0',
+                                transform: 'scale(2.5)',
+                            }}
+                        >
+                            <div className="relative w-full h-full">
+                                <Image
+                                    src="/assets/images/NexBot_Home_1.png"
+                                    alt="Mobile Robot"
+                                    fill
+                                    className="object-contain object-center scale-[1.25]"
+                                    priority
+                                />
+                            </div>
                         </div>
                     </div>
                 )}
