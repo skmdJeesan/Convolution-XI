@@ -7,7 +7,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.EMAIL_USER,
+      user: "team.convoxi@gmail.com",
       pass: process.env.EMAIL_PASS,
     },
   });
@@ -16,7 +16,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   const verificationUrl = `${baseUrl}/verify-email?token=${token}`;
 
   const mailOptions = {
-    from: '"Convolution tech team" <no-reply@myapp.com>',
+    from: '"Convolution tech team" <team.convoxi@gmail.com>',
     to: email,
     subject: "Verify your email",
     html: `<p>Click <a href="${verificationUrl}">here</a> to verify your email.</p>
