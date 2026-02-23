@@ -142,25 +142,24 @@ const EventsMobile = ({ events = [] }: { events: Event[] }) => {
 
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
-        <div className="absolute top-[10%] left-[-20%] w-[70%] h-[50%] bg-purple-900/30 blur-[120px] rounded-full mix-blend-screen" />
-        <div className="absolute bottom-[20%] right-[-20%] w-[80%] h-[50%] bg-cyan-900/20 blur-[120px] rounded-full mix-blend-screen" />
+        <div className="absolute top-[3%] left-[-20%] w-[70%] h-[70%] bg-purple-900/40 blur-[100px] rounded-full mix-blend-screen" />
+        <div className="absolute top-[3%] right-[-20%] w-[70%] h-[70%] bg-fuchsia-950/30 blur-[100px] rounded-full mix-blend-screen" />
+        <div className="absolute bottom-[2%] right-[-20%] w-[60%] h-[60%] bg-cyan-900/40 blur-[100px] rounded-full mix-blend-screen" />
+        <div className="absolute bottom-0 left-0 w-full h-10 bg-linear-to-t from-[#030712e5]  to-transparent z-69"></div>
+        <div
+        className="absolute inset-0 opacity-[0.12] md:opacity-[0.15]"
+        style={{ backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, backgroundSize: '30px 30px' }}
+      ></div>
       </div>
 
       {/* TIGHTENED: Changed pt-24 to pt-16 and pb-8 to pb-4 */}
       <div ref={headerRef} className="relative z-10 w-full max-w-[350px] px-6 pt-8 pb-4 flex flex-col items-center text-center">
-        <h1 className={`font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase ${isHeaderVisible ? 'animate-title-up' : 'opacity-0-start'}`}>
+        <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
             Events
             <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
-        </h1>
-
-        {/* TIGHTENED: Changed mt-10 to mt-4 */}
-        <p className={`max-w-2xl mt-8 text-stone-400 text-sm font-medium leading-relaxed tracking-wide ${isHeaderVisible ? 'animate-subtitle-up' : 'opacity-0-start'}`}>
-          Prepare for deployment. Choose your domain and prove your skills in the
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 font-bold"> ultimate techno-management battlefield</span>.
-        </p>
+          </h1>
       </div>
 
-      {/* TIGHTENED: Changed pb-20 to pb-10 */}
       <div 
         ref={carouselWrapperRef} 
         className={`relative w-full z-10 flex flex-col items-center pb-10 ${isCarouselVisible ? 'animate-carousel-up' : 'opacity-0-start'}`}

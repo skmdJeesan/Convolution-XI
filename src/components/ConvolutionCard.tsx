@@ -92,24 +92,24 @@ const ConvolutionCard = (props: CardProps) => {
           {/* Content Wrapper */}
           <div className="relative z-10 flex flex-col h-full">
               
-              <h2 className="text-3xl font-black uppercase text-white tracking-tighter leading-[0.9] drop-shadow-xl mb-3">
+              <h2 className="text-2xl font-orbitron font-black uppercase text-white tracking-wide leading-[0.9] drop-shadow-xl mb-3">
                 {data.title}
               </h2>
 
               {/* 3. DYNAMIC TITLE UNDERLINE */}
               <div 
-                className="w-12 h-1 rounded-full mb-4" 
+                className="w-30 h-1 rounded-full mb-4" 
                 style={{ background: `linear-gradient(to right, ${themeColor}, transparent)` }}
               />
 
-              <p className="text-stone-400 text-sm leading-relaxed font-medium line-clamp-3 mb-6 flex-grow">
+              <p className="text-stone-400 font-rajdhani text-sm leading-relaxed font-semibold line-clamp-3 mb-6 grow">
                 {data.desc}
               </p>
 
               {/* 4. DYNAMIC ACTION BUTTON */}
               <TransitionLink 
                 href={`/events/${data.id}`} 
-                className="group/btn relative w-full px-6 py-4 overflow-hidden rounded-xl border border-white/20 active:scale-95 transition-all duration-200 flex items-center justify-center text-white font-bold tracking-[0.25em] uppercase text-xs"
+                className="group/btn relative w-full px-6 py-4 overflow-hidden rounded-xl border border-white/20 active:scale-95 transition-all duration-200 flex items-center justify-center text-white font-bold tracking-[0.15em] uppercase text-sm"
                 style={{ '--hover-border': themeColor } as React.CSSProperties}
               >
                 {/* Button Background Tint */}
@@ -118,8 +118,8 @@ const ConvolutionCard = (props: CardProps) => {
                   style={{ background: `linear-gradient(to right, ${themeColor}B3, transparent)` }}
                 />
                 
-                <span className="relative z-10 flex items-center justify-center gap-3">
-                  Explore Mission 
+                <span className="relative font-orbitron z-10 flex items-center justify-center gap-3">
+                  Explore 
                   <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                 </span>
               </TransitionLink>
