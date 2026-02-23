@@ -21,7 +21,7 @@ export default function Home() {
 
     //wait for the actual browser to finish downloading all assets
     const pageLoadPromise = new Promise((resolve) => {
-      // if the page somehow already finished before this ran, resolve instantly
+      // if the page somehow already finished before this ran, resolve instantlyy
       if (document.readyState === 'complete') {
         resolve("loaded");
       } else {

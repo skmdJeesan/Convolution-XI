@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 export const sendVerificationEmail = async (email: string, token: string) => {
   // Use a real SMTP service (Resend, SendGrid, AWS SES) in production
   // For dev, you can use Gmail (with App Password) or Mailtrap
+  //console.log("=== DEBUG EMAIL URL ===", process.env.NEXTAUTH_URL);
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -11,7 +12,8 @@ export const sendVerificationEmail = async (email: string, token: string) => {
     },
   });
 
-  const verificationUrl = `${process.env.NEXTAUTH_URL}/verify-email?token=${token}`;
+  const baseUrl = process.env.APP_URL || "https://www.convolutionjuee.com";
+  const verificationUrl = `${baseUrl}/verify-email?token=${token}`;
 
   const mailOptions = {
     from: '"Convolution tech team" <no-reply@myapp.com>',
