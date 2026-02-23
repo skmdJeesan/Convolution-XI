@@ -29,13 +29,17 @@ const orbitron = Orbitron({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.convolutionjuee.com"),
-  title: "Convolution 2026 | JUEE Tech Fest",
+  title: "Convolution 2026 | JUEE's Tech Fest",
   description:
-    "Convolution, the annual technical fest of JUEE, is a vibrant celebration of talent, creativity, and innovation, showcasing a diverse range of competitions, events, and activities.",
+    "INNOVATE.INTEGRATE.INSPIRE. | Convolution, the annual technical fest of JUEE, is a vibrant celebration of talent, creativity, and innovation, showcasing a diverse range of competitions, events, and activities.",
   keywords: [
     "Convolution 2026",
     "Convolution 26",
     "Convolution",
+    "Convolution juee",
+    "Convolution ju ee",
+    "Convolution Jadavpur",
+    "Convolution electrical engineering",
     "Convolution 11.0",
     "Convolution XI",
     "Convolution 11",
@@ -66,11 +70,18 @@ export const metadata: Metadata = {
     canonical: "https://www.convolutionjuee.com",
   },
   publisher: "Jadavpur University Electrical Engineering Students' Forum",
-  
+  icons: {
+    icon: [
+      { url: '/icon.png', type: 'image/png', sizes: '192x192' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '512x512', type: 'image/png' },
+    ],
+  },
   // for whatsapp, linkedin, twitter, discord preview
   openGraph: {
-    title: "Convolution 2026",
-    description: "Celebrate creativity and innovation at Convolution-11, JUEE's annual technical fest.",
+    title: "Convolution 2026 | JUEE's Tech Fest",
+    description: "INNOVATE.INTEGRATE.INSPIRE. | Celebrate creativity and innovation at Convolution-11, JUEE's annual technical fest.",
     url: "https://www.convolutionjuee.com",
     siteName: "Convolution JUEE",
     images: [
@@ -88,7 +99,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Convolution 11 | Annual Techno-Management Fest of JUEE",
-    description: "Celebrate creativity and innovation at Convolution-11 , JUEE's annual technical fest.",
+    description: "INNOVATE.INTEGRATE.INSPIRE. | Celebrate creativity and innovation at Convolution-11 , JUEE's annual technical fest.",
     images: ["https://www.convolutionjuee.com/opengraph_img.png"],
   },
 };
