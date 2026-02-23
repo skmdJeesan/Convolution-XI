@@ -394,33 +394,34 @@
   animation: none !important;
   transform: none !important;
 } */
+@media (max-width: 768px) {
+  /*kill the massive pulsing background gradient on mobile */
+  .team-spotlight-glow {
+    display: none !important;
+    animation: none !important;
+  }
 
-/* 2. Kill the massive pulsing background gradient everywhere */
-.team-spotlight-glow {
-  display: none !important;
-  animation: none !important;
+  /* 3. Strip 'will-change' properties on mobile to free up limited RAM */
+  .team-card,
+  .team-card-wrapper,
+  .team-spotlight-glow,
+  .team-card-image {
+    will-change: auto !important; 
+  }
+
+  /*latten the 3D perspective to standard 2D */
+  .team-cards-container {
+    perspective: none !important;
+  }
+
+  /* simplify the base card shadow and flatten it */
+  .team-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important;
+    transform-style: flat !important;
+  }
 }
 
-/* 3. Strip all 'will-change' properties globally to free up GPU RAM */
-.team-card,
-.team-card-wrapper,
-.team-spotlight-glow,
-.team-card-image {
-  will-change: auto !important; 
-}
-
-/* 4. Flatten the 3D perspective to standard 2D */
-.team-cards-container {
-  perspective: none !important;
-}
-
-/* 5. Simplify the base card shadow and flatten it */
-.team-card {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important;
-  transform-style: flat !important;
-}
-
-/* 6. Replace the heavy 3D hover flip with a clean, lightweight 2D pop-up for Desktop */
+/*Desktop 2D fallback hover (Kept outside the mobile query, but targets desktop hover) */
 @media (hover: hover) and (pointer: fine) {
   .team-card-wrapper:hover .team-card {
     transform: translateY(-8px) !important; 
