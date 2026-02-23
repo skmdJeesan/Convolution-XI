@@ -350,7 +350,7 @@ const CommandDeck = () => {
                         </>
                     }
                     <SciFiButton label="FAQ" href="#faq" color="cyan" />
-                    <SciFiButton label="Events" href="#all-events" color="fuchsia" />
+                    <SciFiButton label="Events" href="#events" color="fuchsia" />
 
                 </div>
                 <div className="mt-4 w-32 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
