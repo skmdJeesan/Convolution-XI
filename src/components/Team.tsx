@@ -19,9 +19,9 @@ const teamMembers: TeamMember[] = [
   {
     name: "Arkaroop Nag",
     post: "Secretary",
-    image: "/peoplePics/chaiwala.jpg",
-    linkedin: "https://www.linkedin.com/in/jahid-mamud/",
-    instagram: "https://www.instagram.com/jem_.__/profilecard/?igsh=b2o0ZjlqZ3pkeW5t",
+    image: "/peoplePics/arkaroop.jpeg",
+    linkedin: "https://www.linkedin.com/in/arkaroop-nag-982a3a316/",
+    instagram: "https://www.instagram.com/lyadh_gpt/",
     x: "",
   },
   {
@@ -35,10 +35,10 @@ const teamMembers: TeamMember[] = [
   {
     name: "Rahiul Islam",
     post: "Treasurer",
-    image: "/peoplePics/chaiwala.jpg",
-    linkedin: "https://www.linkedin.com/in/siddhanta-ghosh",
-    instagram: "https://www.instagram.com/ghosh_siddhanta2k3/",
-    x: "https://www.facebook.com/profile.php?id=100089382764364&mibextid=ZbWKwL",
+    image: "/peoplePics/rahiul.jpg",
+    linkedin: "",
+    instagram: "https://www.instagram.com/rahiul_/",
+    x: "",
   },
   {
     name: "Sayan Indra",

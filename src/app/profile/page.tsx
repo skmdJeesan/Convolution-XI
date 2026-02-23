@@ -13,12 +13,12 @@ import TransitionLink from '@/components/TransitionLink'
 const Background = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
     <div className="absolute inset-0 bg-[#050508]"></div>
-    <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] bg-purple-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
+    <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] bg-purple-900/20 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="block lg:hidden absolute top-[20%] left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] bg-fuchsia-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="hidden lg:block absolute bottom-[-10%] right-[-10%] w-[60vw] h-[70vh] bg-cyan-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="block lg:hidden absolute bottom-[-10%] right-[-10%] w-[80vw] h-[70vh] bg-cyan-900/25 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="block lg:hidden absolute bottom-[2%] left-[-10%] w-[40vw] h-[50vh] bg-purple-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
-    <div className="hidden lg:block absolute bottom-[2%] left-[-10%] w-[60vw] h-[80vh] bg-purple-900/20 blur-[100px] rounded-full mix-blend-screen"></div>
+    <div className="hidden lg:block absolute bottom-[2%] left-[-10%] w-[60vw] h-[80vh] bg-purple-950/20 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[50px_50px] mask-[radial-gradient(ellipse_at_center,black_50%,transparent_90%)]"></div>
   </div>
 );
@@ -96,7 +96,7 @@ export default function ProfilePage() {
 
             <div className="text-center space-y-4 relative z-10">
               <div>
-                 <h2 className="font-orbitron text-2xl font-bold text-white tracking-wide uppercase">{data?.user?.name}</h2>
+                 <h2 className="font-orbitron text-2xl font-bold text-white tracking-wide capitalize">{data?.user?.name}</h2>
               </div>
               <div className="flex items-center justify-between bg-white/5 border border-white/10 rounded-lg p-3">
                   <div className="flex items-center gap-2">

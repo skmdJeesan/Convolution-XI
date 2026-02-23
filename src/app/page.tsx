@@ -31,8 +31,8 @@ export default function Home() {
     });
 
     // PROMISE.ALL: Wait for BOTH conditions to be true!
-    // - Fast internet: Waits 2.5s for the animation, then loads.
-    // - Slow internet: Timer finishes in 2.5s, but waits 8s for images, THEN loads.
+    // - Fast internet: Waits 1.5s for the animation, then loads.
+    // - Slow internet: Timer finishes in 1.5s, but waits 8s for images, THEN loads.
     Promise.all([minTimePromise, pageLoadPromise]).then(() => {
       setIsLoading(false);
     });
