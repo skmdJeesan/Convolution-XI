@@ -27,7 +27,8 @@ export async function POST(req: NextRequest) {
     user.resetPasswordExpires = new Date(Date.now() + 3600000); // 1 hour
     await user.save();
 
-    const resetUrl = `${process.env.NEXTAUTH_URL}/reset-password/${resetToken}`;
+    const baseUrl = process.env.APP_URL || "https://www.convolutionjuee.com";
+    const resetUrl = `${baseUrl}/reset-password?token=${resetToken}`;
 
     const transporter = nodemailer.createTransport({
       service: "Gmail",

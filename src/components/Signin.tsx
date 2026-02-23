@@ -79,13 +79,14 @@ export default function Signin() {
           <DecorativeIcons/>
       </div>
 
-      <TransitionLink 
-        href="/" 
-        className="absolute top-6 left-6 z-50 flex items-center gap-2 px-4 py-2.5 bg-black/30 backdrop-blur-md border border-white/10 rounded-full hover:border-cyan-500/50 hover:bg-cyan-950/40 transition-all duration-300 shadow-lg group cursor-pointer overflow-hidden"
-      >
-        <IoArrowBack className="text-cyan-400 text-lg group-hover:-translate-x-1 transition-transform" />
-        <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-cyan-100 group-hover:text-white uppercase"><FlipLink>Return&nbsp;Home</FlipLink></span>
-      </TransitionLink>
+       <TransitionLink 
+              href="/" 
+              className="absolute top-6 left-6 z-50 flex items-center gap-2 px-4 py-2.5 bg-cyan-950/40  border-cyan-500/50  lg:bg-black/30 lg:border-white/10 lg:hover:border-cyan-500/50 lg:hover:bg-cyan-950/40 lg:hover:shadow-cyan-500/20 backdrop-blur-md border  rounded-full transition-all duration-300 shadow-lg  group cursor-pointer overflow-hidden"
+            >
+              <IoArrowBack className="text-cyan-400 text-lg group-hover:-translate-x-1 transition-transform duration-300" />
+              <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-cyan-100 group-hover:text-white uppercase transition-colors"><FlipLink>Return&nbsp;Home</FlipLink></span>
+            </TransitionLink>
+      
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.98 }}

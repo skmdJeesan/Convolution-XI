@@ -182,8 +182,9 @@ const EventCarousel = ({ events }: { events: Event[] }) => {
             </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-30 bg-linear-to-t from-[#030712e5]  to-transparent z-69"></div>
-    </div>
+<div className="absolute bottom-0 left-0 w-full h-40 bg-linear-to-t from-[#030712e5] to-transparent z-69 pointer-events-none"></div>   
+<div className="absolute top-0 left-0 w-full h-20 bg-linear-to-b from-[#030712b7] to-transparent z-10 pointer-events-none"></div>   
+ </div>
   );
 };
 

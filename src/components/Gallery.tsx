@@ -59,10 +59,10 @@ const Gallery = () => {
         }}
     ></div>
         <div
-          className="absolute inset-0 opacity-[0.13] md:opacity-[0.15]"
+          className="absolute inset-0 opacity-[0.12] md:opacity-[0.15]"
           style={{
             backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`,
-            backgroundSize: '40px 40px'
+            backgroundSize: '30px 30px'
           }}
         ></div>
       </div>
@@ -100,8 +100,8 @@ const Gallery = () => {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="(max-width: 768px) 33vw, 20vw"
-                  loading={index < 10 ? "eager" : "lazy"}
-                  // Placeholder blur helps perceived performance
+                  quality={60}
+                  loading={index < 5 ? "eager" : "lazy"} 
                   placeholder="empty" 
                 />
               </div>

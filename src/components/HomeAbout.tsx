@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useInView, useSpring, useMotionValue, Variants } from 'framer-motion';
+import { motion, useInView, useSpring, useMotionValue, Variants, useTransform } from 'framer-motion';
 import { CalendarClock, Users, Trophy, Sparkles } from 'lucide-react';
 import { IoPlay } from "react-icons/io5";
 import AboutRobot from "../assets/images/About_Robot.png"
@@ -26,11 +26,10 @@ const itemVariants: Variants = {
 };
 
 const imageRevealVariants: Variants = {
-  hidden: { opacity: 0, y: 50, filter: "blur(5px)" },
+  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: { duration: 1.0, ease: "easeOut", delay: 0.2 }
   },
 };
@@ -40,14 +39,9 @@ const AnimatedCounter = ({ from, to, delay = 0 }: { from: number; to: number, de
   const isInView = useInView(ref, { once: true });
   const motionValue = useMotionValue(from);
   const springValue = useSpring(motionValue, { damping: 30, stiffness: 100 });
-  const [displayValue, setDisplayValue] = useState(from);
-
-  useEffect(() => {
-    const unsubscribe = springValue.on("change", (latest) => {
-      setDisplayValue(Math.floor(latest));
-    });
-    return () => unsubscribe();
-  }, [springValue]);
+  
+  // OPTIMIZATION: Bypasses React state entirely. Framer Motion updates the DOM node directly.
+  const displayValue = useTransform(springValue, (latest) => Math.floor(latest));
 
   useEffect(() => {
     if (isInView) {
@@ -58,7 +52,8 @@ const AnimatedCounter = ({ from, to, delay = 0 }: { from: number; to: number, de
     }
   }, [isInView, to, motionValue, delay]);
 
-  return <span ref={ref} className="tabular-nums">{displayValue}</span>;
+  // Use motion.span here so it can accept the raw useTransform value
+  return <motion.span ref={ref} className="tabular-nums">{displayValue}</motion.span>;
 };
 
 const DaysCounter = () => {
@@ -89,13 +84,13 @@ const Background = () => {
       <div className="absolute top-0 left-0 w-full h-20 bg-linear-to-b from-black to-transparent z-10"></div>
       
       <div
-        className="absolute inset-0 opacity-[0.13] md:opacity-[0.15]"
-        style={{ backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, backgroundSize: '40px 40px' }}
+        className="absolute inset-0 opacity-[0.12] md:opacity-[0.15]"
+        style={{ backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, backgroundSize: '30px 30px' }}
       ></div>
 
       {/* purple */}
       <div 
-        className="absolute top-[-7%] left-[-15%] w-[71vw] h-[60vh] lg:h-[103vh] mix-blend-screen transform-gpu translate-z-0"
+        className="absolute top-[-7%] left-[-15%] w-[71vw] h-[60vh] lg:h-[103vh]  transform-gpu translate-z-0"
         style={{
           background: 'radial-gradient(closest-side, rgba(112, 26, 117, 35%), transparent)'
         }}
@@ -103,7 +98,7 @@ const Background = () => {
 
     {/* cyan */}
       <div 
-        className="absolute bottom-[-10%] right-[-15%] w-[65vw] h-[79vh] mix-blend-screen transform-gpu translate-z-0"
+        className="absolute bottom-[-10%] right-[-15%] w-[65vw] h-[79vh]  transform-gpu translate-z-0"
         style={{
           background: 'radial-gradient(closest-side, rgba(22, 78, 99, 30%), transparent)'
         }}
@@ -111,13 +106,13 @@ const Background = () => {
 
       {/* fucshia */}
       <div 
-        className="absolute top-[6%] left-[24%] w-[64vw] h-[50vh] lg:h-[89vh] mix-blend-screen transform-gpu translate-z-0"
+        className="absolute top-[6%] left-[24%] w-[64vw] h-[50vh] lg:h-[89vh]  transform-gpu translate-z-0"
         style={{
           background: 'radial-gradient(closest-side, rgba(168, 85, 247, 0.20), transparent)'
         }}
       ></div>
       
-      <div className="absolute bottom-0 left-0 w-full h-20 pointer-events-none bg-gradient-to-b from-transparent to-[#030712b7]" />
+      <div className="absolute bottom-0 left-0 w-full h-10 pointer-events-none bg-gradient-to-b from-transparent to-[#030712b7]" />
     </div>
   );
 };
@@ -125,9 +120,9 @@ const Background = () => {
 const StatCard = ({ icon: Icon, label, value, colorClass, borderClass }: { icon: any, label: string, value: React.ReactNode, colorClass: string, borderClass: string }) => (
   <motion.div
     variants={itemVariants}
-    className={`relative flex flex-col items-center sm:items-start p-2 sm:p-4 lg:p-5 border-l-[2px] sm:border-l-[3px] ${borderClass} overflow-hidden group transition-colors bg-[#1a1a20]/60 backdrop-blur-md w-full`}
+    className={`relative flex flex-col items-center sm:items-start p-2 sm:p-4 lg:p-5 border-l-2 sm:border-l-[3px] ${borderClass} overflow-hidden group transition-colors bg-[#1a1a20]/60 backdrop-blur-md w-full`}
   >
-    <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-br ${colorClass} transition-opacity duration-300`}></div>
+    <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 bg-linear-to-br ${colorClass} transition-opacity duration-300`}></div>
     <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-2 lg:mb-3 z-10">
       <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white/80 group-hover:text-white transition-colors" />
       {(label === "Time Remaining") && (
@@ -136,7 +131,7 @@ const StatCard = ({ icon: Icon, label, value, colorClass, borderClass }: { icon:
         </span>
       )}
     </div>
-    <span className={`text-base sm:text-xl lg:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${colorClass} tracking-wider font-rajdhani z-10`}>
+    <span className={`text-base sm:text-xl lg:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r ${colorClass} tracking-wider font-rajdhani z-10`}>
       {value}
     </span>
     <span className="text-xs sm:text-sm font-semibold text-gray-400 uppercase tracking-widest font-rajdhani mt-0.5 sm:mt-1 group-hover:text-gray-200 transition-colors z-10 text-center sm:text-left">{label}</span>
@@ -242,11 +237,11 @@ export default function AboutSection() {
                   </span>
                 </div>
                 <span className="text-base font-rajdhani text-gray-300 font-medium ml-7">
-                  Claim your share of glory
+                  Make your mark. Take your share.
                 </span>
               </div>
               <div className="relative z-10 font-orbitron font-black text-2xl sm:text-3xl tracking-wide bg-clip-text text-transparent bg-linear-to-b from-amber-100 via-amber-400 to-orange-600 drop-shadow-[0_0_12px_rgba(245,158,11,0.5)]">
-                ₹2 LAKH+
+                ₹1 LAKH+
               </div>
             </motion.div>
 

@@ -148,11 +148,11 @@ export default function MobileAboutContent({ userCount }: { userCount: number })
               </span>
             </div>
             <span className="text-sm font-rajdhani text-gray-300 font-medium ml-5">
-              Claim your share of glory
+              Make your mark. Take your share.
             </span>
           </div>
           <div className="relative z-10 font-orbitron font-black text-2xl sm:text-3xl tracking-wide bg-clip-text text-transparent bg-linear-to-b from-amber-100 via-amber-400 to-orange-600 drop-shadow-[0_0_12px_rgba(245,158,11,0.5)]">
-            ₹2 LAKH+
+            ₹1 LAKH+
           </div>
         </div>
 

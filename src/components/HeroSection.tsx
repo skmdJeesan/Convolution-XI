@@ -71,13 +71,10 @@ const BackgroundGrid = () => (
         {/* 2. The "Holodeck" Grid Pattern */}
         <div className="absolute inset-0 z-0 opacity-100 
             bg-[radial-gradient(#4f4f4f_1px,transparent_1px)] 
-            [background-size:40px_40px] 
-            [mask-image:radial-gradient(ellipse_100%_100%_at_50%_0%,#000_70%,transparent_100%)]">
+            bg-size-[35px_35px]
+            mask-[radial-gradient(ellipse_100%_100%_at_50%_0%,#000_70%,transparent_100%)]">
         </div>
 
-        {/* 3. Central Spotlight REMOVED */}
-
-        {/* 4. Left Side: Your Atomic Orbit (Kept as is) */}
         <AtomicOrbit />
 
         {/* --- 5. THE CYBER MOON (UPDATED FOR PERFORMANCE) --- */}
@@ -85,7 +82,7 @@ const BackgroundGrid = () => (
 
             {/* --- NEW: PERFORMANCE FIX - IMAGE BASED GLOW --- */}
             {/* Placed behind the moon using z-[-1]. Negative insets make it larger than the moon container. Adjust opacity for intensity. */}
-            <div className="absolute -inset-20 md:-inset-20 z-[-1] opacity-100">
+            <div className="absolute -inset-20 md:-inset-10 z-[-1] opacity-100">
                  <Image
                     src="/assets/images/Pink_blur.png"
                     alt="Moon Glow"
@@ -94,7 +91,6 @@ const BackgroundGrid = () => (
                     priority
                 />
             </div>
-
             {/* The Main Sphere Gradient (Pink/Purple) - CSS SHADOW REMOVED HERE */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-fuchsia-600 via-purple-900 to-black opacity-100"></div>
 
@@ -134,6 +130,7 @@ const BackgroundGrid = () => (
                 priority
             />
         </div>
+
     </>
 );
 

@@ -42,7 +42,7 @@ export default function Footer() {
     return (
         <div id='contact' className='relative bg-[#03050c] -mt-0.5 flex flex-col pt-5 overflow-hidden z-0 pt-4'>
 
-            <div className="absolute top-0 left-0 w-full h-15 bg-linear-to-b from-[#03050d] via-[#03050d]/30 to-transparent z-10 pointer-events-none"></div>
+           
             {/* --- BACKGROUND LAYER --- */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
     
@@ -86,12 +86,13 @@ export default function Footer() {
                 {/* Grid */}
         <div
 
-            className="absolute inset-0 z-0 opacity-[0.13] md:opacity-[0.15]"
+            className="absolute inset-0 z-0 opacity-[0.12] md:opacity-[0.15]"
             style={{
                 backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`,
-                backgroundSize: '40px 40px'
+                backgroundSize: '30px 30px'
             }}
         ></div>
+         <div className="absolute top-0 left-0 w-full h-10 bg-linear-to-b from-[#0307126f]  to-transparent z-10 pointer-events-none"></div>
     </div>
 </div>
             <div className="w-full maxWidthForSections relative z-20">

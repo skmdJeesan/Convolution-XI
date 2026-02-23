@@ -41,8 +41,8 @@
   align-items: center;
   justify-content: center;
   height: 110dvh;
-  min-height: 700px;
-  max-height: 900px;
+  min-height: 730px;
+  /* max-height: 900px; */
   background-color: #000000;
   overflow: hidden;
   position: relative;
@@ -410,7 +410,7 @@
 }
 
 .centerPiece {
-  position: absolute; top: 50%; left: 50%;
+  position: absolute; top: 52%; left: 50%;
   transform: translate(-50%, -50%); width: 17rem; height: 30rem;
   display: flex; align-items: center; justify-content: center;
   pointer-events: none; z-index: 50; transform-style: preserve-3d;
