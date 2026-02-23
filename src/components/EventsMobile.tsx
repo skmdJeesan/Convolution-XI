@@ -1,86 +1,212 @@
 "use client";
-import ConvolutionCard from "./ConvolutionCard"
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay, Mousewheel } from 'swiper/modules';
-import { LuCircuitBoard } from "react-icons/lu";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import React, { useRef, useEffect, useCallback, useState } from "react";
+import ConvolutionCard, { Event } from "./ConvolutionCard";
 import './EventsMobile.css';
 
-interface Event {
-  id: string;
-  title: string;
-  desc: string;
-  icon: React.ReactNode;
-  image: string;
-}
+const EventsMobile = ({ events = [] }: { events: Event[] }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-const EventsMobile = ({events}: {events: Event[]}) => {
+  const paginationRef = useRef<HTMLDivElement>(null);
+  const prevBtnRef = useRef<HTMLButtonElement>(null);
+  const nextBtnRef = useRef<HTMLButtonElement>(null);
+  const activeIndexRef = useRef(0);
+
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+  const [isCarouselVisible, setIsCarouselVisible] = useState(false);
+  
+  const headerRef = useRef<HTMLDivElement>(null);
+  const carouselWrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target === headerRef.current) {
+              setIsHeaderVisible(true);
+            }
+            if (entry.target === carouselWrapperRef.current) {
+              setIsCarouselVisible(true);
+            }
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    if (headerRef.current) observer.observe(headerRef.current);
+    if (carouselWrapperRef.current) observer.observe(carouselWrapperRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleScroll = useCallback(() => {
+    if (!scrollRef.current) return;
+
+    requestAnimationFrame(() => {
+      const container = scrollRef.current;
+      if (!container) return;
+
+      const containerRect = container.getBoundingClientRect();
+      const containerCenter = containerRect.left + containerRect.width / 2;
+
+      const measurements = cardRefs.current.map((card, index) => {
+        if (!card || !card.parentElement) return null;
+
+        const rect = card.parentElement.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const distance = Math.abs(containerCenter - cardCenter);
+        return { index, distance, card };
+      });
+
+      let newActiveIndex = activeIndexRef.current;
+      let minDistance = Infinity;
+      const maxDistance = containerRect.width / 1.5;
+
+      measurements.forEach((data) => {
+        if (!data) return;
+        const { index, distance, card } = data;
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          newActiveIndex = index;
+        }
+
+        let progress = distance / maxDistance;
+        progress = Math.max(0, Math.min(progress, 1));
+
+        const scale = 1 - progress * 0.315;
+        const opacity = 1 - progress * 0.6;
+
+        card.style.transform = `scale(${scale})`;
+        card.style.opacity = opacity.toString();
+        card.style.zIndex = progress < 0.2 ? "20" : "10";
+      });
+
+      if (newActiveIndex !== activeIndexRef.current) {
+        activeIndexRef.current = newActiveIndex;
+
+        if (paginationRef.current) {
+          paginationRef.current.innerText = `${newActiveIndex + 1} / ${events.length}`;
+        }
+
+        if (prevBtnRef.current) {
+          prevBtnRef.current.disabled = newActiveIndex === 0;
+          if (newActiveIndex === 0) prevBtnRef.current.classList.add('disabled');
+          else prevBtnRef.current.classList.remove('disabled');
+        }
+
+        if (nextBtnRef.current) {
+          nextBtnRef.current.disabled = newActiveIndex === events.length - 1;
+          if (newActiveIndex === events.length - 1) nextBtnRef.current.classList.add('disabled');
+          else nextBtnRef.current.classList.remove('disabled');
+        }
+      }
+    });
+  }, [events.length]);
+
+  useEffect(() => {
+    handleScroll();
+    const scrollContainer = scrollRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+    }
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, [handleScroll]);
+
+  const scrollToSlide = useCallback((direction: 'prev' | 'next') => {
+    if (typeof window !== 'undefined' && 'vibrate' in navigator) {
+      navigator.vibrate(40);
+    }
+
+    const newIndex = direction === 'prev' ? activeIndexRef.current - 1 : activeIndexRef.current + 1;
+    if (!scrollRef.current || !cardRefs.current[newIndex]) return;
+
+    cardRefs.current[newIndex]?.parentElement?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }, []);
+
+  if (!events || events.length === 0) return null;
 
   return (
-    <div id="events" className="w-full bg-[#030303] flex flex-col items-center justify-start overflow-x-hidden relative">
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-[linear-linear(to_right,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-size-[25%_100%]" />
-        <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-purple-900/15 via-cyan-900/10 to-transparent pointer-events-none" />
-      </div>
-      <div className="relative z-10 w-full max-w-350 px-6 md:px-12 pt-24 pb-12 flex flex-col items-center text-center">
-        {/* <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-linear-to-r from-purple-500/10 to-cyan-500/10 border border-purple-500/30 backdrop-blur-sm animate-fade-in-down">
-          <LuCircuitBoard className="text-cyan-400 animate-pulse" />
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-cyan-400 text-xs font-bold tracking-[0.2em] uppercase">
-            Mission Timeline
-          </span>
-        </div> */}
+    // REMOVED: min-h-screen to allow the section to be exactly as tall as it needs to be
+    <div id="events" className="w-full bg-black flex flex-col items-center justify-start overflow-x-hidden relative py-4">
 
-        <h1 className="text-4xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-linear-to-b from-white via-purple-200 to-cyan-400 drop-shadow-2xl mb-6 relative">
-          The Events
-          <span className="absolute -inset-1 blur-2xl bg-linear-to-r from-purple-600/30 to-cyan-600/30 -z-10"></span>
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
+        <div className="absolute top-[10%] left-[-20%] w-[70%] h-[50%] bg-purple-900/30 blur-[120px] rounded-full mix-blend-screen" />
+        <div className="absolute bottom-[20%] right-[-20%] w-[80%] h-[50%] bg-cyan-900/20 blur-[120px] rounded-full mix-blend-screen" />
+      </div>
+
+      {/* TIGHTENED: Changed pt-24 to pt-16 and pb-8 to pb-4 */}
+      <div ref={headerRef} className="relative z-10 w-full max-w-[350px] px-6 pt-8 pb-4 flex flex-col items-center text-center">
+        <h1 className={`font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase ${isHeaderVisible ? 'animate-title-up' : 'opacity-0-start'}`}>
+            Events
+            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
         </h1>
 
-        <p className="max-w-2xl text-stone-400 text-sm md:text-lg font-medium leading-relaxed tracking-wide">
+        {/* TIGHTENED: Changed mt-10 to mt-4 */}
+        <p className={`max-w-2xl mt-8 text-stone-400 text-sm font-medium leading-relaxed tracking-wide ${isHeaderVisible ? 'animate-subtitle-up' : 'opacity-0-start'}`}>
           Prepare for deployment. Choose your domain and prove your skills in the
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-cyan-400 font-bold"> ultimate techno-management battlefield</span>.
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 font-bold"> ultimate techno-management battlefield</span>.
         </p>
-
-        {/* <div className="mt-12 w-full h-px bg-linear-to-r from-transparent via-purple-500/30 via-cyan-500/30 to-transparent relative">
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-1 bg-linear-to-r from-purple-500 to-cyan-500 rounded-full shadow-[0_0_20px_#a855f7,0_0_20px_#06b6d4]" />
-        </div> */}
-
       </div>
-      <Swiper 
-        className="w-full max-w-350 px-4 md:px-12 relative z-10 flex items-center justify-center gap-8 md:gap-0 text-white"
-        spaceBetween={30}
-        slidesPerView={1.5}
-        centeredSlides={true}
-        mousewheel={false}
-        // loop={true}
-        // autoplay={{
-        //   delay: 1500,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // }}
-        pagination={{
-          clickable: true,
-          type: 'fraction'
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation, Mousewheel]}
+
+      {/* TIGHTENED: Changed pb-20 to pb-10 */}
+      <div 
+        ref={carouselWrapperRef} 
+        className={`relative w-full z-10 flex flex-col items-center pb-10 ${isCarouselVisible ? 'animate-carousel-up' : 'opacity-0-start'}`}
       >
-        {events.map((event, index) => {
-          //const isEven = index % 2 === 0;
-          return (
-            <SwiperSlide
-              key={index}
-              className={`w-full min-h-auto md:min-h-[50vh] flex items-center py-6 md:py-20 justify-center`}
+        <div
+          ref={scrollRef}
+          className="w-full flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-0 px-[15vw]"
+        >
+          {events.filter(Boolean).map((event, index) => (
+            <div
+              key={event.id || index}
+              data-index={index}
+              className="flex-none w-[70vw] snap-center snap-always shrink-0 py-8"
             >
-              <div className="w-full max-w-125 md:max-w-212.5 shrink-0 transform transition-all duration-700 hover:z-20 md:hover:scale-[1.02]">
-                <ConvolutionCard data={event}/>
+              <div
+                ref={(el) => { cardRefs.current[index] = el; }}
+                className="transform-gpu will-change-transform w-full h-full"
+              >
+                <ConvolutionCard data={event} index={index} />
               </div>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+            </div>
+          ))}
+        </div>
+
+        <div className="absolute top-1/2 -translate-y-1/2 w-full max-w-[95vw] px-2 flex justify-between items-center pointer-events-none z-20">
+          <button
+            ref={prevBtnRef}
+            onClick={() => scrollToSlide('prev')}
+            className="nav-button-prev pointer-events-auto disabled"
+            aria-label="Previous event"
+          />
+          <button
+            ref={nextBtnRef}
+            onClick={() => scrollToSlide('next')}
+            className={`nav-button-next pointer-events-auto ${events.length <= 1 ? 'disabled' : ''}`}
+            aria-label="Next event"
+          />
+        </div>
+
+        <div
+          ref={paginationRef}
+          className="mt-2 text-cyan-400 font-mono text-sm tracking-widest font-bold"
+        >
+          1 / {events.length}
+        </div>
+      </div>
     </div>
   );
 };
