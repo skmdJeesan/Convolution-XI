@@ -153,7 +153,7 @@ const EventsMobile = ({ events = [] }: { events: Event[] }) => {
       </div>
 
       {/* TIGHTENED: Changed pt-24 to pt-16 and pb-8 to pb-4 */}
-      <div ref={headerRef} className="relative z-10 w-full max-w-[350px] px-6 pt-8 pb-4 flex flex-col items-center text-center">
+      <div className="relative z-50 pt-15 pb-8 flex flex-col items-center justify-center">
         <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
             Events
             <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
