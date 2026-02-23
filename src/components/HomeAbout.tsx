@@ -84,7 +84,7 @@ const Background = () => {
       <div className="absolute top-0 left-0 w-full h-20 bg-linear-to-b from-black to-transparent z-10"></div>
       
       <div
-        className="absolute inset-0 opacity-[0.13] md:opacity-[0.15]"
+        className="absolute inset-0 opacity-[0.12] md:opacity-[0.15]"
         style={{ backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, backgroundSize: '30px 30px' }}
       ></div>
 
@@ -120,9 +120,9 @@ const Background = () => {
 const StatCard = ({ icon: Icon, label, value, colorClass, borderClass }: { icon: any, label: string, value: React.ReactNode, colorClass: string, borderClass: string }) => (
   <motion.div
     variants={itemVariants}
-    className={`relative flex flex-col items-center sm:items-start p-2 sm:p-4 lg:p-5 border-l-[2px] sm:border-l-[3px] ${borderClass} overflow-hidden group transition-colors bg-[#1a1a20]/60 backdrop-blur-md w-full`}
+    className={`relative flex flex-col items-center sm:items-start p-2 sm:p-4 lg:p-5 border-l-2 sm:border-l-[3px] ${borderClass} overflow-hidden group transition-colors bg-[#1a1a20]/60 backdrop-blur-md w-full`}
   >
-    <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-br ${colorClass} transition-opacity duration-300`}></div>
+    <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 bg-linear-to-br ${colorClass} transition-opacity duration-300`}></div>
     <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-2 lg:mb-3 z-10">
       <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white/80 group-hover:text-white transition-colors" />
       {(label === "Time Remaining") && (
@@ -131,7 +131,7 @@ const StatCard = ({ icon: Icon, label, value, colorClass, borderClass }: { icon:
         </span>
       )}
     </div>
-    <span className={`text-base sm:text-xl lg:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${colorClass} tracking-wider font-rajdhani z-10`}>
+    <span className={`text-base sm:text-xl lg:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r ${colorClass} tracking-wider font-rajdhani z-10`}>
       {value}
     </span>
     <span className="text-xs sm:text-sm font-semibold text-gray-400 uppercase tracking-widest font-rajdhani mt-0.5 sm:mt-1 group-hover:text-gray-200 transition-colors z-10 text-center sm:text-left">{label}</span>

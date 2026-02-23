@@ -357,6 +357,9 @@
     height: 500px; 
     animation: none;
   }
+  .team-bg-gradient::after{
+    opacity: 0.12;
+  }
   .team-spotlight-glow {
     display: none !important; 
   }
