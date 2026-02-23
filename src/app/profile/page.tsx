@@ -40,18 +40,27 @@ const DataRow = ({ label, value, icon: Icon, fullWidth = false }: { label: strin
 
 export default function ProfilePage() {
   const [loading, setLoading] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [showCurtain, setShowCurtain] = useState(true);
   const data = useContext(userData)
-  
-  // state for userData fetching
-  const [isDataFetching, setIsDataFetching] = useState(true)
+
 
   // turn off loader once data populates
-  useEffect(() => {
-    // If context successfully populates the user object, stop loading!
+ useEffect(() => {
+    // Only start the reveal if the data is ready
     if (data?.user) {
-      setIsDataFetching(false)
+      const startRevealTimer = setTimeout(() => {
+        setIsAnimating(true);
+        setTimeout(() => {
+          setShowCurtain(false);
+        }, 700); 
+
+      }, 800); 
+
+      // Cleanup to prevent memory leaks if they navigate away quickly
+      return () => clearTimeout(startRevealTimer);
     }
-  }, [data?.user])
+  }, [data?.user]);
 
   
   const handleSignOut = async () => {
@@ -76,16 +85,17 @@ export default function ProfilePage() {
   const eventsList = []; 
   const hasEvents = eventsList.length ? true : false; 
 
-  // If user is still waiting on the context, block the page render
-  if (isDataFetching) {
-    return (
-      <div className="min-h-screen w-full bg-[#050508] flex items-center justify-center">
-        <Loading /> 
-      </div>
-    )
-  }
-
   return (
+    <>
+    {showCurtain && (
+        <div 
+          className={`fixed inset-0 z-[9999] bg-[#050508] flex items-center justify-center transition-opacity duration-700 ease-in-out
+            ${isAnimating ? 'opacity-0 pointer-events-none' : 'opacity-100'}
+          `}
+        >
+          <Loading /> 
+        </div>
+      )}
     <div className="min-h-screen w-full relative text-white font-sans flex flex-col items-center overflow-x-hidden selection:bg-cyan-500/30 pb-10">
       
       <Background />
@@ -219,5 +229,6 @@ export default function ProfilePage() {
 
       </main>
     </div>
+    </>
   )
 }
