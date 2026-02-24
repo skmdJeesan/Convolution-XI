@@ -115,7 +115,7 @@ export default function ForgotPasswordPage() {
                                   id="email"
                                   type="email"
                                   placeholder="name@example.com"
-                                  className="w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider"
+                                  className="w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider"
                                   value={email}
                                   onChange={(e) => setEmail(e.target.value)}
                                   spellCheck={false}

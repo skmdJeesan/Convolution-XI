@@ -125,7 +125,7 @@ export default function Signin() {
                              <div className={inputContainerClass}>
                                 <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
                                 <div className={iconClass}><IoMailOutline size={18} /></div>
-                                <input type="email" name='email' value={formData.email} onChange={handleChange} required spellCheck={false} className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' />
+                                <input type="email" placeholder='name@example.com'  name='email' value={formData.email} onChange={handleChange} required spellCheck={false} className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' />
                              </div>
                         </div>
                         <div className='group/input relative'>
@@ -133,7 +133,7 @@ export default function Signin() {
                              <div className={inputContainerClass}>
                                 <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
                                 <div className={iconClass}><IoLockClosedOutline size={18} /></div>
-                                <input type={showPassword ? "text" : "password"} name='password' value={formData.password} onChange={handleChange} required spellCheck={false} className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' />
+                                <input type={showPassword ? "text" : "password"} name='password' placeholder='*******' value={formData.password} onChange={handleChange} required spellCheck={false} className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600 outline-none font-rajdhani tracking-wider' />
                                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="pr-4 text-cyan-400 md:text-cyan-700 md:hover:text-cyan-400 transition-colors">{showPassword ? <IoEyeOffOutline size={18} /> : <IoEyeOutline size={18} />}</button>
                              </div>
                         </div>
@@ -143,9 +143,9 @@ export default function Signin() {
                                     <input type="checkbox" className="peer absolute opacity-0 w-full h-full cursor-pointer" />
                                     <div className="absolute inset-0.5 bg-cyan-400 scale-0 peer-checked:scale-100 transition-transform duration-150"></div>
                                 </div>
-                                <span className="font-rajdhani text-sm sm:text-xs font-medium text-cyan-300 md:text-gray-400 uppercase tracking-wide">Remember</span>
+                                <span className="font-rajdhani text-sm sm:text-xs font-medium text-cyan-300 hover:text-cyan-300 md:text-gray-300 uppercase tracking-wide">Remember</span>
                             </label>
-                            <TransitionLink href="/forget-password"  className='font-rajdhani text-sm sm:text-xs font-medium text-cyan-300 md:text-gray-400 md:hover:text-cyan-300 uppercase tracking-wide transition-colors'>Recover Key?</TransitionLink>
+                            <TransitionLink href="/forget-password"  className='font-rajdhani text-sm sm:text-xs font-medium text-cyan-300 md:text-gray-300 md:hover:text-cyan-300 uppercase tracking-wide transition-colors'>Recover Key?</TransitionLink>
                         </div>
                         <button type="submit" disabled={loading} className="font-orbitron group relative w-full h-10 mt-2 bg-cyan-500 hover:bg-cyan-400 text-[#05080f] text-sm tracking-widest uppercase font-bold transition-all duration-300 [clip-path:polygon(12px_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%,0_12px)] shadow-[0_0_20px_rgba(34,211,238,0.3)] cursor-pointer">
                           <span className="relative z-10 flex items-center justify-center gap-3">{loading ? <Loader /> : <><IoFingerPrintOutline className="text-lg" />Initiate Login</>}</span>

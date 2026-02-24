@@ -178,7 +178,7 @@ export default function SignupForm() {
                                 spellCheck={false}
                               autoCorrect="off"  
                               autoCapitalize="off" 
-                                className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' 
                             />
                           </div>
                     </div>
@@ -200,7 +200,7 @@ export default function SignupForm() {
                                     spellCheck={false}
                               autoCorrect="off"  
                               autoCapitalize="off" 
-                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                    className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' 
                                 />
                               </div>
                         </div>
@@ -219,7 +219,7 @@ export default function SignupForm() {
                                     spellCheck={false}
                               autoCorrect="off"  
                               autoCapitalize="off" 
-                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                    className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' 
                                 />
                                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="pr-3 text-cyan-700 hover:text-cyan-400 transition-colors focus:outline-none">{showPassword ? <IoEyeOffOutline size={14} /> : <IoEyeOutline size={14} />}</button>
                               </div>
@@ -243,7 +243,7 @@ export default function SignupForm() {
                                     spellCheck={false}
                               autoCorrect="off"  
                               autoCapitalize="off" 
-                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                    className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' 
                                 />
                               </div>
                         </div>
@@ -262,7 +262,7 @@ export default function SignupForm() {
                                     spellCheck={false}
                               autoCorrect="off"  
                               autoCapitalize="off" 
-                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                    className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' 
                                 />
                               </div>
                         </div>
@@ -285,7 +285,7 @@ export default function SignupForm() {
                                     spellCheck={false}
                               autoCorrect="off"  
                               autoCapitalize="off" 
-                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                    className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' 
                                 />
                               </div>
                         </div>
