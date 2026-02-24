@@ -78,10 +78,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
         <div className="absolute bottom-[4%] -right-[20%] w-80 h-120 bg-cyan-900/20 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute top-[40%] -left-[20%] w-80 h-120 bg-fuchsia-600/20 rounded-full blur-[100px] pointer-events-none" />
 
-        {/* Main content */}
+        {/* main content */}
         <div className="relative h-full flex flex-col p-6 md:p-8">
           
-          {/* Closing Icon */}
+          {/* x Icon */}
           <div className="flex justify-end mb-6">
             <button 
                 onClick={onClose}
@@ -97,7 +97,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
             </button>
           </div>
 
-          {/* Navigation Links */}
+          {/* links */}
           <nav className="flex-1 flex flex-col justify-start pt-4 md:pt-8 overflow-y-auto no-scrollbar">
             <ul className="flex flex-col gap-6 md:gap-8">
               {links.map((item, index) => (
@@ -116,9 +116,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
               ))}
             </ul>
 
-            {/* Separator */}
+            {/* separator */}
             <div 
-              className={`h-px bg-linear-to-r from-transparent via-white/10 to-transparent my-8 w-full transform transition-all duration-700 ${isOpen ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}`}
+              className={`h-o.5 bg-linear-to-r from-transparent via-white/20 to-transparent my-8 w-full transform transition-all duration-700 ${isOpen ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}`}
               style={{ transitionDelay: isOpen ? `${200 + links.length * 50}ms` : "0ms" }}
             />
 

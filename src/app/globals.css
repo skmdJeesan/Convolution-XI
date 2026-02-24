@@ -137,6 +137,9 @@
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+.animate-float-hero {
+  animation: float 15s ease-in-out infinite;
+}
 
 /* Optional: If you want a class for the reactor instead of the long [...] syntax */
 .animate-spin-slow {
