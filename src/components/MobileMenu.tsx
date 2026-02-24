@@ -131,7 +131,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                     <TransitionLink
                       href="/profile"
                       onClick={(e) => onLinkClick(e, "/profile")}
-                      className={`${authButtonStyle} bg-fuchsia-600 text-gray-200 border-transparent ${
+                      className={`${authButtonStyle} bg-fuchsia-700 text-gray-200 border-transparent ${
                         isOpen
                           ? "translate-y-0 opacity-100"
                           : "translate-y-full opacity-0"
@@ -143,7 +143,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                       }}
                     >
                       <IoPersonOutline className="text-lg mb-0.5" />
-                      <span className="font-orbitron text-sm font-bold uppercase">My Profile</span>
+                      <span className="font-orbitron text-sm font-bold uppercase">Profile</span>
                     </TransitionLink>
                 </div>
               ) : (
