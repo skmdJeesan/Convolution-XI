@@ -78,7 +78,7 @@ export default function ResetPassword({ params }: ResetPasswordProps) {
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-md px-4 my-auto"
+        className="relative z-10 w-full md:max-w-[70vw] lg:max-w-95 px-4 my-auto"
       >
         <div className="relative group">
             <div className="absolute -inset-px bg-linear-to-b from-cyan-500/30 via-purple-500/20 to-cyan-500/30 rounded-sm opacity-70 group-hover:opacity-100 transition duration-500 [clip-path:polygon(15px_0,100%_0,100%_calc(100%-15px),calc(100%-15px)_100%,0_100%,0_15px)]"></div>
@@ -89,8 +89,9 @@ export default function ResetPassword({ params }: ResetPasswordProps) {
                 {/* Header Bar */}
                 <div className="flex items-center justify-between px-5 py-2.5 bg-[#0f1219] border-b border-cyan-800/20">
                     <div className="flex gap-1.5">
-                          <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></div>
-                          <div className="w-1.5 h-1.5 bg-purple-500/50 rounded-full"></div>
+                            <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                            <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                     </div>
                     <span className="font-rajdhani text-[10px] tracking-[0.2em] text-cyan-400/80 font-semibold uppercase">Secure Update</span>
                 </div>

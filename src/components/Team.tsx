@@ -173,7 +173,7 @@ function Team() {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.3 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.4 } }
   };
 
   const cardVariants = {
@@ -209,7 +209,7 @@ function Team() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "100px" }} // Added margin so it prepares earlier
+          viewport={{ once: true, amount: 0.15 }} //when the page is 15% travelled then reveal
         >
           {teamMembers.map((member, index) => (
             <TeamCard key={index} member={member} variants={cardVariants} />

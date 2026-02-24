@@ -58,7 +58,7 @@ export default function Signin() {
   const iconClass = "pl-4 pr-3 transition-colors text-cyan-400 md:text-cyan-600 group-focus-within/input:text-cyan-400";
 
   return (
-    <div className='relative min-h-dvh w-full flex items-center justify-center overflow-x-hidden overflow-y-auto font-mono text-cyan-50 bg-[#050505] selection:bg-fuchsia-500/30 py-6 sm:py-0'>
+    <div className='relative min-h-dvh w-full flex items-center justify-center overflow-x-hidden overflow-y-auto text-cyan-50 bg-[#050505] selection:bg-fuchsia-500/30 py-6 sm:py-0'>
       <style jsx global>{`
         input:-webkit-autofill,
         input:-webkit-autofill:hover, 
@@ -81,7 +81,7 @@ export default function Signin() {
 
        <TransitionLink 
               href="/" 
-              className="absolute top-6 left-6 z-50 flex items-center gap-2 px-4 py-2.5 bg-cyan-950/40  border-cyan-500/50  lg:bg-black/30 lg:border-white/10 lg:hover:border-cyan-500/50 lg:hover:bg-cyan-950/40 lg:hover:shadow-cyan-500/20 backdrop-blur-md border  rounded-full transition-all duration-300 shadow-lg  group cursor-pointer overflow-hidden"
+              className="hidden md:flex absolute top-6 left-6 z-50 items-center gap-2 px-4 py-2.5 bg-cyan-950/40  border-cyan-500/50  lg:bg-black/30 lg:border-white/10 lg:hover:border-cyan-500/50 lg:hover:bg-cyan-950/40 lg:hover:shadow-cyan-500/20 backdrop-blur-md border  rounded-full transition-all duration-300 shadow-lg  group cursor-pointer overflow-hidden mb-4"
             >
               <IoArrowBack className="text-cyan-400 text-lg group-hover:-translate-x-1 transition-transform duration-300" />
               <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-cyan-100 group-hover:text-white uppercase transition-colors"><FlipLink>Return&nbsp;Home</FlipLink></span>
@@ -92,18 +92,26 @@ export default function Signin() {
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-95 px-4 my-auto"
+        className="relative z-10 w-full md:max-w-[85vw] lg:max-w-95 px-4 my-auto"
       >
         <div className="relative group">
             <div className="absolute -inset-px bg-linear-to-b from-cyan-500/30 via-purple-500/20 to-cyan-500/30 rounded-sm opacity-70 group-hover:opacity-100 transition duration-500 [clip-path:polygon(15px_0,100%_0,100%_calc(100%-15px),calc(100%-15px)_100%,0_100%,0_15px)]"></div>
             <div className="relative bg-[#080a0f]/95 backdrop-blur-xl [clip-path:polygon(15px_0,100%_0,100%_calc(100%-15px),calc(100%-15px)_100%,0_100%,0_15px)] shadow-2xl">
+                
                 <div className="flex items-center justify-between px-5 py-2.5 bg-[#0f1219] border-b border-cyan-800/20">
-                    <div className="flex gap-1.5">
-                         <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></div>
-                         <div className="w-1.5 h-1.5 bg-purple-500/50 rounded-full"></div>
+                    <div className="flex items-center gap-1.5">
+                         <div className="hidden md:flex gap-1.5">
+                            <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                             <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                         </div>
+                         <TransitionLink href="/" className="md:hidden flex items-center group cursor-pointer -ml-1">
+                            <IoArrowBack className="text-cyan-400 text-2xl group-hover:-translate-x-1 transition-transform duration-300" />
+                         </TransitionLink>
                     </div>
                     <span className="font-rajdhani text-[10px] tracking-[0.2em] text-cyan-400/80 font-semibold uppercase">Sys_Ready</span>
                 </div>
+
                 <div className="p-6">
                     <div className="text-center mb-5">
                         <h1 className="font-orbitron text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 mb-1">SYSTEM LOGIN</h1>

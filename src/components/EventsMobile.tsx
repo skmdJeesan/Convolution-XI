@@ -2,6 +2,8 @@
 import React, { useRef, useEffect, useCallback, useState } from "react";
 import ConvolutionCard, { Event } from "./ConvolutionCard";
 import './EventsMobile.css';
+import { motion, useInView } from "framer-motion";
+
 
 const EventsMobile = ({ events = [] }: { events: Event[] }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -138,7 +140,7 @@ const EventsMobile = ({ events = [] }: { events: Event[] }) => {
 
   return (
     // REMOVED: min-h-screen to allow the section to be exactly as tall as it needs to be
-    <div id="events" className="w-full bg-black flex flex-col items-center justify-start overflow-x-hidden relative py-4">
+    <div id="events" className="w-full bg-black flex flex-col items-center justify-start overflow-hidden relative py-4">
 
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
@@ -152,13 +154,19 @@ const EventsMobile = ({ events = [] }: { events: Event[] }) => {
       ></div>
       </div>
 
-      {/* TIGHTENED: Changed pt-24 to pt-16 and pb-8 to pb-4 */}
-      <div className="relative z-50 pt-15 pb-8 flex flex-col items-center justify-center">
+      
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 flex flex-col items-center pointer-events-none select-none mb-6"
+      >
         <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
-            Events
-            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
-          </h1>
-      </div>
+          Events
+          <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
+        </h1>
+      </motion.div>
 
       <div 
         ref={carouselWrapperRef} 
@@ -199,12 +207,12 @@ const EventsMobile = ({ events = [] }: { events: Event[] }) => {
           />
         </div>
 
-        <div
+        {/* <div
           ref={paginationRef}
           className="mt-2 text-cyan-400 font-mono text-sm tracking-widest font-bold"
         >
           1 / {events.length}
-        </div>
+        </div> */}
       </div>
     </div>
   );
