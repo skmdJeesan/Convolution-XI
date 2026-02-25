@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useState, useEffect } from 'react';
 import { CalendarClock, Users, Trophy, Sparkles } from 'lucide-react';
+import { motion, useInView } from "framer-motion";
 
 const EVENT_DATE = "2026-03-27T09:00:00";
 
@@ -96,12 +97,18 @@ export default function MobileAboutContent({ userCount }: { userCount: number })
     <div
       className="xl:hidden  flex flex-col justify-center items-center text-center space-y-8 w-full md:px-20 lg:px-32"
     >
-      <div className="flex flex-col items-center pointer-events-none select-none mb-2">
-        <h1 className="relative font-orbitron font-bold text-3xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 uppercase">
+        <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 flex flex-col items-center pointer-events-none select-none mb-6"
+      >
+        <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
           About Us
-          <span className="absolute -bottom-2 left-0 right-0 mx-auto w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
+          <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
         </h1>
-      </div>
+      </motion.div>
 
       <div className="relative p-6 border-l-4 border-cyan-500/20 bg-linear-to-r from-cyan-900/10 to-transparent rounded-r-2xl w-full">
         <div className="absolute top-0 -left-1 w-1 h-12 bg-cyan-400"></div>

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from "next/image";
 import { FaPlus } from 'react-icons/fa6'; 
-
+import { motion, useInView } from "framer-motion";
 const Data = [
     {
         question: "What is Convolution?",
@@ -112,12 +112,18 @@ export default function FaqSection() {
                     
                     {/* Header */}
                     <div className="text-center mb-12 md:mb-16 space-y-4 flex flex-col items-center">
-                        <div className="relative inline-block">
-                            <h1 className="font-orbitron font-bold text-center text-2xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-blue-200 to-purple-200 drop-shadow-sm sm:whitespace-nowrap uppercase">
+                       <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="relative inline-block"
+      >
+        <h1 className="font-orbitron font-bold text-center text-2xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-blue-200 to-purple-200 drop-shadow-sm sm:whitespace-nowrap uppercase">
                                 Frequently Asked questions
                                 <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-200/60 to-transparent"></span>
                             </h1>
-                        </div>
+      </motion.div>
                     </div>
                     
                     <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start relative">

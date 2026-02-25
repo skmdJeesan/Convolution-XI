@@ -4,6 +4,7 @@ import Image from 'next/image';
 import styles from './EventCarousel.module.css';
 import TransitionLink from './TransitionLink';
 import { FaArrowRight } from 'react-icons/fa6';
+import FlipLink from './FlipLink';
 
 interface Event {
   id: string;
@@ -77,8 +78,8 @@ const EventCarousel = ({ events }: { events: Event[] }) => {
             <div className={styles.iconContainer}>{event.icon}</div>
             <h3 className={styles.cardTitle}>{event.title}</h3>
             <p className={styles.cardDesc}>{event.desc}</p>
-            <TransitionLink href={`/events/${event.id}`} className={styles.exploreBtn}>
-              Explore <FaArrowRight className="ml-2" />
+            <TransitionLink href={`/events/${event.id}`} className={`${styles.exploreBtn} group transition-all duration-600`}>
+              <FlipLink>Explore</FlipLink> <FaArrowRight className="ml-2 translate-x-0 group-hover:translate-x-1.5" />
             </TransitionLink>
           </div>
         </div>

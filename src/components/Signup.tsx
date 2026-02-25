@@ -119,9 +119,10 @@ export default function SignupForm() {
           <DecorativeIcons/>
       </div>
       
+        {/* HIDDEN ON MOBILE */}
         <TransitionLink 
         href="/" 
-        className="absolute top-6 left-6 z-50 flex items-center gap-2 px-4 py-2.5 bg-cyan-950/40  border-cyan-500/50  lg:bg-black/30 lg:border-white/10 lg:hover:border-cyan-500/50 lg:hover:bg-cyan-950/40 lg:hover:shadow-cyan-500/20 backdrop-blur-md border  rounded-full transition-all duration-300 shadow-lg  group cursor-pointer overflow-hidden"
+        className="hidden md:flex absolute top-6 left-6 z-50 items-center gap-2 px-4 py-2.5 bg-cyan-950/40  border-cyan-500/50  lg:bg-black/30 lg:border-white/10 lg:hover:border-cyan-500/50 lg:hover:bg-cyan-950/40 lg:hover:shadow-cyan-500/20 backdrop-blur-md border  rounded-full transition-all duration-300 shadow-lg  group cursor-pointer overflow-hidden"
       >
         <IoArrowBack className="text-cyan-400 text-lg group-hover:-translate-x-1 transition-transform duration-300" />
         <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-cyan-100 group-hover:text-white uppercase transition-colors"><FlipLink>Return&nbsp;Home</FlipLink></span>
@@ -131,7 +132,7 @@ export default function SignupForm() {
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-162.5 px-4 my-auto" 
+        className="relative z-10 w-full md:max-w-[85vw] lg:max-w-162.5 px-4 my-auto" 
       >
         
         <div className="relative group">
@@ -141,9 +142,15 @@ export default function SignupForm() {
             <div className="relative bg-[#080a0f]/95 backdrop-blur-xl [clip-path:polygon(20px_0,100%_0,100%_calc(100%-20px),calc(100%-20px)_100%,0_100%,0_20px)] shadow-2xl">
                 
                 <div className="flex items-center justify-between px-5 py-2 bg-[#0f1219] border-b border-cyan-800/20">
-                    <div className="flex gap-1.5">
-                         <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></div>
-                         <div className="w-1.5 h-1.5 bg-purple-500/50 rounded-full"></div>
+                    <div className="flex items-center gap-1.5">
+                         <div className="hidden md:flex gap-1.5">
+                             <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                             <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                         </div>
+                         <TransitionLink href="/" className="md:hidden flex items-center group cursor-pointer -ml-1">
+                            <IoArrowBack className="text-cyan-400 text-2xl group-hover:-translate-x-1 transition-transform duration-300" />
+                         </TransitionLink>
                     </div>
                     <span className="font-rajdhani text-[10px] tracking-[0.2em] text-cyan-400/80 font-semibold uppercase">Sys_Reg_v4</span>
                 </div>
@@ -171,12 +178,12 @@ export default function SignupForm() {
                                 spellCheck={false}
                               autoCorrect="off"  
                               autoCapitalize="off" 
-                                className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' 
                             />
                           </div>
                     </div>
 
-                    {/* Email & Password Grid*/}
+                    {/* Email & Password */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div className='group/input relative'>
                               <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Email</label></div>
@@ -193,7 +200,7 @@ export default function SignupForm() {
                                     spellCheck={false}
                               autoCorrect="off"  
                               autoCapitalize="off" 
-                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                    className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' 
                                 />
                               </div>
                         </div>
@@ -212,14 +219,14 @@ export default function SignupForm() {
                                     spellCheck={false}
                               autoCorrect="off"  
                               autoCapitalize="off" 
-                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                    className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' 
                                 />
                                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="pr-3 text-cyan-700 hover:text-cyan-400 transition-colors focus:outline-none">{showPassword ? <IoEyeOffOutline size={14} /> : <IoEyeOutline size={14} />}</button>
                               </div>
                         </div>
                     </div>
 
-                    {/* Phone & Institution Grid */}
+                    {/* Phone & Institution */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div className='group/input relative'>
                               <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Phone Number</label></div>
@@ -236,7 +243,7 @@ export default function SignupForm() {
                                     spellCheck={false}
                               autoCorrect="off"  
                               autoCapitalize="off" 
-                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                    className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' 
                                 />
                               </div>
                         </div>
@@ -255,13 +262,13 @@ export default function SignupForm() {
                                     spellCheck={false}
                               autoCorrect="off"  
                               autoCapitalize="off" 
-                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                    className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' 
                                 />
                               </div>
                         </div>
                     </div>
 
-                    {/* Department & Year Grid */}
+                    {/* Department & Year */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div className='group/input relative'>
                               <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Department</label></div>
@@ -278,7 +285,7 @@ export default function SignupForm() {
                                     spellCheck={false}
                               autoCorrect="off"  
                               autoCapitalize="off" 
-                                    className='w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider' 
+                                    className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' 
                                 />
                               </div>
                         </div>

@@ -80,17 +80,18 @@ export default function ForgotPasswordPage() {
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-95 px-4 my-auto"
+        className="relative z-10 w-full md:max-w-[70vw] lg:max-w-95 px-4 my-auto"
       >
-        <div className="relative group">
-            <div className="absolute -inset-px bg-linear-to-b from-cyan-500/30 via-purple-500/20 to-cyan-500/30 rounded-sm opacity-70 group-hover:opacity-100 transition duration-500 [clip-path:polygon(15px_0,100%_0,100%_calc(100%-15px),calc(100%-15px)_100%,0_100%,0_15px)]"></div>
+        <div className="relative group/panel">
+            <div className="absolute -inset-px bg-linear-to-b from-cyan-500/30 via-purple-500/20 to-cyan-500/30 rounded-sm opacity-70 group-hover/panel:opacity-100 transition duration-500 [clip-path:polygon(15px_0,100%_0,100%_calc(100%-15px),calc(100%-15px)_100%,0_100%,0_15px)]"></div>
 
             <div className="relative bg-[#080a0f]/95 backdrop-blur-xl [clip-path:polygon(15px_0,100%_0,100%_calc(100%-15px),calc(100%-15px)_100%,0_100%,0_15px)] shadow-2xl">
                 
                 <div className="flex items-center justify-between px-5 py-2.5 bg-[#0f1219] border-b border-cyan-800/20">
                     <div className="flex gap-1.5">
-                         <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></div>
-                         <div className="w-1.5 h-1.5 bg-purple-500/50 rounded-full"></div>
+                         <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                             <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                     </div>
                     <span className="font-rajdhani text-[10px] tracking-[0.2em] text-cyan-400/80 font-semibold uppercase">Sys_Recovery</span>
                 </div>
@@ -114,7 +115,7 @@ export default function ForgotPasswordPage() {
                                   id="email"
                                   type="email"
                                   placeholder="name@example.com"
-                                  className="w-full bg-transparent px-2 text-sm text-cyan-100 placeholder-cyan-800/60 outline-none font-rajdhani tracking-wider"
+                                  className="w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider"
                                   value={email}
                                   onChange={(e) => setEmail(e.target.value)}
                                   spellCheck={false}
@@ -158,7 +159,7 @@ export default function ForgotPasswordPage() {
 
                     
                     <div className="mt-6 text-center">
-                        <TransitionLink href="/login" className="font-rajdhani text-sm font-medium text-cyan-300 md:text-gray-400 md:hover:text-cyan-300 uppercase tracking-wide transition-colors group inline-flex items-center gap-1">
+                        <TransitionLink href="/login" className="group font-rajdhani text-sm font-medium text-cyan-300 md:text-slate-300 md:hover:text-cyan-300 uppercase tracking-wide transition-colors inline-flex items-center gap-1">
                             <IoArrowBack className="group-hover:-translate-x-1 transition-transform" /> Return to Login
                         </TransitionLink>
                     </div>

@@ -1,12 +1,11 @@
 'use client'
 import FlipLink from '@/components/FlipLink'
 import Loader from '@/components/Loader'
-import Loading from "@/app/loading";
 import { userData } from '@/context/UserContext'
 import { signOut } from 'next-auth/react'
 import Image from 'next/image'
 import profileIcon from "@/assets/images/Robot_Profile.jpg";
-import React, { useContext, useState, useEffect } from 'react' // Added useEffect
+import React, { useContext, useState } from 'react'
 import { IoArrowBack, IoLogOutOutline, IoHardwareChipOutline, IoTimeOutline, IoSchoolOutline, IoCodeSlashOutline, IoWarningOutline, IoMailOutline, IoCallOutline, IoQrCodeOutline, IoListOutline } from 'react-icons/io5'
 import TransitionLink from '@/components/TransitionLink'
 
@@ -14,12 +13,12 @@ import TransitionLink from '@/components/TransitionLink'
 const Background = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
     <div className="absolute inset-0 bg-[#050508]"></div>
-    <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] bg-purple-900/20 blur-[100px] rounded-full mix-blend-screen"></div>
+    <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] bg-purple-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="block lg:hidden absolute top-[20%] left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] bg-fuchsia-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="hidden lg:block absolute bottom-[-10%] right-[-10%] w-[60vw] h-[70vh] bg-cyan-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="block lg:hidden absolute bottom-[-10%] right-[-10%] w-[80vw] h-[70vh] bg-cyan-900/25 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="block lg:hidden absolute bottom-[2%] left-[-10%] w-[40vw] h-[50vh] bg-purple-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
-    <div className="hidden lg:block absolute bottom-[2%] left-[-10%] w-[60vw] h-[80vh] bg-purple-950/20 blur-[100px] rounded-full mix-blend-screen"></div>
+    <div className="hidden lg:block absolute bottom-[2%] left-[-10%] w-[60vw] h-[80vh] bg-purple-900/20 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[50px_50px] mask-[radial-gradient(ellipse_at_center,black_50%,transparent_90%)]"></div>
   </div>
 );
@@ -40,28 +39,7 @@ const DataRow = ({ label, value, icon: Icon, fullWidth = false }: { label: strin
 
 export default function ProfilePage() {
   const [loading, setLoading] = useState(false)
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [showCurtain, setShowCurtain] = useState(true);
   const data = useContext(userData)
-
-
-  // turn off loader once data populates
- useEffect(() => {
-    // Only start the reveal if the data is ready
-    if (data?.user) {
-      const startRevealTimer = setTimeout(() => {
-        setIsAnimating(true);
-        setTimeout(() => {
-          setShowCurtain(false);
-        }, 700); 
-
-      }, 800); 
-
-      // Cleanup to prevent memory leaks if they navigate away quickly
-      return () => clearTimeout(startRevealTimer);
-    }
-  }, [data?.user]);
-
   
   const handleSignOut = async () => {
     setLoading(true)
@@ -83,19 +61,8 @@ export default function ProfilePage() {
   
   // Here the events will be added
   const eventsList = []; 
-  const hasEvents = eventsList.length ? true : false; 
-
+  const hasEvents = eventsList.length? true: false; 
   return (
-    <>
-    {showCurtain && (
-        <div 
-          className={`fixed inset-0 z-[9999] bg-[#050508] flex items-center justify-center transition-opacity duration-700 ease-in-out
-            ${isAnimating ? 'opacity-0 pointer-events-none' : 'opacity-100'}
-          `}
-        >
-          <Loading /> 
-        </div>
-      )}
     <div className="min-h-screen w-full relative text-white font-sans flex flex-col items-center overflow-x-hidden selection:bg-cyan-500/30 pb-10">
       
       <Background />
@@ -136,7 +103,7 @@ export default function ProfilePage() {
                       <IoQrCodeOutline className="text-2xl text-cyan-400" />
                       <div className="flex flex-col items-start">
                           <span className="text-[9px] text-gray-400 uppercase tracking-widest">USER_ID</span>
-                          <span className="font-mono text-xs text-white tracking-widest font-bold">#{data?.user?._id?.slice(0,6).toUpperCase() || 'UNK'}</span>
+                          <span className="font-rajdhani text-xs text-white tracking-widest font-bold"># {data?.user?._id?.slice(0,6).toUpperCase() || 'loading...'}</span>
                       </div>
                   </div>
               </div>
@@ -188,11 +155,7 @@ export default function ProfilePage() {
 
                 {hasEvents ? (
                    <div className="grid gap-4">
-                    {/* {eventsList.map((e, index) => (
-               <div key={index} className="p-4 bg-white/5 border border-white/10 rounded-xl">
-                 {e}
-               </div>
-             ))} */}
+                      {/* Event Items */}
                    </div>
                 ) : (
                    <div className="grow flex flex-col items-center justify-center text-center border border-dashed border-white/10 rounded-xl bg-black/10 p-8">
@@ -229,6 +192,5 @@ export default function ProfilePage() {
 
       </main>
     </div>
-    </>
   )
 }

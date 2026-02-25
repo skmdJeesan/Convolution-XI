@@ -38,8 +38,8 @@ const AtomicOrbit = () => {
             absolute z-0 pointer-events-none opacity-100 md:opacity-80 animate-spin-slow animate-float
             
             /* MOBILE POSITIONING & FLUID SIZE */
-            top-[45%] left-[5%] -translate-x-1/2 -translate-y-1/2 
-            w-[95vw] h-[95vw] 
+            top-[45%] left-[10%] -translate-x-1/2 -translate-y-1/2 
+            w-[60vw] h-[60vw]
             
             /* DESKTOP POSITIONING & FIXED SIZE */
             md:top-[30%] md:left-[15%] xl:top-[20%] xl:left-[15%] 
@@ -341,16 +341,16 @@ const CommandDeck = () => {
                     {!isAuthenticated ? (
                         <>
                             <SciFiButton label="Login" href={"/login"} color="fuchsia" />
-                            <SciFiButton label="Register" href={"/register"} color="cyan" />
+                            <SciFiButton label="Register" href={"/register"} color="fuchsia" />
                         </>
                     ) :
                         <>
                             <SciFiButton label="Team" href="#team" color="fuchsia" />
-                            <SciFiButton label="Gallery" href="#gallery" color="cyan" />
+                            <SciFiButton label="Gallery" href="#gallery" color="fuchsia" />
                         </>
                     }
                     <SciFiButton label="FAQ" href="#faq" color="cyan" />
-                    <SciFiButton label="Events" href="#events" color="fuchsia" />
+                    <SciFiButton label="Events" href="#events" color="cyan" />
 
                 </div>
                 <div className="mt-4 w-32 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
@@ -399,18 +399,30 @@ function HeroSection() {
     const [isSplineVisible, setIsSplineVisible] = useState(true);
     const heroRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
+   useEffect(() => {
+        let lastWidth = window.innerWidth;
+        
         const handleResize = () => {
-            const width = window.innerWidth;
-            if (width < 768) {
-                setDeviceType('mobile');
-            } else if (width >= 768 && width < 1024) {
-                setDeviceType('tablet');
-            } else {
-                setDeviceType('desktop');
+            const currentWidth = window.innerWidth;
+            
+            // Only update if the WIDTH changes (ignores mobile address bar vertical scrolling)
+            if (currentWidth !== lastWidth) {
+                lastWidth = currentWidth;
+                if (currentWidth < 768) {
+                    setDeviceType('mobile');
+                } else if (currentWidth >= 768 && currentWidth < 1024) {
+                    setDeviceType('tablet');
+                } else {
+                    setDeviceType('desktop');
+                }
             }
         };
-        handleResize();
+
+        // Initial setup
+        if (window.innerWidth < 768) setDeviceType('mobile');
+        else if (window.innerWidth < 1024) setDeviceType('tablet');
+        else setDeviceType('desktop');
+
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
@@ -438,7 +450,7 @@ function HeroSection() {
             <HeadsUpDisplay />
 
             {/* Logo */}
-            <div className={`absolute ${deviceType == 'mobile' ? 'top-[20%]' : 'top-[20%]'} md:top-[15%] xl:top-[23%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 md:z-10 pointer-events-none select-none flex justify-center w-full`}>
+           <div className={`absolute ${deviceType == 'mobile' ? 'top-[25%]' : 'top-[20%]'} md:top-[15%] xl:top-[23%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-3 md:z-10 pointer-events-none select-none flex justify-center w-full will-change-transform [transform:translateZ(0)]`}>
                 <div className="relative group w-full flex justify-center items-center">
 
                     <div className="absolute inset-0 md:-inset-32 bg-linear-to-r from-cyan-500/20 to-fuchsia-500/20 blur-[60px] md:blur-[100px] rounded-full opacity-0" />
@@ -472,7 +484,7 @@ function HeroSection() {
                     <Image
                         src={ConvoLogo}
                         alt="Convolution Logo Center"
-                        className="w-[75vw] md:w-[55vw] xl:w-[35vw] max-w-75 md:max-w-5xl h-auto object-contain relative z-10"
+                        className="w-[75vw] md:w-[55vw] xl:w-[35vw] max-w-80 md:max-w-5xl h-auto object-contain relative z-10"
                         priority
                     />
                 </div>
@@ -488,7 +500,7 @@ function HeroSection() {
                         <div
                             className="absolute pointer-events-auto z-[5] flex items-center justify-center"
                             style={{
-                                top: '45%',     // Pinned safely below the Convolution logo
+                                top: '50%',     // Pinned safely below the Convolution logo
                                 bottom: '0%',  // Pinned safely above the Command Deck buttons
                                 left: '0',
                                 right: '0',

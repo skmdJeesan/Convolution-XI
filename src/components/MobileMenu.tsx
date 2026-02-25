@@ -18,9 +18,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
   const { data: session } = useSession(); 
 
   const authButtonStyle = `
-    relative group flex items-center justify-start gap-3 w-full px-6 py-3.5 
+    relative group flex items-center justify-start gap-3 w-[83%] px-4 py-2.5 
     rounded-full  tracking-widest Capitalize
-    border border-white/10 bg-white/5 hover:bg-white/20 hover:border-white/40
+    border border-white/10  hover:border-white/40
     text-white transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]
   `;
 
@@ -67,7 +67,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
         className={`fixed top-0 right-0 h-dvh w-64 md:w-80
           bg-linear-to-b from-black/95 via-[#0a0a0a]/95 to-black/95 
           backdrop-blur-2xl shadow-2xl z-99999 
-          overflow-y-auto overflow-x-hidden
+          overflow-hidden
           transform transition-transform duration-700 cubic-bezier(0.19, 1, 0.22, 1) ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
@@ -78,10 +78,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
         <div className="absolute bottom-[4%] -right-[20%] w-80 h-120 bg-cyan-900/20 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute top-[40%] -left-[20%] w-80 h-120 bg-fuchsia-600/20 rounded-full blur-[100px] pointer-events-none" />
 
-        {/* Main content */}
+        {/* main content */}
         <div className="relative h-full flex flex-col p-6 md:p-8">
           
-          {/* Closing Icon */}
+          {/* x Icon */}
           <div className="flex justify-end mb-6">
             <button 
                 onClick={onClose}
@@ -97,7 +97,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
             </button>
           </div>
 
-          {/* Navigation Links */}
+          {/* links */}
           <nav className="flex-1 flex flex-col justify-start pt-4 md:pt-8 overflow-y-auto no-scrollbar">
             <ul className="flex flex-col gap-6 md:gap-8">
               {links.map((item, index) => (
@@ -105,7 +105,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                   <Link
                     href={item.href}
                     onClick={(e) => onLinkClick(e, item.href)}
-                    className={`font-orbitron font-bold block text-xl md:text-2xl tracking-wider text-white/90 hover:text-cyan-400 transform transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]
+                    className={`font-orbitron font-bold block text-lg md:text-xl tracking-wider text-white/90 hover:text-cyan-400 transform transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]
                       ${isOpen ? "translate-y-0 opacity-100" : "translate-y-[120%] opacity-0"}
                     `}
                     style={{ transitionDelay: isOpen ? `${300 + (index * 100)}ms` : '0ms' }}
@@ -116,22 +116,22 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
               ))}
             </ul>
 
-            {/* Separator */}
+            {/* separator */}
             <div 
-              className={`h-px bg-linear-to-r from-transparent via-white/10 to-transparent my-8 w-full transform transition-all duration-700 ${isOpen ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}`}
+              className={`h-o.5 bg-linear-to-r from-transparent via-white/20 to-transparent my-8 w-full transform transition-all duration-700 ${isOpen ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}`}
               style={{ transitionDelay: isOpen ? `${200 + links.length * 50}ms` : "0ms" }}
             />
 
             
             <div className="flex flex-col gap-4 pb-8">
               {session ? (
-                // PROFILE BUTTON
+                //profile
                 <div className="overflow-hidden">
                   
                     <TransitionLink
                       href="/profile"
                       onClick={(e) => onLinkClick(e, "/profile")}
-                      className={`${authButtonStyle} ${
+                      className={`${authButtonStyle} bg-fuchsia-700 text-gray-200 border-transparent ${
                         isOpen
                           ? "translate-y-0 opacity-100"
                           : "translate-y-full opacity-0"
@@ -142,18 +142,18 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                           : "0ms",
                       }}
                     >
-                      <IoPersonOutline className="text-xl mb-0.5" />
-                      <span className="font-orbitron text-sm font-bold uppercase">My Profile</span>
+                      <IoPersonOutline className="text-lg mb-0.5" />
+                      <span className="font-orbitron text-sm font-bold uppercase">Profile</span>
                     </TransitionLink>
                 </div>
               ) : (
-                // LOGIN / REGISTER BUTTONS
+                // login/register
                 <>
                   <div className="overflow-hidden">
                     <TransitionLink
                         href="/login"
                         onClick={(e) => onLinkClick(e, "/login")}
-                        className={`${authButtonStyle} ${
+                        className={`${authButtonStyle} bg-cyan-700  text-gray-200 border-transparent ${
                         isOpen
                             ? "translate-y-0 opacity-100"
                             : "translate-y-full opacity-0"
@@ -164,7 +164,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                             : "0ms",
                         }}
                     >
-                        <IoLogInOutline className="text-xl mb-0.5" />
+                        <IoLogInOutline className="text-lg mb-0.5" />
                         <span className="font-orbitron text-sm font-bold uppercase">Login</span>
                     </TransitionLink>
                   </div>
@@ -173,7 +173,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                     <TransitionLink
                         href="/register"
                         onClick={(e) => onLinkClick(e, "/register")}
-                        className={`${authButtonStyle} bg-gray-100! hover:bg-white!  text-black! border-transparent ${
+                        className={`${authButtonStyle} bg-purple-600 text-gray-200 border-transparent ${
                         isOpen
                             ? "translate-y-0 opacity-100"
                             : "translate-y-full opacity-0"
@@ -184,7 +184,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
                             : "0ms",
                         }}
                     >
-                        <IoPersonAddOutline className="text-xl mb-0.5" />
+                        <IoPersonAddOutline className="text-lg mb-0.5" />
                         <span className="font-orbitron text-sm font-bold uppercase">Register</span>
                     </TransitionLink>
                   </div>
