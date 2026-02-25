@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
     await user.save();
 
     const baseUrl = process.env.APP_URL || "https://www.convolutionjuee.com";
-    const resetUrl = `${baseUrl}/reset-password?token=${resetToken}`;
+    const resetUrl = `${baseUrl}/reset-password/${resetToken}`;
 
     const transporter = nodemailer.createTransport({
       service: "Gmail",
