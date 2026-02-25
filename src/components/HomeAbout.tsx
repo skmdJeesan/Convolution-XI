@@ -140,7 +140,7 @@ const StatCard = ({ icon: Icon, label, value, colorClass, borderClass }: { icon:
 
 export default function AboutSection() {
   const [userCount, setUserCount] = useState(0);
-
+  console.log(`Total users registered : ${userCount}`)
   useEffect(() => {
     const fetchCount = async () => {
       try {
@@ -154,6 +154,7 @@ export default function AboutSection() {
     fetchCount();
   }, []);
 
+  const totUser = Math.floor((199+userCount)/50)*50;
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const playVideo = () => { setIsVideoOpen(true); };
 
@@ -203,7 +204,7 @@ export default function AboutSection() {
               label="Registrations"
               value={
                 <span className="text-base sm:text-xl lg:text-2xl font-rajdhani flex items-center justify-center xl:justify-start">
-                  <AnimatedCounter from={0} to={userCount + 199} delay={0.8} />
+                  <AnimatedCounter from={0} to={totUser} delay={0.9} />
                   <span className="ml-0.5 text-base sm:text-xl">+</span>
                 </span>
               }

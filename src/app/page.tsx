@@ -16,47 +16,32 @@ export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [showCurtain, setShowCurtain] = useState(true);
 
-  // 1. SCROLL LOCK EFFECT (The Fix)
   useEffect(() => {
-    if (showCurtain) {
-      // Lock the scrollbar while loader is active
-      document.body.classList.add('overflow-hidden');
-    } else {
-      // Unlock when the curtain lifts
-      document.body.classList.remove('overflow-hidden');
-    }
-
-    // Cleanup function just in case the component unmounts early
-    return () => {
-      document.body.classList.remove('overflow-hidden');
-    };
-  }, [showCurtain]);
-
-  // 2. TIMING & FADE EFFECT
-  useEffect(() => {
-    // check if they already saw the loader this session
     if (sessionStorage.getItem('hasSeenLoader')) {
       setShowCurtain(false); 
       return; 
     }
 
-    // wait for the animation and page load
     const minTimePromise = new Promise((resolve) => setTimeout(resolve, 1500));
+    
     const pageLoadPromise = new Promise((resolve) => {
       if (document.readyState === 'complete') {
         resolve("loaded");
       } else {
-        window.addEventListener('load', () => resolve("loaded"));
+        const safetyNet = setTimeout(() => {
+          resolve("timeout");
+        }, 8000);
+        
+        window.addEventListener('load', () => {
+          clearTimeout(safetyNet); 
+          resolve("loaded");
+        });
       }
     });
 
-    // trigger the smooth fade-out
     Promise.all([minTimePromise, pageLoadPromise]).then(() => {
       sessionStorage.setItem('hasSeenLoader', 'true');
-      
       setIsAnimating(true);
-      
-      // wait for the fade to finish, then remove the curtain from the DOM
       setTimeout(() => {
         setShowCurtain(false);
       }, 700);
@@ -67,7 +52,6 @@ export default function Home() {
     };
   }, []);
 
-  // 3. HASH SCROLL EFFECT
   useEffect(() => {
     if (!showCurtain && window.location.hash) {
       const id = window.location.hash.replace('#', '');
@@ -82,16 +66,28 @@ export default function Home() {
 
   return (
     <>
+     
+      {showCurtain && (
+        <style>{`
+          html, body {
+            overflow: hidden !important;
+            overscroll-behavior: none !important;
+            touch-action: none !important;
+          }
+        `}</style>
+      )}
+
       {showCurtain && (
         <div 
-          className={`fixed inset-0 z-[9999] bg-[#050508] flex items-center justify-center transition-opacity duration-700 ease-in-out
+          className={`fixed inset-0 z-[99999] bg-[#050508] flex items-center justify-center transition-opacity duration-700 ease-in-out touch-none overscroll-contain
             ${isAnimating ? 'opacity-0 pointer-events-none' : 'opacity-100'}
           `}
         >
           <Loading /> 
         </div>
       )}
-      <main className="bg-black w-full min-h-screen">
+      
+      <main className="bg-black w-full min-h-screen relative">
         <Navbar/>
         <HeroSection />
         <HomeAbout />

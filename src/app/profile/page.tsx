@@ -103,7 +103,7 @@ export default function ProfilePage() {
                       <IoQrCodeOutline className="text-2xl text-cyan-400" />
                       <div className="flex flex-col items-start">
                           <span className="text-[9px] text-gray-400 uppercase tracking-widest">USER_ID</span>
-                          <span className="font-rajdhani text-xs text-white tracking-widest font-bold"># {data?.user?._id?.slice(0,6).toUpperCase() || 'loading...'}</span>
+                          <span className="font-rajdhani text-xs text-white tracking-widest font-bold"># {data?.user?._id?.slice(0,8).toUpperCase() || 'loading...'}</span>
                       </div>
                   </div>
               </div>

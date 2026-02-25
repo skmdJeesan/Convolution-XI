@@ -298,7 +298,7 @@ export default function SignupForm() {
                                     <SelectTrigger className="w-full bg-transparent border-none text-cyan-100 text-sm outline-none font-rajdhani tracking-wider h-full py-0 pl-2 focus:ring-0">
                                         <SelectValue placeholder="Select year" />
                                     </SelectTrigger>
-                                    <SelectContent className='bg-[#0a0e14] border border-cyan-800/50 text-cyan-50 font-rajdhani tracking-wide max-h-50'>
+                                    <SelectContent position="popper" sideOffset={2} className='bg-[#0a0e14] border border-cyan-800/50 text-cyan-50 font-rajdhani tracking-wide max-h-72'>
                                         <SelectGroup>
                                             {/* <SelectItem value="School" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">School</SelectItem> */}
                                             <SelectItem value="UG1" className="focus:bg-cyan-900/30 focus:text-cyan-400 cursor-pointer">UG1</SelectItem>

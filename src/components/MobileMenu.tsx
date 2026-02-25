@@ -118,7 +118,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links, onLinkC
 
             {/* separator */}
             <div 
-              className={`h-o.5 bg-linear-to-r from-transparent via-white/20 to-transparent my-8 w-full transform transition-all duration-700 ${isOpen ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}`}
+              className={`h-0.5 bg-linear-to-r from-transparent via-white/20 to-transparent my-8 w-full transform transition-all duration-700 ${isOpen ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}`}
               style={{ transitionDelay: isOpen ? `${200 + links.length * 50}ms` : "0ms" }}
             />
 

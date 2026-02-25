@@ -93,6 +93,7 @@ const MobileStatCard = ({ icon: Icon, label, value, colorClass, bgColorClass, bo
 );
 
 export default function MobileAboutContent({ userCount }: { userCount: number }) {
+  const totUser = Math.floor((199+userCount)/50)*50;
   return (
     <div
       className="xl:hidden  flex flex-col justify-center items-center text-center space-y-8 w-full md:px-20 lg:px-32"
@@ -123,7 +124,7 @@ export default function MobileAboutContent({ userCount }: { userCount: number })
         <MobileStatCard
           icon={Users}
           label="Registrations"
-          value={<span className="flex items-center justify-center"><MobileRefCounter from={0} to={userCount + 199} delay={1} /><span className="ml-0.5">+</span></span>}
+          value={<span className="flex items-center justify-center"><MobileRefCounter from={0} to={totUser} delay={1} /><span className="ml-0.5">+</span></span>}
           colorClass="from-cyan-400 to-cyan-600"
           borderClass="border-cyan-500"
           bgColorClass="from-cyan-400 to-cyan-800/50"
