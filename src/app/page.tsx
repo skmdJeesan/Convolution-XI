@@ -11,6 +11,7 @@ import Team from '@/components/Team';
 import FaqSection from '@/components/FaqSection';
 import Navbar from '@/components/Navbar';
 import Loading from "@/app/loading";
+import Timeline from '@/components/TimeLine';
 
 export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);

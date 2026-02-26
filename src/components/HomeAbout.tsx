@@ -6,8 +6,7 @@ import { IoPlay } from "react-icons/io5";
 import AboutRobot from "../assets/images/About_Robot.png"
 import MobileAboutContent from './MobileAbout';
 
-const EVENT_DATE = "2026-03-27T09:00:00";
-
+const EVENT_DATE = "2026-03-27T00:00:00+05:30";
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -140,7 +139,7 @@ const StatCard = ({ icon: Icon, label, value, colorClass, borderClass }: { icon:
 
 export default function AboutSection() {
   const [userCount, setUserCount] = useState(0);
-  // console.log(`Total users registered : ${userCount}`)
+  console.log(`Total users registered : ${userCount}`)
   useEffect(() => {
     const fetchCount = async () => {
       try {

@@ -1,38 +1,38 @@
 export const events = [
   { 
     id: '01', 
-    date: 'FEB 20', 
+    date: 'MARCH 27', 
     time: 'MORNING', 
-    items: ['Inauguration', 'Eureka (Prelims)'] 
+    items: ['Inauguration', 'Circuistics (Prelims)'] 
   },
   { 
     id: '02', 
-    date: 'FEB 20', 
+    date: 'MARCH 27', 
     time: 'AFTERNOON', 
-    items: ['Inquizzitive (Prelims)', 'Inquizzitive (Finals)', 'Decisia (Finals)'] 
+    items: ['Decisia (Finals)', 'Abol Tabol (Finals)'] 
   },
   { 
     id: '03', 
-    date: 'FEB 21', 
+    date: 'MARCH 28', 
     time: 'MORNING', 
-    items: ['Eureka (Finals)', 'Sparkhack (Finals)', 'Circuistics (Prelims)'] 
+    items: ['Eureka (Prelims)','Inquizzitive (Prelims)', 'Sparkhack (Finals)'] 
   },
   { 
     id: '04', 
-    date: 'FEB 21', 
+    date: 'MARCH 28', 
     time: 'AFTERNOON', 
-    items: ['Abol Tabol (Finals)'] 
+    items: ['Eureka (Round 2)' ,'Inquizzitive (Finals)'] 
   },
   { 
     id: '05', 
-    date: 'FEB 22', 
+    date: 'MARCH 29', 
     time: 'MORNING', 
-    items: ['Algomaniac (Finals)', 'Circuistics (Finals)'] 
+    items: ['Circuistics (Finals)', 'Eureka (Finals)', 'Algomaniac (Finals)'] 
   },
   { 
     id: '06', 
-    date: 'FEB 22', 
+    date: 'MARCH 29', 
     time: 'AFTERNOON', 
-    items: ['JU Talks', 'Closing Ceremony'] 
+    items: ['JU Talks', 'Prize Distribution' ,'Closing Ceremony'] 
   },
 ];
