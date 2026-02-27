@@ -14,6 +14,30 @@ import {
 import TransitionLink from '@/components/TransitionLink'
 import ProfileNav from './ProfileNav'
 
+// interfaces
+
+interface EventData {
+  id: number;
+  name: string;
+  date?: string;
+  status: string;
+}
+
+interface TeamData {
+  id: number;
+  name: string;
+  event: string;
+  role: string;
+  members: number;
+}
+
+interface RequestData {
+  id: number;
+  from: string;
+  team: string;
+  event: string;
+}
+
 const Background = () => (
   <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
     <div className="absolute inset-0 bg-[#050508]"></div>
@@ -66,17 +90,17 @@ export default function ProfilePage() {
   //   { id: 4, name: "Code Sprint",status: "Confirmed" },
   //   { id: 5, name: "Web Weavers", status: "Pending Registration" }
   // ]; 
-  const eventsList = []; 
+  const eventsList: EventData[] = []; 
   const hasEvents = eventsList.length > 0; 
 
-  const myTeamsList = [
+  const myTeamsList:TeamData[] = [
     // { id: 1, name: "CyberPunks", event: "Sparkhack", role: "Leader", members: 4 },
     // { id: 2, name: "Null Pointers", event: "Algorithma", role: "Member", members: 2 },
     // { id: 3, name: "Bit Bandits", event: "Code Sprint", role: "Member", members: 3 },
     // { id: 4, name: "Neon Knights", event: "Robo-Wars", role: "Leader", members: 5 }
   ];
 
-  const pendingRequestsList = [
+  const pendingRequestsList:RequestData[] = [
     // { id: 1, from: "Alex Mercer", team: "Neon Knights", event: "Robo-Wars" },
     // { id: 2, from: "Sarah Connor", team: "Tech Titans", event: "Algorithma" },
     // { id: 3, from: "John Doe", team: "Dev Dynamos", event: "Sparkhack" },
