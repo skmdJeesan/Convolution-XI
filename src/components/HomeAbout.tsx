@@ -29,7 +29,7 @@ const imageRevealVariants: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1.0, ease: "easeOut", delay: 0.2 }
+    transition: { duration: 1.0, ease: "easeOut", delay: 0.4 }
   },
 };
 
@@ -139,7 +139,7 @@ const StatCard = ({ icon: Icon, label, value, colorClass, borderClass }: { icon:
 
 export default function AboutSection() {
   const [userCount, setUserCount] = useState(0);
-  console.log(`Total users registered : ${userCount}`)
+  console.log(`meow${userCount}`)
   useEffect(() => {
     const fetchCount = async () => {
       try {
@@ -170,7 +170,7 @@ export default function AboutSection() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, amount: 0.20}}
           className="hidden xl:flex space-y-8 xl:space-y-10 flex-col justify-center items-center xl:items-start text-center xl:text-left h-auto"
         >
           {/* Heading */}
@@ -251,7 +251,7 @@ export default function AboutSection() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.20 }}
           className="relative hidden xl:flex justify-center items-end h-full pointer-events-none min-h-[600px]"
         >
           <div className="absolute bottom-0 w-full max-w-xl h-[90%] flex items-end justify-center">

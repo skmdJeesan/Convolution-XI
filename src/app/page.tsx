@@ -12,6 +12,7 @@ import FaqSection from '@/components/FaqSection';
 import Navbar from '@/components/Navbar';
 import Loading from "@/app/loading";
 import Timeline from '@/components/TimeLine';
+import Playground from '@/components/Playground';
 
 export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -98,7 +99,7 @@ export default function Home() {
         <Gallery/>
         <Sponsors/>
         <FaqSection />
-        {/* <Playground /> */}
+        {/* <Playground/> */}
         <Footer />
       </main>
     </>

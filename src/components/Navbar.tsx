@@ -4,12 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { IoMenuOutline, IoChevronDownOutline } from "react-icons/io5";
+import { FaBell } from "react-icons/fa"; // Imported Bell Icon
 import profileIcon from "@/assets/images/Robot_Profile.jpg";
 import MobileMenu from "./MobileMenu";
 import FlipLink from "./FlipLink";
 import { useSession } from "next-auth/react";
 import ConvoLogo from "../assets/images/Convologo.png";
 import TransitionLink from "./TransitionLink";
+import Notifications from "./Notification";
+
 
 const desktopNavLinks = [
   { href: "/#home", label: "Home" },
@@ -53,6 +56,9 @@ const Navbar = () => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const router = useRouter();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  
+  const [isNotifOpen, setIsNotifOpen] = useState<boolean>(false);
+
   const lastScrollY = useRef(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
@@ -181,7 +187,7 @@ const Navbar = () => {
           startHideTimer();
         }}
       >
-        <div className="flex items-center justify-between px-2 lg:px-4 pt-4 pb-2  md:pt-4 w-full mx-auto">
+        <div className="maxWidthForSections flex items-center justify-between px-4 py-[10px] md:py-4 pt-4 pb-2  md:pt-4 w-full mx-auto">
           
           {/*Logo*/}
           <div className="shrink-0 transition-transform hover:scale-105 duration-300 pointer-events-auto">
@@ -231,8 +237,25 @@ const Navbar = () => {
           </nav>
 
           <div className="flex items-center gap-4 pointer-events-auto">
-            {/* profile */}
+            {/* profile and notifications*/}
             {session ? (
+              <div className="flex gap-3 items-center">
+                
+                {/*notification*/}
+                <button
+                  onClick={() => setIsNotifOpen(true)}
+                  className="lg:hidden cursor-pointer relative flex items-center justify-center p-2.5  rounded-full bg-green-400/10 border border-white/20 hover:border-white hover:bg-green-400/20 transition-all group overflow-hidden"
+                >
+                  <FaBell className="block lg:hidden text-xl md:text-2xl text-cyan-300 group-hover:text-cyan-400 transition-colors" />
+                  </button>
+                  <button 
+                  onClick={() => setIsNotifOpen(true)}
+                  className="hidden lg:block text-gray-200 font-orbitron group relative px-4 py-2.5 rounded-full bg-fuchsia-700 hover:bg-fuchsia-600 backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
+                    <FlipLink>Notifications</FlipLink>
+                  </button>
+
+
+                  {/* profile */}
               <TransitionLink href="/profile" className="rounded-full relative group block">
                 <div className="rounded-full border border-white/20 overflow-hidden hover:border-white  transition-colors">
                   <Image
@@ -244,6 +267,7 @@ const Navbar = () => {
                   />
                 </div>
               </TransitionLink>
+              </div>
             ) : (
               // login-register
               <div className="hidden lg:flex gap-3 items-center">
@@ -267,12 +291,16 @@ const Navbar = () => {
         </div>
       </header>
 
-      {/* ---------------- MOBILE SIDEBAR COMPONENT ---------------- */}
+      {/*mobile sidebar*/}
       <MobileMenu
         isOpen={isNavOpen}
         onClose={() => setIsNavOpen(false)}
         links={mobileNavLinks}
         onLinkClick={handleScroll}
+      />
+      <Notifications
+        isOpen={isNotifOpen} 
+        onClose={() => setIsNotifOpen(false)} 
       />
     </>
   );
