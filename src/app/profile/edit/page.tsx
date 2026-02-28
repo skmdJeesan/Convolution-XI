@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
@@ -27,9 +27,11 @@ import {
   IoEyeOffOutline,
   IoArrowBack
 } from 'react-icons/io5';
-import DecorativeIcons from './DecorativeIcons';
-import TransitionLink from './TransitionLink';
-import FlipLink from './FlipLink';
+import DecorativeIcons from '../../../components/DecorativeIcons';
+import TransitionLink from '../../../components/TransitionLink';
+import FlipLink from '../../../components/FlipLink';
+import { userData } from '@/context/UserContext';
+import { useContext } from 'react';
 
 // --- LOADER ---
 const Loader = () => (
@@ -43,14 +45,15 @@ const Loader = () => (
 export default function SignupForm() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const data = useContext(userData)
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    phone: '',
-    institution: '',
-    department: '',
-    year: '',
+    name: data?.user?.name || '',
+    email: data?.user?.email || '',
+    phone: data?.user?.phone || '',
+    institution: data?.user?.institution || '',
+    department: data?.user?.department || '',
+    year: data?.user?.year || '',
   });
 
   const router = useRouter();
@@ -67,24 +70,12 @@ export default function SignupForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-
     try {
-      const response = await axios.post('/api/auth/register', formData);
-      //console.log(response.data);
-
-      const signInResult = await signIn('credentials', {
-        email: formData.email,
-        password: formData.password,
-        redirect: false
-      });
-
-      if (signInResult?.ok) {
-        setFormData({ name: '', email: '', password: '', phone: '', institution: '', department: '', year: '' });
-        setLoading(false);
-        router.replace('/verify-email');
-      } else {
-        console.error('Sign in failed');
-      }
+      // Simulate API call
+      await axios.post('/api/user/edit-profile', formData);
+      // On success, you can show a success message or redirect
+      router.push('/profile');
+      setLoading(false);
     } catch (error) {
       console.error(error);
       setLoading(false);
@@ -122,11 +113,11 @@ export default function SignupForm() {
 
       {/* HIDDEN ON MOBILE */}
       <TransitionLink
-        href="/"
+        href="/profile"
         className="hidden md:flex absolute top-6 left-6 z-50 items-center gap-2 px-4 py-2.5 bg-cyan-950/40  border-cyan-500/50  lg:bg-black/30 lg:border-white/10 lg:hover:border-cyan-500/50 lg:hover:bg-cyan-950/40 lg:hover:shadow-cyan-500/20 backdrop-blur-md border  rounded-full transition-all duration-300 shadow-lg  group cursor-pointer overflow-hidden"
       >
         <IoArrowBack className="text-cyan-400 text-lg group-hover:-translate-x-1 transition-transform duration-300" />
-        <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-cyan-100 group-hover:text-white uppercase transition-colors"><FlipLink>Return&nbsp;Home</FlipLink></span>
+        <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-cyan-100 group-hover:text-white uppercase transition-colors"><FlipLink>Back&nbsp;TO&nbsp;Profile</FlipLink></span>
       </TransitionLink>
 
       <motion.div
@@ -158,7 +149,7 @@ export default function SignupForm() {
 
             <div className="p-4">
               <div className="text-center mb-3">
-                <h1 className="font-orbitron text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] mb-1">CREATE ID</h1>
+                <h1 className="font-orbitron text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-gray-600 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] mb-1">UPDATE ID</h1>
               </div>
 
               <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
@@ -174,56 +165,34 @@ export default function SignupForm() {
                       placeholder='Enter full name'
                       name='name'
                       value={formData.name}
-                      onChange={handleChange}
+                      readOnly
                       required
                       spellCheck={false}
                       autoCorrect="off"
                       autoCapitalize="off"
-                      className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider'
+                      className='w-full bg-transparent px-2 text-[15px] text-gray-600 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider'
                     />
                   </div>
                 </div>
 
-                {/* Email & Password */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <div className='group/input relative'>
-                    <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Email</label></div>
-                    <div className={inputContainerClass}>
-                      <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
-                      <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoMailOutline size={14} /></div>
-                      <input
-                        type="email"
-                        placeholder='name@example.com'
-                        name='email'
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        spellCheck={false}
-                        autoCorrect="off"
-                        autoCapitalize="off"
-                        className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider'
-                      />
-                    </div>
-                  </div>
-                  <div className='group/input relative'>
-                    <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Passcode</label></div>
-                    <div className={inputContainerClass}>
-                      <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
-                      <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoLockClosedOutline size={14} /></div>
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        placeholder='*******'
-                        name='password'
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                        spellCheck={false}
-                        autoCorrect="off"
-                        autoCapitalize="off"
-                        className='w-full bg-transparent px-2 text-[15px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider'
-                      />
-                      <button type="button" onClick={() => setShowPassword(!showPassword)} className="pr-3 text-cyan-700 hover:text-cyan-400 transition-colors focus:outline-none">{showPassword ? <IoEyeOffOutline size={14} /> : <IoEyeOutline size={14} />}</button>
-                    </div>
+                {/* Email */}
+                <div className='group/input relative'>
+                  <div className="flex justify-between items-end mb-0.5 px-1"><label className="font-rajdhani text-sm text-cyan-100/80 font-semibold tracking-wider uppercase">Email</label></div>
+                  <div className={inputContainerClass}>
+                    <div className="w-1 h-full absolute left-0 bg-cyan-900/40 group-focus-within/input:bg-cyan-400 transition-colors duration-300"></div>
+                    <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoMailOutline size={14} /></div>
+                    <input
+                      type="email"
+                      placeholder='name@example.com'
+                      name='email'
+                      value={formData.email}
+                      readOnly
+                      required
+                      spellCheck={false}
+                      autoCorrect="off"
+                      autoCapitalize="off"
+                      className='w-full bg-transparent px-2 text-[15px] text-gray-600 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider'
+                    />
                   </div>
                 </div>
 
@@ -318,25 +287,8 @@ export default function SignupForm() {
 
                 {/* Submit */}
                 <button type="submit" disabled={loading} className="font-orbitron group relative w-full h-10 mt-1 bg-cyan-500 hover:bg-cyan-400 text-[#05080f] text-xs tracking-widest uppercase font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed [clip-path:polygon(12px_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%,0_12px)] shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] cursor-pointer">
-                  <span className="relative z-10 flex items-center justify-center gap-3">{loading ? <Loader /> : <><IoFingerPrintOutline className="text-lg" />AUTHORIZE REGISTRATION</>}</span>
+                  <span className="relative z-10 flex items-center justify-center gap-3">{loading ? <Loader /> : <><IoFingerPrintOutline className="text-lg" />UPDATE</>}</span>
                 </button>
-
-                {/* Divider */}
-                {/* <div className="relative flex items-center justify-center py-1 opacity-70"><div className="h-px bg-cyan-900/30 w-full absolute"></div><span className="relative bg-[#0d111a] px-2 font-rajdhani text-sm text-gray-500 uppercase tracking-widest font-semibold">// OR CONNECT WITH</span></div> */}
-
-                {/* Github and google */}
-                {/* <div className="grid grid-cols-2 gap-3">
-                      <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_100%,10px_100%,0_calc(100%-10px))] cursor-pointer" onClick={() => signIn('google', { callbackUrl: '/' })}><FaGoogle className='text-sm' /><span className='text-xs font-orbitron font-semibold tracking-wider'>GOOGLE</span></button>
-                      <button type="button" className="flex items-center justify-center gap-2 h-9 bg-[#0a0e17] border border-cyan-900/30 hover:border-cyan-500/60 hover:bg-[#111826] text-gray-400 hover:text-cyan-50 transition-all duration-300 group [clip-path:polygon(0_0,100%_0,100%_calc(100%-10px),calc(100%-10px)_100%,0_100%)] cursor-pointer" onClick={() => signIn('github', { callbackUrl: '/' })}><FaGithub className='text-sm' /><span className='font-orbitron text-xs font-semibold tracking-wider'>GITHUB</span></button>
-                    </div> */}
-
-                <div className="text-center mt-2">
-                  <p className="font-rajdhani text-sm sm:text-xs text-gray-500 font-bold uppercase tracking-wide">
-                    Existing Entity?
-                    <TransitionLink href="/login" className='font-orbitron text-purple-400 hover:text-purple-300 ml-2 hover:underline underline-offset-4 decoration-purple-500/50 transition-colors'>Access System</TransitionLink>
-                  </p>
-                </div>
-
               </form>
             </div>
           </div>

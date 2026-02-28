@@ -13,6 +13,8 @@ import {
 } from 'react-icons/io5'
 import TransitionLink from '@/components/TransitionLink'
 import ProfileNav from './ProfileNav'
+import { Edit } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 // interfaces
 
@@ -68,6 +70,7 @@ const DataRow = ({ label, value, icon: Icon, fullWidth = false }: { label: strin
 export default function ProfilePage() {
   const [loading, setLoading] = useState(false)
   const data = useContext(userData)
+  const router = useRouter()
   
   const handleSignOut = async () => {
     setLoading(true)
@@ -130,6 +133,12 @@ export default function ProfilePage() {
               <div className="absolute bottom-1 bg-black/90 px-3 py-1 rounded-full border border-emerald-500/50 flex items-center gap-1.5 shadow-lg z-20">
                 <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
                 <span className="font-mono text-[9px] text-emerald-400 tracking-widest uppercase font-bold">Online</span>
+              </div>
+              <div 
+                onClick={() => router.push('/profile/edit')}
+                className="edit absolute -right-2 -top-1 cursor-pointer flex flex-col items-center gap-1 hover:scale-105 hover:text-cyan-400 transition-transform duration-200">
+                <Edit size={16}/>
+                {/* <span className='text-xs transition-transform'>Edit Profile</span> */}
               </div>
             </div>
 
