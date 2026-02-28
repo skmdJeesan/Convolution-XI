@@ -8,7 +8,7 @@ export default async function LeadDashboardPage() {
   // Fetch Users
   // .lean() converts Mongoose objects to plain JS objects (Optimization)
   const users = await User.find({})
-    .select('name email institution department phone eventsRegistered')
+    .select('name email institution department year phone eventsRegistered')
     .lean();
 
   // Serialize Data
@@ -19,6 +19,7 @@ export default async function LeadDashboardPage() {
     email: user.email,
     institution: user.institution,
     dept: user.department,
+    year: user.year,
     phone: user.phone,
     eventsRegistered: (user.eventsRegistered && user.eventsRegistered.length > 0) ? user.eventsRegistered : ['--'],
   }));
