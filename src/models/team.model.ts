@@ -15,13 +15,22 @@ const teamSchema = new mongoose.Schema({
     required: true,
   },
   members: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    status: {
+      type: String,
+      enum: ["pending", "accepted", "declined"],
+      default: "pending",
+    }
   }],
+  // default pending untill user approves
   status: {
     type: String,
     enum: ["pending", "confirmed", "rejected"],
-    default: "confirmed", // Auto-confirm for now as per reference logic
+    default: "pending", 
   },
 }, { timestamps: true });
 

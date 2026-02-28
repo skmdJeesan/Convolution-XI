@@ -4,6 +4,7 @@ import User from "@/models/user.model";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { NextRequest, NextResponse } from "next/server"; 
+import Notification from "@/models/notification.model";
 
 export async function POST(request: NextRequest) {
   try {
@@ -20,7 +21,7 @@ export async function POST(request: NextRequest) {
 
     if(password.length < 6)
       return NextResponse.json({message: "Password must be at least 6 characters"}, { status: 400 })
-
+    await Notification.deleteMany({ email });
     const hashedPassword = await bcrypt.hash(password, 10)
     const user = new User({
       name, email, password: hashedPassword,

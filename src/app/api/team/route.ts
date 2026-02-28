@@ -4,7 +4,7 @@ import Team from "@/models/team.model";
 import User from "@/models/user.model";
 import Notification from "@/models/notification.model";
 import { getFriendlyEventName } from "@/lib/friendlyEventNames";
-import axios from "axios";
+import nodemailer from "nodemailer"; // 🚀 Swapped axios for nodemailer!
 
 export async function POST(req: NextRequest) {
     try {
@@ -36,23 +36,8 @@ export async function POST(req: NextRequest) {
         // Connect to DB
         await dbConnect();
 
-        // Warm up email service
-        if (process.env.EMAIL_URL) {
-            axios
-                .get(`${process.env.EMAIL_URL}`)
-                .catch((err) =>
-                    console.error("Failed to warm up email service:", err.message)
-                );
-        }
-
         // Input validation
-        if (
-            !teamName ||
-            !eventName ||
-            !leaderId ||
-            !leaderEmail ||
-            !Array.isArray(teamMembers)
-        ) {
+        if (!teamName || !eventName || !leaderId || !leaderEmail || !Array.isArray(teamMembers)) {
             return NextResponse.json(
                 { message: "Missing required fields" },
                 { status: 400 }
@@ -62,10 +47,7 @@ export async function POST(req: NextRequest) {
         // check if leaderEmail is same as any of the teamMembers
         if (teamMembers.includes(leaderEmail)) {
             return NextResponse.json(
-                {
-                    message:
-                        "You cannot add your name as a member while registering as a Leader",
-                },
+                { message: "You cannot add your name as a member while registering as a Leader" },
                 { status: 400 }
             );
         }
@@ -83,19 +65,14 @@ export async function POST(req: NextRequest) {
 
         // Check if all of the emails are unique
         const uniqueMembers = new Set(allMembers);
-
         if (uniqueMembers.size !== allMembers.length) {
             return NextResponse.json(
-                {
-                    message:
-                        "Duplicate emails found in team members or leader. All emails should be unique",
-                },
+                { message: "Duplicate emails found in team members or leader. All emails should be unique" },
                 { status: 400 }
             );
         }
 
         // Fetch users from the database
-        // Mongoose: find users where email is in allMembers list
         const users = await User.find({
             email: { $in: allMembers }
         });
@@ -106,59 +83,34 @@ export async function POST(req: NextRequest) {
             (email) => !existingEmails.includes(email)
         );
 
-        // NOTE: existing User model does not have emailVerified, so skipping that check.
-
         if (nonExistingUsers.length > 0) {
             return NextResponse.json(
-                {
-                    message: `The following users have not signed up on the website: ${nonExistingUsers.join(
-                        ", "
-                    )}`,
-                },
+                { message: `The following users have not signed up on the website: ${nonExistingUsers.join(", ")}` },
                 { status: 400 }
             );
         }
 
-        // Check if the leader or any member is already in a team for this event
-        // Mongoose query:
-        // Look for a team where eventName matches AND
-        // ( leaderId matches OR members includes any of the found user IDs )
-
-        // First, let's get the ObjectIds of the members to query efficiently
         const allMemberIds = users.map(u => u._id);
 
         const existingTeams = await Team.find({
             eventName,
             $or: [
-                { leader: leaderId }, // leader is the leader of another team
-                { members: { $in: allMemberIds } }, // any of the members are in members list
-                // Note: We also need to check if the current leader is a *member* of another team 
-                // or if any current member is a *leader* of another team.
-                // The original prisma query:
-                // OR: [ { leaderId }, { members: { some: { email: { in: allMembers } } } } ]
-                // This implicitly checks if the leaderId is a leader.
-                // But we probably need to check if ANY of our people are involved in ANY way.
-                // Let's stick to the logic: "Are any of these people (allMembers) present in any team for this event?"
-                { leader: { $in: allMemberIds } }, // Is any of our people a leader?
-                { members: { $in: allMemberIds } } // Is any of our people a member?
+                { leader: leaderId },
+                { members: { $in: allMemberIds } },
+                { leader: { $in: allMemberIds } },
+                { members: { $in: allMemberIds } }
             ]
         }).populate('members');
 
         if (existingTeams.length > 0) {
-            // If any team is found, it means someone is already registered.
-            // We can just fail fast or try to identify who it is.
-            // For simplicity, let's just return a generic message or try to match the Prisma logic's specificity if easy.
-
             return NextResponse.json(
-                {
-                    message: "One or more members are already part of a team for this event.",
-                },
+                { message: "One or more members are already part of a team for this event." },
                 { status: 400 }
             );
         }
 
         // Ensure team size doesn't exceed maxSize
-        const maxSize = 5; // Reference code says 5 here, but earlier checked > 6. Sticking to logic.
+        const maxSize = 5;
         if (teamMembers.length + 1 > maxSize) {
             return NextResponse.json(
                 { message: `Team size cannot exceed ${maxSize}` },
@@ -167,69 +119,106 @@ export async function POST(req: NextRequest) {
         }
 
         // Determine the user objects for leader and members to save references
-        // We already have 'users' array which has everyone.
-        // Filter out the members to store in 'members' field (excluding leader)
-        // The reference code stores only members in 'members' relation, and leader in 'leader'.
+        const memberUsers = users.filter((u) => u.email !== leaderEmail);
+        
+        // --- UPGRADE 1: Structure members with "pending" status ---
+        const pendingMembers = memberUsers.map((u) => ({
+            user: u._id,
+            status: "pending",
+        }));
 
-        const memberUsers = users.filter(u => u.email !== leaderEmail);
-        const memberIds = memberUsers.map(u => u._id);
-
-        // Create the team
+        // --- UPGRADE 2: Create the team as "pending" ---
         const team = await Team.create({
             teamName,
             eventName,
             leader: leaderId,
-            members: memberIds,
+            members: pendingMembers,
+            status: "pending" // Team is pending until everyone accepts!
         });
-
-        await User.updateMany(
-            { _id: { $in: allMemberIds } },
+        
+        await User.findByIdAndUpdate(
+            leaderId,
             { $addToSet: { eventsRegistered: eventName.toLowerCase() } }
         );
 
-        // Notify team members
-        const notificationData = teamMembers.map((email: string) => ({
-            email,
-            message: `You are now part of the team "${teamName}" for the event "${getFriendlyEventName(
-                eventName
-            )}".`,
+        // send custom notifications
+        const notificationData = memberUsers.map((u) => ({
+            email: u.email,
+            message: `${leaderName} has invited you to join team "${teamName}" for ${getFriendlyEventName(eventName)}. Please go to your dashboard to Accept or Decline.`,
             type: "TEAM_INVITE",
         }));
 
-        // Notify leader
         notificationData.push({
             email: leaderEmail,
-            message: `Yay! Team "${teamName}" has been created successfully for the event "${getFriendlyEventName(
-                eventName
-            )}".`,
+            message: `Hurray, Team "${teamName}" created! We are waiting for your teammates to accept their invites.`,
             type: "TEAM_CREATE",
         });
 
         await Notification.insertMany(notificationData);
 
-        // Send email to the leader
-        let emailSent = true;
-        if (process.env.EMAIL_URL) {
+        let emailsSent = true;
+        
+        if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
             try {
-                await axios.post(`${process.env.EMAIL_URL}/api/event`, {
-                    to: leaderEmail,
-                    subject: `${getFriendlyEventName(eventName)}`,
-                    name: leaderName,
-                    eventName,
-                    teamName,
+                const transporter = nodemailer.createTransport({
+                    service: "Gmail",
+                    auth: {
+                        user: process.env.EMAIL_USER,
+                        pass: process.env.EMAIL_PASS,
+                    },
                 });
+
+                const baseUrl = process.env.APP_URL || "https://www.convolutionjuee.com";
+
+                // send email to the Leader
+                const leaderEmailPromise = transporter.sendMail({
+                    from: `Support <${process.env.EMAIL_USER}>`,
+                    to: leaderEmail,
+                    subject: `Team Created: Waiting for members - ${getFriendlyEventName(eventName)}`,
+                    html: `
+                        <div style="font-family: Arial, sans-serif; color: #333;">
+                            <h3>Hello ${leaderName},</h3>
+                            <p>Your team <b>"${teamName}"</b> has been successfully initiated for <b>${getFriendlyEventName(eventName)}</b>.</p>
+                            <p>We have sent invitations to your teammates. Your team will be officially confirmed once everyone accepts their invites.</p>
+                            <br/>
+                            <a href="${baseUrl}/dashboard" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
+                        </div>
+                    `
+                });
+
+                // send Invite emails to all teammates
+                const memberEmailPromises = memberUsers.map(u => 
+                    transporter.sendMail({
+                        from: `Support <${process.env.EMAIL_USER}>`,
+                        to: u.email,
+                        subject: `ACTION REQUIRED: ${leaderName} invited you to join a team for ${getFriendlyEventName(eventName)}!`,
+                        html: `
+                            <div style="font-family: Arial, sans-serif; color: #333;">
+                                <h3>Hello ${u.name},</h3>
+                                <p><b>${leaderName}</b> has invited you to join the team <b>"${teamName}"</b> for <b>${getFriendlyEventName(eventName)}</b>.</p>
+                                <p>To secure your spot, please log in to your dashboard and Accept or Decline this invitation.</p>
+                                <br/>
+                                <a href="${baseUrl}/dashboard" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">View Invite</a>
+                            </div>
+                        `
+                    })
+                );
+
+                // Wait for all emails to send simultaneously!
+                await Promise.all([leaderEmailPromise, ...memberEmailPromises]);
+
             } catch (emailError: any) {
-                console.error("Failed to send email:", emailError.message);
-                emailSent = false;
+                console.error("Failed to send Nodemailer emails:", emailError.message);
+                emailsSent = false;
             }
         } else {
-            console.warn("EMAIL_URL not set, skipping email sending.");
-            emailSent = false;
+            console.warn("EMAIL_USER or EMAIL_PASS not set in .env. Skipping emails.");
+            emailsSent = false;
         }
 
-        const responseMessage = emailSent
-            ? "Team registration successful."
-            : "Team registration successful. However, we couldn't send a confirmation email. Please contact the organizers for assistance.";
+        const responseMessage = emailsSent
+            ? "Team created! Invites have been sent to your teammates."
+            : "Team created, but there was an issue sending the email invites. Members can still accept via their dashboard.";
 
         return NextResponse.json(
             {
