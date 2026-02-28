@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
 
         // notify leader
         const leader = team.leader as any; 
-        
+
         await Notification.deleteOne({
             email: leader.email,
             type: "TEAM_CREATE",
@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
                             <p><b>${decliningUser.name}</b> has declined your invitation to join the team <b>"${team.teamName}"</b> for ${getFriendlyEventName(team.eventName)}.</p>
                             <p>Their spot has been freed up. Please log in to your dashboard to invite a replacement teammate if you need.</p>
                             <br/>
-                            <a href="${baseUrl}/dashboard" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
+                            <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
                         </div>
                     `
                 });

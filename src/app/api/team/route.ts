@@ -181,7 +181,7 @@ export async function POST(req: NextRequest) {
                             <p>Your team <b>"${teamName}"</b> has been successfully initiated for <b>${getFriendlyEventName(eventName)}</b>.</p>
                             <p>We have sent invitations to your teammates. Your team will be officially confirmed once everyone accepts their invites.</p>
                             <br/>
-                            <a href="${baseUrl}/dashboard" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
+                            <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
                         </div>
                     `
                 });
@@ -198,7 +198,7 @@ export async function POST(req: NextRequest) {
                                 <p><b>${leaderName}</b> has invited you to join the team <b>"${teamName}"</b> for <b>${getFriendlyEventName(eventName)}</b>.</p>
                                 <p>To secure your spot, please log in to your dashboard and Accept or Decline this invitation.</p>
                                 <br/>
-                                <a href="${baseUrl}/dashboard" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">View Invite</a>
+                                <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">View Invite</a>
                             </div>
                         `
                     })

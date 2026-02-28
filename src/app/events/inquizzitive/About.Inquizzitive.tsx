@@ -13,7 +13,7 @@ export default function About() {
   const contextData = useContext(userData);
   const eventName = "inquizzitive";
   const eventMode = "team";
-  const isClosed = false; // Toggle this to true to shut down registrations
+  const isClosed = true; // Toggle this to true to shut down registrations
 
  const userEvents = contextData?.user?.eventsRegistered || [];
   const isRegistered = userEvents.some(

@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
             { $addToSet: { eventsRegistered: team.eventName.toLowerCase() } }
         );
 
-        // 👉 Delete the pending notification for this user so it disappears from their dashboard
+
         await Notification.deleteOne({ 
             email: acceptingUser.email, 
             type: "TEAM_INVITE",
@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
                 type: "TEAM_CREATE",
                 message: { $regex: team.teamName }
             });
-            
+
             await Notification.create({
                 email: leader.email,
                 message: `Yayy! Congratulations, Team "${team.teamName}" is officially confirmed for ${getFriendlyEventName(team.eventName)} 🎉.`,
