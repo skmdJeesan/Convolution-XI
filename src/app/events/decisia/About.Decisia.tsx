@@ -1,14 +1,70 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import TransitionLink from "@/components/TransitionLink";
 import { IoArrowBack } from "react-icons/io5";
 import FlipLink from "@/components/FlipLink";
+import { userData } from "@/context/UserContext";
 
 export default function About() {
-  const { data: session } = useSession();
+    const { data: session } = useSession();
+  const contextData = useContext(userData);
+  const eventName = "decisia";
+  const eventMode = "team";
+  const isClosed = true; // Toggle this to true to shut down registrations
+
+ const userEvents = contextData?.user?.eventsRegistered || [];
+  const isRegistered = userEvents.some(
+    (event: string) => event.toLowerCase() === eventName.toLowerCase()
+  );
+
+  const RegisterBtn = () => {
+    if (!session) {
+      return (
+        <TransitionLink
+              href="/login"
+              className="hover:bg-[#D11100] shadow-[#D11100] hover:shadow-[#5B0804] text-shadow-dark bg-[#DE5C00] hover:opacity-90 text-white group flex items-center gap-2 px-5 py-3 backdrop-blur-md rounded-full transition-all duration-300 shadow-sm cursor-pointer overflow-hidden"
+            >
+              <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] uppercase tracking-wide">
+                <FlipLink>Login&nbsp;to&nbsp;Register&nbsp;Now</FlipLink> 
+              </span>
+            </TransitionLink>
+      );
+    }
+
+    if (isClosed) {
+      return (
+        <div className="flex items-center gap-2 px-8 py-3 bg-white backdrop-blur-md border border-white/10 rounded-full cursor-not-allowed opacity-70">
+              <span className="font-orbitron text-sm md:text-base font-bold  tracking-wide text-[#0D30BB]">
+                Registrations not started yet
+              </span>
+            </div>
+      );
+    }
+
+    if (isRegistered) {
+      return (
+        <div className="flex items-center gap-2 px-8 py-3 bg-white backdrop-blur-md border border-white/10 rounded-full cursor-not-allowed opacity-70">
+          <span className="font-orbitron text-sm md:text-base font-bold  tracking-wide text-[#0D30BB]">
+            You have Registered for this Event
+          </span>
+        </div>
+      );
+    }
+
+    return (
+      <TransitionLink
+        href={`/events/register-${eventMode}?eventName=${eventName}`}
+        className="hover:bg-[#D11100] shadow-[#D11100] hover:shadow-[#5B0804] text-shadow-dark bg-[#DE5C00] hover:opacity-90 text-white group flex items-center gap-2 px-5 py-3 backdrop-blur-md rounded-full transition-all duration-300 shadow-sm cursor-pointer overflow-hidden"
+            >
+              <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] uppercase tracking-wide">
+          <FlipLink>Register&nbsp;Now</FlipLink>
+        </span>
+      </TransitionLink>
+    );
+  };
 
   return (
     <section
@@ -62,29 +118,7 @@ ideas, decision-making skills, and business acumen in a competitive environment.
         </p>
 
         <div className="mt-4">
-          {session ? (
-        //    user logged in
-            <div className="flex items-center gap-2 px-8 py-3 bg-white backdrop-blur-md border border-white/10 rounded-full cursor-not-allowed opacity-70">
-              <span className="font-orbitron text-sm md:text-base font-bold  tracking-wide text-[#0D30BB]">
-                Registrations not started yet
-              </span>
-            </div>
-          ) : (
-            // didnt log in
-            <TransitionLink
-              href="/login"
-              className="
-
-              hover:bg-[#D11100] shadow-[#D11100] hover:shadow-[#5B0804] text-shadow-dark bg-[#DE5C00] hover:opacity-90 text-white group flex items-center gap-2 px-5 py-3 
-                 backdrop-blur-md rounded-full 
-                transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
-              "
-            >
-              <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] uppercase tracking-wide">
-                Register Now
-              </span>
-            </TransitionLink>
-          )}
+          {RegisterBtn()}
         </div>
 
       </div>

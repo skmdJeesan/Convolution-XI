@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Rajdhani, Orbitron } from "next/font/google";
 import "./globals.css";
 import ClientProvider from "@/components/ClientProvider";
 import type { Viewport } from 'next'
+import { Toaster } from "react-hot-toast";
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -155,6 +156,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${rajdhani.variable} ${orbitron.variable} antialiased bg-black`}
       > 
         <ClientProvider>
+          <Toaster position="top-right" />
           {children}
         </ClientProvider>
       </body>

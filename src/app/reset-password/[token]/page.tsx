@@ -66,14 +66,16 @@ export default function ResetPassword({ params }: ResetPasswordProps) {
       `}</style>
 
       {/* Background*/}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[#050505]"></div>
-          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l17.32 10v20L20 40 2.68 30V10z' fill-opacity='0' stroke='%2322d3ee' stroke-width='0.5'/%3E%3C/svg%3E")`, backgroundSize: '40px 40px' }}></div>
-          <div className="absolute top-0 left-0 w-[50vw] h-[50vh] bg-cyan-500/10 blur-[120px] rounded-full mix-blend-screen"></div>
-          <div className="absolute bottom-0 right-0 w-[50vw] h-[50vh] bg-purple-600/10 blur-[120px] rounded-full mix-blend-screen"></div>
-          <DecorativeIcons/>
-      </div>
-
+            <div className="fixed inset-0 z-0 pointer-events-none">
+                <div className="absolute inset-0 bg-[#050505]"></div>
+                <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l17.32 10v20L20 40 2.68 30V10z' fill-opacity='0' stroke='%2322d3ee' stroke-width='0.5'/%3E%3C/svg%3E")`, backgroundSize: '40px 40px' }}></div>
+                <div className="hidden md:block absolute top-0 left-0 w-[50vw] h-[50vh] bg-cyan-600/30 blur-[120px] rounded-full mix-blend-screen"></div>
+                <div className="hidden md:block absolute bottom-0 right-0 w-[50vw] h-[50vh] bg-purple-600/20 blur-[120px] rounded-full mix-blend-screen"></div>
+                <div className="block md:hidden absolute top-5 left-10 w-[80vw] h-[50vh] bg-cyan-600/40 blur-[120px] rounded-full mix-blend-screen"></div>
+                <div className="block md:hidden absolute bottom-0 right-0 w-[50vw] h-[50vh] bg-purple-600/40 blur-[120px] rounded-full mix-blend-screen"></div>
+                <DecorativeIcons/>
+            </div>
+            
       <motion.div 
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}

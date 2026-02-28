@@ -182,6 +182,11 @@ export async function POST(req: NextRequest) {
             members: memberIds,
         });
 
+        await User.updateMany(
+            { _id: { $in: allMemberIds } },
+            { $addToSet: { eventsRegistered: eventName.toLowerCase() } }
+        );
+
         // Notify team members
         const notificationData = teamMembers.map((email: string) => ({
             email,

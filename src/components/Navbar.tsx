@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 import ConvoLogo from "../assets/images/Convologo.png";
 import TransitionLink from "./TransitionLink";
 import Notifications from "./Notification";
-
+import { userData } from "@/context/UserContext";
 
 const desktopNavLinks = [
   { href: "/#home", label: "Home" },
@@ -58,11 +58,25 @@ const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   
   const [isNotifOpen, setIsNotifOpen] = useState<boolean>(false);
+  const [hasSeenWelcome, setHasSeenWelcome] = useState<boolean>(true);
+  
+  const dbNotifications = useContext(userData)?.notifications || [];
+  const hasUnread = dbNotifications.some((n) => !n.read);
+  
+  const showRedDot = hasUnread || !hasSeenWelcome;
 
   const lastScrollY = useRef(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
   const { data: session } = useSession();
+
+  // Check sessionStorage on initial load
+  useEffect(() => {
+    const seen = sessionStorage.getItem("hasSeenWelcomeNotifs");
+    if (!seen) {
+      setHasSeenWelcome(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (session) {
@@ -132,6 +146,14 @@ const Navbar = () => {
     setActiveDropdown(activeDropdown === label ? null : label);
   };
 
+  const handleOpenNotif = () => {
+    setIsNotifOpen(true);
+    if (!hasSeenWelcome) {
+      sessionStorage.setItem("hasSeenWelcomeNotifs", "true");
+      setHasSeenWelcome(true);
+    }
+  };
+
   // useEffect(() => {
   //   if (typeof window !== "undefined") {
   //     if ("scrollRestoration" in history) {
@@ -165,6 +187,7 @@ const Navbar = () => {
     };
   }, []);
 
+  
  
   const navVisibilityClass = isVisible || isNavOpen 
     ? "translate-y-0" 
@@ -243,15 +266,21 @@ const Navbar = () => {
                 
                 {/*notification*/}
                 <button
-                  onClick={() => setIsNotifOpen(true)}
+                  onClick={handleOpenNotif}
                   className="lg:hidden cursor-pointer relative flex items-center justify-center p-2.5  rounded-full bg-green-400/10 border border-white/20 hover:border-white hover:bg-green-400/20 transition-all group overflow-hidden"
                 >
                   <FaBell className="block lg:hidden text-xl md:text-2xl text-cyan-300 group-hover:text-cyan-400 transition-colors" />
+                  {showRedDot && (
+                  <span className="absolute top-2 right-2 w-2 h-2 bg-yellow-600 rounded-full animate-pulse"></span>
+                  )}
                   </button>
                   <button 
-                  onClick={() => setIsNotifOpen(true)}
+                  onClick={handleOpenNotif}
                   className="hidden lg:block text-gray-200 font-orbitron group relative px-4 py-2.5 rounded-full bg-fuchsia-700 hover:bg-fuchsia-600 backdrop-blur-xl shadow-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out cursor-pointer">
                     <FlipLink>Notifications</FlipLink>
+                    {showRedDot && (
+                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-yellow-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(217,70,239,0.8)] border border-[#06091f]"></span>
+              )}
                   </button>
 
 

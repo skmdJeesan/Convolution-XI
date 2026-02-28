@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import FlipLink from "./FlipLink";
 import { userData } from "@/context/UserContext";
+import axios from "axios";
 
 interface NotificationProps {
   isOpen: boolean;
@@ -11,24 +12,38 @@ interface NotificationProps {
 }
 
 export default function Notifications({ isOpen, onClose }: NotificationProps) {
-  const userName = useContext(userData)?.user?.name; 
-  
-  const notification_data = [
+  // get notifications from context
+  const contextData = useContext(userData);
+  const userName = contextData?.user?.name; 
+  const dbNotifications = contextData?.notifications || []; 
+
+  // const notifications
+  const static_notifications = [
     {
-      id: 1,
+      id: "static-1",
       title: "System Update",
-      message:<>Hey <span className="font-bold text-fuchsia-400">{userName}</span> 👋, Welcome to <span className="font-bold text-cyan-400">Convolution26</span>  !</> ,
+      message: <>Hey <span className="font-bold text-fuchsia-400">{userName}</span> 👋, Welcome to <span className="font-bold text-cyan-400">Convolution26</span>  !</> ,
     },
     {
-      id: 2,
+      id: "static-2",
       title: "important",
-      message:<>Kindly check your spam folder for the{" "}
+      message: <>Kindly check your spam folder for the{" "}
                         <span className="font-bold">confirmation email</span>{" "}
                         and mark it as{" "}
                         <span className="font-bold">&apos;Not Spam&apos;</span>{" "}
-                        for future updates.</>,
+                        for future updates.</>,
     },
   ];
+
+  // get the user notifications
+  const dynamic_notifications = dbNotifications.map((notif: any) => ({
+    id: notif._id,
+    title: notif.type,
+    message: notif.message,
+  }));
+
+  // adding dyanamics below static
+  const notification_data = [...static_notifications, ...dynamic_notifications];
 
   const [mounted, setMounted] = useState(false);
   const [isRendered, setIsRendered] = useState(false);
@@ -42,13 +57,24 @@ export default function Notifications({ isOpen, onClose }: NotificationProps) {
     if (isOpen) {
       setIsRendered(true);
       const timer = setTimeout(() => setIsVisible(true), 10);
+      
+      //mark as read logic
+      const hasUnread = dbNotifications.some((n: any) => n.read === false);
+      
+      if (hasUnread && contextData?.setNotifications) {
+        axios.patch('/api/notifications').catch(err => console.error(err));
+        
+        const updatedNotifs = dbNotifications.map((n: any) => ({ ...n, read: true }));
+        contextData.setNotifications(updatedNotifs);
+      }
+
       return () => clearTimeout(timer);
     } else {
       setIsVisible(false);
       const timer = setTimeout(() => setIsRendered(false), 500);
       return () => clearTimeout(timer);
     }
-  }, [isOpen]);
+  }, [isOpen, dbNotifications, contextData]);
 
   useEffect(() => {
     if (isOpen) {
