@@ -11,6 +11,7 @@ interface User {
   email: string;
   institution: string;
   dept: string;
+  year: string;
   phone: string;
   eventsRegistered: string[]; // This array is CRITICAL
 }
@@ -83,6 +84,7 @@ function page({ users }: DashboardProps) {
                 <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 whitespace-nowrap">Phone</th>
                 <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 whitespace-nowrap">College</th>
                 <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 whitespace-nowrap">Dept</th>
+                {/* <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 whitespace-nowrap">Year</th> */}
                 <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 whitespace-nowrap">Events</th>
               </tr>
             </thead>
@@ -93,10 +95,11 @@ function page({ users }: DashboardProps) {
                     <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 font-medium text-white whitespace-nowrap">{user.name}</td>
                     <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 whitespace-nowrap">{user.email}</td>
                     <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 whitespace-nowrap">{user.phone}</td>
-                    <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 max-w-[120px] sm:max-w-[160px] truncate">{user.institution}</td>
-                    <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 whitespace-nowrap">{user.dept}</td>
+                    <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 max-w-30 sm:max-w-40 truncate">{user.institution}</td>
+                    <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 whitespace-nowrap">{user.dept}-{user.year}</td>
+                    {/* <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 whitespace-nowrap">{user.year}</td> */}
                     <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4">
-                      <div className="flex gap-1 flex-wrap min-w-[80px]">
+                      <div className="flex gap-1 flex-wrap min-w-20">
                         {user.eventsRegistered.map((e) => (
                           e === '--' ? (
                             <span key={e} className="text-[9px] sm:text-[10px] bg-red-900/30 text-red-400 px-1.5 py-0.5 rounded border border-red-800/30 whitespace-nowrap">
