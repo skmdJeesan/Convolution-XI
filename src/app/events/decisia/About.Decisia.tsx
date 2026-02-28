@@ -28,7 +28,7 @@ export default function About() {
               className="hover:bg-[#D11100] shadow-[#D11100] hover:shadow-[#5B0804] text-shadow-dark bg-[#DE5C00] hover:opacity-90 text-white group flex items-center gap-2 px-5 py-3 backdrop-blur-md rounded-full transition-all duration-300 shadow-sm cursor-pointer overflow-hidden"
             >
               <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] uppercase tracking-wide">
-                <FlipLink>Login&nbsp;to&nbsp;Register&nbsp;Now</FlipLink> 
+              <FlipLink>Login&nbsp;to&nbsp;Register</FlipLink>
               </span>
             </TransitionLink>
       );

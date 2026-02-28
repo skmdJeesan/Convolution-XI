@@ -32,7 +32,7 @@ export default function About() {
               "
             >
               <span className="font-orbitron text-sm md:text-base font-bold group-hover:text-[#0212B4] text-[#ffff] uppercase tracking-wide">
-                Login to Register Now
+                <FlipLink>Login&nbsp;to&nbsp;Register</FlipLink>
               </span>
             </TransitionLink>
       );
