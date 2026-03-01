@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
         }
 
         // 2. For security (I emptied this so you can actually test the registrations!)
-        const closed_events: string[] = ["jutalks", "frames"]; 
+        const closed_events: string[] = ["algomaniac", "jutalks", "frames"]; 
         if (closed_events.includes(eventName.toLowerCase())) {
             return NextResponse.json(
                 { message: `Registrations for ${getFriendlyEventName(eventName)} not started yet.` },
