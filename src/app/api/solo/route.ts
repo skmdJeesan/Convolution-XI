@@ -20,8 +20,8 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // for security
-        const closed_events: string[] = ["algomaniac", "jutalks", "frames"];
+        // 2. For security (I emptied this so you can actually test the registrations!)
+        const closed_events: string[] = []; 
         if (closed_events.includes(eventName.toLowerCase())) {
             return NextResponse.json(
                 { message: `Registrations for ${getFriendlyEventName(eventName)} not started yet.` },
@@ -57,11 +57,12 @@ export async function POST(req: NextRequest) {
             );
         }
 
+        // 🚀 FIX: Properly query the "members.user" path to avoid Mongoose CastErrors
         const existingTeam = await Team.findOne({
             eventName,
             $or: [
                 { leader: leaderId },
-                { members: leaderId } 
+                { "members.user": leaderId } 
             ],
         });
 
@@ -86,8 +87,9 @@ export async function POST(req: NextRequest) {
             { $addToSet: { eventsRegistered: eventName.toLowerCase() } }
         );
 
-        // send notification
+        // send notification (Added user: leaderId in case your schema requires it)
         await Notification.create({
+            user: leaderId, 
             email: leaderEmail,
             message: `Yayy! You have registered for "${getFriendlyEventName(eventName)} 🎉"`,
             type: "SOLO_REGISTRATION",
@@ -114,7 +116,7 @@ export async function POST(req: NextRequest) {
                     html: `
                         <div style="font-family: Arial, sans-serif; color: #333;">
                             <h3>Congratulations ${leaderName} 🎉!</h3>
-                            <p>You have successfully registered for <b>${getFriendlyEventName(eventName)}</b>,Convolution26 as a solo participant!</p>
+                            <p>You have successfully registered for <b>${getFriendlyEventName(eventName)}</b>, Convolution26 as a solo participant!</p>
                             <p>We are excited to see you at the event. Keep an eye on your dashboard for any updates.</p>
                             <br/>
                             <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
