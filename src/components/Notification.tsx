@@ -56,7 +56,9 @@ export default function Notifications({ isOpen, onClose }: NotificationProps) {
   useEffect(() => {
     if (isOpen) {
       setIsRendered(true);
-      const timer = setTimeout(() => setIsVisible(true), 10);
+      const timer = setTimeout(() => {
+        requestAnimationFrame(() => setIsVisible(true));
+      }, 10);
       
       //mark as read logic
       const hasUnread = dbNotifications.some((n: any) => n.read === false);
@@ -80,12 +82,9 @@ export default function Notifications({ isOpen, onClose }: NotificationProps) {
     if (isOpen) {
       document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
-      document.body.style.touchAction = "none";
-
       return () => {
         document.documentElement.style.overflow = "";
         document.body.style.overflow = "";
-        document.body.style.touchAction = "";
       };
     }
   }, [isOpen]);
@@ -96,7 +95,7 @@ export default function Notifications({ isOpen, onClose }: NotificationProps) {
     <>
       {/* background blur */}
       <div 
-        className={`fixed inset-0 bg-[#03050a]/80 backdrop-blur-lg z-99998 transition-opacity duration-500 ease-out ${
+        className={`fixed inset-0 bg-[#03050a]/80 backdrop-blur-lg md:backdrop-blur-xl z-99998 transition-opacity duration-500 ease-out ${
           isVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={onClose}
@@ -109,7 +108,7 @@ export default function Notifications({ isOpen, onClose }: NotificationProps) {
         className={`fixed inset-0 z-99999 flex items-center justify-center pointer-events-none`}
       >
         <div 
-          className={`relative flex flex-col w-[90vw] md:w-[60vw] max-w-2xl h-[65vh] bg-[#06091f]/20 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden transform transition-all duration-500 shadow-[0_0_60px_-15px_rgba(0,243,255,0.2)]
+          className={`relative flex flex-col w-[90vw] md:w-[60vw] max-w-2xl h-[65vh] bg-[#06091f]/20 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden transform transition-all duration-500 shadow-[0_0_60px_-15px_rgba(0,243,255,0.2)] will-change-transform
             ${isVisible ? "scale-100 opacity-100 translate-y-0 pointer-events-auto" : "scale-95 opacity-0 translate-y-8 pointer-events-none"}
           `}
           onClick={(e) => e.stopPropagation()}

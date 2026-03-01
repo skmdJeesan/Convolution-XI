@@ -30,12 +30,12 @@ const Loader = () => (
 );
 
 const eventConfigurations = [
-  { eventName: "circuistics", min: 1, max: 3 }, 
+  { eventName: "circuistics", min: 2, max: 3 },
   { eventName: "sparkhack", min: 1, max: 3 },
-  { eventName: "eureka", min: 1, max: 3 },
+  { eventName: "eureka", min: 2, max: 3 },
   { eventName: "inquizzitive", min: 1, max: 3 },
   { eventName: "decisia", min: 1, max: 4 },
-  { eventName: "aboltabol", min: 1, max: 3 },
+  { eventName: "aboltabol", min: 0, max: 3 }
 ];
 
 const teamSchema = (min: number, max: number) =>
@@ -111,7 +111,7 @@ export default function EventRegistrationForm() {
       }
 
       toast.success("TEAM INITIALIZED SUCCESSFULLY", {
-        style: { background: "#0a0e14", color: "#22d3ee", border: "1px solid #0891b2" },
+        style: { background: "#0a0e14", color: "#22d3ee", border: "1px solid #0891b2", fontFamily:"rajdhani" },
         iconTheme: { primary: '#22d3ee', secondary: '#0a0e14' },
       });
       
@@ -120,7 +120,7 @@ export default function EventRegistrationForm() {
 
     } catch (error: any) {
       toast.error(error.response?.data?.message || "Failed to establish team link.", {
-        style: { background: "#0a0e14", color: "#ef4444", border: "1px solid #7f1d1d" }
+        style: { background: "#0a0e14", color: "#ef4444", border: "1px solid #7f1d1d", fontFamily:"rajdhani" }
       });
     }
   };
@@ -258,7 +258,7 @@ export default function EventRegistrationForm() {
                                 <input 
                                     type="email" 
                                     {...register(`members.${index}` as const)}
-                                    placeholder={`Operative ${index + 1} Email`}
+                                    placeholder={`teammate${index + 1}@example.com`}
                                     spellCheck={false}
                                     className='w-full bg-transparent px-2 text-[16px] text-cyan-100 placeholder-cyan-600/50 outline-none font-rajdhani tracking-wider' 
                                 />

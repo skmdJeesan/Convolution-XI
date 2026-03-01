@@ -4,7 +4,7 @@ import Team from "@/models/team.model";
 import User from "@/models/user.model";
 import Notification from "@/models/notification.model";
 import { getFriendlyEventName } from "@/lib/friendlyEventNames";
-import nodemailer from "nodemailer"; // 🚀 Swapped axios for nodemailer!
+import nodemailer from "nodemailer";
 
 export async function POST(req: NextRequest) {
     try {
@@ -30,6 +30,16 @@ export async function POST(req: NextRequest) {
             return NextResponse.json(
                 { message: "This event does not support team registration." },
                 { status: 400 }
+            );
+        }
+
+        // for security
+        const closed_events: string[] = ["circuistics","decisia", "sparkhack", "aboltabol", "eureka", "inquizzitive"]; 
+        
+        if (closed_events.includes(eventName.toLowerCase())) {
+            return NextResponse.json(
+                { message: `Registrations for ${getFriendlyEventName(eventName)} not yet started.` }, 
+                { status: 403 }
             );
         }
 
@@ -121,19 +131,21 @@ export async function POST(req: NextRequest) {
         // Determine the user objects for leader and members to save references
         const memberUsers = users.filter((u) => u.email !== leaderEmail);
         
-        // --- UPGRADE 1: Structure members with "pending" status ---
+        // structure members with pending status
         const pendingMembers = memberUsers.map((u) => ({
             user: u._id,
             status: "pending",
         }));
 
-        // --- UPGRADE 2: Create the team as "pending" ---
+        const initialStatus = pendingMembers.length === 0 ? "confirmed" : "pending";
+
+        // create team
         const team = await Team.create({
             teamName,
             eventName,
             leader: leaderId,
             members: pendingMembers,
-            status: "pending" // Team is pending until everyone accepts!
+            status: initialStatus 
         });
         
         await User.findByIdAndUpdate(
@@ -141,7 +153,10 @@ export async function POST(req: NextRequest) {
             { $addToSet: { eventsRegistered: eventName.toLowerCase() } }
         );
 
-        // send custom notifications
+        const leaderNotificationMsg = pendingMembers.length === 0
+            ? `Yayyy !Registration Confirmed 🎉! You have successfully registered for ${getFriendlyEventName(eventName)}.`
+            : `Hurray, Team "${teamName}" created! We are waiting for your teammates to accept their invites.`;
+
         const notificationData = memberUsers.map((u) => ({
             email: u.email,
             message: `${leaderName} has invited you to join team "${teamName}" for ${getFriendlyEventName(eventName)}. Please go to your dashboard to Accept or Decline.`,
@@ -150,7 +165,7 @@ export async function POST(req: NextRequest) {
 
         notificationData.push({
             email: leaderEmail,
-            message: `Hurray, Team "${teamName}" created! We are waiting for your teammates to accept their invites.`,
+            message: leaderNotificationMsg,
             type: "TEAM_CREATE",
         });
 
@@ -170,31 +185,47 @@ export async function POST(req: NextRequest) {
 
                 const baseUrl = process.env.APP_URL || "https://www.convolutionjuee.com";
 
-                // send email to the Leader
-                const leaderEmailPromise = transporter.sendMail({
-                    from: `Support <${process.env.EMAIL_USER}>`,
-                    to: leaderEmail,
-                    subject: `Team Created: Waiting for members - ${getFriendlyEventName(eventName)}`,
-                    html: `
+                const leaderEmailSubject = pendingMembers.length === 0
+                    ? `Registration Confirmed! - ${getFriendlyEventName(eventName)}`
+                    : `Team Created! Waiting for other members to accept requests - ${getFriendlyEventName(eventName)}`;
+
+                const leaderEmailHtml = pendingMembers.length === 0
+                    ? `
                         <div style="font-family: Arial, sans-serif; color: #333;">
-                            <h3>Hello ${leaderName},</h3>
+                            <h3>Congratulations ${leaderName} 🎉!</h3>
+                            <p>Your team <b>"${teamName}"</b> has been successfully registered and confirmed for <b>${getFriendlyEventName(eventName)}</b>, Convolution26.</p>
+                            <p>We are excited to see you at the event. Keep an eye on your dashboard for any updates.</p>
+                            <br/>
+                            <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
+                        </div>
+                    `
+                    : `
+                        <div style="font-family: Arial, sans-serif; color: #333;">
+                            <h3>Heyy ${leaderName},</h3>
                             <p>Your team <b>"${teamName}"</b> has been successfully initiated for <b>${getFriendlyEventName(eventName)}</b>.</p>
                             <p>We have sent invitations to your teammates. Your team will be officially confirmed once everyone accepts their invites.</p>
                             <br/>
                             <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
                         </div>
-                    `
+                    `;
+
+                // send email to the Leader
+                const leaderEmailPromise = transporter.sendMail({
+                    from: `Support <${process.env.EMAIL_USER}>`,
+                    to: leaderEmail,
+                    subject: leaderEmailSubject,
+                    html: leaderEmailHtml
                 });
 
-                // send Invite emails to all teammates
+                // send invite emails to all teammates
                 const memberEmailPromises = memberUsers.map(u => 
                     transporter.sendMail({
                         from: `Support <${process.env.EMAIL_USER}>`,
                         to: u.email,
-                        subject: `ACTION REQUIRED: ${leaderName} invited you to join a team for ${getFriendlyEventName(eventName)}!`,
+                        subject: `ACTION REQUIRED: ${leaderName} invited you to join a team for ${getFriendlyEventName(eventName)}, Convolution26!`,
                         html: `
                             <div style="font-family: Arial, sans-serif; color: #333;">
-                                <h3>Hello ${u.name},</h3>
+                                <h3>Heyy ${u.name},</h3>
                                 <p><b>${leaderName}</b> has invited you to join the team <b>"${teamName}"</b> for <b>${getFriendlyEventName(eventName)}</b>.</p>
                                 <p>To secure your spot, please log in to your dashboard and Accept or Decline this invitation.</p>
                                 <br/>
@@ -204,7 +235,6 @@ export async function POST(req: NextRequest) {
                     })
                 );
 
-                // Wait for all emails to send simultaneously!
                 await Promise.all([leaderEmailPromise, ...memberEmailPromises]);
 
             } catch (emailError: any) {
@@ -216,9 +246,16 @@ export async function POST(req: NextRequest) {
             emailsSent = false;
         }
 
-        const responseMessage = emailsSent
-            ? "Team created! Invites have been sent to your teammates."
-            : "Team created, but there was an issue sending the email invites. Members can still accept via their dashboard.";
+        let responseMessage = "";
+        if (emailsSent) {
+            responseMessage = pendingMembers.length === 0
+                ? "Registration confirmed!"
+                : "Team created! Invites have been sent to your teammates.";
+        } else {
+            responseMessage = pendingMembers.length === 0
+                ? "Registration confirmed! (Email failed to send)"
+                : "Team created, but there was an issue sending the email invites. Members can still accept via their dashboard.";
+        }
 
         return NextResponse.json(
             {

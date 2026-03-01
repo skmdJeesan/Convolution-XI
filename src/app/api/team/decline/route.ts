@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
 
         await dbConnect();
 
-        // Find the team and populate the leader and members
+        // find the team and populate the leader and members
         const team = await Team.findById(teamId).populate("leader").populate("members.user");
 
         if (!team) {
@@ -34,6 +34,13 @@ export async function POST(req: NextRequest) {
 
         // remove the declined user from the team array completely
         team.members.splice(memberIndex, 1);
+        
+        const allRemainingAccepted = team.members.length === 0 || team.members.every((m: any) => m.status === "accepted");
+        if (allRemainingAccepted && team.status === "pending") {
+            team.status = "confirmed";
+        }
+
+        await team.save();
         await team.save();
 
         // securely remove the event from their profile just in case

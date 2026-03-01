@@ -140,7 +140,7 @@ export default function SignupForm() {
                   <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 </div>
-                <TransitionLink href="/" className="md:hidden flex items-center group cursor-pointer -ml-1">
+                <TransitionLink href="/profile" className="md:hidden flex items-center group cursor-pointer -ml-1">
                   <IoArrowBack className="text-cyan-400 text-2xl group-hover:-translate-x-1 transition-transform duration-300" />
                 </TransitionLink>
               </div>
