@@ -99,7 +99,7 @@ export async function POST(req: NextRequest) {
             }
         }
 
-        return NextResponse.json({ message: "Invite sent successfully!" }, { status: 200 });
+        return NextResponse.json({ message: "Invitation sent successfully!" }, { status: 200 });
 
     } catch (error: any) {
         return NextResponse.json({ message: "Internal server error", error: error.message }, { status: 500 });

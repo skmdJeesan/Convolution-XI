@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
 
             const confirmationNotifications = allUser.map(obj => ({
                 email: obj.email,
-                message: `Yayy! Team "${team.teamName}" is officially confirmed for ${getFriendlyEventName(team.eventName)} 🎉.`,
+                message: `Yayyy! Team "${team.teamName}" is officially confirmed for ${getFriendlyEventName(team.eventName)} 🎉.`,
                 type: "TEAM_CONFIRMED"
             }));
             await Notification.insertMany(confirmationNotifications);

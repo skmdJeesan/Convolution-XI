@@ -55,16 +55,16 @@ interface RequestData {
 // icons for events
 const getEventIcon = (eventName: string) => {
   const name = eventName.toLowerCase();
-  if (name.includes('algomaniac')) return <FaCode className="text-lg" />;
-  if (name.includes('sparkhack')) return <FaLaptopCode className="text-lg" />;
-  if (name.includes('circuistics')) return <FaMicrochip className="text-lg" />;
-  if (name.includes('inquizzitive') || name.includes('inquizitive')) return <FaQuestion className="text-lg" />;
-  if (name.includes('24frames')) return <FaCamera className="text-lg" />;
-  if (name.includes('eureka')) return <FaLightbulb className="text-lg" />;
-  if (name.includes('decisia')) return <FaChess className="text-lg" />;
-  if (name.includes('aboltabol')) return <FaRandom className="text-lg" />;
-  if (name.includes('jutalks')) return <FaMicrophone className="text-lg" />;
-  return <IoCodeSlashOutline className="text-lg" />; // Fallback icon
+  if (name.includes('algomaniac')) return <FaCode className="text-base" />;
+  if (name.includes('sparkhack')) return <FaLaptopCode className="text-base" />;
+  if (name.includes('circuistics')) return <FaMicrochip className="text-base" />;
+  if (name.includes('inquizzitive') || name.includes('inquizitive')) return <FaQuestion className="text-base" />;
+  if (name.includes('24frames')) return <FaCamera className="text-base" />;
+  if (name.includes('eureka')) return <FaLightbulb className="text-base" />;
+  if (name.includes('decisia')) return <FaChess className="text-base" />;
+  if (name.includes('aboltabol')) return <FaRandom className="text-base" />;
+  if (name.includes('jutalks')) return <FaMicrophone className="text-base" />;
+  return <IoCodeSlashOutline className="text-base" />; // Fallback icon
 };
 
 const Background = () => (
@@ -74,7 +74,7 @@ const Background = () => (
     <div className="hidden lg:block absolute top-[20%] right-[-5%]  w-[80vw] h-[90vh] bg-fuchsia-900/20 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="block lg:hidden absolute top-[20%] left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] bg-fuchsia-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="hidden lg:block absolute bottom-[-5%] right-[-10%] w-[60vw] h-[110vh] bg-cyan-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
-    <div className="block lg:hidden absolute bottom-[4%] right-[-5%] w-[80vw] h-[100vh] bg-cyan-900/25 blur-[100px] rounded-full mix-blend-screen"></div>
+    <div className="block lg:hidden absolute bottom-[4%] right-[-5%] w-[80vw] h-[110vh] bg-cyan-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="block lg:hidden absolute bottom-[2%] left-[-10%] w-[70vw] h-[80vh] bg-purple-900/40 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="hidden lg:block absolute bottom-[5%] left-[-5%] w-[75vw] h-[110vh] bg-purple-900/30 blur-[100px] rounded-full mix-blend-screen"></div>
     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[50px_50px] mask-[radial-gradient(ellipse_at_center,black_50%,transparent_90%)]"></div>
@@ -350,7 +350,7 @@ export default function ProfilePage() {
                 </h3>
              </div>
 
-             <div className="relative bg-[#0e0e14]/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 lg:p-8 overflow-hidden h-[300px] flex flex-col">
+             <div className="relative bg-[#0e0e14]/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 lg:p-8 overflow-hidden h-80 flex flex-col">
                 <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-purple-500/40 rounded-tl-lg pointer-events-none"></div>
                 <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-cyan-500/40 rounded-br-lg pointer-events-none"></div>
 
@@ -362,17 +362,17 @@ export default function ProfilePage() {
                 </div>
 
                 {hasEvents ? (
-                   <div className="flex-1 overflow-y-auto  scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent pb-2">
+                   <div className="flex-1 overflow-y-auto  scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent pb-2 px-1 md:px-2">
                      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                         {eventsList.map((event) => (
-                          <div key={event.id} className="group relative flex items-center gap-4 p-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-cyan-500/50 transition-all duration-300">
+                          <div key={event.id} className="group relative flex items-center gap-2 p-2 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-cyan-500/50 transition-all duration-300">
                             <div className="p-3 bg-black/40 rounded-lg text-cyan-400 group-hover:text-cyan-300 group-hover:scale-110 transition-all shrink-0 ring-1 ring-white/5">
                                {getEventIcon(event.name)}
                             </div>
                             <div className="flex flex-row items-center justify-between grow">
-                                <h4 className="font-orbitron text-base md:text-[18px] font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors capitalize tracking-widest">{event.name}</h4>
+                                <h4 className="font-orbitron text-base font-semibold text-cyan-400 group-hover:text-cyan-300 transition-colors capitalize tracking-widest">{event.name}</h4>
                                 <div className="flex items-center justify-between">
-                                    <span className={`font-rajdhani text-[10px] sm:text-xs font-medium px-2 py-1 rounded uppercase tracking-wider whitespace-nowrap shrink-0 ${event.status === 'Confirmed' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'}`}>
+                                    <span className={`font-rajdhani text-[10px] md:text-[12px] font-semibold px-1 py-1 rounded  uppercase tracking-wider whitespace-nowrap shrink-0 ${event.status === 'Confirmed' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'}`}>
                                         {event.status}
                                     </span>
                                 </div>
@@ -409,23 +409,23 @@ export default function ProfilePage() {
                 </h3>
              </div>
 
-             <div className="relative bg-[#0e0e14]/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 lg:p-8 overflow-hidden h-75 flex flex-col">
+             <div className="relative bg-[#0e0e14]/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 lg:p-8 overflow-hidden h-90 flex flex-col">
                 <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-cyan-500/40 rounded-tl-lg pointer-events-none"></div>
                 <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-purple-500/40 rounded-br-lg pointer-events-none"></div>
 
                 {myTeamsList.length > 0 ? (
-                   <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent pb-2">
-                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+                   <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent pb-2 px-1 md:px-4">
+                     <div className="grid grid-cols-1 gap-4">
                         {myTeamsList.map((team) => (
                           <div 
                               key={team.id} 
                               ref={openTeamStatus === team.id ? activeCardRef : null}
                               className={`relative group flex flex-col p-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 ${openTeamStatus === team.id ? 'border-cyan-500/50 bg-black/20' : ''}`}
                           >
-                              <div className="flex justify-between items-start mb-4">
+                              <div className="flex justify-between items-start mb-3">
                                   <div>
-                                      <h4 className="font-orbitron font-bold text-fuchsia-300 group-hover:text-purple-300 transition-colors text-lg capitalize">{team.name}</h4>
-                                      <span className="font-rajdhani text-[14px] md:text-sm font-semibold text-slate-300 capitalize tracking-widest">Event: <span className='text-cyan-400 uppercase'>{team.event}</span></span>
+                                      <h4 className="font-orbitron font-bold text-fuchsia-300 group-hover:text-purple-300 transition-colors text-[17px] capitalize pb-1">{team.name}</h4>
+                                      <span className="font-rajdhani text-sm font-semibold text-slate-300 capitalize tracking-wide">Event: <span className='text-cyan-400 uppercase'>{team.event}</span></span>
                                   </div>
                                   <div className="p-2 bg-black/40 rounded-lg text-purple-400 ring-1 ring-white/5 group-hover:bg-purple-500/20 transition-colors">
                                       <IoPeopleOutline className="text-xl" />
@@ -450,19 +450,19 @@ export default function ProfilePage() {
                               {/* dropdown */}
                               {openTeamStatus === team.id && (
                                   <div className="mt-3 pt-3 border-t border-white/10 w-full bg-black/20 rounded-lg p-2">
-                                      <h5 className="font-orbitron text-[14px] font-semibold text-cyan-400 mb-2 border-b border-white/10 pb-1 tracking-wider">Team Details</h5>
+                                      <h5 className="font-orbitron text-[14px] md:text-base font-semibold text-cyan-400 mb-2 border-b border-white/10 pb-1 tracking-wider">Team Details</h5>
                                       <ul className="flex flex-col gap-2 max-h-40 overflow-y-auto scrollbar-thin scrollbar-thumb-white/10">
                                           {team.memberDetails.map((member, idx) => (
-                                              <li key={idx} className="flex justify-between items-center text-[14px] font-medium font-rajdhani gap-2">
+                                              <li key={idx} className="flex justify-between items-center text-[14px] md:text-base font-medium font-rajdhani gap-2">
                                                   <div className="flex items-center gap-1.5 truncate max-w-[140px]">
                                                       <span className="text-slate-300 truncate " title={member.email}>
                                                           {member.name !== "Unknown User" ? member.name : member.email}
                                                       </span>
                                                       {member.id === data?.user?._id && (
-                                                          <span className="text-[14px] font-bold text-cyan-400">(You)</span>
+                                                          <span className="text-[14px] md:text-base font-bold text-cyan-400">(You)</span>
                                                       )}
                                                       {member.isLeader && member.id !== data?.user?._id && (
-                                                          <span className="text-[14px] font-bold text-purple-400">(Leader)</span>
+                                                          <span className="text-[14px] md:text-base font-bold text-purple-400">(Leader)</span>
                                                       )}
                                                   </div>
                                                   <span className={`px-1.5 py-0.5 rounded text-[12px] uppercase tracking-wider shrink-0 
@@ -513,13 +513,13 @@ export default function ProfilePage() {
                 <button 
                     onClick={() => handleAddMember(team.id)}
                     disabled={addMemberLoading}
-                    className="cursor-pointer text-[10px] bg-cyan-600/80 hover:bg-cyan-500 px-3 h-8 rounded text-white font-bold font-orbitron tracking-widest disabled:opacity-50 transition-colors"
+                    className="cursor-pointer text-[11px] bg-cyan-600/80 hover:bg-cyan-500 px-3 h-8 rounded text-white font-bold font-orbitron tracking-widest disabled:opacity-50 transition-colors"
                 >
-                    {addMemberLoading ? "..." : "ADD"}
+                    <FlipLink>{addMemberLoading ? "..." : "ADD"}</FlipLink>
                 </button>
                 <button 
                     onClick={() => {setAddMemberMode(null); setNewMemberEmail("");}}
-                    className="cursor-pointer text-[11px] bg-red-600/50 hover:bg-red-500/80 px-2 h-8 rounded text-white font-bold transition-colors"
+                    className="cursor-pointer text-[14px] bg-red-600/50 hover:bg-red-500/80 px-3 h-8 rounded text-white font-bold transition-colors"
                 >
                     X
                 </button>

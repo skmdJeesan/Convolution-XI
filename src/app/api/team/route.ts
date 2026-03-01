@@ -154,7 +154,7 @@ export async function POST(req: NextRequest) {
         );
 
         const leaderNotificationMsg = pendingMembers.length === 0
-            ? `Yayyy !Registration Confirmed 🎉! You have successfully registered for ${getFriendlyEventName(eventName)}.`
+            ? `Yayyy! Registration Confirmed 🎉! You have successfully registered for ${getFriendlyEventName(eventName)}.`
             : `Hurray, Team "${teamName}" created! We are waiting for your teammates to accept their invites.`;
 
         const notificationData = memberUsers.map((u) => ({
