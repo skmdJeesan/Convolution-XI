@@ -372,7 +372,7 @@ export default function ProfilePage() {
                             <div className="flex flex-row items-center justify-between grow">
                                 <h4 className="font-orbitron text-base md:text-[18px] font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors capitalize tracking-widest">{event.name}</h4>
                                 <div className="flex items-center justify-between">
-                                    <span className={`font-rajdhani text-xs font-medium px-2 py-1 rounded uppercase tracking-wider ${event.status === 'Confirmed' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'}`}>
+                                    <span className={`font-rajdhani text-[10px] sm:text-xs font-medium px-2 py-1 rounded uppercase tracking-wider whitespace-nowrap shrink-0 ${event.status === 'Confirmed' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'}`}>
                                         {event.status}
                                     </span>
                                 </div>
