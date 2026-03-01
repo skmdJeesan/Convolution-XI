@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     try {
         const { eventName, leaderId, leaderEmail, leaderName } = await req.json();
 
-        // 1. Ensure it is a valid solo event
+        //valid solo events
         const solo_events = ["algomaniac", "jutalks", "frames"];
 
         if (!solo_events.includes(eventName.toLowerCase())) {
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // 2. For security (I emptied this so you can actually test the registrations!)
+        // for security
         const closed_events: string[] = ["algomaniac", "jutalks", "frames"]; 
         if (closed_events.includes(eventName.toLowerCase())) {
             return NextResponse.json(
@@ -57,7 +57,6 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // 🚀 FIX: Properly query the "members.user" path to avoid Mongoose CastErrors
         const existingTeam = await Team.findOne({
             eventName,
             $or: [
@@ -87,7 +86,7 @@ export async function POST(req: NextRequest) {
             { $addToSet: { eventsRegistered: eventName.toLowerCase() } }
         );
 
-        // send notification (Added user: leaderId in case your schema requires it)
+        // send notification
         await Notification.create({
             user: leaderId, 
             email: leaderEmail,
