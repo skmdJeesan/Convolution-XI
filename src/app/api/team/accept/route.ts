@@ -53,7 +53,46 @@ export async function POST(req: NextRequest) {
             message: { $regex: team.teamName }
         });
 
-        // are there any pending members left?
+        const leader = team.leader as any;
+        
+        await Notification.create({
+            email: leader.email,
+            message: `<span class="font-bold text-fuchsia-400">${acceptingUser.name}</span> has accepted your invite to join <span class="font-bold text-cyan-400">${team.teamName}</span> for <span class="font-bold text-purple-500">${getFriendlyEventName(team.eventName)}</span>! 🎉`,
+            type: "TEAM_UPDATE",
+        });
+
+        if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+            try {
+                const transporter = nodemailer.createTransport({
+                    service: "Gmail",
+                    auth: {
+                        user: process.env.EMAIL_USER,
+                        pass: process.env.EMAIL_PASS,
+                    },
+                });
+
+                const baseUrl = process.env.APP_URL || "https://www.convolutionjuee.com";
+
+                await transporter.sendMail({
+                    from: `Support <${process.env.EMAIL_USER}>`,
+                    to: leader.email,
+                    subject: `invitation Accepted for ${getFriendlyEventName(team.eventName)}`,
+                    html: `
+                        <div style="font-family: Arial, sans-serif; color: #333;">
+                            <h3>Good news ${leader.name}! 🎉</h3>
+                            <p><b>${acceptingUser.name}</b> (${acceptingUser.email}) has just accepted your invitation to join <b>${team.teamName}</b> for <b>${getFriendlyEventName(team.eventName)}</b>, Convolution26.</p>
+                            <p>You can check your updated team status on your dashboard.</p>
+                            <br/>
+                            <a href="${baseUrl}/profile" style="display: inline-block; padding: 12px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">View Dashboard</a>
+                        </div>
+                    `
+                });
+            } catch (emailError: any) {
+                console.error("Failed to send acceptance email to leader:", emailError.message);
+            }
+        }
+
+
         const allAccepted = team.members.every((m: any) => m.status === "accepted");
         const anyDeclined = team.members.some((m: any) => m.status === "declined");
 
@@ -61,15 +100,13 @@ export async function POST(req: NextRequest) {
         if (allAccepted && !anyDeclined) {
             team.status = "confirmed";
             await team.save();
-
-            const leader = team.leader as any;
             
             const allUser = [
                 { email: leader.email, name: leader.name },
                 ...team.members.map((m: any) => ({ email: m.user.email, name: m.user.name }))
             ];
 
-            // Clean up the leader's pending notification
+            // clean up the leader's pending notification
             await Notification.deleteOne({
                 email: leader.email,
                 type: "TEAM_CREATE",
@@ -78,7 +115,7 @@ export async function POST(req: NextRequest) {
 
             const confirmationNotifications = allUser.map(obj => ({
                 email: obj.email,
-                message: `Yayyy! Team "${team.teamName}" is officially confirmed for ${getFriendlyEventName(team.eventName)} 🎉.`,
+                message: `Yayyy! Team <span class="font-bold text-cyan-400">${team.teamName}</span> is officially confirmed for <span class="font-bold text-purple-500">${getFriendlyEventName(team.eventName)}</span> 🎉.`,
                 type: "TEAM_CONFIRMED"
             }));
             await Notification.insertMany(confirmationNotifications);

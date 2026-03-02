@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
         // notification
         await Notification.create({
             email: newMemberEmail,
-            message: `${team.leader.name} has invited you to join team "${team.teamName}" for ${getFriendlyEventName(team.eventName)}. Go to your dashboard to Accept or Decline.`,
+            message: `<span class="font-bold text-fuchsia-400">${team.leader.name}</span> has invited you to join team <span class="font-bold text-cyan-400">${team.teamName}</span> for <span class="font-bold text-purple-500">${getFriendlyEventName(team.eventName)}</span>. Go to your dashboard to <span class="font-bold">Accept</span> or <span class="font-bold">Decline</span>.`,
             type: "TEAM_INVITE",
         });
 
@@ -87,10 +87,10 @@ export async function POST(req: NextRequest) {
                     subject: `ACTION REQUIRED: ${team.leader.name} invited you to a team!`,
                     html: `
                         <div style="font-family: Arial, sans-serif; color: #333;">
-                            <h3>Hello ${newUser.name},</h3>
+                            <h3>Hello ${newUser.name} 👋,</h3>
                             <p><b>${team.leader.name}</b> has invited you to join the team <b>"${team.teamName}"</b> for <b>${getFriendlyEventName(team.eventName)}</b>.</p>
                             <p>To secure your spot, log in to your dashboard and Accept or Decline this invitation.</p>
-                            <br/><a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">View Invite</a>
+                            <br/><a href="${baseUrl}/profile" style="display: inline-block; padding: 12px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">View Invite</a>
                         </div>
                     `
                 });

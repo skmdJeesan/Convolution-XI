@@ -154,12 +154,12 @@ export async function POST(req: NextRequest) {
         );
 
         const leaderNotificationMsg = pendingMembers.length === 0
-            ? `Yayyy! Registration Confirmed 🎉! You have successfully registered for ${getFriendlyEventName(eventName)}.`
-            : `Hurray, Team "${teamName}" created! We are waiting for your teammates to accept their invites.`;
+            ? `Yayyy! Registration Confirmed 🎉! You have successfully registered for <span class="font-bold text-purple-500">${getFriendlyEventName(eventName)}</span>.`
+            : `Hurray, Team <span class="font-bold text-purple-500">${teamName}</span> created! We are waiting for your teammates to accept their invitations.`;
 
         const notificationData = memberUsers.map((u) => ({
             email: u.email,
-            message: `${leaderName} has invited you to join team "${teamName}" for ${getFriendlyEventName(eventName)}. Please go to your dashboard to Accept or Decline.`,
+            message: `${leaderName} has invited you to join team <span class="font-bold text-purple-500">${teamName}</span> for <span class="font-bold text-purple-500">${getFriendlyEventName(eventName)}</span>. Please go to your dashboard to Accept or Decline.`,
             type: "TEAM_INVITE",
         }));
 
@@ -196,16 +196,16 @@ export async function POST(req: NextRequest) {
                             <p>Your team <b>"${teamName}"</b> has been successfully registered and confirmed for <b>${getFriendlyEventName(eventName)}</b>, Convolution26.</p>
                             <p>We are excited to see you at the event. Keep an eye on your dashboard for any updates.</p>
                             <br/>
-                            <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
+                            <a href="${baseUrl}/profile" style="display: inline-block; padding: 12px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
                         </div>
                     `
                     : `
                         <div style="font-family: Arial, sans-serif; color: #333;">
-                            <h3>Heyy ${leaderName},</h3>
+                            <h3>Hello ${leaderName} 👋!</h3>
                             <p>Your team <b>"${teamName}"</b> has been successfully initiated for <b>${getFriendlyEventName(eventName)}</b>.</p>
                             <p>We have sent invitations to your teammates. Your team will be officially confirmed once everyone accepts their invites.</p>
                             <br/>
-                            <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
+                            <a href="${baseUrl}/profile" style="display: inline-block; padding: 12px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
                         </div>
                     `;
 
@@ -225,11 +225,11 @@ export async function POST(req: NextRequest) {
                         subject: `ACTION REQUIRED: ${leaderName} invited you to join a team for ${getFriendlyEventName(eventName)}, Convolution26!`,
                         html: `
                             <div style="font-family: Arial, sans-serif; color: #333;">
-                                <h3>Heyy ${u.name},</h3>
+                                <h3>Hello ${u.name} 👋!</h3>
                                 <p><b>${leaderName}</b> has invited you to join the team <b>"${teamName}"</b> for <b>${getFriendlyEventName(eventName)}</b>.</p>
                                 <p>To secure your spot, please log in to your dashboard and Accept or Decline this invitation.</p>
                                 <br/>
-                                <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">View Invite</a>
+                                <a href="${baseUrl}/profile" style="display: inline-block; padding: 12px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">View Invite</a>
                             </div>
                         `
                     })

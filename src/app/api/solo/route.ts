@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
         await Notification.create({
             user: leaderId, 
             email: leaderEmail,
-            message: `Yayy! You have registered for "${getFriendlyEventName(eventName)} 🎉"`,
+            message: `Yayy! You have registered for <span class="font-bold text-purple-500">${getFriendlyEventName(eventName)}</span> 🎉`,
             type: "SOLO_REGISTRATION",
         });
 
@@ -118,7 +118,7 @@ export async function POST(req: NextRequest) {
                             <p>You have successfully registered for <b>${getFriendlyEventName(eventName)}</b>, Convolution26!</p>
                             <p>We are excited to see you at the event. Keep an eye on your dashboard for any updates.</p>
                             <br/>
-                            <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
+                            <a href="${baseUrl}/profile" style="display: inline-block; padding: 12px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
                         </div>
                     `
                 });

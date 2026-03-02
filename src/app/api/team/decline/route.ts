@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
         });
         await Notification.create({
             email: leader.email,
-            message: `⚠️ Alert: ${decliningUser.name} has DECLINED your invite to join "${team.teamName}".`,
+            message: `⚠️ Alert: <span class="font-bold text-red-500">${decliningUser.name}</span> has DECLINED your invitation to join <span class="font-bold text-cyan-400">${team.teamName}</span>.`,
             type: "TEAM_DECLINED"
         });
 
@@ -85,14 +85,14 @@ export async function POST(req: NextRequest) {
                 await transporter.sendMail({
                     from: `Support <${process.env.EMAIL_USER}>`,
                     to: leader.email,
-                    subject: `⚠️ Invite Declined: Action needed for ${team.teamName}`,
+                    subject: `⚠️ invitation Declined: Action needed for ${team.teamName}`,
                     html: `
                         <div style="font-family: Arial, sans-serif; color: #333;">
-                            <h3>Hello ${leader.name},</h3>
+                            <h3>Hello ${leader.name} 👋!</h3>
                             <p><b>${decliningUser.name}</b> has declined your invitation to join the team <b>"${team.teamName}"</b> for ${getFriendlyEventName(team.eventName)}.</p>
                             <p>Their spot has been freed up. Please log in to your dashboard to invite a replacement teammate if you need.</p>
                             <br/>
-                            <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
+                            <a href="${baseUrl}/profile" style="display: inline-block; padding: 12px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
                         </div>
                     `
                 });
