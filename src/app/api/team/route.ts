@@ -188,12 +188,22 @@ export async function POST(req: NextRequest) {
                 const leaderEmailSubject = pendingMembers.length === 0
                     ? `Registration Confirmed! - ${getFriendlyEventName(eventName)}`
                     : `Team Created! Waiting for other members to accept requests - ${getFriendlyEventName(eventName)}`;
-
+                    let gform = "";
+                    const AT = eventName.toLowerCase();
+                    if(AT==='aboltabol'){
+                        gform = `<div style="margin-top: 20px; padding: 15px; background-color: #eff6ff; border-left: 4px solid #3b82f6; border-radius: 4px;">
+                            <p style="margin: 0 0 15px 0; line-height: 1.5;">Submit your abstract of your team's ideas in the google form link given below before DEADLINE.</p>
+                            <a href="GFORM_LINK" style="display: inline-block; padding: 10px 15px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Google Form</a>
+                        </div>`
+                    }
                 const leaderEmailHtml = pendingMembers.length === 0
                     ? `
                         <div style="font-family: Arial, sans-serif; color: #333;">
                             <h3>Congratulations ${leaderName} 🎉!</h3>
                             <p>Your team <b>"${teamName}"</b> has been successfully registered and confirmed for <b>${getFriendlyEventName(eventName)}</b>, Convolution26.</p>
+                            
+                            ${gform}
+
                             <p>We are excited to see you at the event. Keep an eye on your dashboard for any updates.</p>
                             <br/>
                             <a href="${baseUrl}/profile" style="display: inline-block; padding: 12px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
