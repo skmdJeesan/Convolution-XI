@@ -122,7 +122,7 @@ export async function POST(req: NextRequest) {
                 } else if (Event === "frames") {
                     link = `
                         <div style="margin-top: 20px; padding: 15px; background-color: #fdf2f8; border-left: 4px solid #db2777; border-radius: 4px;">
-                            <p style="margin: 0 0 10px 0;"><b>Action Required:</b>Upload your best photograph you have captured using this google form before the deadline passes.</p>
+                            <p style="margin: 0 0 10px 0;">Upload your best photograph you have captured using this google form before DEADLINE.</p>
                             <a href="GFORM_LINK" style="display: inline-block; padding: 10px 15px; background-color: #db2777; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Google Form</a>
                         </div>
                     `;
