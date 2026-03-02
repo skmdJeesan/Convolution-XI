@@ -139,7 +139,7 @@ const StatCard = ({ icon: Icon, label, value, colorClass, borderClass }: { icon:
 
 export default function AboutSection() {
   const [userCount, setUserCount] = useState(0);
-  // console.log(`meow${userCount}`)
+  console.log(`meow${userCount}`)
   useEffect(() => {
     const fetchCount = async () => {
       try {
