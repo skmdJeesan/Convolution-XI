@@ -1,35 +1,3 @@
-// "use client";
-
-// import EventNav from "@/components/EventNavbar";
-// import Footer from "./Footer.Algo";
-// import Faq from "./Faq.Algo";
-// import About from "./About.Algo";
-// import Rules from "./Rules.Algo";
-// import Team from "./EventLeads.Algo";
-// import Timeline from "./TimeLine.Algo";
-
-// function page() {
-//   return (
-//     <div className='bg-linear-to-b from-[#0D30BB] via-[#2a237e] to-[#7c3aed] w-full min-h-screen'>
-//       <EventNav/>
-//       <About/>
-//       <Rules/>
-//       <Timeline/>
-//       <Team/>
-//       <Faq/>
-//       <Footer/>
-//     </div>
-//   )
-// }
-
-// export default page
-
-
-
-
-
-
-
 "use client";
 
 import { useEffect, useState } from "react";
