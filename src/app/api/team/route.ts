@@ -237,7 +237,7 @@ export async function POST(req: NextRequest) {
                     transporter.sendMail({
                         from: `Support <${process.env.EMAIL_USER}>`,
                         to: u.email,
-                        subject: `ACTION REQUIRED: ${leaderName} invited you to join a team for ${getFriendlyEventName(eventName)}, Convolution26!`,
+                        subject: `ACTION REQUIRED: Team invitation for ${getFriendlyEventName(eventName)}, Convolution26!`,
                         html: `
                             <div style="font-family: Arial, sans-serif; color: #333;">
                                 <h3>Hello ${u.name} 👋!</h3>
