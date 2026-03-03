@@ -1,23 +1,263 @@
+// "use client";
+
+// import EventNav from "@/components/EventNavbar";
+// import Footer from "./Footer.Algo";
+// import Faq from "./Faq.Algo";
+// import About from "./About.Algo";
+// import Rules from "./Rules.Algo";
+// import Team from "./EventLeads.Algo";
+// import Timeline from "./TimeLine.Algo";
+
+// function page() {
+//   return (
+//     <div className='bg-linear-to-b from-[#0D30BB] via-[#2a237e] to-[#7c3aed] w-full min-h-screen'>
+//       <EventNav/>
+//       <About/>
+//       <Rules/>
+//       <Timeline/>
+//       <Team/>
+//       <Faq/>
+//       <Footer/>
+//     </div>
+//   )
+// }
+
+// export default page
+
+
+
+
+
+
+
 "use client";
 
+import { useEffect, useState } from "react";
 import EventNav from "@/components/EventNavbar";
 import Footer from "./Footer.Algo";
 import Faq from "./Faq.Algo";
 import About from "./About.Algo";
 import Rules from "./Rules.Algo";
 import Team from "./EventLeads.Algo";
+import Mentors from "./Mentors.Algo";
+import Prizes from "./Prize.Algo";
+import Timeline from "./TimeLine.Algo";
+import './global.css';
 
-function page() {
+// --- NEW COMPONENT FOR REAL-TIME RANDOM COMETS ---
+const SingleComet = ({ initialDelay }: { initialDelay: number }) => {
+  // We pass a boolean so we only use the long initial delay on page load
+  const getNewRandomProps = (isInitial = false) => ({
+    id: Math.random(), // This is the magic key that forces a clean reset
+    top: Math.floor(Math.random() * 50),
+    left: Math.floor(Math.random() * 91) + 10,
+    duration: Math.random() * 10 + 12, // Lasts between 12s and 22s
+    delay: isInitial ? initialDelay : Math.random() * 3, // Short random pause between respawns
+  });
+
+  const [props, setProps] = useState(() => getNewRandomProps(true));
+
   return (
-    <div className='bg-linear-to-b from-[#0D30BB] via-[#2a237e] to-[#7c3aed] w-full min-h-screen'>
-      {/* <EventNav/> */}
-      <About/>
-      {/* <Rules/>
-      <Team/>
-      <Faq/>
-      <Footer/> */}
+    <div
+      key={props.id} // Changing the key completely destroys and recreates the HTML element
+      className="shooting-star"
+      onAnimationEnd={() => setProps(getNewRandomProps(false))} // Triggers exactly when the 100% keyframe hits
+      style={{
+        top: `${props.top}%`,
+        left: `${props.left}%`,
+        // We inject the animation dynamically here so it runs exactly once per spawn
+        animation: `shootingStar ${props.duration}s linear ${props.delay}s forwards`,
+      }}
+    ></div>
+  );
+};
+
+const RandomComets = () => {
+  const [delays, setDelays] = useState<number[]>([]);
+
+  useEffect(() => {
+    // 3 comets on mobile, 6 on desktop
+    const isMobile = window.innerWidth < 768;
+    const cometCount = isMobile ? 3 : 6;
+
+    // Spread the initial spawn times out over 15 seconds
+    setDelays(Array.from({ length: cometCount }).map(() => Math.random() * 15));
+  }, []);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {delays.map((delay, index) => (
+        <SingleComet key={index} initialDelay={delay} />
+      ))}
+    </div>
+  );
+};
+
+// --- NEW COMPONENT FOR EASY IMAGE POSITIONING ---
+// You can control size (w, h) and position (top, left, right, bottom) easily!
+const FloatingAsset = ({
+  src,
+  w,
+  h,
+  top,
+  left,
+  right,
+  bottom,
+  opacity = 0.8, // Default opacity
+  animationClass = "animate-[floating_6s_ease-in-out_infinite]" // Default floating animation
+}: {
+  src: string;
+  w: string;
+  h: string;
+  top?: string;
+  left?: string;
+  right?: string;
+  bottom?: string;
+  opacity?: number;
+  animationClass?: string;
+}) => {
+  return (
+    <div
+      className={`absolute pointer-events-none z-0 ${animationClass}`}
+      style={{
+        top, left, right, bottom,
+        width: w, height: h,
+        opacity: opacity,
+      }}
+    >
+      {/* We use standard img here so it scales perfectly within your custom width/height without Next.js Image layout constraints */}
+      <img
+        src={src}
+        alt="floating asset"
+        className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(6,182,212,0.3)]"
+      />
+    </div>
+  );
+};
+
+export default function Page() {
+  return (
+    <div className="relative w-full min-h-screen bg-gradient-to-b from-[#3b0764] via-[#7e22ce] to-[#0f172a] overflow-hidden">
+
+      {/* --- LAYER 1: GLOWING NEBULA CLOUDS --- */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-cyan-400/20 rounded-full blur-[120px]"></div>
+        <div className="absolute top-[30%] right-[-10%] w-[40vw] h-[40vw] bg-fuchsia-500/20 rounded-full blur-[150px]"></div>
+        <div className="absolute bottom-[10%] left-[20%] w-[60vw] h-[60vw] bg-purple-600/30 rounded-full blur-[150px]"></div>
+      </div>
+
+      {/* --- LAYER 2: TWINKLING STARS --- */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="stars-small absolute inset-0"></div>
+        <div className="stars-medium absolute inset-0"></div>
+        <div className="stars-large absolute inset-0"></div>
+      </div>
+
+      {/* --- LAYER 3: RANDOM SHOOTING COMETS --- */}
+      <RandomComets />
+
+      {/* --- LAYER 3.5: SCATTERED SPACE EMOJIS (Full Page Scroll) --- */}
+      <div className="absolute inset-0 pointer-events-none z-0 w-full h-full overflow-hidden">
+        {/* 0% - 20% (Top of the page - About/Rules) */}
+        <div className="absolute top-[2%] left-[10%] opacity-40 text-3xl animate-[pulse_4s_ease-in-out_infinite]">🌟</div>
+        <div className="absolute top-[5%] right-[15%] text-white opacity-30 text-4xl">✨</div>
+        <div className="absolute top-[12%] left-[8%] text-cyan-400 opacity-30 text-3xl drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">✦</div>
+        <div className="absolute top-[18%] right-[10%] opacity-30 text-4xl">🛰️</div>
+        <div className="absolute top-[12%] right-[70%] opacity-40 text-7xl hover:-translate-y-2 transition-transform duration-300">🛸</div>
+
+
+        {/* 20% - 40% (Upper Middle - Timeline/Mentors) */}
+        <div className="absolute top-[25%] left-[15%] opacity-50 text-4xl hover:scale-110 transition-transform cursor-default">💫</div>
+        <div className="absolute top-[28%] right-[8%] text-blue-300 opacity-20 text-2xl drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">💠</div>
+        <div className="absolute top-[35%] left-[5%] text-white opacity-20 text-2xl">✨</div>
+        <div className="absolute top-[38%] right-[12%] text-fuchsia-400 opacity-20 text-4xl drop-shadow-[0_0_8px_rgba(217,70,239,0.8)]">✧</div>
+
+        {/* 40% - 60% (Middle - Prizes/Team) */}
+        <div className="absolute top-[45%] left-[18%] opacity-30 text-4xl">☄️</div>
+        <div className="absolute top-[54%] right-[75%] opacity-40 text-4xl drop-shadow-[0_0_10px_rgba(217,70,239,0.8)]">⚡</div>
+        <div className="absolute top-[58%] left-[10%] text-white opacity-40 text-lg">⋆</div>
+        <div className="absolute top-[60%] right-[5%] opacity-40 text-9xl hover:-translate-y-2 transition-transform duration-300">🛸</div>
+
+        {/* 60% - 80% (Lower Middle - Team/FAQ) */}
+        <div className="absolute top-[65%] left-[20%] text-white opacity-30 text-2xl">✨</div>
+        <div className="absolute top-[70%] right-[10%] text-cyan-400 opacity-30 text-3xl drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">✦</div>
+        <div className="absolute top-[75%] left-[8%] opacity-30 text-9xl hover:rotate-12 transition-transform duration-500">🪐</div>
+        <div className="absolute top-[78%] right-[18%] text-blue-300 opacity-20 text-3xl drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">💠</div>
+
+        {/* 80% - 100% (Bottom - FAQ/Footer) */}
+        <div className="absolute top-[85%] left-[12%] text-white opacity-30 text-xl">✶</div>
+        <div className="absolute top-[88%] right-[20%] text-fuchsia-400 opacity-20 text-4xl drop-shadow-[0_0_8px_rgba(217,70,239,0.8)]">✧</div>
+        <div className="absolute top-[95%] left-[15%] opacity-30 text-2xl animate-[pulse_4s_ease-in-out_infinite]">🌟</div>
+        <div className="absolute top-[96%] right-[8%] text-white opacity-20 text-3xl">✨</div>
+      </div>
+
+      {/* --- LAYER 4: FLOATING SPACE ASSETS --- */}
+      {/* HOW TO USE CONTROLS:
+          - src: The path to your image in the public folder.
+          - w & h: Set width and height (e.g., "300px", "20vw", "15rem").
+          - top/bottom/left/right: Set position using percentages so it scales on all screens.
+          - opacity: 1 is solid, 0.5 is half-transparent.
+      */}
+      <div className="absolute inset-0 pointer-events-none z-0 w-full h-full overflow-hidden">
+
+        {/* Asset 1: Top Left (e.g., Stone or Asteroid) */}
+        <FloatingAsset
+          src="/Algomaniac/stone1.png"
+          w="400px"
+          h="400px"
+          top="4%"
+          left="4%"
+          opacity={0.9}
+          animationClass="animate-[floating_3s_ease-in-out_infinite_reverse] stone1-image"
+        />
+
+        {/* Asset 2: Middle Right (e.g., A Robot or Planet) */}
+        <FloatingAsset
+          src="/Algomaniac/astronaut.png"
+          w="350px"
+          h="350px"
+          top="20%"
+          right="5%"
+          opacity={0.7}
+          animationClass="animate-[floating_3s_ease-in-out_infinite_reverse] astronaut-image"
+        />
+
+        {/* Asset 3: Lower Left (e.g., Spaceship or Tech Base) */}
+        <FloatingAsset
+          src="/Algomaniac/ufo.png"
+          w="350px"
+          h="350px"
+          top="35%"
+          left="10%"
+          opacity={0.7}
+          animationClass="animate-[tilted-float_7s_ease-in-out_infinite] ufo-image"
+        />
+
+        {/* Asset 4: Bottom Right (Deep background element) */}
+        {/* <FloatingAsset
+          src="/Algomaniac/your-image-4.png"
+          w="200px"
+          h="200px"
+          top="85%"
+          right="5%"
+          opacity={0.5}
+          animationClass="animate-[pulse_5s_ease-in-out_infinite]"
+        /> */}
+
+      </div>
+
+      {/* --- PAGE CONTENT --- */}
+      <div className="relative z-10 w-full flex flex-col">
+        <EventNav />
+        <About />
+        <Rules />
+        <Timeline />
+        <Mentors />
+        <Prizes />
+        <Team />
+        <Faq />
+        <Footer />
+      </div>
     </div>
   )
 }
-
-export default page
