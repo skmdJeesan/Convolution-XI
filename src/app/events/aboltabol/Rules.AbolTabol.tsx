@@ -2,31 +2,32 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import TransitionLink from "@/components/TransitionLink";
+import FlipLink from "@/components/FlipLink";
 
 
 const Rules = () => {
   return (
     <div
       id="rules"
-      className="relative w-full py-20 flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#2a237e] to-[#5926b1] -mt-0.5"
+      className="relative w-full py-20 flex items-center justify-center overflow-hidden -mt-0.5"
     >
       
       {/* Background */}
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
-             backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+             backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', 
              backgroundSize: '30px 30px'
         }}
       ></div>
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-fuchsia-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+      {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-fuchsia-500/10 blur-[100px] rounded-full pointer-events-none"></div>
       <div className="absolute top-10 left-10 w-20 h-20 bg-blue-300 rounded-full opacity-50 blur-xl"></div>
       <div className="absolute bottom-20 right-20 w-32 h-32 bg-blue-200 rounded-full opacity-40 blur-2xl"></div>
       <div className="hidden sm:absolute bottom-40 left-50 w-32 h-32 bg-blue-200 rounded-full opacity-40 blur-2xl"></div>
       <div className="absolute top-1/4 right-1/3 text-white opacity-30 text-4xl">✨</div>
       <div className="absolute bottom-1/3 left-1/4 text-white opacity-20 text-2xl">✨</div>
-      <div className="absolute bottom-1/2 right-1/4 text-white opacity-20 text-2xl">✨</div>
+      <div className="absolute bottom-1/2 right-1/4 text-white opacity-20 text-2xl">✨</div> */}
 
 
       {/* --- Main Content --- */}
@@ -65,7 +66,7 @@ const Rules = () => {
               </ol>
             </li>
             <li className="pl-2 leading-relaxed drop-shadow-sm">
-            There will be a maximum of 20 slides and a minimum of 6 slides for the presentation. Each team will have to complete their presentation within 9 minutes.
+            Each team will have to complete their presentation within 9 minutes.
             </li>
           </ul>
           
@@ -73,7 +74,7 @@ const Rules = () => {
 
         <div className="mt-5">
           <Link
-              href="https://drive.google.com/file/d/1P9kAtLRj4-xobBpuIdfCKmjOUKcByUpJ/view"
+              href="/Know_more/abol-tabol-guidelines.pdf"
               target="_blank"
               className="
 
@@ -83,7 +84,7 @@ const Rules = () => {
               "
             >
               <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] capitalize tracking-wide">
-                Know More
+               <FlipLink>Know&nbsp;More</FlipLink> 
               </span>
             </Link>
             </div>

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa6'; 
+import { motion } from 'framer-motion';
 
 const Data = [
    {
@@ -36,7 +37,7 @@ export default function Faq() {
     return (
         <section id="faq" className="relative w-full py-20 overflow-hidden transform-gpu">
             
-            <div className="absolute inset-0 z-0 bg-linear-to-b from-[#0D30BB] to-[#2C1071]"></div>
+            <div className="absolute inset-0 z-0"></div>
 
             <div 
                 className="absolute inset-0 z-0 opacity-20 pointer-events-none" 
@@ -51,11 +52,18 @@ export default function Faq() {
                     
                     {/* Header */}
                     <div className="text-center mb-12 space-y-4 flex flex-col items-center">
-                        <div className="relative inline-block">
-                            <h1 className="uppercase font-orbitron font-bold text-center text-2xl md:text-4xl mb-10  drop-shadow-md tracking-wide text-transparent bg-clip-text bg-linear-to-t from-gray-500 to-white">
-            Frequently Asked questions
-          </h1>
-                        </div>
+                       <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="relative inline-block"
+      >
+        <h1 className="font-orbitron font-bold text-center text-2xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-gray-300 to-white drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] sm:whitespace-nowrap uppercase">
+                                Frequently Asked questions
+                                <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-200/60 to-transparent"></span>
+                            </h1>
+      </motion.div>
                     </div>
                     
                     <div className="w-full flex flex-col items-center gap-4">

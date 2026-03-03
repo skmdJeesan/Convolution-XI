@@ -27,7 +27,7 @@ export default function Notifications({ isOpen, onClose }: NotificationProps) {
     {
       id: "static-2",
       title: "important",
-      message: <>Kindly check your spam folder for the{" "}
+      message: <>❗Kindly check your spam folder for the{" "}
                         <span className="font-bold">confirmation email</span>{" "}
                         and mark it as{" "}
                         <span className="font-bold">&apos;Not Spam&apos;</span>{" "}
@@ -150,9 +150,16 @@ export default function Notifications({ isOpen, onClose }: NotificationProps) {
                         </h3>
                       </div>
                     </div>
-                    <p className="text-sm md:text-base font-rajdhani font-medium leading-relaxed text-slate-300 group-hover:text-white transition-colors duration-300">
-                      {notif.message}
-                    </p>
+                    {typeof notif.message === 'string' ? (
+                      <p 
+                        className="text-sm md:text-base font-rajdhani font-medium leading-relaxed text-slate-300 group-hover:text-white transition-colors duration-300"
+                        dangerouslySetInnerHTML={{ __html: notif.message }}
+                      />
+                    ) : (
+                      <p className="text-sm md:text-base font-rajdhani font-medium leading-relaxed text-slate-300 group-hover:text-white transition-colors duration-300">
+                        {notif.message}
+                      </p>
+                    )}
                   </div>
                 </div>
               ))

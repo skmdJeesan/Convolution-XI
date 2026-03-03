@@ -2,22 +2,24 @@
 
 import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa6'; 
+import { motion } from 'framer-motion';
 
 const Data = [
+
     {
-        question: "Can we use any AI tools for the  event?",
+        question: "Can we use any AI tools for the event?",
         answer: 
           "For Round 2, feel free to utilize any AI tools of your choice for the event. We encourage participants to explore a diverse range of AI tools to enhance their experience and contribute to the innovative atmosphere at the Electrical Engineering Department, Jadavpur University.",
     },
     {
         question: "Will there be any charging points and internet available?",
         answer: 
-          "Charging points and internet access will be available for participants at the event. Please remember to bring your own  laptops and chargers to ensure a seamless and productive   experience.",
+          "Charging points and internet access will be available for participants at the event. Please remember to bring your own laptops and chargers to ensure a seamless and productive experience.",
     },
     {
         question: "Is it mandatory to form a team with students of the same department?",
         answer: 
-          "Participation is entirely voluntary, and forming a team is open to  students from any department or college. Embrace the flexibility to collaborate across disciplines and create diverse teams at your convenience. Join us in this opportunity to foster  interdisciplinary connections and showcase your collective talents  at the Electrical Engineering Department, Jadavpur University.",
+          "Participation is entirely voluntary, and forming a team is open to students from any department or college. Embrace the flexibility to collaborate across disciplines and create diverse teams at your convenience. Join us in this opportunity to foster interdisciplinary connections and showcase your collective talents at the Electrical Engineering Department, Jadavpur University.",
     },
     {
         question: "Who can participate in this event?",
@@ -25,42 +27,53 @@ const Data = [
           "All students, irrespective of their department or college, are invited to participate in this inclusive event. Join for a cross-disciplinary experience, fostering collaboration and knowledge-sharing among students from diverse academic backgrounds.",
     },
     {
-        question: " Where will the event be held?",
+        question: "Where will the event be held?",
         answer: 
           "The event will be held on campus at the Electrical Engineering Department, Jadavpur University. It promises to be an insightful gathering, featuring the latest breakthrough in electrical engineering and opportunities for enriching discussions.",
     },
     
   ];
+
 export default function Faq() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     const toggleFAQ = (index: number) => {
         setOpenIndex(openIndex === index ? null : index);
     };
+    const headerVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, staggerChildren: 0.15 } }
+  };
 
     return (
         <section id="faq" className="relative w-full py-20 overflow-hidden transform-gpu">
             
-            <div className="absolute inset-0 z-0 bg-linear-to-b from-[#0D30BB] to-[#2C1071]"></div>
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#b55d09] via-[#9a3412] to-[#7f1d1d]"></div>
 
             <div 
-                className="absolute inset-0 z-0 opacity-20 pointer-events-none" 
+                className="absolute inset-0 z-0 opacity-15 pointer-events-none" 
                 style={{ 
                     backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, 
                     backgroundSize: '40px 40px' 
                 }}
             ></div>
-
             <div className="flex flex-col items-center justify-center gap-8 w-full relative z-10">
                 <div className="maxWidthForSections w-full max-w-4xl px-4 sm:px-6 lg:px-8 mx-auto flex flex-col justify-center">
                     
                     {/* Header */}
                     <div className="text-center mb-12 space-y-4 flex flex-col items-center">
-                        <div className="relative inline-block">
-                            <h1 className="uppercase font-orbitron font-bold text-center text-2xl md:text-4xl mb-10  drop-shadow-md tracking-wide text-transparent bg-clip-text bg-linear-to-t from-gray-500 to-white">
-            Frequently Asked questions
-          </h1>
-                        </div>
+                        <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="relative inline-block"
+      >
+        <h1 className="font-orbitron font-bold text-center text-2xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-gray-300 to-white drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] sm:whitespace-nowrap uppercase">
+                                Frequently Asked questions
+                                <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-200/60 to-transparent"></span>
+                            </h1>
+      </motion.div>
                     </div>
                     
                     <div className="w-full flex flex-col items-center gap-4">
@@ -78,12 +91,12 @@ export default function Faq() {
                                         border-l-[3px] 
                                         transition-all duration-300 ease-in-out
                                         ${isOpen 
-                                            ? 'bg-black/40 border-cyan-400 shadow-lg' 
+                                            ? 'bg-black/40 border-yellow-600 shadow-lg' 
                                             : 'bg-white/[0.05] border-white/10 hover:border-white/30 hover:bg-white/[0.08]'}
                                     `}>
                                         
-                                        <div className={`absolute top-0 right-0 w-3 h-3 border-t border-r transition-colors duration-300 ${isOpen ? 'border-cyan-400' : 'border-white/20'}`}></div>
-                                        <div className={`absolute bottom-0 left-0 w-3 h-3 border-b border-l transition-colors duration-300 ${isOpen ? 'border-cyan-400' : 'border-white/20'}`}></div>
+                                        <div className={`absolute top-0 right-0 w-3 h-3 border-t border-r transition-colors duration-300 ${isOpen ? 'border-yellow-600' : 'border-white/20'}`}></div>
+                                        <div className={`absolute bottom-0 left-0 w-3 h-3 border-b border-l transition-colors duration-300 ${isOpen ? 'border-yellow-600' : 'border-white/20'}`}></div>
                     
                                         {/* Question Header */}
                                         <div className="flex items-center justify-between p-5 relative z-10">
@@ -93,7 +106,7 @@ export default function Faq() {
                                                     flex items-center justify-center w-7 h-7 shrink-0
                                                     border bg-black/40 skew-x-[-10deg]
                                                     transition-colors duration-300
-                                                    ${isOpen ? 'border-cyan-500 text-cyan-400' : 'border-white/10 text-gray-300 group-hover:border-white/30'}
+                                                    ${isOpen ? 'border-yellow-600 text-yellow-600' : 'border-white/10 text-gray-300 group-hover:border-white/30'}
                                                 `}>
                                                     <span className="font-orbitron text-xs font-bold skew-x-[10deg]">
                                                         0{index + 1}
@@ -103,19 +116,18 @@ export default function Faq() {
                                                 {/* Question Text */}
                                                 <h3 className={`
                                                     font-rajdhani sm:text-base md:text-lg text-base font-bold tracking-wide transition-colors duration-300
-                                                    ${isOpen ? 'text-white' : 'text-gray-300 group-hover:text-white'}
+                                                    ${isOpen ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]' : 'text-orange-50 group-hover:text-white'}
                                                 `}>
                                                     {data.question}
                                                 </h3>
                                             </div>
                     
-                                            {/* Icon Rotation */}
                                             <div className={`
                                                 relative w-8 h-8 flex items-center justify-center
                                                 rounded-full border transition-all duration-300 ease-in-out
-                                                ${isOpen ? 'border-cyan-400 bg-cyan-950/50 rotate-45' : 'border-white/20 group-hover:border-white/60 rotate-0'}
+                                                ${isOpen ? 'border-yellow-400 bg-yellow-950/50 rotate-45' : 'border-white/20 group-hover:border-white/60 rotate-0'}
                                             `}>
-                                                <div className={`text-sm transition-colors duration-300 ${isOpen ? 'text-cyan-400' : 'text-gray-400 group-hover:text-white'}`}>
+                                                <div className={`text-sm transition-colors duration-300 ${isOpen ? 'text-yellow-600' : 'text-gray-300 group-hover:text-white'}`}>
                                                     <FaPlus />
                                                 </div>
                                             </div>
@@ -130,12 +142,12 @@ export default function Faq() {
                                                     
                                                     <div className={`
                                                         absolute left-[2.2rem] md:left-[2.7rem] top-0 bottom-0 w-[1px] 
-                                                        bg-gradient-to-b from-cyan-500/50 to-transparent
+                                                        bg-gradient-to-b from-yellow-500/50 to-transparent
                                                         transition-opacity duration-300
                                                         ${isOpen ? 'opacity-100' : 'opacity-0'}
                                                     `}></div>
                                                     
-                                                    <p className="font-rajdhani text-gray-200 sm:text-sm md:text-base text-sm leading-relaxed font-medium">
+                                                    <p className="font-rajdhani text-orange-100 sm:text-sm md:text-base text-sm leading-relaxed font-medium">
                                                         {data.answer}
                                                     </p>
                                                 </div>
@@ -150,8 +162,8 @@ export default function Faq() {
                 </div>
 
                 {/* Footer */}
-                <div className="mt-4 px-4 py-3 bg-black/40 rounded-full border border-white/5 mx-4 max-w-3xl text-center">
-                    <span className="text-white/80 text-sm sm:text-base font-semibold font-rajdhani tracking-wide">
+                <div className="mt-4 px-4 py-3 bg-black/40 rounded-full border border-orange-500/30 mx-4 max-w-3xl text-center shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                    <span className="text-orange-200 text-sm sm:text-base font-semibold font-rajdhani tracking-wide">
                         ℹ️ Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam'.
                     </span>
                 </div>

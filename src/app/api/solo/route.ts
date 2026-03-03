@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
         await Notification.create({
             user: leaderId, 
             email: leaderEmail,
-            message: `Yayy! You have registered for "${getFriendlyEventName(eventName)} 🎉"`,
+            message: `Yayy! You have registered for <span class="font-bold text-purple-500">${getFriendlyEventName(eventName)}</span> 🎉`,
             type: "SOLO_REGISTRATION",
         });
 
@@ -107,6 +107,26 @@ export async function POST(req: NextRequest) {
                 });
 
                 const baseUrl = process.env.APP_URL || "https://www.convolutionjuee.com";
+                const Event = eventName.toLowerCase();
+                
+                
+                let link = "";
+                
+                if (Event === "algomaniac") {
+                    link = `
+                        <div style="margin-top: 20px; padding: 15px; background-color: #f0fdf4; border-left: 4px solid #16a34a; border-radius: 4px;">
+                            <p style="margin: 0 0 10px 0;">Please join our official WhatsApp group for further updates.</p>
+                            <a href="https://chat.whatsapp.com/KWikTQ4qCLb9E5QKAOa8qX?mode=hq2tcla" style="display: inline-block; padding: 10px 15px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">WhatsApp Group</a>
+                        </div>
+                    `;
+                } else if (Event === "frames") {
+                    link = `
+                        <div style="margin-top: 20px; padding: 15px; background-color: #fdf2f8; border-left: 4px solid #db2777; border-radius: 4px;">
+                            <p style="margin: 0 0 10px 0;">Upload your best photograph you have captured using this google form before DEADLINE.</p>
+                            <a href="GFORM_LINK" style="display: inline-block; padding: 10px 15px; background-color: #db2777; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Google Form</a>
+                        </div>
+                    `;
+                }
 
                 await transporter.sendMail({
                     from: `Support <${process.env.EMAIL_USER}>`,
@@ -116,9 +136,12 @@ export async function POST(req: NextRequest) {
                         <div style="font-family: Arial, sans-serif; color: #333;">
                             <h3>Congratulations ${leaderName} 🎉!</h3>
                             <p>You have successfully registered for <b>${getFriendlyEventName(eventName)}</b>, Convolution26!</p>
-                            <p>We are excited to see you at the event. Keep an eye on your dashboard for any updates.</p>
+                            
+                            ${link}
+                            
+                            <p style="margin-top: 20px;">We are excited to see you at the event. Keep an eye on your dashboard for any updates.</p>
                             <br/>
-                            <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
+                            <a href="${baseUrl}/profile" style="display: inline-block; padding: 12px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
                         </div>
                     `
                 });

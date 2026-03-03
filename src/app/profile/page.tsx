@@ -59,7 +59,7 @@ const getEventIcon = (eventName: string) => {
   if (name.includes('sparkhack')) return <FaLaptopCode className="text-base" />;
   if (name.includes('circuistics')) return <FaMicrochip className="text-base" />;
   if (name.includes('inquizzitive') || name.includes('inquizitive')) return <FaQuestion className="text-base" />;
-  if (name.includes('24frames')) return <FaCamera className="text-base" />;
+  if (name.includes('frames')) return <FaCamera className="text-base" />;
   if (name.includes('eureka')) return <FaLightbulb className="text-base" />;
   if (name.includes('decisia')) return <FaChess className="text-base" />;
   if (name.includes('aboltabol')) return <FaRandom className="text-base" />;
@@ -140,7 +140,12 @@ export default function ProfilePage() {
         // fetch pending invites
         axios.get(`/api/team/invites?userId=${userId}`)
             .then((res) => {
-                setPendingRequestsList(res.data.invites || []);
+                // FIXED 1: Swaps name in pending requests directly
+                const formattedInvites = (res.data.invites || []).map((req: any) => ({
+                    ...req,
+                    eventName: req.eventName.toLowerCase().trim() === 'frames' ? '24Frames' : req.eventName
+                }));
+                setPendingRequestsList(formattedInvites);
                 setInvitesLoading(false);
             })
             .catch((err) => {
@@ -155,7 +160,8 @@ export default function ProfilePage() {
                 
                 const solo_events = ["algomaniac", "jutalks", "frames"];
                 
-                const groupTeams = fetchedTeams.filter((t: any) => !solo_events.includes(t.eventName.toLowerCase()));
+                // FIXED 2: Added .trim() so "frames " doesn't slip into Teams
+                const groupTeams = fetchedTeams.filter((t: any) => !solo_events.includes(t.eventName.toLowerCase().trim()));
                 
                 // Map and sort members directly
                 const formattedTeams = groupTeams.map((t: any) => {
@@ -193,7 +199,8 @@ export default function ProfilePage() {
                     return {
                         id: t._id,
                         name: t.teamName,
-                        event: t.eventName,
+                        // FIXED 3: Swaps name in Teams list directly
+                        event: t.eventName.toLowerCase().trim() === 'frames' ? '24Frames' : t.eventName,
                         role: t.leader?._id === userId ? "Leader" : "Member",
                         members: t.members.filter((m: any) => m.status === 'accepted').length + 1,
                         memberDetails: combinedMembers
@@ -204,7 +211,8 @@ export default function ProfilePage() {
 
                 const formattedEvents = fetchedTeams.map((t: any) => ({
                     id: t._id,
-                    name: t.eventName,
+                    // FIXED 4: Swaps name in Registry directly
+                    name: t.eventName.toLowerCase().trim() === 'frames' ? '24Frames' : t.eventName,
                     status: t.status === "confirmed" ? "Confirmed" : "Pending Registration"
                 }));
                 setEventsList(formattedEvents);

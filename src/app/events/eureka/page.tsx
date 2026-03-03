@@ -6,13 +6,17 @@ import Faq from "./Faq.Eureka";
 import About from "./About.Eureka";
 import Rules from "./Rules.Eureka";
 import Team from "./EventLeads.Eureka";
+import Timeline from "./TimeLine.Eureka";
+import Mentors from "./Mentor.Eureka";
 
 function page() {
   return (
-    <div className='bg-gradient-to-b from-[#0D30BB] via-[#2a237e] to-[#7c3aed] w-full min-h-screen'>
-      {/* <EventNav/> */}
+    <div className=' w-full min-h-screen'>
+      {/* <EventNav navTheme="bg-[linear-gradient(to_bottom,#8b9216,#a79f0f,#eda421,#e98604,#df3908)]"/> */}
       <About/>
       {/* <Rules/>
+      <Timeline/>
+      <Mentors/>
       <Team/>
       <Faq/>
       <Footer/> */}

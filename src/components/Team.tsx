@@ -17,12 +17,12 @@ type TeamMember = {
 // -- Data --
 const teamMembers: TeamMember[] = [
   {
-    name: "Arkaroop Nag",
+    name: "Aneesh Banerjee",
     post: "Secretary",
-    image: "/peoplePics/arkaroop.jpeg",
-    linkedin: "https://www.linkedin.com/in/arkaroop-nag-982a3a316/",
-    instagram: "https://www.instagram.com/lyadh_gpt/",
-    x: "",
+    image: "/peoplePics/Aneesh.jpeg",
+    linkedin: "https://www.linkedin.com/in/aneesh-banerjee-0a0727374?trk=contact-info",
+    instagram: "https://www.instagram.com/asneeze98?igsh=NWV5amFyb2R6OGpr",
+    x: "https://x.com/ruddy168",
   },
   {
     name: "Dipjyoti Dash",
@@ -49,12 +49,12 @@ const teamMembers: TeamMember[] = [
     x: "",
   },
   {
-    name: "Aneesh Banerjee",
+    name: "Rhitambhar Choudhury",
     post: "Design Lead",
-    image: "/peoplePics/Aneesh.jpeg",
-    linkedin: "https://www.linkedin.com/in/aneesh-banerjee-0a0727374?trk=contact-info",
-    instagram: "https://www.instagram.com/asneeze98?igsh=NWV5amFyb2R6OGpr",
-    x: "https://x.com/ruddy168",
+    image: "/peoplePics/rhitambar_designLead.jpeg",
+    linkedin: "https://www.linkedin.com/in/rhitambhar-choudhury-290709295",
+    instagram: "https://www.instagram.com/weebxizumi_",
+    x: "",
   },
   {
     name: "Pratham Das",
@@ -90,7 +90,7 @@ const teamMembers: TeamMember[] = [
   },
 ];
 
-// -- SVG Icons (Extracted for cleaner DOM) --
+// icons
 const Icons = {
   instagram: (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

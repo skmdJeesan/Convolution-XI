@@ -69,7 +69,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full h-screen flex items-center justify-center bg-[#c4d79f] py-20 px-6 overflow-hidden"
+      className="relative w-full h-screen flex items-center justify-center bg-linear-to-b from-[#c4d79f] via-[#b1c880] to-[#83a252] pt-20 md:pt-15 px-6 pb-10 overflow-hidden"
     >
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none"
@@ -93,7 +93,6 @@ export default function About() {
           <FlipLink>Return&nbsp;Home</FlipLink>
         </span>
       </TransitionLink>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center gap-10 z-10">
         
@@ -115,7 +114,7 @@ their limits. Assemble your team, sharpen your intellect, and get ready to dive 
 thrilling challenges for an experience that is both unforgettable and intensely rewarding.
         </p>
 
-        <div className="mt-4">
+        <div className="my-4">
           {RegisterBtn()}
         </div>
 

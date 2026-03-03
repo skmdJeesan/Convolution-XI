@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
         }
 
         // for security
-        const closed_events: string[] = ["circuistics","decisia", "sparkhack", "aboltabol", "eureka", "inquizzitive"]; 
+        const closed_events: string[] = ["circuistics","decisia", "sparkhack", "eureka", "inquizzitive"]; 
         
         if (closed_events.includes(eventName.toLowerCase())) {
             return NextResponse.json(
@@ -154,12 +154,12 @@ export async function POST(req: NextRequest) {
         );
 
         const leaderNotificationMsg = pendingMembers.length === 0
-            ? `Yayyy! Registration Confirmed 🎉! You have successfully registered for ${getFriendlyEventName(eventName)}.`
-            : `Hurray, Team "${teamName}" created! We are waiting for your teammates to accept their invites.`;
+            ? `Yayyy! Registration Confirmed 🎉! You have successfully registered for <span class="font-bold text-purple-500">${getFriendlyEventName(eventName)}</span>.`
+            : `Hurray, Team <span class="font-bold text-purple-500">${teamName}</span> created! We are waiting for your teammates to accept their invitations.`;
 
         const notificationData = memberUsers.map((u) => ({
             email: u.email,
-            message: `${leaderName} has invited you to join team "${teamName}" for ${getFriendlyEventName(eventName)}. Please go to your dashboard to Accept or Decline.`,
+            message: `${leaderName} has invited you to join team <span class="font-bold text-purple-500">${teamName}</span> for <span class="font-bold text-purple-500">${getFriendlyEventName(eventName)}</span>. Please go to your dashboard to Accept or Decline.`,
             type: "TEAM_INVITE",
         }));
 
@@ -186,26 +186,41 @@ export async function POST(req: NextRequest) {
                 const baseUrl = process.env.APP_URL || "https://www.convolutionjuee.com";
 
                 const leaderEmailSubject = pendingMembers.length === 0
-                    ? `Registration Confirmed! - ${getFriendlyEventName(eventName)}`
+                    ? `Team Confirmed! 🚀  ${getFriendlyEventName(eventName)}`
                     : `Team Created! Waiting for other members to accept requests - ${getFriendlyEventName(eventName)}`;
+                    let gform = "";
+                    const AT = eventName.toLowerCase();
+                    if(AT==='aboltabol'){
+                        gform = `<div style="margin-top: 20px; padding: 15px; background-color: #eff6ff; border-left: 4px solid #3b82f6; border-radius: 4px;">
+                            <p style="margin: 0 0 15px 0; line-height: 1.5;">Submit your abstract of your team's ideas through the google form given below before DEADLINE.</p>
+                            <a href="https://forms.gle/NoJqQ4Rtc47ZP9XM6" style="display: inline-block; padding: 10px 15px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Google Form</a>
 
+                            <div style="padding: 15px; background-color: #f0fdf4; border-left: 4px solid #16a34a; border-radius: 4px;">
+                            <p style="margin: 0 0 10px 0; line-height: 1.5;"><b>Step 2:</b> Please join our official WhatsApp group for further updates, announcements.</p>
+                            <a href="https://chat.whatsapp.com/FOhPzaV9HQ48EyHNbq68HS?mode=gi_t" style="display: inline-block; padding: 10px 15px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Join WhatsApp Group</a>
+                        </div>
+                        </div>`
+                    }
                 const leaderEmailHtml = pendingMembers.length === 0
                     ? `
                         <div style="font-family: Arial, sans-serif; color: #333;">
                             <h3>Congratulations ${leaderName} 🎉!</h3>
                             <p>Your team <b>"${teamName}"</b> has been successfully registered and confirmed for <b>${getFriendlyEventName(eventName)}</b>, Convolution26.</p>
+
+                            ${gform}
+
                             <p>We are excited to see you at the event. Keep an eye on your dashboard for any updates.</p>
                             <br/>
-                            <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
+                            <a href="${baseUrl}/profile" style="display: inline-block; padding: 12px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
                         </div>
                     `
                     : `
                         <div style="font-family: Arial, sans-serif; color: #333;">
-                            <h3>Heyy ${leaderName},</h3>
+                            <h3>Hello ${leaderName} 👋!</h3>
                             <p>Your team <b>"${teamName}"</b> has been successfully initiated for <b>${getFriendlyEventName(eventName)}</b>.</p>
                             <p>We have sent invitations to your teammates. Your team will be officially confirmed once everyone accepts their invites.</p>
                             <br/>
-                            <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
+                            <a href="${baseUrl}/profile" style="display: inline-block; padding: 12px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Go to Dashboard</a>
                         </div>
                     `;
 
@@ -222,14 +237,14 @@ export async function POST(req: NextRequest) {
                     transporter.sendMail({
                         from: `Support <${process.env.EMAIL_USER}>`,
                         to: u.email,
-                        subject: `ACTION REQUIRED: ${leaderName} invited you to join a team for ${getFriendlyEventName(eventName)}, Convolution26!`,
+                        subject: `ACTION REQUIRED: Team invitation for ${getFriendlyEventName(eventName)}, Convolution26!`,
                         html: `
                             <div style="font-family: Arial, sans-serif; color: #333;">
-                                <h3>Heyy ${u.name},</h3>
+                                <h3>Hello ${u.name} 👋!</h3>
                                 <p><b>${leaderName}</b> has invited you to join the team <b>"${teamName}"</b> for <b>${getFriendlyEventName(eventName)}</b>.</p>
                                 <p>To secure your spot, please log in to your dashboard and Accept or Decline this invitation.</p>
                                 <br/>
-                                <a href="${baseUrl}/profile" style="padding: 10px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">View Invite</a>
+                                <a href="${baseUrl}/profile" style="display: inline-block; padding: 12px 20px; background-color: #06b6d4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">View Invite</a>
                             </div>
                         `
                     })
