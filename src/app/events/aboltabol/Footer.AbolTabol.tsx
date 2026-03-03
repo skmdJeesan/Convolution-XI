@@ -37,7 +37,7 @@ export default function Footer() {
     }, [text, breakTheText]);
 
   return (
-    <div id='contact' className='relative bg-linear-to-b from-[#2C1071] to-[#170739] flex flex-col pt-5 overflow-hidden z-0'>
+    <div id='contact' className='relative flex flex-col pt-5 overflow-hidden z-0'>
       
 
       {/* --- BACKGROUND LAYER --- */}
@@ -198,7 +198,7 @@ export default function Footer() {
         
         <h1 
             ref={ref as React.RefObject<HTMLHeadingElement>} 
-            className='font-orbitron text-[13vw] md:text-[12vw] lg:text-[14vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#128bac] [&_span]:to-black/50 tracking-tight font-bold absolute -bottom-3 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
+            className='font-orbitron text-[13vw] md:text-[12vw] lg:text-[14vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#bbe6e6] [&_span]:to-black/50 tracking-tight font-bold absolute -bottom-3 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
         >
             {text}
         </h1>

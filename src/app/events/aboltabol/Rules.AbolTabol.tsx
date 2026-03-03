@@ -8,25 +8,25 @@ const Rules = () => {
   return (
     <div
       id="rules"
-      className="relative w-full py-20 flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#2a237e] to-[#5926b1] -mt-0.5"
+      className="relative w-full py-20 flex items-center justify-center overflow-hidden -mt-0.5"
     >
       
       {/* Background */}
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
-             backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+             backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', 
              backgroundSize: '30px 30px'
         }}
       ></div>
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-fuchsia-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+      {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-fuchsia-500/10 blur-[100px] rounded-full pointer-events-none"></div>
       <div className="absolute top-10 left-10 w-20 h-20 bg-blue-300 rounded-full opacity-50 blur-xl"></div>
       <div className="absolute bottom-20 right-20 w-32 h-32 bg-blue-200 rounded-full opacity-40 blur-2xl"></div>
       <div className="hidden sm:absolute bottom-40 left-50 w-32 h-32 bg-blue-200 rounded-full opacity-40 blur-2xl"></div>
       <div className="absolute top-1/4 right-1/3 text-white opacity-30 text-4xl">✨</div>
       <div className="absolute bottom-1/3 left-1/4 text-white opacity-20 text-2xl">✨</div>
-      <div className="absolute bottom-1/2 right-1/4 text-white opacity-20 text-2xl">✨</div>
+      <div className="absolute bottom-1/2 right-1/4 text-white opacity-20 text-2xl">✨</div> */}
 
 
       {/* --- Main Content --- */}
