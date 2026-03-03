@@ -116,7 +116,7 @@ export async function POST(req: NextRequest) {
                     link = `
                         <div style="margin-top: 20px; padding: 15px; background-color: #f0fdf4; border-left: 4px solid #16a34a; border-radius: 4px;">
                             <p style="margin: 0 0 10px 0;">Please join our official WhatsApp group for further updates.</p>
-                            <a href="WHATSAPP" style="display: inline-block; padding: 10px 15px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">WhatsApp Group</a>
+                            <a href="https://chat.whatsapp.com/KWikTQ4qCLb9E5QKAOa8qX?mode=hq2tcla" style="display: inline-block; padding: 10px 15px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">WhatsApp Group</a>
                         </div>
                     `;
                 } else if (Event === "frames") {
