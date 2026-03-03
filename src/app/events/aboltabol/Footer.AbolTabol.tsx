@@ -85,17 +85,17 @@ export default function Footer() {
                 India
               </p>
             </div>
-            <div className="flex justify-center md:justify-start gap-4">
-                <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
-                    <FaInstagram size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors" />
-                </Link>
-                <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
-                    <FaFacebook size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors"/>
-                </Link>
-                <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
-                    <FaLinkedin size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors" />
-                </Link>
-            </div>
+                                    <div className="flex justify-center md:justify-start gap-4">
+                            <Link target='_blank' href="https://www.instagram.com/convolution26/" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                                <FaInstagram size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors" />
+                            </Link>
+                            <Link target='_blank' href="https://www.facebook.com/share/15Mh8tfiC7/?mibextid=LQQJ4d" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                                <FaFacebook size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors" />
+                            </Link>
+                            <Link target='_blank' href="https://www.linkedin.com/company/convolution-juee/" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                                <FaLinkedin size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors" />
+                            </Link>
+                        </div>
           </div>
 
           {/* Lets connect */}
@@ -145,22 +145,22 @@ export default function Footer() {
 
                                 {/* Phone */}
                                 <li className='flex items-start gap-4 group'>
-                                    <a href="tel:+916289848840" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-cyan-400 group-hover:bg-cyan-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0">
+                                    <a href="tel:+919831928836" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-cyan-400 group-hover:bg-cyan-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0">
                                         <MdCall className="text-xl text-cyan-400 mt-0.5 group-hover:text-cyan-300 transition-colors duration-300" />
                                     </a>
 
-                    <div className="text-md">
-                    <span className="font-rajdhani text-slate-400   font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">
-                        Phone
-                    </span>
-                    <a href="tel:+916289848840" className="font-semibold font-rajdhani block text-slate-200 hover:text-white transition-colors">
-                        +91 62898 48840
-                    </a>
-                    <a href="tel:+918158066614" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
-                        +91 81580 66614
-                    </a>
-                    </div>
-                </li>
+                                    <div className="text-md">
+                                        <span className="font-rajdhani text-slate-400   font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">
+                                            Phone
+                                        </span>
+                                        <a href="tel:+919831928836" className="font-semibold font-rajdhani block text-slate-200 hover:text-white transition-colors">
+                                            +91 98319 28836
+                                        </a>
+                                        <a href="tel:+916289848840" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
+                                            +91 62898 48840
+                                        </a>
+                                    </div>
+                                </li>
                 </ul>
             </div>
           </div>
