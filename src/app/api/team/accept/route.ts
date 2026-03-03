@@ -146,7 +146,7 @@ export async function POST(req: NextRequest) {
                     }
                     else if(Event=== "eureka"){
                         gform = `<div style="padding: 15px; background-color: #f0fdf4; border-left: 4px solid #16a34a; border-radius: 4px;">
-                            <p style="margin: 0 0 10px 0; line-height: 1.5;">Please join our official WhatsApp group for further updates, announcements.</p>
+                            <p style="margin: 0 0 10px 0; line-height: 1.5;">Please join our official WhatsApp group for further updates, announcements.</p> 
                             <a href="https://chat.whatsapp.com/FwbBE35ceUZEKXVT7oWkqV?mode=gi_t" style="display: inline-block; padding: 10px 15px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Join WhatsApp Group</a>
                         </div>`
                     }
