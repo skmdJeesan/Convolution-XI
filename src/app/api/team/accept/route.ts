@@ -101,7 +101,10 @@ export async function POST(req: NextRequest) {
             team.status = "confirmed";
             await team.save();
             
-            const members = team.members.map((m: any) => ({ email: m.user.email, name: m.user.name }));
+            const allUser = [
+                { email: leader.email, name: leader.name },
+                ...team.members.map((m: any) => ({ email: m.user.email, name: m.user.name }))
+            ];
 
             // clean up the leader's pending notification
             await Notification.deleteOne({
@@ -110,12 +113,13 @@ export async function POST(req: NextRequest) {
                 message: { $regex: team.teamName }
             });
 
-            const confirmationNotifications = members.map((obj:any) => ({
+            const confirmationNotifications = allUser.map(obj => ({
                 email: obj.email,
                 message: `Yayyy! Team <span class="font-bold text-cyan-400">${team.teamName}</span> is officially confirmed for <span class="font-bold text-purple-500">${getFriendlyEventName(team.eventName)}</span> 🎉.`,
                 type: "TEAM_CONFIRMED"
             }));
             await Notification.insertMany(confirmationNotifications);
+
             if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
                 try {
                     const transporter = nodemailer.createTransport({
@@ -125,16 +129,22 @@ export async function POST(req: NextRequest) {
                             pass: process.env.EMAIL_PASS,
                         },
                     });
-                    let wp = "";
-                    if (team.eventName.toLowerCase() === "aboltabol") {
-                        wp = `
-                            <div style="margin-top: 20px; margin-bottom: 15px; padding: 15px; background-color: #f0fdf4; border-left: 4px solid #16a34a; border-radius: 4px;">
-                                <p style="margin: 0 0 10px 0; line-height: 1.5;">Please join our official WhatsApp group for further updates, announcements</p>
-                                <a href="https://chat.whatsapp.com/FOhPzaV9HQ48EyHNbq68HS?mode=gi_t" style="display: inline-block; padding: 10px 15px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Join WhatsApp Group</a>
-                            </div>
-                        `;
+
+                    // send mail to all user
+                    let gform = "";
+                    const AT = team.eventName.toLowerCase();
+                    if(AT==='aboltabol'){
+                        gform = `<div style="margin-top: 20px; padding: 15px; background-color: #eff6ff; border-left: 4px solid #3b82f6; border-radius: 4px;">
+                            <p style="margin: 0 0 15px 0; line-height: 1.5;">Submit your abstract of your team's ideas through the google form given below before DEADLINE.</p>
+                            <a href="https://forms.gle/NoJqQ4Rtc47ZP9XM6. This need to be submitted by the LEADER only." style="display: inline-block; padding: 10px 15px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Google Form</a>
+
+                            <div style="padding: 15px; background-color: #f0fdf4; border-left: 4px solid #16a34a; border-radius: 4px;">
+                            <p style="margin: 0 0 10px 0; line-height: 1.5;"><b>Step 2:</b> Please join our official WhatsApp group for further updates, announcements.</p>
+                            <a href="https://chat.whatsapp.com/FOhPzaV9HQ48EyHNbq68HS?mode=gi_t" style="display: inline-block; padding: 10px 15px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Join WhatsApp Group</a>
+                        </div>
+                        </div>`
                     }
-                    const emailPromises = members.map((obj:any) => {
+                    const emailPromises = allUser.map(obj => {
                         return transporter.sendMail({
                             from: `Support <${process.env.EMAIL_USER}>`,
                             to: obj.email,
@@ -144,8 +154,8 @@ export async function POST(req: NextRequest) {
                                     <h3>Hello ${obj.name} 👋!</h3>
                                     <p>Great news! Everyone has accepted their invitations.</p>
                                     <p>Your team <b>"${team.teamName}"</b> is officially confirmed and registered for <b>${getFriendlyEventName(team.eventName)}</b>, Convolution26.</p>
+                                    ${gform}
                                     <p>Best of luck for the competition!</p>
-                                    ${wp}
                                 </div>
                             `
                         });
