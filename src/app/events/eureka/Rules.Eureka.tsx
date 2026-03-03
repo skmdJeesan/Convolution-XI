@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import FlipLink from "@/components/FlipLink";
+import { Link } from "lucide-react";
 
 const rules = [
   "Each team must comprise 3-4 members (including the Team Lead) from the same or different colleges and/or streams.",
@@ -47,6 +49,22 @@ const Rules = () => {
             ))}
           </ul>
         </div>
+                <div className="mt-5">
+                  <Link
+                      href="/Know_more/abol-tabol-guidelines.pdf"
+                      target="_blank"
+                      className="
+        
+                      shadow-white/40 hover:shadow-white/30  bg-[#0D30BB] hover:bg-[#0b2ba8]  hover:text-[#041550] group flex items-center gap-2 px-5 py-3 
+                         backdrop-blur-md rounded-full 
+                        transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
+                      "
+                    >
+                      <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] capitalize tracking-wide">
+                       <FlipLink>Know&nbsp;More</FlipLink> 
+                      </span>
+                    </Link>
+                    </div>
       </div>
     </div>
   );
