@@ -1,6 +1,7 @@
 import dbConnect from '@/lib/db'; 
 import User from '@/models/user.model';
 import LeaderDashboard from '@/components/LeaderDashboard';
+import Leaderdashboard from '@/components/Encrypt';
 
 export default async function LeadDashboardPage() {
   await dbConnect();
@@ -26,7 +27,8 @@ export default async function LeadDashboardPage() {
 
   return (
     <main>
-      <LeaderDashboard users={serializedUsers} />
+      {/* <LeaderDashboard users={serializedUsers} /> */}
+      <Leaderdashboard/>
     </main>
   );
 }

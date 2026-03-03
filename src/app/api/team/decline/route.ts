@@ -16,14 +16,12 @@ export async function POST(req: NextRequest) {
 
         await dbConnect();
 
-        // find the team and populate the leader and members
         const team = await Team.findById(teamId).populate("leader").populate("members.user");
 
         if (!team) {
             return NextResponse.json({ message: "Team not found" }, { status: 404 });
         }
 
-        // find the specific member in the array
         const memberIndex = team.members.findIndex((m: any) => m.user._id.toString() === userId);
         
         if (memberIndex === -1) {
@@ -35,14 +33,6 @@ export async function POST(req: NextRequest) {
         // remove the declined user from the team array completely
         team.members.splice(memberIndex, 1);
         
-        const allRemainingAccepted = team.members.length === 0 || team.members.every((m: any) => m.status === "accepted");
-        if (allRemainingAccepted && team.status === "pending") {
-            team.status = "confirmed";
-        }
-
-        await team.save();
-        await team.save();
-
         // securely remove the event from their profile just in case
         await User.findByIdAndUpdate(
             userId,
@@ -64,6 +54,7 @@ export async function POST(req: NextRequest) {
             type: "TEAM_CREATE",
             message: { $regex: team.teamName }
         });
+        
         await Notification.create({
             email: leader.email,
             message: `⚠️ Alert: <span class="font-bold text-red-500">${decliningUser.name}</span> has DECLINED your invitation to join <span class="font-bold text-cyan-400">${team.teamName}</span>.`,
@@ -85,7 +76,7 @@ export async function POST(req: NextRequest) {
                 await transporter.sendMail({
                     from: `Support <${process.env.EMAIL_USER}>`,
                     to: leader.email,
-                    subject: `⚠️ invitation Declined: Action needed for ${team.teamName}`,
+                    subject: `⚠️ Invitation Declined: Action needed for ${team.teamName}`,
                     html: `
                         <div style="font-family: Arial, sans-serif; color: #333;">
                             <h3>Hello ${leader.name} 👋!</h3>
@@ -99,6 +90,35 @@ export async function POST(req: NextRequest) {
             } catch (e) {
                 console.error("Failed to send decline alert email to leader", e);
             }
+        }
+
+        const acceptedMembers = team.members.filter((m: any) => m.status === "accepted");
+        const pendingMembers = team.members.filter((m: any) => m.status === "pending");
+
+        const minLimits: { [key: string]: number } = {
+            "decisia": 2, "sparkhack": 2, "aboltabol": 1, 
+            "circuistics": 2, "eureka": 2, "inquizzitive": 2,
+        };
+        const minSize = minLimits[team.eventName.toLowerCase()] || 2;
+        const currentTeamSize = acceptedMembers.length + 1; 
+
+        if (pendingMembers.length === 0 && currentTeamSize >= minSize) {
+            team.status = "confirmed";
+            await team.save();
+        } else if (pendingMembers.length === 0 && currentTeamSize < minSize) {
+            team.status = "pending";
+            await team.save();
+
+            // warning notification
+            await Notification.create({
+                email: leader.email,
+                message: `⚠️ Action Required: Because of the decline, your team <span class="font-bold text-cyan-400">${team.teamName}</span> is now below the minimum size of ${minSize} for <span class="font-bold text-purple-500">${getFriendlyEventName(team.eventName)}</span>. Please invite a new member!`,
+                type: "TEAM_WARNING",
+            });
+            
+        } else {
+            team.status = "pending";
+            await team.save();
         }
 
         return NextResponse.json(
