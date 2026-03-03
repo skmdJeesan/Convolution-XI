@@ -16,16 +16,16 @@ const teamMembers: TeamMember[] = [
     name: "Arpita Sasmal",
     post: "Event Lead",
     image: "/peoplePics/arpita.jpeg",
-    linkedin: "",
-    instagram: "",
+    linkedin: "https://www.linkedin.com/in/arpita-sasmal-233223330?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "https://www.instagram.com/arpitasasmal05?igsh=aDdqajlqdGU5dWRw",
     facebook: "",
   },
   {
     name: "Rhitamnar",
     post: "Event Lead",
     image: "/peoplePics/rhitambhar_AT.jpg",
-    linkedin: "",
-    instagram: "",
+    linkedin: "https://www.linkedin.com/in/rhitambhar-choudhury-290709295",
+    instagram: "https://www.instagram.com/weebxizumi_",
     facebook: "",
   },
   
@@ -171,7 +171,7 @@ function Team() {
                     <a
                       href={member.facebook}
                       className="team-social-link"
-                      title="Facebook"
+                      title="xs"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

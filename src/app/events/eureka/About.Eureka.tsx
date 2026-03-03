@@ -69,7 +69,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full h-screen flex items-center justify-center bg-linear-to-b from-[#c4d79f] via-[#b1c880] to-[#83a252] pt-20 md:pt-15 px-6 overflow-hidden"
+      className="relative w-full h-screen flex items-center justify-center bg-linear-to-b from-[#c4d79f] via-[#b1c880] to-[#83a252] pt-20 md:pt-15 px-6 pb-10 overflow-hidden"
     >
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none"

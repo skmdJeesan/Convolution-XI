@@ -18,7 +18,7 @@ type TeamMember = {
 const teamMembers: TeamMember[] = [
   {
     name: "Shreyan Gangopadhyay",
-    post: "",
+    post: "Event Lead",
     image: "/peoplePics/shreyan.jpeg",
     linkedin: "https://www.linkedin.com/in/shreyan-gangopadhyay-a50a9a2b3?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     instagram: "https://www.instagram.com/shrxyan.g/?hl=en",
@@ -26,7 +26,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Anirban Das",
-    post: "",
+    post: "Event Lead",
     image: "/peoplePics/anirban.jpeg",
     linkedin: "www.linkedin.com/in/anirban-das-27477a301",
     instagram: "",
