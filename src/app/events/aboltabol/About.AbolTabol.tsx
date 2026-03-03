@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -16,7 +16,7 @@ export default function About() {
   const eventMode = "team";
   const isClosed = true; // Toggle this to true to shut down registrations
 
- const userEvents = contextData?.user?.eventsRegistered || [];
+  const userEvents = contextData?.user?.eventsRegistered || [];
   const isRegistered = userEvents.some(
     (event: string) => event.toLowerCase() === eventName.toLowerCase()
   );
@@ -25,26 +25,26 @@ export default function About() {
     if (!session) {
       return (
         <TransitionLink
-              href="/login"
-              className="shadow-white/50 hover:shadow-white/30  bg-[#0212B4] hover:bg-white   group flex items-center gap-2 px-5 py-3 
+          href="/login"
+          className="shadow-white/50 hover:shadow-white/30  bg-[#0212B4] hover:bg-white   group flex items-center gap-2 px-5 py-3 
                  backdrop-blur-md rounded-full 
                 transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
               "
-            >
-              <span className="font-orbitron text-sm md:text-base font-bold group-hover:text-[#0212B4] text-[#ffff] uppercase tracking-wide">
-                <FlipLink>Login&nbsp;to&nbsp;Register</FlipLink>
-              </span>
-            </TransitionLink>
+        >
+          <span className="font-orbitron text-sm md:text-base font-bold group-hover:text-[#0212B4] text-[#ffff] uppercase tracking-wide">
+            <FlipLink>Login&nbsp;to&nbsp;Register</FlipLink>
+          </span>
+        </TransitionLink>
       );
     }
 
     if (isClosed) {
       return (
         <div className="flex items-center gap-2 px-8 py-3 bg-white backdrop-blur-md border border-white/10 rounded-full cursor-not-allowed opacity-70">
-              <span className="font-orbitron text-sm md:text-base font-bold  tracking-wide text-[#0D30BB]">
-                Registrations not started yet
-              </span>
-            </div>
+          <span className="font-orbitron text-sm md:text-base font-bold  tracking-wide text-[#0D30BB]">
+            Registrations not started yet
+          </span>
+        </div>
       );
     }
 
@@ -73,19 +73,18 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-br from-[#0215C5] via-[#020F92] 
-     to-[#010A5F] py-20 px-6 overflow-hidden"
+      className="relative w-full h-screen flex items-center justify-center py-20 px-6 overflow-hidden"
     >
-      <div 
+      <div
         className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
-             backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
-             backgroundSize: '30px 30px'
+          backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+          backgroundSize: '30px 30px'
         }}
       ></div>
 
-      <TransitionLink 
-        href="/" 
+      <TransitionLink
+        href="/"
         className="
           absolute top-6 left-6 z-50 flex items-center gap-2 px-5 py-3 
           bg-[#010A5F]/80 backdrop-blur-md border border-[#0215C5] rounded-full shadow-lg
@@ -102,24 +101,24 @@ export default function About() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center gap-10 z-10">
-        
+
         {/* Logo */}
         <div className="relative w-[80vw] max-w-[450px] h-auto aspect-[3/1.2]">
-            <Image
-                src="/AbolTabol/Abol Tabol logo.webp"
-                alt="AbolTabol Logo"
-                fill
-                className="object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)]"
-                priority
-            />
+          <Image
+            src="/AbolTabol/Abol Tabol logo.webp"
+            alt="AbolTabol Logo"
+            fill
+            className="object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)]"
+            priority
+          />
         </div>
 
         <p className="font-rajdhani text-white sm:text-xl text-base font-semibold leading-relaxed tracking-wide drop-shadow-md max-w-3xl">
-         Inspired by the legendary tradition of MIT’s BAH (Bad Ad Hoc Hypothesis) Fest, Abol Tabol is a
-celebration of brilliantly engineered absurdity where logic is stretched to its limits and
-hypotheses survive on imagination and audacity. Participants are invited to craft and present
-their wildest, most delightfully questionable pseudo-scientific theories—delivered with wit and
-confidence—for a chance to take the spotlight on stage.
+          Inspired by the legendary tradition of MIT’s BAH (Bad Ad Hoc Hypothesis) Fest, Abol Tabol is a
+          celebration of brilliantly engineered absurdity where logic is stretched to its limits and
+          hypotheses survive on imagination and audacity. Participants are invited to craft and present
+          their wildest, most delightfully questionable pseudo-scientific theories—delivered with wit and
+          confidence—for a chance to take the spotlight on stage.
 
         </p>
 
