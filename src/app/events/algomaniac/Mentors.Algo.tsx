@@ -52,7 +52,7 @@ export default function Mentors() {
     };
 
     return (
-        <section id='mentors' className="relative w-full py-20 flex flex-col items-center justify-center bg-transparent z-10">
+        <section id='judges' className="relative w-full py-20 flex flex-col items-center justify-center bg-transparent z-10">
 
             <div className='maxWidthForSections w-full flex flex-col items-center px-4'>
 
