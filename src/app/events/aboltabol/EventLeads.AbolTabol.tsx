@@ -23,7 +23,7 @@ const teamMembers: TeamMember[] = [
   {
    name: "Rhitambhar Choudhury",
     post: "Event Lead",
-    image: "/peoplePics/rhitambar_designLead.jpeg",
+    image: "/peoplePics/rhitambhar_AT.jpg",
     linkedin: "https://www.linkedin.com/in/rhitambhar-choudhury-290709295",
     instagram: "https://www.instagram.com/weebxizumi_",
     facebook: "",
