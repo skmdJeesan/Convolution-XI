@@ -79,7 +79,7 @@ export default function About() {
         }}
       ></div>
 
-      <TransitionLink 
+      {/* <TransitionLink 
         href="/" 
        className="
           absolute top-6 left-6 z-50 flex items-center gap-2 px-5 py-3 
@@ -92,7 +92,7 @@ export default function About() {
         <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-white uppercase transition-colors duration-300">
           <FlipLink>Return&nbsp;Home</FlipLink>
         </span>
-      </TransitionLink>
+      </TransitionLink> */}
 
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center gap-10 z-10">
         

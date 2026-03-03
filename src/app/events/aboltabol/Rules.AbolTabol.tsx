@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import TransitionLink from "@/components/TransitionLink";
+import FlipLink from "@/components/FlipLink";
 
 
 const Rules = () => {
@@ -65,7 +66,7 @@ const Rules = () => {
               </ol>
             </li>
             <li className="pl-2 leading-relaxed drop-shadow-sm">
-            There will be a maximum of 20 slides and a minimum of 6 slides for the presentation. Each team will have to complete their presentation within 9 minutes.
+            Each team will have to complete their presentation within 9 minutes.
             </li>
           </ul>
           
@@ -73,7 +74,7 @@ const Rules = () => {
 
         <div className="mt-5">
           <Link
-              href="https://drive.google.com/file/d/1P9kAtLRj4-xobBpuIdfCKmjOUKcByUpJ/view"
+              href="/Know_more/abol-tabol-guidelines.pdf"
               target="_blank"
               className="
 
@@ -83,7 +84,7 @@ const Rules = () => {
               "
             >
               <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] capitalize tracking-wide">
-                Know More
+               <FlipLink>Know&nbsp;More</FlipLink> 
               </span>
             </Link>
             </div>

@@ -11,15 +11,15 @@ import Timeline from "./TimeLine.AbolTabol";
 function page() {
   return (
     <div className='bg-linear-to-b from-[#0D30BB] via-[#2a237e] to-[#6e03e0]  w-full min-h-screen'>
-      {/* <EventNav navTheme="bg-gradient-to-t from-[#0215C5] to-[#020F92] 
-    ]"/> */}
+      <EventNav navTheme="bg-gradient-to-t from-[#0215C5] to-[#020F92] 
+    ]"/>
       <About/>
-      {/* <Rules/>
+      <Rules/>
       <Timeline />
       <Mentors />
       <Leads/>
       <Faq/>
-      <Footer/> */}
+      <Footer/>
     </div>
   )
 }

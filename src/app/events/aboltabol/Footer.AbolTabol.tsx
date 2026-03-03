@@ -195,16 +195,13 @@ export default function Footer() {
 
 {/*Big Convo Text*/}
 <div className='middle relative w-full -mt-13 md:-mt-30  h-[25vw] md:h-[22vw] overflow-clip z-10 pointer-events-none flex items-end justify-center'>
-        
-        <h1 
-            ref={ref as React.RefObject<HTMLHeadingElement>} 
-            className='font-orbitron text-[13vw] md:text-[12vw] lg:text-[14vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#bbe6e6] [&_span]:to-black/50 tracking-tight font-bold absolute -bottom-3 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
-        >
-            {text}
-        </h1>
+
+                <h1
+                    ref={ref as React.RefObject<HTMLHeadingElement>}
+                    className='font-orbitron text-[13vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#bbe6e6] [&_span]:to-black/50 tracking-tight font-extrabold absolute -bottom-3 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
+                >{text}</h1>
 
             </div>
-
 
 
 
