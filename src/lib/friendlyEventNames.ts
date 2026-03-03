@@ -8,8 +8,9 @@ export const getFriendlyEventName = (eventName: string): string => {
         inquizzitive: "Inquizzitive",
         algomaniac: "Algomaniac",
         jutalks: "JuTalks",
-        frames: "Frames",
+        frames: "24Frames",
+        "24frames": "24Frames"
     };
 
-    return names[eventName.toLowerCase()] || eventName;
+    return names[eventName.toLowerCase().trim()] || eventName;
 };
