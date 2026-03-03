@@ -34,7 +34,7 @@ const eventConfigurations = [
   { eventName: "sparkhack", min: 1, max: 3 },
   { eventName: "eureka", min: 2, max: 3 },
   { eventName: "inquizzitive", min: 1, max: 3 },
-  { eventName: "decisia", min: 1, max: 4 },
+  { eventName: "decisia", min: 1, max: 3 },
   { eventName: "aboltabol", min: 0, max: 3 }
 ];
 

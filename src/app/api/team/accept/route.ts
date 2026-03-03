@@ -132,8 +132,8 @@ export async function POST(req: NextRequest) {
 
                     // send mail to all user
                     let gform = "";
-                    const AT = team.eventName.toLowerCase();
-                    if(AT==='aboltabol'){
+                    const Event = team.eventName.toLowerCase();
+                    if(Event==='aboltabol'){
                         gform = `<div style="margin-top: 20px; padding: 15px; background-color: #eff6ff; border-left: 4px solid #3b82f6; border-radius: 4px;">
                             <p style="margin: 0 0 15px 0; line-height: 1.5;">Submit your abstract of your team's ideas through the google form given below before DEADLINE. This need to be submitted by the LEADER only.</p>
                             <a href="https://forms.gle/NoJqQ4Rtc47ZP9XM6." style="display: inline-block; padding: 10px 15px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Google Form</a>
@@ -142,6 +142,12 @@ export async function POST(req: NextRequest) {
                             <p style="margin: 0 0 10px 0; line-height: 1.5;"><b>Step 2:</b> Please join our official WhatsApp group for further updates, announcements.</p>
                             <a href="https://chat.whatsapp.com/FOhPzaV9HQ48EyHNbq68HS?mode=gi_t" style="display: inline-block; padding: 10px 15px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Join WhatsApp Group</a>
                         </div>
+                        </div>`
+                    }
+                    else if(Event=== "eureka"){
+                        gform = `<div style="padding: 15px; background-color: #f0fdf4; border-left: 4px solid #16a34a; border-radius: 4px;">
+                            <p style="margin: 0 0 10px 0; line-height: 1.5;"><b>Step 2:</b> Please join our official WhatsApp group for further updates, announcements.</p>
+                            <a href="https://chat.whatsapp.com/FwbBE35ceUZEKXVT7oWkqV?mode=gi_t" style="display: inline-block; padding: 10px 15px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Join WhatsApp Group</a>
                         </div>`
                     }
                     const emailPromises = allUser.map(obj => {
