@@ -13,15 +13,15 @@ type TeamMember = {
 
 const teamMembers: TeamMember[] = [
   {
-    name: "",
+    name: "Sudip Roy",
     post: "Event Lead",
     image: "",
     linkedin: "",
-    instagram: "",
+    instagram: "https://www.instagram.com/okaysudip?utm_source=qr&igsh=MWlrNXVxYjNvZzF0NQ==",
     facebook: "",
   },
   {
-   name: "",
+   name: "Ritam Nag",
     post: "Event Lead",
     image: "",
     linkedin: "",
