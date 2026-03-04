@@ -65,7 +65,7 @@ export default function LeadRegistration() {
 
         if (result?.ok) {
           // 3. Now that session is updated, go to the Dashboard
-          router.push('/Lead-dashboard'); 
+          router.push('/lead-dashboard'); 
         } else {
           setError("Account upgraded, but auto-login failed. Please log in manually.");
         }
@@ -210,7 +210,8 @@ export default function LeadRegistration() {
                                     name="password"
                                     placeholder='********' 
                                     value={formData.password} 
-                                    onChange={handleChange}  
+                                    onChange={handleChange}
+                                    required
                                     className='w-full bg-transparent px-2 text-sm text-rose-50 placeholder-rose-900/40 outline-none font-mono tracking-wider' 
                                 />
                                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="pr-4 text-rose-700 hover:text-rose-400 transition-colors focus:outline-none">

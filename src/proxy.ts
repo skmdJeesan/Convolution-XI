@@ -45,7 +45,6 @@ export async function proxy(request: NextRequest) {
 
   // 6. Check if the user is trying to visit the Lead Dashboard
   if (pathname.startsWith('/lead-dashboard')) {
-    
     // If their role is NOT 'LEAD', kick them to the Lead Access page
     if (token.role !== 'LEAD') {
       return NextResponse.redirect(new URL('/lead-access', request.url));

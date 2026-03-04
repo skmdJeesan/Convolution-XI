@@ -110,9 +110,8 @@ const EventNav: React.FC<EventNavProps> = ({ navTheme }) => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 w-full z-1000 bg-black/10 backdrop-blur-md border-b border-white/10 text-white">
-        <div className="flex items-center justify-between px-4 py-[10px] md:py-3 w-full maxWidthForSections mx-auto">
-          
+      <header className="fixed top-2 left-1/2 -translate-x-1/2 rounded-full w-full sm:w-[95vw] z-1000 bg-black/10 backdrop-blur-md border-b border-white/10 text-white">
+        <div className="flex items-center justify-between px-4 py-2.5 md:py-3 w-full maxWidthForSections mx-auto">
           <div className="shrink-0 transition-transform hover:scale-105 duration-300 cursor-pointer">
             <TransitionLink href="/" onClick={(e) => handleScroll(e, "/#home")}>
               <Image
@@ -127,7 +126,7 @@ const EventNav: React.FC<EventNavProps> = ({ navTheme }) => {
           <ul className="hidden lg:flex items-center gap-x-5 xl:gap-x-7 text-sm font-bold uppercase tracking-wide text-white">
             {navLinks.map((item, index) => (
               <li key={index}>
-                <div onClick={(e) => handleScroll(e, item.href)} className="cursor-pointer font-orbitron">
+                <div onClick={(e) => handleScroll(e, item.href)} className="cursor-pointer font-orbitron hover:bg-zinc-400/20 px-3 py-1 rounded-full">
                   <FlipLink>{item.label}</FlipLink>
                 </div>
               </li>
