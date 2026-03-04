@@ -6,7 +6,16 @@ import bcrypt from 'bcryptjs';
 
 export async function POST(req: Request) {
   try {
-    const { name, email } = await req.json();
+    const { name, email, password } = await req.json();
+    
+    // Validate required fields
+    if (!name || !email || !password) {
+      return NextResponse.json(
+        { message: "Name, email, and password are required." },
+        { status: 400 }
+      );
+    }
+    
     await dbConnect();
     // 1. Check Allowlist
     const allowedLead = await LeadAllowlist.findOne({ email });
@@ -21,7 +30,9 @@ export async function POST(req: Request) {
 
     if (existingUser) {
       // UPGRADE EXISTING USER
+      const hashedPassword = await bcrypt.hash(password, 10);
       existingUser.role = 'LEAD';
+      existingUser.password = hashedPassword;
       await existingUser.save();
       await allowedLead.save();
       return NextResponse.json(
@@ -30,10 +41,13 @@ export async function POST(req: Request) {
       );
     }
 
-
+    // Hash password for new user
+    const hashedPassword = await bcrypt.hash(password, 10);
+    
     await User.create({
       name,
       email,
+      password: hashedPassword,
       role: 'LEAD',
     });
 
