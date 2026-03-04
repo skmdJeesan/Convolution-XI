@@ -26,19 +26,13 @@ export async function POST(req: Request) {
     if (existingUser) {
       // UPGRADE EXISTING USER
       existingUser.role = 'LEAD';
-      existingUser.managedEventId = allowedLead.assignedEvent;
       
-      // If they provided a password, update it. 
-      // If they left it blank (optional), keep the old one.
-      if (password) {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        existingUser.password = hashedPassword;
-      }
+      
 
       await existingUser.save();
       
       // Mark allowlist as used
-      allowedLead.isRegistered = true; // Uncomment if you want to block re-entry
+      // allowedLead.isRegistered = true; // Uncomment if you want to block re-entry
       await allowedLead.save();
 
       return NextResponse.json(
@@ -53,9 +47,7 @@ export async function POST(req: Request) {
     await User.create({
       name,
       email,
-      password: hashedPassword,
       role: 'LEAD',
-      managedEventId: allowedLead.assignedEvent,
     });
 
     // allowedLead.isRegistered = true;

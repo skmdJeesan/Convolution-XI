@@ -59,7 +59,6 @@ export default function LeadRegistration() {
         // This forces NextAuth to generate a NEW token with role: 'LEAD'
         const result = await signIn('credentials', {
           email: formData.email,
-          password: formData.password,
           redirect: false, // Don't redirect automatically
         });
 
@@ -198,7 +197,7 @@ export default function LeadRegistration() {
                         </div>
 
                         {/* Password Input */}
-                        <div className='group/input relative'>
+                        {/* <div className='group/input relative'>
                              <div className="flex justify-between items-end mb-1 px-1">
                                 <label className="text-[10px] text-rose-200/70 font-bold tracking-wider uppercase">Secure Key</label>
                              </div>
@@ -217,7 +216,7 @@ export default function LeadRegistration() {
                                     {showPassword ? <IoEyeOffOutline size={16} /> : <IoEyeOutline size={16} />}
                                 </button>
                              </div>
-                        </div>
+                        </div> */}
 
                         {/* Submit Button */}
                         <button 
