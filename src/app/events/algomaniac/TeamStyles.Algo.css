@@ -53,7 +53,7 @@
 /* Card wrapper */
 .team-card-wrapper {
   transform-style: preserve-3d;
-  animation: floating 3.5s ease-in-out infinite;
+  /* animation: floating 3.5s ease-in-out infinite; */
   will-change: transform; 
   backface-visibility: hidden; 
 }
