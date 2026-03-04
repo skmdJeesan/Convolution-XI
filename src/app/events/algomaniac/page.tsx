@@ -14,26 +14,24 @@ import './global.css';
 
 // --- NEW COMPONENT FOR REAL-TIME RANDOM COMETS ---
 const SingleComet = ({ initialDelay }: { initialDelay: number }) => {
-  // We pass a boolean so we only use the long initial delay on page load
   const getNewRandomProps = (isInitial = false) => ({
-    id: Math.random(), // This is the magic key that forces a clean reset
+    id: Math.random(), 
     top: Math.floor(Math.random() * 50),
     left: Math.floor(Math.random() * 91) + 10,
-    duration: Math.random() * 10 + 12, // Lasts between 12s and 22s
-    delay: isInitial ? initialDelay : Math.random() * 3, // Short random pause between respawns
+    duration: Math.random() * 10 + 12, 
+    delay: isInitial ? initialDelay : Math.random() * 3, 
   });
 
   const [props, setProps] = useState(() => getNewRandomProps(true));
 
   return (
     <div
-      key={props.id} // Changing the key completely destroys and recreates the HTML element
+      key={props.id} 
       className="shooting-star"
-      onAnimationEnd={() => setProps(getNewRandomProps(false))} // Triggers exactly when the 100% keyframe hits
+      onAnimationEnd={() => setProps(getNewRandomProps(false))} 
       style={{
         top: `${props.top}%`,
         left: `${props.left}%`,
-        // We inject the animation dynamically here so it runs exactly once per spawn
         animation: `shootingStar ${props.duration}s linear ${props.delay}s forwards`,
       }}
     ></div>
@@ -48,7 +46,6 @@ const RandomComets = () => {
     const isMobile = window.innerWidth < 768;
     const cometCount = isMobile ? 3 : 6;
 
-    // Spread the initial spawn times out over 15 seconds
     setDelays(Array.from({ length: cometCount }).map(() => Math.random() * 15));
   }, []);
 
@@ -62,7 +59,6 @@ const RandomComets = () => {
 };
 
 // --- NEW COMPONENT FOR EASY IMAGE POSITIONING ---
-// You can control size (w, h) and position (top, left, right, bottom) easily!
 const FloatingAsset = ({
   src,
   w,
@@ -71,8 +67,9 @@ const FloatingAsset = ({
   left,
   right,
   bottom,
-  opacity = 0.8, // Default opacity
-  animationClass = "animate-[floating_6s_ease-in-out_infinite]" // Default floating animation
+  opacity = 0.8,
+  // Default animation now restricted to desktop using md:
+  animationClass = "md:animate-[floating_6s_ease-in-out_infinite]" 
 }: {
   src: string;
   w: string;
@@ -93,7 +90,6 @@ const FloatingAsset = ({
         opacity: opacity,
       }}
     >
-      {/* We use standard img here so it scales perfectly within your custom width/height without Next.js Image layout constraints */}
       <img
         src={src}
         alt="floating asset"
@@ -107,11 +103,11 @@ export default function Page() {
   return (
     <div className="relative w-full min-h-screen bg-gradient-to-b from-[#3b0764] via-[#7e22ce] to-[#0f172a] overflow-hidden">
 
-      {/* --- LAYER 1: GLOWING NEBULA CLOUDS --- */}
+      {/* --- LAYER 1: GLOWING NEBULA CLOUDS (Mobile Optimized) --- */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-cyan-400/20 rounded-full blur-[120px]"></div>
-        <div className="absolute top-[30%] right-[-10%] w-[40vw] h-[40vw] bg-fuchsia-500/20 rounded-full blur-[150px]"></div>
-        <div className="absolute bottom-[10%] left-[20%] w-[60vw] h-[60vw] bg-purple-600/30 rounded-full blur-[150px]"></div>
+        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-cyan-400/20 rounded-full blur-[40px] md:blur-[120px]"></div>
+        <div className="absolute top-[30%] right-[-10%] w-[40vw] h-[40vw] bg-fuchsia-500/20 rounded-full blur-[40px] md:blur-[150px]"></div>
+        <div className="absolute bottom-[10%] left-[20%] w-[60vw] h-[60vw] bg-purple-600/30 rounded-full blur-[40px] md:blur-[150px]"></div>
       </div>
 
       {/* --- LAYER 2: TWINKLING STARS --- */}
@@ -124,48 +120,41 @@ export default function Page() {
       {/* --- LAYER 3: RANDOM SHOOTING COMETS --- */}
       <RandomComets />
 
-      {/* --- LAYER 3.5: SCATTERED SPACE EMOJIS (Full Page Scroll) --- */}
+      {/* --- LAYER 3.5: SCATTERED SPACE EMOJIS (Mobile Optimized) --- */}
       <div className="absolute inset-0 pointer-events-none z-0 w-full h-full overflow-hidden">
         {/* 0% - 20% (Top of the page - About/Rules) */}
-        <div className="absolute top-[2%] left-[10%] opacity-40 text-3xl animate-[pulse_4s_ease-in-out_infinite]">🌟</div>
+        <div className="absolute top-[2%] left-[10%] opacity-40 text-3xl md:animate-[pulse_4s_ease-in-out_infinite]">🌟</div>
         <div className="absolute top-[5%] right-[15%] text-white opacity-30 text-4xl">✨</div>
         <div className="absolute top-[12%] left-[8%] text-cyan-400 opacity-30 text-3xl drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">✦</div>
         <div className="absolute top-[18%] right-[10%] opacity-30 text-4xl">🛰️</div>
-        <div className="absolute top-[12%] right-[70%] opacity-40 text-7xl hover:-translate-y-2 transition-transform duration-300">🛸</div>
-
+        <div className="absolute top-[12%] right-[70%] opacity-40 text-7xl md:hover:-translate-y-2 transition-transform duration-300">🛸</div>
 
         {/* 20% - 40% (Upper Middle - Timeline/Mentors) */}
-        <div className="absolute top-[25%] left-[15%] opacity-50 text-4xl hover:scale-110 transition-transform cursor-default">💫</div>
-        <div className="absolute top-[28%] right-[8%] text-blue-300 opacity-20 text-2xl drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">💠</div>
+        <div className="absolute top-[25%] left-[15%] opacity-50 text-4xl md:hover:scale-110 transition-transform cursor-default">💫</div>
+        <div className="absolute top-[28%] right-[8%] text-blue-300 opacity-20 text-2xl drop-shadow-[0_0_10px_rgba(34,211,238,0.8)] hidden md:block">💠</div>
         <div className="absolute top-[35%] left-[5%] text-white opacity-20 text-2xl">✨</div>
-        <div className="absolute top-[38%] right-[12%] text-fuchsia-400 opacity-20 text-4xl drop-shadow-[0_0_8px_rgba(217,70,239,0.8)]">✧</div>
+        <div className="absolute top-[38%] right-[12%] text-fuchsia-400 opacity-20 text-4xl drop-shadow-[0_0_8px_rgba(217,70,239,0.8)] hidden md:block">✧</div>
 
         {/* 40% - 60% (Middle - Prizes/Team) */}
         <div className="absolute top-[45%] left-[18%] opacity-30 text-4xl">☄️</div>
         <div className="absolute top-[54%] right-[75%] opacity-40 text-4xl drop-shadow-[0_0_10px_rgba(217,70,239,0.8)]">⚡</div>
         <div className="absolute top-[58%] left-[10%] text-white opacity-40 text-lg">⋆</div>
-        <div className="absolute top-[60%] right-[5%] opacity-40 text-9xl hover:-translate-y-2 transition-transform duration-300">🛸</div>
+        <div className="absolute top-[60%] right-[5%] opacity-40 text-9xl md:hover:-translate-y-2 transition-transform duration-300">🛸</div>
 
         {/* 60% - 80% (Lower Middle - Team/FAQ) */}
         <div className="absolute top-[65%] left-[20%] text-white opacity-30 text-2xl">✨</div>
-        <div className="absolute top-[70%] right-[10%] text-cyan-400 opacity-30 text-3xl drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">✦</div>
-        <div className="absolute top-[75%] left-[8%] opacity-30 text-9xl hover:rotate-12 transition-transform duration-500">🪐</div>
-        <div className="absolute top-[78%] right-[18%] text-blue-300 opacity-20 text-3xl drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">💠</div>
+        <div className="absolute top-[70%] right-[10%] text-cyan-400 opacity-30 text-3xl drop-shadow-[0_0_8px_rgba(34,211,238,0.8) hidden md:block]">✦</div>
+        <div className="absolute top-[75%] left-[8%] opacity-30 text-9xl md:hover:rotate-12 transition-transform duration-500">🪐</div>
+        <div className="absolute top-[78%] right-[18%] text-blue-300 opacity-20 text-3xl drop-shadow-[0_0_10px_rgba(34,211,238,0.8)] hidden md:block">💠</div>
 
         {/* 80% - 100% (Bottom - FAQ/Footer) */}
         <div className="absolute top-[85%] left-[12%] text-white opacity-30 text-xl">✶</div>
-        <div className="absolute top-[88%] right-[20%] text-fuchsia-400 opacity-20 text-4xl drop-shadow-[0_0_8px_rgba(217,70,239,0.8)]">✧</div>
-        <div className="absolute top-[95%] left-[15%] opacity-30 text-2xl animate-[pulse_4s_ease-in-out_infinite]">🌟</div>
+        <div className="absolute top-[88%] right-[20%] text-fuchsia-400 opacity-20 text-4xl drop-shadow-[0_0_8px_rgba(217,70,239,0.8)] hidden md:block">✧</div>
+        <div className="absolute top-[95%] left-[15%] opacity-30 text-2xl md:animate-[pulse_4s_ease-in-out_infinite]">🌟</div>
         <div className="absolute top-[96%] right-[8%] text-white opacity-20 text-3xl">✨</div>
       </div>
 
       {/* --- LAYER 4: FLOATING SPACE ASSETS --- */}
-      {/* HOW TO USE CONTROLS:
-          - src: The path to your image in the public folder.
-          - w & h: Set width and height (e.g., "300px", "20vw", "15rem").
-          - top/bottom/left/right: Set position using percentages so it scales on all screens.
-          - opacity: 1 is solid, 0.5 is half-transparent.
-      */}
       <div className="absolute inset-0 pointer-events-none z-0 w-full h-full overflow-hidden">
 
         {/* Asset 1: Top Left (e.g., Stone or Asteroid) */}
@@ -200,18 +189,6 @@ export default function Page() {
           opacity={0.7}
           animationClass="animate-[tilted-float_7s_ease-in-out_infinite] ufo-image"
         />
-
-        {/* Asset 4: Bottom Right (Deep background element) */}
-        {/* <FloatingAsset
-          src="/Algomaniac/your-image-4.png"
-          w="200px"
-          h="200px"
-          top="85%"
-          right="5%"
-          opacity={0.5}
-          animationClass="animate-[pulse_5s_ease-in-out_infinite]"
-        /> */}
-
       </div>
 
       {/* --- PAGE CONTENT --- */}

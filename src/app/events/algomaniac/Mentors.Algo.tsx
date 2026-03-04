@@ -43,7 +43,7 @@ export default function Mentors() {
     };
 
     const cardVariants: Variants = {
-        hidden: { opacity: 0, x: -20 },
+        hidden: { opacity: 0, x: -30 },
         visible: {
             opacity: 1,
             x: 0,
