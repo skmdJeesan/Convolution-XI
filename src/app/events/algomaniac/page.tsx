@@ -216,7 +216,7 @@ export default function Page() {
 
       {/* --- PAGE CONTENT --- */}
       <div className="relative z-10 w-full flex flex-col">
-        <EventNav />
+        <EventNav navTheme="bg-gradient-to-b from-[#7e22ce] to-[#3b0764]"/>
         <About />
         <Rules />
         <Timeline />

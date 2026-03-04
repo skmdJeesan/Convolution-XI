@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
         }
 
         // closed events for security
-        const closed_events: string[] = ["circuistics","decisia", "sparkhack", "eureka", "inquizzitive"]; 
+        const closed_events: string[] = ["circuistics","decisia", "sparkhack", "inquizzitive"]; 
         if (closed_events.includes(team.eventName.toLowerCase())) {
             return NextResponse.json({ message: `Registrations for ${getFriendlyEventName(team.eventName)} not started yet.` }, { status: 403 });
         }
@@ -58,9 +58,33 @@ export async function POST(req: NextRequest) {
         // check if they are in another team for this event
         const existingTeams = await Team.find({
             eventName: team.eventName,
-            $or: [{ leader: newUser._id }, { members: { $elemMatch: { user: newUser._id } } }]
+            $or: [
+                { leader: newUser._id }, 
+                { 
+                    members: { 
+                        $elemMatch: { 
+                            user: newUser._id, 
+                            status: { $ne: "declined" }
+                        } 
+                    } 
+                }
+            ]
         });
-        if (existingTeams.length > 0) return NextResponse.json({ message: "This user is already part of another team for this event." }, { status: 400 });
+
+        if (existingTeams.length > 0) {
+            return NextResponse.json(
+                { message: "This user is already part of (or invited to) another team for this event." }, 
+                { status: 400 }
+            );
+        }
+
+        // 🚀 EXTRA SAFETY: Check if they registered through some other loophole
+        if (newUser.eventsRegistered && newUser.eventsRegistered.includes(team.eventName.toLowerCase())) {
+             return NextResponse.json(
+                { message: "This user has already successfully registered for this event." }, 
+                { status: 400 }
+            );
+        }
 
         team.members.push({ user: newUser._id, status: "pending" });
         team.status = "pending"; //whole team will fall in pending

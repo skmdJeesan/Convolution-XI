@@ -12,14 +12,14 @@ import Mentors from "./Mentor.Eureka";
 function page() {
   return (
     <div className=' w-full min-h-screen'>
-      {/* <EventNav navTheme="bg-[linear-gradient(to_bottom,#8b9216,#a79f0f,#eda421,#e98604,#df3908)]"/> */}
+      <EventNav navTheme="bg-[linear-gradient(to_bottom,#273f29,#325336,#3f6944,#4d8052,#5c9861)]"/>
       <About/>
-      {/* <Rules/>
+      <Rules/>
       <Timeline/>
       <Mentors/>
       <Team/>
       <Faq/>
-      <Footer/> */}
+      <Footer/>
     </div>
   )
 }

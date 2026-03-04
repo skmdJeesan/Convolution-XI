@@ -13,7 +13,7 @@ export default function About() {
   const contextData = useContext(userData);
   const eventName = "eureka";
   const eventMode = "team";
-  const isClosed = true; // Toggle this to true to shut down registrations
+  const isClosed = false; // Toggle this to true to shut down registrations
 
  const userEvents = contextData?.user?.eventsRegistered || [];
   const isRegistered = userEvents.some(
@@ -69,7 +69,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full h-screen flex items-center justify-center bg-linear-to-b from-[#c4d79f] via-[#b1c880] to-[#83a252] pt-20 md:pt-15 px-6 pb-10 overflow-hidden"
+      className="relative w-full max-h-screen flex items-center justify-center bg-linear-to-b from-[#c4d79f] via-[#b1c880] to-[#83a252] pt-20  px-6 pb-10 overflow-hidden"
     >
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none"
@@ -79,7 +79,7 @@ export default function About() {
         }}
       ></div>
 
-      <TransitionLink 
+      {/* <TransitionLink 
         href="/" 
        className="
           absolute top-6 left-6 z-50 flex items-center gap-2 px-5 py-3 
@@ -92,7 +92,7 @@ export default function About() {
         <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-white uppercase transition-colors duration-300">
           <FlipLink>Return&nbsp;Home</FlipLink>
         </span>
-      </TransitionLink>
+      </TransitionLink> */}
 
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center gap-10 z-10">
         

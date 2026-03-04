@@ -135,12 +135,11 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (data?.user?._id) {
-        const userId = data.user._id;
+        const userId = data?.user?._id;
 
         // fetch pending invites
         axios.get(`/api/team/invites?userId=${userId}`)
             .then((res) => {
-                // FIXED 1: Swaps name in pending requests directly
                 const formattedInvites = (res.data.invites || []).map((req: any) => ({
                     ...req,
                     eventName: req.eventName.toLowerCase().trim() === 'frames' ? '24Frames' : req.eventName
@@ -158,12 +157,11 @@ export default function ProfilePage() {
             .then((res) => {
                 const fetchedTeams = res.data.teams || [];
                 
-                const solo_events = ["algomaniac", "jutalks", "frames"];
+                const solo_events = ["algomaniac", "jutalks", "frames", "24frames"];
                 
-                // FIXED 2: Added .trim() so "frames " doesn't slip into Teams
                 const groupTeams = fetchedTeams.filter((t: any) => !solo_events.includes(t.eventName.toLowerCase().trim()));
                 
-                // Map and sort members directly
+                // sort members
                 const formattedTeams = groupTeams.map((t: any) => {
                     const leaderDetail = {
                         id: t.leader?._id || t.leader,
@@ -199,7 +197,6 @@ export default function ProfilePage() {
                     return {
                         id: t._id,
                         name: t.teamName,
-                        // FIXED 3: Swaps name in Teams list directly
                         event: t.eventName.toLowerCase().trim() === 'frames' ? '24Frames' : t.eventName,
                         role: t.leader?._id === userId ? "Leader" : "Member",
                         members: t.members.filter((m: any) => m.status === 'accepted').length + 1,
@@ -209,17 +206,31 @@ export default function ProfilePage() {
 
                 setMyTeamsList(formattedTeams);
 
-                const formattedEvents = fetchedTeams.map((t: any) => ({
-                    id: t._id,
-                    // FIXED 4: Swaps name in Registry directly
-                    name: t.eventName.toLowerCase().trim() === 'frames' ? '24Frames' : t.eventName,
-                    status: t.status === "confirmed" ? "Confirmed" : "Pending Registration"
-                }));
+            
+                const userRegisteredEvents = data?.user?.eventsRegistered || [];
+                
+                const allEventNames = new Set(userRegisteredEvents.map((e: string) => e.toLowerCase().trim()));
+                fetchedTeams.forEach((t: any) => allEventNames.add(t.eventName.toLowerCase().trim()));
+
+                const formattedEvents = Array.from(allEventNames).map((eventName, idx) => {
+                    const associatedTeam = fetchedTeams.find((t: any) => t.eventName.toLowerCase().trim() === eventName);
+                    
+                    let displayName = eventName;
+                    if (eventName === 'frames' || eventName === '24frames') displayName = '24Frames';
+
+                    return {
+                        id: associatedTeam?._id || `event-${idx}`,
+                        name: displayName,
+                        
+                        status: associatedTeam ? (associatedTeam.status === "confirmed" ? "Confirmed" : "Pending Registration") : "Confirmed"
+                    };
+                });
+                
                 setEventsList(formattedEvents);
             })
             .catch(err => console.error("Error fetching my teams:", err));
     }
-  }, [data?.user?._id]);
+  }, [data?.user?._id, data?.user?.eventsRegistered]);
 
   const handleAction = async (teamId: string, action: "accept" | "decline") => {
       if(!data?.user?._id) return;
@@ -228,7 +239,7 @@ export default function ProfilePage() {
       try {
           const response = await axios.post(`/api/team/${action}`, {
               teamId,
-              userId: data.user._id
+              userId: data?.user?._id // <-- FIXED THIS LINE
           });
 
           alert(response.data.message);
@@ -262,7 +273,7 @@ export default function ProfilePage() {
       try {
           const res = await axios.post('/api/team/add-member', {
               teamId,
-              leaderId: data.user._id,
+              leaderId: data?.user?._id, // <-- FIXED THIS LINE
               newMemberEmail
           });
           alert(res.data.message);

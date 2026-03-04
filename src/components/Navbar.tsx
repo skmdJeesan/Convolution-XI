@@ -241,7 +241,7 @@ const Navbar = () => {
                         <ul className="bg-black backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl p-2 flex flex-col gap-1">
                           {item.subItems.map((sub, subIndex) => (
                             <li key={subIndex}>
-                              <div onClick={(e) => handleScroll(e, sub.href)} className="font-orbitron block px-4 py-3 hover:bg-white/5 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[12px] cursor-pointer">
+                              <div onClick={(e) => handleScroll(e, sub.href)} className="font-orbitron block px-4 py-3 hover:bg-white/5 rounded-xl transition-all text-center text-gray-300 hover:text-white tracking-wider text-[10px] cursor-pointer">
                                 <FlipLink>{sub.label}</FlipLink>
                               </div>
                             </li>

@@ -86,13 +86,13 @@ export default function Footer() {
                             </p>
                         </div>
                         <div className="flex justify-center md:justify-start gap-4">
-                            <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                            <Link target='_blank' href="https://www.instagram.com/convolution26/" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
                                 <FaInstagram size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors" />
                             </Link>
-                            <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                            <Link target='_blank' href="https://www.facebook.com/share/15Mh8tfiC7/?mibextid=LQQJ4d" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
                                 <FaFacebook size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors" />
                             </Link>
-                            <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                            <Link target='_blank' href="https://www.linkedin.com/company/convolution-juee/" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
                                 <FaLinkedin size={18} className="text-slate-300 group-hover:text-cyan-300 transition-colors" />
                             </Link>
                         </div>
@@ -111,16 +111,16 @@ export default function Footer() {
                             <ul className="flex flex-col gap-4">
                                 {/* Email */}
                                 <li className='flex items-start gap-4 group'>
-                                    <Link href="mailto:convolutionXI2026@gmail.com" className='flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-cyan-400 group-hover:bg-cyan-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0'>
+                                    <Link href="mailto:convolutionxi@gmail.com" className='flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-cyan-400 group-hover:bg-cyan-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0'>
                                         <MdOutlineEmail className="text-xl text-cyan-400 mt-0.5 group-hover:text-cyan-300 transition-colors duration-300" />
                                     </Link>
                                     <div className="text-md">
                                         <span className="font-rajdhani text-slate-400   font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">Email</span>
                                         <Link
-                                            href="mailto:convolutionXI2026@gmail.com"
+                                            href="mailto:convolutionxi@gmail.com"
                                             className="font-rajdhani font-semibold text-slate-200 hover:text-white transition-colors block break-all"
                                         >
-                                            convolutionx2026@gmail.com
+                                            convolutionxi@gmail.com
                                         </Link>
                                     </div>
                                 </li>
@@ -145,7 +145,7 @@ export default function Footer() {
 
                                 {/* Phone */}
                                 <li className='flex items-start gap-4 group'>
-                                    <a href="tel:+919933671072" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-cyan-400 group-hover:bg-cyan-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0">
+                                    <a href="tel:+919831928836" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-cyan-400 group-hover:bg-cyan-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0">
                                         <MdCall className="text-xl text-cyan-400 mt-0.5 group-hover:text-cyan-300 transition-colors duration-300" />
                                     </a>
 
@@ -153,11 +153,11 @@ export default function Footer() {
                                         <span className="font-rajdhani text-slate-400   font-bold block mb-0.5 group-hover:text-cyan-400 transition-colors duration-300">
                                             Phone
                                         </span>
-                                        <a href="tel:+919933671072" className="font-semibold font-rajdhani block text-slate-200 hover:text-white transition-colors">
-                                            +91 99336 71072
+                                        <a href="tel:+919831928836" className="font-semibold font-rajdhani block text-slate-200 hover:text-white transition-colors">
+                                            +91 98319 28836
                                         </a>
-                                        <a href="tel:+917063253983" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
-                                            +91 70632 53983
+                                        <a href="tel:+917679880740" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
+                                            +91 76798 80740
                                         </a>
                                     </div>
                                 </li>
@@ -194,14 +194,13 @@ export default function Footer() {
             </div>
 
             {/*Big Convo Text*/}
+
             <div className='middle relative w-full -mt-13 md:-mt-30  h-[25vw] md:h-[22vw] overflow-clip z-10 pointer-events-none flex items-end justify-center'>
 
                 <h1
                     ref={ref as React.RefObject<HTMLHeadingElement>}
-                    className='font-orbitron text-[13vw] md:text-[12vw] lg:text-[14vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#128bac] [&_span]:to-black/50 tracking-tight font-bold absolute -bottom-3 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
-                >
-                    {text}
-                </h1>
+                    className='font-orbitron text-[13vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#128bac] [&_span]:to-black/50 tracking-tight font-extrabold absolute -bottom-3 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
+                >{text}</h1>
 
             </div>
 

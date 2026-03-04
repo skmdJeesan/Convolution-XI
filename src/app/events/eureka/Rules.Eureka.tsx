@@ -1,18 +1,22 @@
 import React from "react";
 import Image from "next/image";
 import FlipLink from "@/components/FlipLink";
-import { Link } from "lucide-react";
+import Link from "next/link";
 
 const rules = [
-  "Each team must comprise 3-4 members (including the Team Lead) from the same or different colleges and/or streams.",
-  "There will be two rounds: the Screening Round and the Final Round.",
-  "Screening Round: This round will test teams on mathematical, analytical and aptitude skills. It will be an on-site pen-and-paper test.",
-  "Teams will have 60 questions to answer in 50 minutes. The top 10 teams will be selected for the on-site Final Round.",
-  "Final Round: This round will primarily be hosted on the Eureka website. Teams will embark on an adventurous journey involving code-breaking, clue-finding, logical challenges and brainstorming activities.",
-  "The Final Round will consist of 5 steps with 3 riddles per step. There may also be a surprise hurdle to solve before declaring the final winner.",
+  "Each team must comprise 2-4 members (including the Team Lead) from the same or different colleges and/or streams.",
+  "There will be three rounds: Round 1, Round 2, Round 3",
+  "Round 1: This round will test teams on mathematical, analytical and aptitude skills. It will be an on-site pen-and-paper test.",
+  "Teams will have 75 questions to answer in 60 minutes. The top 12 teams will be selected for the 2nd Round.",
+  "Round 2: This round will primarily be hosted on the Eureka website. Teams will embark on an adventurous journey involving code-breaking, clue-finding, logical challenges and brainstorming activities.",
+  "The 2nd Round will consist of 5 steps with 3 riddles per step. ",
   "Teams will be entitled to 3 hints in total, applicable to individual riddles, but limited to 1 hint per step.",
-  "For the Final Round, contestants must bring at least one laptop per team (mandatory). The use of mobile phones and tablets are allowed.",
+  "For the Round 2, contestants must bring at least one laptop per team (mandatory). The use of mobile phones and tablets are allowed. All internet sources and AI sources are also allowed.",
   "Participants are allowed to browse the internet or use any software program or AI tool to solve the puzzles in the Finals.",
+  "Round 3: An Intense, Department-Wide Mystery Chase.",
+  "One clue leads to another. Follow them on a wonderful journey and unravel mysteries",
+  "For the Round 3, contestants must bring at least one laptop per team (mandatory). The use of mobile phones and tablets are allowed. All internet sources and AI sources are also allowed.",
+
 ];
 
 const Rules = () => {
@@ -51,13 +55,9 @@ const Rules = () => {
         </div>
                 <div className="mt-5">
                   <Link
-                      href="/Know_more/abol-tabol-guidelines.pdf"
+                      href="https://drive.google.com/drive/folders/1Y-jSXdMsgVieakzYUWNLzwzRTQNS-yX3"
                       target="_blank"
-                      className="
-        
-                      shadow-white/40 hover:shadow-white/30  bg-[#0D30BB] hover:bg-[#0b2ba8]  hover:text-[#041550] group flex items-center gap-2 px-5 py-3 
-                         backdrop-blur-md rounded-full 
-                        transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
+                      className="shadow-white/70 hover:shadow-white/30  hover:bg-[#1C971C] bg-[#115211]   text-[#ffffff]  transition-all duration-300 group flex items-center gap-2 px-5 py-3 backdrop-blur-md rounded-full shadow-sm cursor-pointer overflow-hidden
                       "
                     >
                       <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] capitalize tracking-wide">
