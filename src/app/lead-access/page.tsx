@@ -65,7 +65,7 @@ export default function LeadRegistration() {
 
         if (result?.ok) {
           // 3. Now that session is updated, go to the Dashboard
-          router.push('/Lead-dashboard'); 
+          router.push('/lead-dashboard'); 
         } else {
           setError("Account upgraded, but auto-login failed. Please log in manually.");
         }
