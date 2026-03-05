@@ -11,14 +11,11 @@ import Mentors from "./Mentor.Frames";
 function page() {
   return (
     <div className='w-full min-h-screen'>
-      <EventNav/>
+      <EventNav navTheme="bg-gradient-to-b from-[#52BAFF] to-[#E7EDF9]"/>
       <About/>
       <Rules/>
-<<<<<<< HEAD
-=======
       <Timeline/>
       <Mentors/>
->>>>>>> SayanIndra
       <Team/>
       <Faq/>
       <Footer/>
