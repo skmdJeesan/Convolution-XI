@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
         }
 
         // for security
-        const closed_events: string[] = ["jutalks", "frames"]; 
+        const closed_events: string[] = ["jutalks"]; 
         if (closed_events.includes(eventName.toLowerCase())) {
             return NextResponse.json(
                 { message: `Registrations for ${getFriendlyEventName(eventName)} not started yet.` },
@@ -123,7 +123,7 @@ export async function POST(req: NextRequest) {
                     link = `
                         <div style="margin-top: 20px; padding: 15px; background-color: #fdf2f8; border-left: 4px solid #db2777; border-radius: 4px;">
                             <p style="margin: 0 0 10px 0;">Upload your best photograph you have captured using this google form before DEADLINE.</p>
-                            <a href="GFORM_LINK" style="display: inline-block; padding: 10px 15px; background-color: #db2777; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Google Form</a>
+                            <a href="https://forms.gle/b1wZd3t4hgeb5T4F8" style="display: inline-block; padding: 10px 15px; background-color: #db2777; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Google Form</a>
                         </div>
                     `;
                 }
