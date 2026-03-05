@@ -71,7 +71,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full h-screen flex items-center justify-between py-20 px-6 overflow-hidden"
+      className="relative w-full max-h-screen flex items-center justify-between pt-20 px-6 pb-10 overflow-hidden"
     >
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none"

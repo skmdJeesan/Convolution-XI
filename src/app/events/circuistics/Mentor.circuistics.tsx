@@ -13,7 +13,6 @@ type TeamMember = {
   image?: string;
   profession?: string;
   researchPoint?: string;
-  img?: string;
 };
 
 const teamMembers: TeamMember[] = [
@@ -22,14 +21,14 @@ const teamMembers: TeamMember[] = [
     profession:
       "Professor at Department of Electrical Engineering, Jadavpur University",
     researchPoint: "https://scholar.google.com/citations?user=tglA61sAAAAJ&hl=en",
-    img: "bdc.png", // Replace with the actual image path or import
+    image: "/Mentors/bdc.png", // Replace with the actual image path or import
   },
   {
     name: "Dipten Maity",
     profession:
       "Assistant Professor at Department of Electrical Engineering, Jadavpur University",
     researchPoint: "https://scholar.google.co.in/citations?hl=en&user=34JBou8AAAAJ",
-    img: "dm.png", // Replace with the actual image path or import
+    image: "/Mentors/dm.png", // Replace with the actual image path or import
   }, 
 ];
 
@@ -84,7 +83,7 @@ function Team() {
   };
 
   return (
-    <div id='team' className="relative w-full min-h-[50vh] px-2.5 py-10 overflow-hidden flex flex-col items-center justify-center mt-0 isolate">
+    <div id='judges' className="relative w-full min-h-[50vh] px-2.5 py-10 overflow-hidden flex flex-col items-center justify-center mt-0 isolate">
       {/* --- BACKGROUND LAYER --- */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none"
@@ -130,7 +129,7 @@ function Team() {
             {/* Card with floating animation */}
             <motion.div
               variants={cardVariants}
-              className="relative w-70 h-55 rounded-[24px] overflow-hidden bg-[linear-gradient(135deg,rgba(51,65,85,0.3)_0%,rgba(30,41,59,0.2)_100%)]"
+              className="relative w-70 h-70 rounded-[24px] overflow-hidden bg-[linear-gradient(135deg,rgba(51,65,85,0.3)_0%,rgba(30,41,59,0.2)_100%)]"
             >
               {/* Image/Avatar Section - Full card background */}
               <div className="team-card-image-container">
