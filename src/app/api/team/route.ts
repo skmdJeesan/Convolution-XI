@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
         }
 
         // for security
-        const closed_events: string[] = ["circuistics","decisia", "sparkhack", "inquizzitive"]; 
+        const closed_events: string[] = ["decisia", "sparkhack", "inquizzitive"]; 
         
         if (closed_events.includes(eventName.toLowerCase())) {
             return NextResponse.json(
