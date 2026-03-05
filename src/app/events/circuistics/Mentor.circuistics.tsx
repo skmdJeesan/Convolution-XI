@@ -83,7 +83,7 @@ function Team() {
   };
 
   return (
-    <div id='team' className="relative w-full min-h-[50vh] px-2.5 py-10 overflow-hidden flex flex-col items-center justify-center mt-0 isolate">
+    <div id='judges' className="relative w-full min-h-[50vh] px-2.5 py-10 overflow-hidden flex flex-col items-center justify-center mt-0 isolate">
       {/* --- BACKGROUND LAYER --- */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none"
