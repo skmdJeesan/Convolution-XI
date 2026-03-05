@@ -17,19 +17,19 @@ type TeamMember = {
 // -- Data --
 const teamMembers: TeamMember[] = [
   {
-    name: "",
+    name: "Plabon Bose",
     post: "Event Lead",
-    image: "",
-    linkedin: "",
-    instagram: "",
+    image: "/peoplePics/Plabone_1.jpeg",
+    linkedin: "https://www.linkedin.com/in/plabon-bose-2b6398265/",
+    instagram: "https://www.instagram.com/theplabone_/",
     x: "",
   },
   {
-    name: "",
+    name: "Debaditya",
     post: "Event Lead",
-    image: "",
-    linkedin: "",
-    instagram: "",
+    image: "/peoplePics/Debaditya_2.jpeg",
+    linkedin: "https://www.linkedin.com/in/debaditya-ghosh-951679279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "https://www.instagram.com/debadityagh?igsh=ajVtMWpvYTJuY3R0",
     x: "",
   }
 ];
