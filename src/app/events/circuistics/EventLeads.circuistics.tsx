@@ -15,7 +15,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "Sudip Roy",
     post: "Event Lead",
-    image: "",
+    image: "/peoplePics/Sudip_Roy.jpeg",
     linkedin: "",
     instagram: "https://www.instagram.com/okaysudip?utm_source=qr&igsh=MWlrNXVxYjNvZzF0NQ==",
     facebook: "",
@@ -23,8 +23,8 @@ const teamMembers: TeamMember[] = [
   {
    name: "Ritam Nag",
     post: "Event Lead",
-    image: "",
-    linkedin: "",
+    image: "/peoplePics/Ritam_Nag.jpeg",
+    linkedin: "https://www.linkedin.com/in/ritam-nag-1284b5308?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     instagram: "",
     facebook: "",
   },

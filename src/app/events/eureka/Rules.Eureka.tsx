@@ -25,13 +25,13 @@ const Rules = () => {
       id="rules"
       className="relative w-full py-20 flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#83a252] via-[#3e5e19] to-[#2c5111]"
     >
-      
+
       {/* Background */}
-      <div 
+      <div
         className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
-             backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
-             backgroundSize: '30px 30px'
+          backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+          backgroundSize: '30px 30px'
         }}
       ></div>
 
@@ -44,7 +44,7 @@ const Rules = () => {
           <h1 className="uppercase font-orbitron font-bold text-center text-2xl md:text-5xl mb-10  drop-shadow-md tracking-wide text-transparent bg-clip-text bg-linear-to-t from-green-200 to-white">
             Rules & Regulations
           </h1>
-          
+
           <ul className="space-y-4 font-rajdhani text-white text-base md:text-xl font-medium list-disc list-outside ml-4 md:ml-6 marker:text-cyan-400">
             {rules.map((text, index) => (
               <li key={index} className="pl-2 leading-relaxed drop-shadow-sm">
@@ -53,18 +53,18 @@ const Rules = () => {
             ))}
           </ul>
         </div>
-                <div className="mt-5">
-                  <Link
-                      href="https://drive.google.com/drive/folders/1Y-jSXdMsgVieakzYUWNLzwzRTQNS-yX3"
-                      target="_blank"
-                      className="shadow-white/70 hover:shadow-white/30  hover:bg-[#1C971C] bg-[#115211]   text-[#ffffff]  transition-all duration-300 group flex items-center gap-2 px-5 py-3 backdrop-blur-md rounded-full shadow-sm cursor-pointer overflow-hidden
+        <div className="mt-5">
+          <Link
+            href="https://drive.google.com/drive/folders/1Y-jSXdMsgVieakzYUWNLzwzRTQNS-yX3"
+            target="_blank"
+            className="shadow-white/70 hover:shadow-white/30  hover:bg-[#1C971C] bg-[#115211]   text-[#ffffff]  transition-all duration-300 group flex items-center gap-2 px-5 py-3 backdrop-blur-md rounded-full shadow-sm cursor-pointer overflow-hidden
                       "
-                    >
-                      <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] capitalize tracking-wide">
-                       <FlipLink>Know&nbsp;More</FlipLink> 
-                      </span>
-                    </Link>
-                    </div>
+          >
+            <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] capitalize tracking-wide">
+              <FlipLink>Know&nbsp;More</FlipLink>
+            </span>
+          </Link>
+        </div>
       </div>
     </div>
   );

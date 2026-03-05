@@ -120,7 +120,7 @@ export default function Footer() {
                                             href="mailto:convolutionXI2026@gmail.com"
                                             className="font-rajdhani font-semibold text-slate-200 hover:text-white transition-colors block break-all"
                                         >
-                                            convolutionx2026@gmail.com
+                                            convolutionxi@gmail.com
                                         </Link>
                                     </div>
                                 </li>
@@ -157,7 +157,7 @@ export default function Footer() {
                                             +91 9123646812
                                         </a>
                                         <a href="tel:+917063253983" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
-                                            +91 
+                                            +91 98319 28836
                                         </a>
                                     </div>
                                 </li>
@@ -198,15 +198,12 @@ export default function Footer() {
 
                 <h1
                     ref={ref as React.RefObject<HTMLHeadingElement>}
-                    className='font-orbitron text-[13vw] md:text-[12vw] lg:text-[14vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#eff1f2] [&_span]:to-black/50 tracking-tight font-bold absolute -bottom-3 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
+                    className='font-orbitron text-[13vw] md:text-[12vw] lg:text-[14vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#eff1f2] [&_span]:to-black/50 tracking-tighter font-bold absolute -bottom-3 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
                 >
                     {text}
                 </h1>
 
             </div>
-
-
-
 
             {/*Bottom*/}
             <div className='relative w-full bg-transparent/40 backdrop-blur-md z-30'>
@@ -225,11 +222,6 @@ export default function Footer() {
                 </div>
 
             </div>
-
-            {/* Background Image*/}
-            {/* <div className="w-full h-40 md:h-40 lg:h-40 absolute bottom-0 left-0 opacity-30 z-0">
-        <Image src='/page-bottom.jpg' alt='footer' fill className='object-cover'/>
-      </div> */}
         </div>
     );
 }
