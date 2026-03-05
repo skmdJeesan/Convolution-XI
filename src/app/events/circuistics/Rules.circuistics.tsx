@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 
 const rules = [
-   "Teams can have 3-4 (max.) members, including the Team Lead.",
+   "Teams can have 2-4 (max.) members, including the Team Lead.",
     "Teams may be formed across different institutes but not across different years; only students from the same year can form a team.",
-    "Registration will be ONLINE through the official website of Convolution-X.",
+    "Registration will be ONLINE through the official website of Convolution26.",
     "There will be two Tiers for this event: Tier 1 for UG1 and UG2, and Tier 2 for UG3 and UG4.",
     "There will be two rounds: Prelims (Pen & Paper Mode) and Finals, conducted over a span of two days.",
     "For Tier 1, there will be two different sets of question papers. UG1 will have a reduced syllabus compared to UG2, providing some equity. The selection will be based on a weighted score or percentile method.",

@@ -12,7 +12,7 @@ const Data = [
   {
       question: "What will the participants need to bring for the prelims and finals of the event ?",
       answer: 
-        "Participants only need to bring pens & calculators on the day of Prelims, sheets for rough working will be provided during the test. For the Finals, whatever the participants need will be provided to them, such as electronic components and datasheets.",
+        "Participants only need to bring pens & calculators on the day of Prelims, sheets for rough working will be provided during the test. For the Finals, whatever the participants need will be provided to them, such as electronic components, datasheets.",
   },
   {
       question: "What will be the level of questions asked in the Prelims, and what about the Final problem?",

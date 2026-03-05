@@ -30,7 +30,7 @@ const Loader = () => (
 );
 
 const eventConfigurations = [
-  { eventName: "circuistics", min: 2, max: 3 },
+  { eventName: "circuistics", min: 1, max: 3 },
   { eventName: "sparkhack", min: 1, max: 3 },
   { eventName: "eureka", min: 1, max: 3 },
   { eventName: "inquizzitive", min: 1, max: 3 },
