@@ -13,7 +13,7 @@ export default function About() {
   const contextData = useContext(userData);
   const eventName = "decisia";
   const eventMode = "team";
-  const isClosed = true; // Toggle this to true to shut down registrations
+  const isClosed = false; // Toggle this to true to shut down registrations
 
   const userEvents = contextData?.user?.eventsRegistered || [];
   const isRegistered = userEvents.some(
@@ -56,7 +56,7 @@ export default function About() {
 
     return (
       <TransitionLink
-        href={`/events/register-${eventMode}?eventName=${eventName}`}
+        href="https://unstop.com/o/ptW5DZb?lb=GODWzEsX&utm_medium=Share&utm_source=competitions&utm_campaign=Leadschi38885"
         className="hover:bg-[#D11100] shadow-[#D11100] hover:shadow-[#5B0804] text-shadow-dark bg-[#DE5C00] hover:opacity-90 text-white group flex items-center gap-2 px-5 py-3 backdrop-blur-md rounded-full transition-all duration-300 shadow-sm cursor-pointer overflow-hidden"
       >
         <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] uppercase tracking-wide">
@@ -69,7 +69,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full h-screen flex items-center justify-center bg-transparent py-20 px-6 overflow-hidden"
+      className="relative w-full max-h-screen flex items-center justify-center bg-transparent pt-15 md:pt-20 pb-10  px-6 overflow-hidden"
     >
       <div
         className="absolute inset-0 opacity-10 pointer-events-none"

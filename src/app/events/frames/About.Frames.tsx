@@ -103,7 +103,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="md:max-h-screen pt-10 md:pt-20 flex justify-center items-center  relative"
+      className="md:max-h-screen pt-10 md:pt-20 pb-10 flex justify-center items-center  relative"
     >
       {/* Background color */}
       <div className="absolute top-0 left-0 w-full h-full bg-[#52BAFF] -z-20"></div>

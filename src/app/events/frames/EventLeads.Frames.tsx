@@ -153,7 +153,7 @@ function Team() {
   };
 
   return (
-    <div id='team' className="team-section max-h-screen">
+    <div id='team' className="team-section">
       <div className="team-bg-gradient bg-[#52BAFF]"></div>
 
       {/* aeroplanes and clouds*/}

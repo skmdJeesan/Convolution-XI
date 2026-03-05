@@ -11,7 +11,7 @@ import Mentors from "./Mentor.Frames";
 function page() {
   return (
     <div className='w-full min-h-screen'>
-      <EventNav navTheme="bg-gradient-to-b from-[#52BAFF] to-[#E7EDF9]"/>
+      <EventNav navTheme="bg-gradient-to-b from-[#52BAFF] to-[#a9b9d6]"/>
       <About/>
       <Rules/>
       <Timeline/>
