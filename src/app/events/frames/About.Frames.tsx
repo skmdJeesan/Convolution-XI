@@ -11,6 +11,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
+
 export default function About() {
    const { data: session } = useSession();
    const contextData = useContext(userData);
@@ -18,7 +19,7 @@ export default function About() {
    const [loading, setLoading] = useState(false);
  
    const eventName = "frames";
-   const isClosed = true; // Toggle this to true to shut down registrations
+   const isClosed = false; // Toggle this to true to shut down registrations
  
    const userEvents = contextData?.user?.eventsRegistered || [];
    const isRegistered = userEvents.some(
@@ -102,35 +103,56 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full h-screen flex items-center justify-center bg-[#1BA0E8] py-20 px-6 overflow-hidden"
+      className="md:max-h-screen pt-10 md:pt-20 flex justify-center items-center  relative"
     >
-      <div 
-        className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{
-             backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
-             backgroundSize: '30px 30px'
-        }}
-      ></div>
-
-      <TransitionLink 
-        href="/" 
-        className="
-          absolute top-6 left-6 z-50 flex items-center gap-2 px-5 py-3 
-          bg-white  backdrop-blur-md border border-white rounded-full shadow-lg
-          hover:bg-[#1BA0E8] hover:border-white 
-          group cursor-pointer overflow-hidden transition-all duration-300
-        "
-      >
-        <IoArrowBack className="text-[#1BA0E8] text-lg group-hover:text-white group-hover:-translate-x-1 transition-transform duration-300" />
-        <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-[#1BA0E8] group-hover:text-white uppercase transition-colors duration-300">
-          <FlipLink>Return&nbsp;Home</FlipLink>
-        </span>
-      </TransitionLink>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 blur-[120px] rounded-full pointer-events-none"></div>
-
-      <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center gap-10 z-10">
+      {/* Background color */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[#52BAFF] -z-20"></div>
+      
+      {/* --- DECORATIVE CLOUDS AND AEROPLANES --- */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+        {/* Top Left Area */}
+        <Image src="/Frames/cloud.png" alt="cloud" width={80} height={50} className="absolute top-[8%] left-[5%] w-12 md:w-20 h-auto opacity-90" />
+        <Image src="/Frames/aeroplane.png" alt="aeroplane" width={100} height={60} className="absolute top-[12%] left-[18%] md:left-[22%] w-16 md:w-24 h-auto opacity-90" />
         
+        {/* Top Right Area */}
+        <Image src="/Frames/cloud.png" alt="cloud" width={80} height={50} className="absolute top-[15%] right-[40%] md:right-[45%] w-10 md:w-16 h-auto opacity-90" />
+        <Image src="/Frames/cloud.png" alt="cloud" width={80} height={50} className="absolute top-[20%] right-[10%] w-12 md:w-20 h-auto opacity-90" />
+        
+        {/* Mid Area */}
+        <Image src="/Frames/cloud.png" alt="cloud" width={80} height={50} className="absolute top-[48%] right-[25%] md:right-[28%] w-14 md:w-16 h-auto opacity-90" />
+        <Image src="/Frames/aeroplane.png" alt="aeroplane" width={100} height={60} className="absolute top-[55%] right-[8%] md:right-[12%] w-16 md:w-24 h-auto opacity-90 -scale-x-100" />
+        
+        {/* Bottom Area */}
+        <Image src="/Frames/cloud.png" alt="cloud" width={80} height={50} className="absolute bottom-[20%] left-[8%] md:left-[10%] w-14 md:w-20 h-auto opacity-90" />
+        <Image src="/Frames/cloud.png" alt="cloud" width={80} height={50} className="absolute bottom-[10%] left-[45%] md:left-[50%] w-10 md:w-16 h-auto opacity-90" />
+        <Image src="/Frames/cloud.png" alt="cloud" width={80} height={50} className="absolute bottom-[15%] right-[15%] md:right-[20%] w-14 md:w-20 h-auto opacity-90" />
+      </div>
+
+      <div className="w-full h-full maxWidthForSections relative z-10">
+        <div className=" grid grid-cols-1 gap-y-2 lg:grid-cols-2 ">
+          
+          {/* BOT AND BIG CLOUD CONTAINER */}
+          <div className="flex justify-center flex-col items-center relative">
+            <div className="relative w-[70vw] md:w-[60vw] lg:max-w-[35vw] flex justify-center items-center">
+                {/* The Bot */}
+                <Image width={400} height={400}
+                className="w-full h-auto animate-float relative z-10"
+                src="/Frames/HeroBot.png"
+                alt="Frames Bot"
+                /> 
+                {/* The Big Cloud - Now locked safely behind and below the bot! */}
+                <Image 
+                    src="/Frames/HerobigCloud.png" 
+                    alt="cloud" 
+                    width={280} 
+                    height={100} 
+                    className="absolute -bottom-[5%] md:-bottom-[10%] w-[70%] md:w-[75%] h-auto opacity-100 z-20 drop-shadow-lg" 
+                />
+            </div>
+          </div>
+          
         {/* Logo */}
+        <div className="flex flex-col justify-center items-center gap-y-4">
         <div className="relative w-[80vw] max-w-[450px] h-auto aspect-[3/1.2]">
             <Image
                 src="/Frames/logo.png"
@@ -141,7 +163,7 @@ export default function About() {
             />
         </div>
 
-        <p className="font-rajdhani text-white sm:text-xl text-base font-semibold leading-relaxed tracking-wide drop-shadow-md max-w-3xl">
+        <p className="font-rajdhani text-white sm:text-xl text-base text-center font-semibold leading-relaxed tracking-wide drop-shadow-md max-w-3xl">
          Unleash your creativity in 24 Frames, an open-theme as well as a particular theme, also
 present this time. A photography contest that invites participants to tell compelling stories
 through their lenses. Submit your photographs along with captions and compete for both the
@@ -150,10 +172,11 @@ showcased for public voting. Participants are required to adhere strictly to the
 guidelines—original work only, with no plagiarism or watermarks. Let your lens do the talking.
         </p>
 
-        <div className="mt-4">
+        <div className="mt-4 md:mb-5">
           {RegisterBtn()}
         </div>
-
+</div>
+      </div>
       </div>
     </section>
   );
