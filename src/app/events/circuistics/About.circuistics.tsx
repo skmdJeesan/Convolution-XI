@@ -14,7 +14,7 @@ export default function About() {
 
   const eventName = "circuistics";
   const eventMode = "team";
-  const isClosed = true; // Toggle this to true to shut down registrations
+  const isClosed = false; // Toggle this to true to shut down registrations
 
   // check if user is already registered
  const userEvents = contextData?.user?.eventsRegistered || [];
