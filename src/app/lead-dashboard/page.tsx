@@ -27,8 +27,8 @@ export default async function LeadDashboardPage() {
 
   return (
     <main>
-      <LeaderDashboard users={serializedUsers} />
-      {/* <Leaderdashboard/> */}
+      {/* <LeaderDashboard users={serializedUsers} /> */}
+      <Leaderdashboard/>
     </main>
   );
 }
