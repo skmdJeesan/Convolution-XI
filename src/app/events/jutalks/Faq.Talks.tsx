@@ -36,15 +36,7 @@ export default function Faq() {
     return (
         <section id="faq" className="relative w-full py-20 overflow-hidden transform-gpu">
             
-            <div className="absolute inset-0 z-0 bg-linear-to-b from-[#0D30BB] to-[#2C1071]"></div>
-
-            <div 
-                className="absolute inset-0 z-0 opacity-20 pointer-events-none" 
-                style={{ 
-                    backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, 
-                    backgroundSize: '40px 40px' 
-                }}
-            ></div>
+            <div className="absolute inset-0 z-0 bg-linear-to-b from-[#FF97E3] to-[#B128A6]"></div>
 
             <div className="flex flex-col items-center justify-center gap-8 w-full relative z-10">
                 <div className="maxWidthForSections w-full max-w-4xl px-4 sm:px-6 lg:px-8 mx-auto flex flex-col justify-center">
@@ -52,7 +44,7 @@ export default function Faq() {
                     {/* Header */}
                     <div className="text-center mb-12 space-y-4 flex flex-col items-center">
                         <div className="relative inline-block">
-                            <h1 className="uppercase font-orbitron font-bold text-center text-2xl md:text-4xl mb-10  drop-shadow-md tracking-wide text-transparent bg-clip-text bg-linear-to-t from-gray-500 to-white">
+                            <h1 className="uppercase font-orbitron font-bold text-center text-2xl md:text-4xl mb-10 tracking-wide text-[#592A13] drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]">
             Frequently Asked questions
           </h1>
                         </div>
@@ -73,12 +65,12 @@ export default function Faq() {
                                         border-l-[3px] 
                                         transition-all duration-300 ease-in-out
                                         ${isOpen 
-                                            ? 'bg-black/40 border-cyan-400 shadow-lg' 
+                                            ? 'bg-black/40 border-fuchsia-300 shadow-lg' 
                                             : 'bg-white/[0.05] border-white/10 hover:border-white/30 hover:bg-white/[0.08]'}
                                     `}>
                                         
-                                        <div className={`absolute top-0 right-0 w-3 h-3 border-t border-r transition-colors duration-300 ${isOpen ? 'border-cyan-400' : 'border-white/20'}`}></div>
-                                        <div className={`absolute bottom-0 left-0 w-3 h-3 border-b border-l transition-colors duration-300 ${isOpen ? 'border-cyan-400' : 'border-white/20'}`}></div>
+                                        <div className={`absolute top-0 right-0 w-3 h-3 border-t border-r transition-colors duration-300 ${isOpen ? 'border-fuchsia-300' : 'border-white/20'}`}></div>
+                                        <div className={`absolute bottom-0 left-0 w-3 h-3 border-b border-l transition-colors duration-300 ${isOpen ? 'border-fuchsia-300' : 'border-white/20'}`}></div>
                     
                                         {/* Question Header */}
                                         <div className="flex items-center justify-between p-5 relative z-10">
@@ -88,7 +80,7 @@ export default function Faq() {
                                                     flex items-center justify-center w-7 h-7 shrink-0
                                                     border bg-black/40 skew-x-[-10deg]
                                                     transition-colors duration-300
-                                                    ${isOpen ? 'border-cyan-500 text-cyan-400' : 'border-white/10 text-gray-300 group-hover:border-white/30'}
+                                                    ${isOpen ? 'border-fuchsia-400 text-fuchsia-200' : 'border-white/10 text-gray-300 group-hover:border-white/30'}
                                                 `}>
                                                     <span className="font-orbitron text-xs font-bold skew-x-[10deg]">
                                                         0{index + 1}
@@ -108,9 +100,9 @@ export default function Faq() {
                                             <div className={`
                                                 relative w-8 h-8 flex items-center justify-center
                                                 rounded-full border transition-all duration-300 ease-in-out
-                                                ${isOpen ? 'border-cyan-400 bg-cyan-950/50 rotate-45' : 'border-white/20 group-hover:border-white/60 rotate-0'}
+                                                ${isOpen ? 'border-fuchsia-400 bg-fuchsia-900/50 rotate-45' : 'border-white/20 group-hover:border-white/60 rotate-0'}
                                             `}>
-                                                <div className={`text-sm transition-colors duration-300 ${isOpen ? 'text-cyan-400' : 'text-gray-400 group-hover:text-white'}`}>
+                                                <div className={`text-sm transition-colors duration-300 ${isOpen ? 'text-fuchsia-200' : 'text-gray-400 group-hover:text-white'}`}>
                                                     <FaPlus />
                                                 </div>
                                             </div>
@@ -125,7 +117,7 @@ export default function Faq() {
                                                     
                                                     <div className={`
                                                         absolute left-[2.2rem] md:left-[2.7rem] top-0 bottom-0 w-[1px] 
-                                                        bg-gradient-to-b from-cyan-500/50 to-transparent
+                                                        bg-gradient-to-b from-fuchsia-400/50 to-transparent
                                                         transition-opacity duration-300
                                                         ${isOpen ? 'opacity-100' : 'opacity-0'}
                                                     `}></div>
@@ -142,13 +134,6 @@ export default function Faq() {
                             );
                         })}
                     </div>
-                </div>
-
-                {/* Footer */}
-                <div className="mt-4 px-4 py-3 bg-black/40 rounded-full border border-white/5 mx-4 max-w-3xl text-center">
-                    <span className="text-white/80 text-sm sm:text-base font-semibold font-rajdhani tracking-wide">
-                        ℹ️ Kindly check your spam folder for the registration confirmation mail & mark it as 'Not Spam'.
-                    </span>
                 </div>
             </div>
 
