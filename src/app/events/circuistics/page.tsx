@@ -15,13 +15,13 @@ function page() {
     <div className='bg-linear-to-b from-[#0D30BB] via-[#2a237e] to-[#2d194e] w-full min-h-screen'>
       {/* <EventNav/> */}
       <About/>
-      {/* <Rules/>
+      <Rules/>
       <TimeLine />
       <Mentors />
       <Prizes />
       <Team/>
       <Faq/>
-      <Footer/> */}
+      <Footer/>
     </div>
   )
 }

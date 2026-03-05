@@ -2,33 +2,35 @@
 import React from 'react'
 import { motion, easeInOut } from "framer-motion"
 import '../../../components/TeamStyles.css'
+import { InfoIcon } from 'lucide-react';
+
 type TeamMember = {
   name: string;
-  post: string;
-  instagram: string;
-  facebook: string;
-  linkedin: string;
-  image: string;
+  post?: string;
+  instagram?: string;
+  facebook?: string;
+  linkedin?: string;
+  image?: string;
+  profession?: string;
+  researchPoint?: string;
+  img?: string;
 };
 
 const teamMembers: TeamMember[] = [
   {
-    name: "",
-    post: "Not decided yet",
-    image: "",
-    linkedin: "",
-    instagram: "",
-    facebook: "",
+    name: "Biswendu Chatterjee",
+    profession:
+      "Professor at Department of Electrical Engineering, Jadavpur University",
+    researchPoint: "https://scholar.google.com/citations?user=tglA61sAAAAJ&hl=en",
+    img: "bdc.png", // Replace with the actual image path or import
   },
   {
-   name: "",
-    post: "Not decided yet",
-    image: "",
-    linkedin: "",
-    instagram: "",
-    facebook: "",
-  },
-  
+    name: "Dipten Maity",
+    profession:
+      "Assistant Professor at Department of Electrical Engineering, Jadavpur University",
+    researchPoint: "https://scholar.google.co.in/citations?hl=en&user=34JBou8AAAAJ",
+    img: "dm.png", // Replace with the actual image path or import
+  }, 
 ];
 
 function Team() {
@@ -128,7 +130,7 @@ function Team() {
             {/* Card with floating animation */}
             <motion.div
               variants={cardVariants}
-              className="team-card"
+              className="relative w-70 h-55 rounded-[24px] overflow-hidden bg-[linear-gradient(135deg,rgba(51,65,85,0.3)_0%,rgba(30,41,59,0.2)_100%)]"
             >
               {/* Image/Avatar Section - Full card background */}
               <div className="team-card-image-container">
@@ -149,8 +151,19 @@ function Team() {
 
               {/* Info Overlay - Appears on hover */}
               <div className="team-card-info-overlay">
-                <h3 className="font-rajdhani team-card-name">{member.name}</h3>
-                <p className="font-rajdhani team-card-post">{member.post}</p>
+                <h3 className="font-rajdhani team-card-name flex items-center gap-4">
+                  {member.name}
+                  <a
+                    href={member.researchPoint}
+                    className="team-social-link"
+                    title="info"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <InfoIcon />
+                  </a>
+                </h3>
+                <p className="font-rajdhani team-card-post">{member.profession}</p>
 
                 {/* Social Links */}
                 <div className="team-card-socials">
