@@ -86,13 +86,13 @@ export default function Footer() {
                             </p>
                         </div>
                         <div className="flex justify-center md:justify-start gap-4">
-                            <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-blue-400 hover:bg-blue-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                            <Link target='_blank' href="https://www.instagram.com/convolution26/" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-blue-400 hover:bg-blue-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
                                 <FaInstagram size={18} className="text-slate-300 group-hover:text-blue-300 transition-colors" />
                             </Link>
-                            <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-blue-400 hover:bg-blue-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                            <Link target='_blank' href="https://www.facebook.com/share/15Mh8tfiC7/?mibextid=LQQJ4d" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-blue-400 hover:bg-blue-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
                                 <FaFacebook size={18} className="text-slate-300 group-hover:text-blue-300 transition-colors" />
                             </Link>
-                            <Link href="#" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-blue-400 hover:bg-blue-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
+                            <Link target='_blank' href="https://www.linkedin.com/company/convolution-juee/" className='group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-blue-400 hover:bg-blue-400/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300'>
                                 <FaLinkedin size={18} className="text-slate-300 group-hover:text-blue-300 transition-colors" />
                             </Link>
                         </div>
@@ -111,13 +111,13 @@ export default function Footer() {
                             <ul className="flex flex-col gap-4">
                                 {/* Email */}
                                 <li className='flex items-start gap-4 group'>
-                                    <Link href="mailto:convolutionXI2026@gmail.com" className='flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-blue-400 group-hover:bg-blue-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0'>
+                                    <Link href="mailto:convolutionxi@gmail.com" className='flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-blue-400 group-hover:bg-blue-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0'>
                                         <MdOutlineEmail className="text-xl text-blue-400 mt-0.5 group-hover:text-blue-300 transition-colors duration-300" />
                                     </Link>
                                     <div className="text-md">
                                         <span className="font-rajdhani text-slate-400   font-bold block mb-0.5 group-hover:text-blue-400 transition-colors duration-300">Email</span>
                                         <Link
-                                            href="mailto:convolutionXI2026@gmail.com"
+                                            href="mailto:convolutionxi@gmail.com"
                                             className="font-rajdhani font-semibold text-slate-200 hover:text-white transition-colors block break-all"
                                         >
                                             convolutionxi@gmail.com
