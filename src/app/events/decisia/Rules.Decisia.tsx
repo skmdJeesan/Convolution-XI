@@ -1,13 +1,15 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import FlipLink from "@/components/FlipLink";
 
 const rules = [
   "Teams will register from the official Convolution website with their team name, email, phone no., and college name of each member in the group.",
-  "Teams will comprise of 2-5 members (including the team lead).",
+  "Teams will comprise of active college students, with a minimum of 2 and maximum of 5 members in each team inclusive of the Team Lead.",
   "Teams may consist participants from same or different streams, same or different years,but not from different institutions",
   "Prelims will be held online, where participants have to submit a 2-minute elevator pitch and a presentation with a maximum of 6 slides (preferably in PDF).",
   "Participants can provide an additional executive summary (within 2 slides) of the B-plan.",
-  "Finals will be offline (participants can bring prototypes or samples if they want), with a pitching time of 6+3 minutes (pitch + Q&A) in front of the judges. (Open room pitching).",
+  "Finals will be conducted Offline. Teams Shortlisted for the Finals are to show up at the Venue, Teams in the Waitlist are advised to stay ready.",
   "Number of teams qualifying for finals: 10 (can change under exceptional circumstances)."
 ];
 
@@ -15,15 +17,15 @@ const Rules = () => {
   return (
     <div
       id="rules"
-      className="relative w-full py-20 flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#2a237e] to-[#5926b1] -mt-0.5"
+      className="relative w-full py-20 flex items-center justify-center overflow-hidden bg-transparent -mt-0.5"
     >
-      
+
       {/* Background */}
-      <div 
+      <div
         className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
-             backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
-             backgroundSize: '30px 30px'
+          backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+          backgroundSize: '30px 30px'
         }}
       ></div>
 
@@ -44,14 +46,25 @@ const Rules = () => {
           <h1 className="uppercase font-orbitron font-bold text-center text-2xl md:text-4xl mb-10  drop-shadow-md tracking-wide text-transparent bg-clip-text bg-linear-to-t from-gray-500 to-white">
             Rules & Regulations
           </h1>
-          
-          <ul className="space-y-4 font-rajdhani text-white text-base md:text-xl font-medium list-disc list-outside ml-4 md:ml-6 marker:text-cyan-400">
+
+          <ul className="space-y-2 font-rajdhani text-white text-base md:text-xl font-medium list-disc list-outside ml-4 md:ml-6 marker:text-cyan-400">
             {rules.map((text, index) => (
               <li key={index} className="pl-2 leading-relaxed drop-shadow-sm">
                 {text}
               </li>
             ))}
           </ul>
+        </div>
+        <div className="mt-5">
+          <Link
+            href="/Know_more/decisia-guidelines.pdf"
+            target="_blank"
+            className="shadow-white/70 hover:shadow-white/30  hover:bg-[#902d06] bg-[#8c230b]   text-[#ffffff]  transition-all duration-300 group flex items-center gap-2 px-5 py-3 backdrop-blur-md rounded-full shadow-sm cursor-pointer overflow-hidden"
+          >
+            <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] capitalize tracking-wide">
+              <FlipLink>Know&nbsp;More</FlipLink>
+            </span>
+          </Link>
         </div>
       </div>
     </div>

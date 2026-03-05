@@ -148,7 +148,7 @@ const Mentors = () => {
   return (
     <div 
       id="judges" 
-      className="relative w-full pt-20 md:pt-25 pb-30 flex flex-col items-center justify-center overflow-hidden bg-linear-to-b from-[#3a4511] via-[#525412] to-[#6b5e13]"
+      className="relative w-full pt-20 md:pt-25 pb-30 flex flex-col items-center justify-center overflow-hidden bg-transparent"
     >
       
       {/* Background Grid Pattern */}

@@ -69,8 +69,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-br from-[#DE5C00] via-[#77340F] 
-    via-[#931308] to-[#5B0804] py-20 px-6 overflow-hidden"
+      className="relative w-full h-screen flex items-center justify-center bg-transparent py-20 px-6 overflow-hidden"
     >
       <div
         className="absolute inset-0 opacity-10 pointer-events-none"

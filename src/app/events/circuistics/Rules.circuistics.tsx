@@ -60,7 +60,7 @@ const Rules = () => {
         </div>
         <div className="mt-5">
           <Link
-            href="/Know_more/circuistics-guidelines.pdf"
+            href="/Know_more/decisia-guidelines.pdf"
             target="_blank"
             className="shadow-white/70 hover:shadow-white/30  hover:bg-[#1c2097] bg-[#3647c2]   text-[#ffffff]  transition-all duration-300 group flex items-center gap-2 px-5 py-3 backdrop-blur-md rounded-full shadow-sm cursor-pointer overflow-hidden"
           >

@@ -10,12 +10,12 @@ import Team from "./EventLeads.Frames";
 function page() {
   return (
     <div className='w-full min-h-screen'>
-      {/* <EventNav/> */}
+      <EventNav/>
       <About/>
-      {/* <Rules/>
+      <Rules/>
       <Team/>
       <Faq/>
-      <Footer/> */}
+      <Footer/>
     </div>
   )
 }
