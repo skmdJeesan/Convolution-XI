@@ -145,7 +145,7 @@ export default function Footer() {
 
                                 {/* Phone */}
                                 <li className='flex items-start gap-4 group'>
-                                    <a href="tel:+919933671072" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-blue-400 group-hover:bg-blue-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0">
+                                    <a href="tel:+919123646812" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-blue-400 group-hover:bg-blue-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0">
                                         <MdCall className="text-xl text-blue-400 mt-0.5 group-hover:text-blue-300 transition-colors duration-300" />
                                     </a>
 
@@ -153,10 +153,10 @@ export default function Footer() {
                                         <span className="font-rajdhani text-slate-400   font-bold block mb-0.5 group-hover:text-blue-400 transition-colors duration-300">
                                             Phone
                                         </span>
-                                        <a href="tel:+919933671072" className="font-semibold font-rajdhani block text-slate-200 hover:text-white transition-colors">
-                                            +91 9123646812
+                                        <a href="tel:+919123646812" className="font-semibold font-rajdhani block text-slate-200 hover:text-white transition-colors">
+                                            +91 91236 46812
                                         </a>
-                                        <a href="tel:+917063253983" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
+                                        <a href="tel:+919831928836" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
                                             +91 98319 28836
                                         </a>
                                     </div>
