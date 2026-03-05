@@ -13,15 +13,15 @@ import Prizes from "./Prize.Decisia";
 function page() {
   return (
     <div className='bg-gradient-to-b from-[#0D30BB] via-[#2a237e] to-[#7c3aed] w-full min-h-screen'>
-      <EventNav />
+      {/* <EventNav /> */}
         <About />
-        <Rules />
+        {/* <Rules /> */}
         {/* <Timeline /> */}
-        <Mentors />
+        {/* <Mentors />
         <Prizes/>
         <Team />
         <Faq />
-        <Footer />
+        <Footer /> */}
     </div>
   )
 }
