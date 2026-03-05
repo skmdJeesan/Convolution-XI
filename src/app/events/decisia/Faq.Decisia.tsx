@@ -4,6 +4,10 @@ import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa6'; 
 
 const Data = [
+    {
+        question:"How will i register for this event?",
+        answer:"Click on Register Now button and you will be redirected to unstop page and you will register your team there"
+    },
   {
       question: "Will there be any opportunities to showcase interdisciplinary projects?",
       answer: 
