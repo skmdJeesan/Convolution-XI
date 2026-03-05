@@ -8,6 +8,7 @@ import Rules from "./Rules.circuistics";
 import Team from "./EventLeads.circuistics";
 import TimeLine from "./TimeLine.circuistics";
 import Mentors from "./Mentor.circuistics";
+import Prizes from "./Prize.circuistics"
 
 function page() {
   return (
@@ -17,6 +18,7 @@ function page() {
       <Rules/>
       <TimeLine />
       <Mentors />
+      <Prizes />
       <Team/>
       <Faq/>
       <Footer/>

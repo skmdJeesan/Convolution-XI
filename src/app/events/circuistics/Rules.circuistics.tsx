@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import FlipLink from "@/components/FlipLink";
 
 const rules = [
    "Teams can have 2-4 (max.) members, including the Team Lead.",
@@ -20,41 +22,52 @@ const Rules = () => {
       id="rules"
       className="relative w-full py-20 flex items-center justify-center overflow-hidden -mt-0.5"
     >
-      
+
       {/* Background */}
-      <div 
+      <div
         className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
-             backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
-             backgroundSize: '30px 30px'
+          backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+          backgroundSize: '30px 30px'
         }}
       ></div>
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-fuchsia-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+      {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-fuchsia-500/10 blur-[100px] rounded-full pointer-events-none"></div>
       <div className="absolute top-10 left-10 w-20 h-20 bg-blue-300 rounded-full opacity-50 blur-xl"></div>
       <div className="absolute bottom-20 right-20 w-32 h-32 bg-blue-200 rounded-full opacity-40 blur-2xl"></div>
       <div className="hidden sm:absolute bottom-40 left-50 w-32 h-32 bg-blue-200 rounded-full opacity-40 blur-2xl"></div>
       <div className="absolute top-1/4 right-1/3 text-white opacity-30 text-4xl">✨</div>
       <div className="absolute bottom-1/3 left-1/4 text-white opacity-20 text-2xl">✨</div>
-      <div className="absolute bottom-1/2 right-1/4 text-white opacity-20 text-2xl">✨</div>
+      <div className="absolute bottom-1/2 right-1/4 text-white opacity-20 text-2xl">✨</div> */}
 
 
       {/* --- Main Content --- */}
       <div className="relative z-10 maxWidthForSections flex flex-col items-center w-full px-4">
         <div
-          className="rounded-2xl w-full max-w-4xl py-10 px-6 md:px-12 bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
+          className="rounded-2xl w-full max-w-6xl py-10 px-6 md:px-12 bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
         >
           <h1 className="uppercase font-orbitron font-bold text-center text-2xl md:text-4xl mb-10  drop-shadow-md tracking-wide text-transparent bg-clip-text bg-linear-to-t from-gray-500 to-white">
             Rules & Regulations
           </h1>
-          
-          <ul className="space-y-4 font-rajdhani text-white text-base md:text-xl font-medium list-disc list-outside ml-4 md:ml-6 marker:text-cyan-400">
+
+          <ul className="space-y-2 font-rajdhani text-white text-base md:text-xl font-medium list-disc list-outside ml-4 md:ml-6 marker:text-cyan-400">
             {rules.map((text, index) => (
               <li key={index} className="pl-2 leading-relaxed drop-shadow-sm">
                 {text}
               </li>
             ))}
           </ul>
+        </div>
+        <div className="mt-5">
+          <Link
+            href=""
+            target="_blank"
+            className="shadow-white/70 hover:shadow-white/30  hover:bg-[#1c2097] bg-[#3647c2]   text-[#ffffff]  transition-all duration-300 group flex items-center gap-2 px-5 py-3 backdrop-blur-md rounded-full shadow-sm cursor-pointer overflow-hidden"
+          >
+            <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] capitalize tracking-wide">
+              <FlipLink>Know&nbsp;More</FlipLink>
+            </span>
+          </Link>
         </div>
       </div>
     </div>
