@@ -136,7 +136,7 @@ export default function Footer() {
                             <ul className="flex flex-col gap-4">
                                 {/* Email */}
                                 <li className='flex items-start gap-4 group'>
-                                    <Link href="mailto:convolutionXI2026@gmail.com" className='flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-orange-300 group-hover:bg-orange-400/10 group-hover:shadow-[0_0_15px_rgba(251,146,60,0.4)] transition-all duration-300 shrink-0'>
+                                    <Link href="mailto:convolutionxi@gmail.com" className='flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-orange-300 group-hover:bg-orange-400/10 group-hover:shadow-[0_0_15px_rgba(251,146,60,0.4)] transition-all duration-300 shrink-0'>
                                         <MdOutlineEmail className="text-xl text-orange-200 mt-0.5 group-hover:text-orange-300 transition-colors duration-300" />
                                     </Link>
                                     <div className="text-md">
