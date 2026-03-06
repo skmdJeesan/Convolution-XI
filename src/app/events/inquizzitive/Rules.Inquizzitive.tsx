@@ -2,15 +2,19 @@ import React from "react";
 import Image from "next/image";
 
 const rules = [
-  "Teams can have 2-4 (max.) members, including the Team Lead.",
+  "Teams can have a maximum of 4 members (including the team lead).",
     "Teams may be formed across different institutes and different years but all participants must be students.",
-    "Use of any unfair means will lead to disqualification.",
-    "Registration will be ONLINE through the official website of Convolution-XI.",
-    // "On-spot registrations may be allowed depending on vacancy.",
-    "There will be 3 rounds. Elimination round 1 and 2. Followed by the Finals.",
-    "Top 20  teams from elimination Round 1 move to elimination Round 2.",
-    "The top 8 teams will move to the Finals .",
+    "The event will be strictly monitored. Any attempt to use electronics/ browse the internet/ communicating with other teams and other malpractices will be penalised with immediate disqualification.",
+    "The Team Leader will have to register the Team on the official Convolution website with their team name, email, phone no. and college name of each member in the group.",
+    "Due to certain constraints, the event will be open to the first 100 team registrations. Online registrations are encouraged to prevent on-day problems with other event clashes. On-spot registrations are subject to availability.",
+    "There will be 3 rounds. Prelims 1 , Prelims 2 and Finals.",
+    "Top 30 teams from Prelims 1 will move to Prelims 2.",
+    "The top 8 teams advance to the Finals .",
+    "Tie breaker (Prelims): Tie breakers will be decided on the basis of star marked questions.",
+    "Tie breaker (Finals): Tie breakers will be decided on the basis of scores of Prelims 2 and Prelims 1.",
+    "The Quiz Master’s decision is final and binding."
 ];
+
 
 const Rules = () => {
   return (

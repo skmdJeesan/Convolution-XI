@@ -2,28 +2,22 @@
 
 import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa6'; 
-
 const Data = [
   {
         question: "Are cross-college teams allowed to participate in Inquizzitive?",
-        answer: 
-          "Yes, it is open to undergraduate and postgraduate students; cross-college and cross-year teams allowed.",
+        answer: "Yes, it is open to undergraduate and postgraduate students; cross-college, cross-department and cross-year teams allowed. However, note that the event is strictly an U-25 quiz -participants need to produce an ID proof upon entry."
     },
     {
-        question: "What is the format of the quiz?",
-        answer: 
-          "Two rounds: Preliminary Round (top 8 qualify for finals ) and Final Round (top 3 will win cash prizes).",
+         question: "When and where will the event be held?",
+         answer: "Offline on campus; Preliminary Rounds to be held on 27th March,2026. Finals will follow the prelims on the same day. Timeline will be updated soon.",
+
     },
     {
-        question: "When and where will the event be held?",
-        answer: 
-          "Offline on campus; Preliminary Round starts on 20th February 2025 at 2:30 p.m .Finals will follow the prelims.",
+         question:  "Will questions be asked only on Electrical Engineering subjects?",
+         answer:  "Relax! No syllabus, no studying required - just show up, have fun, and test your wits!",
+
     },
-    {
-        question: "Will questions be asked only on Electrical Engineering subjects?",
-        answer: 
-          "No , not at all. It will be a general knowledge quiz where your wit will be put to the test.",
-    },
+
 ];
 
 export default function Faq() {

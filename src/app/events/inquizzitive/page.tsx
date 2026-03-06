@@ -11,14 +11,14 @@ import Mentors from "./Mentor.Inquizzitive";
 function page() {
   return (
     <div className='bg-linear-to-br from-slate-800 to-blue-800 w-full min-h-screen'>
-      {/* <EventNav/> */}
+      <EventNav navTheme="bg-linear-to-t from-slate-800 to-blue-800"/>
       <About/>
-      {/* <Rules/>
+      <Rules/>
       <Timeline />
       <Mentors />
       <Team/>
       <Faq/>
-      <Footer/> */}
+      <Footer/>
     </div>
   )
 }

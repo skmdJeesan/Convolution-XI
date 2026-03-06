@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
         }
 
         // closed events for security
-        const closed_events: string[] = ["decisia", "sparkhack", "inquizzitive"]; 
+        const closed_events: string[] = ["decisia", "sparkhack"]; 
         if (closed_events.includes(team.eventName.toLowerCase())) {
             return NextResponse.json({ message: `Registrations for ${getFriendlyEventName(team.eventName)} not started yet.` }, { status: 403 });
         }
