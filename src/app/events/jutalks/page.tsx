@@ -1,20 +1,25 @@
 "use client";
-
-import EventNav from "@/components/EventNavbar";
 import Footer from "./Footer.Talks";
 import Faq from "./Faq.Talks";
 import About from "./About.Talks";
-import Rules from "./Rules.Talks";
 import Team from "./EventLeads.Talks";
+import Navbar from "./Navbar.Talks";
+import Hero from "./Hero.Talks";
+import Timeline from "./TimeLine.Talks";
+import Mentors from "./Mentor.Talks";
+import Panelist from "./Panelist";
 
 function page() {
   return (
-    <div className='bg-gradient-to-b from-[#0D30BB] via-[#2a237e] to-[#7c3aed] w-full min-h-screen'>
-      {/* <EventNav/> */}
-      <About/>
-      {/* <Rules/> */}
-      {/* <Team/> */}
-      {/* <Faq/>
+    <div className=' w-full'>
+      {/* <Navbar navTheme="bg-[linear-gradient(to_bottom,#FF97E3,#B128A6,#96009B)]"/> */}
+      <Hero/>
+      {/* <About/>
+      <Timeline/>
+      <Mentors/>
+      <Panelist/>
+      <Team/>
+      <Faq/>
       <Footer/> */}
     </div>
   )

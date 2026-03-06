@@ -1,0 +1,156 @@
+"use client";
+import React, { useContext, useState } from "react";
+import Image from "next/image";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import TransitionLink from "@/components/TransitionLink";
+import { IoArrowBack } from "react-icons/io5";
+import FlipLink from "@/components/FlipLink";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { userData } from "@/context/UserContext";
+
+export default function Hero() {
+   const { data: session } = useSession();
+   const contextData = useContext(userData);
+   const router = useRouter();
+   const [loading, setLoading] = useState(false);
+ 
+   const eventName = "jutalks";
+   const isClosed = true; // Toggle this to true to shut down registrations
+ 
+   const userEvents = contextData?.user?.eventsRegistered || [];
+   const isRegistered = userEvents.some(
+     (event: string) => event.toLowerCase() === eventName.toLowerCase()
+   );
+ 
+   const handleSolo = async () => {
+     if (!contextData?.user?._id) return;
+     setLoading(true);
+     
+     try {
+       const res = await axios.post("/api/solo", {
+         eventName: eventName,
+         leaderId: contextData.user._id,
+         leaderEmail: contextData.user.email,
+         leaderName: contextData.user.name,
+       });
+       
+       toast.success(res.data.message || "Registration Confirmed!");
+       router.push("/profile");
+     } catch (error: any) {
+       toast.error(error.response?.data?.message || "Registration failed");
+     } finally {
+       setLoading(false);
+     }
+   };
+ 
+   const RegisterBtn = () => {
+     if (!session) {
+       return (
+         <TransitionLink
+           href="/login"
+           className="
+hover:bg-[#FCF0C4] shadow-[#FCF0C4] hover:shadow-[#512511]  bg-[#512511] hover:opacity-90 text-[#FCF0C4] hover:text-[#512511] group flex items-center gap-2 px-5 py-3 
+                 backdrop-blur-md rounded-full 
+                transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
+              "
+            >
+              <span className="font-orbitron text-sm md:text-base font-bold uppercase tracking-wide">
+             <FlipLink>Login&nbsp;to&nbsp;Register</FlipLink>
+           </span>
+         </TransitionLink>
+       );
+     }
+ 
+     if (isClosed) {
+       return (
+         <div className="flex items-center gap-2 px-8 py-3 bg-[#FCF0C4]  backdrop-blur-md border border-white/10 rounded-full cursor-not-allowed opacity-70">
+              <span className="font-orbitron text-sm md:text-base font-bold  tracking-wide text-[#512511]">
+             Registrations not started yet
+           </span>
+         </div>
+       );
+     }
+ 
+     if (isRegistered) {
+       return (
+         <div className="flex items-center gap-2 px-8 py-3 bg-[#FCF0C4]  backdrop-blur-md border border-white/10 rounded-full cursor-not-allowed opacity-70">
+              <span className="font-orbitron text-sm md:text-base font-bold  tracking-wide text-[#512511]">
+             You have Registered for this Event
+           </span>
+         </div>
+       );
+     }
+ 
+     return (
+       <button
+         onClick={handleSolo}
+         disabled={loading}
+         className="
+hover:bg-[#FCF0C4] shadow-[#FCF0C4] hover:shadow-[#512511]  bg-[#512511] hover:opacity-90 text-[#FCF0C4] hover:text-[#512511] group flex items-center gap-2 px-5 py-3 
+                 backdrop-blur-md rounded-full 
+                transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
+              "
+            >
+              <span className="font-orbitron text-sm md:text-base font-bold uppercase tracking-wide">
+           <FlipLink>{loading ? "Registering..." : "Register\u00A0Now"}</FlipLink>
+         </span>
+       </button>
+     );
+   };
+  return (
+    <section
+      className="min-h-screen pt-10 md:pb-15 md:pt-30 relative w-full flex items-center justify-center bg-[#FF97E3] px-6 overflow-hidden"
+    >
+
+     <TransitionLink 
+        href="/" 
+        className="
+          absolute top-6 left-6 z-50 flex items-center gap-2 px-5 py-3 
+          bg-[#512511] border border-[#FCF0C4] rounded-full shadow-xl
+          hover:bg-[#FCF0C4] hover:border-[#512511] 
+          group cursor-pointer overflow-hidden transition-all duration-300
+        "
+      >
+        <IoArrowBack className="text-[#FCF0C4] text-lg group-hover:text-[#512511] group-hover:-translate-x-1 transition-transform duration-300" />
+        <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-[#FCF0C4] group-hover:text-[#512511] uppercase transition-colors duration-300">
+          <FlipLink>Return&nbsp;Home</FlipLink>
+        </span>
+      </TransitionLink>
+
+
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+      <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center gap-10 z-10">
+        
+        {/* Logo */}
+        <div className="relative w-[80vw] max-w-[450px] h-auto aspect-[3/1.2]">
+            <Image
+                src="/JU Talks/logo.png"
+                alt="JU Talks Logo"
+                fill
+                className="object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)]"
+                priority
+            />
+        </div>
+
+        <p className="font-rajdhani text-white sm:text-xl text-base font-semibold leading-relaxed tracking-wide drop-shadow-md max-w-3xl">
+          JU Talks is a panel discussion that brings together distinguished voices from across disciplines
+— educationalists, industrial leaders, innovators, artists, and celebrated personalities. In a
+candid and thought-provoking conversation, the panel delves into ideas that challenge
+conventions and influence the future. Blending insight with lived experience, the event creates a
+space where perspectives collide, dialogue thrives, and the audience walks away inspired,
+informed, and empowered.
+
+        </p>
+
+        <div className="mt-4">
+          {RegisterBtn()}
+        </div>
+
+      </div>
+    </section>
+  );
+}
