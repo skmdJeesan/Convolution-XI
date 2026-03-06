@@ -12,15 +12,15 @@ import Panelist from "./Panelist";
 function page() {
   return (
     <div className=' w-full'>
-      <Navbar navTheme="bg-[linear-gradient(to_bottom,#FF97E3,#B128A6,#96009B)]"/>
+      {/* <Navbar navTheme="bg-[linear-gradient(to_bottom,#FF97E3,#B128A6,#96009B)]"/> */}
       <Hero/>
-      <About/>
+      {/* <About/>
       <Timeline/>
       <Mentors/>
       <Panelist/>
       <Team/>
       <Faq/>
-      <Footer/>
+      <Footer/> */}
     </div>
   )
 }

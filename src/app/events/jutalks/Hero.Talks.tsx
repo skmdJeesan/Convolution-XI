@@ -105,7 +105,7 @@ hover:bg-[#FCF0C4] shadow-[#FCF0C4] hover:shadow-[#512511]  bg-[#512511] hover:o
       className="min-h-screen pt-10 md:pb-15 md:pt-30 relative w-full flex items-center justify-center bg-[#FF97E3] px-6 overflow-hidden"
     >
 
-     {/* <TransitionLink 
+     <TransitionLink 
         href="/" 
         className="
           absolute top-6 left-6 z-50 flex items-center gap-2 px-5 py-3 
@@ -118,7 +118,7 @@ hover:bg-[#FCF0C4] shadow-[#FCF0C4] hover:shadow-[#512511]  bg-[#512511] hover:o
         <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-[#FCF0C4] group-hover:text-[#512511] uppercase transition-colors duration-300">
           <FlipLink>Return&nbsp;Home</FlipLink>
         </span>
-      </TransitionLink> */}
+      </TransitionLink>
 
 
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 blur-[120px] rounded-full pointer-events-none"></div>
