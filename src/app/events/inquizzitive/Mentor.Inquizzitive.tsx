@@ -20,7 +20,7 @@ const teamMembers: TeamMember[] = [
     name: "Sugata Munshi",
     profession: "Professor at Department of Electrical Engineering, Jadavpur University",
     researchPoint: "https://scholar.google.com/citations?user=4QDUROsAAAAJ&hl=en",
-    image: "/sgm.png",
+    image: "/Mentors/sgm.png",
   },
 ];
 

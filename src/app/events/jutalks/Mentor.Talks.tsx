@@ -10,10 +10,10 @@ type Mentor = {
 
 const mentors: Mentor[] = [
     {
-        name: "Amitava Chatterjee",
-        post: "Professor at Department of Electrical Engineering",
+        name: "Arindam Kumar Sil",
+        post: "Associate Professor at Department of Electrical Engineering",
         university: "Jadavpur University",
-        image: "/Mentors/ac.png",
+        image: "/Mentors/aks.png",
     },
 ];
 
@@ -33,12 +33,12 @@ export default function Mentors() {
                     </p>
                 </div>
 
-                <span className="font-rajdhani text-2xl md:text-3xl font-bold tracking-wide text-white drop-shadow-[0_4px_10px_rgba(89,42,19,0.2)] text-center mt-2">
+                {/* <span className="font-rajdhani text-2xl md:text-3xl font-bold tracking-wide text-white drop-shadow-[0_4px_10px_rgba(89,42,19,0.2)] text-center mt-2">
               To be declared soon ...
-            </span>
+            </span> */}
 
                 {/* Mentors Grid - NOW SMART/CONDITIONAL */}
-                {/* <div className={`grid grid-cols-1 ${mentors.length > 1 ? 'md:grid-cols-2' : ''} gap-6 lg:gap-10 w-full max-w-4xl justify-items-center`}>
+                <div className={`grid grid-cols-1 ${mentors.length > 1 ? 'md:grid-cols-2' : ''} gap-6 lg:gap-10 w-full max-w-4xl justify-items-center`}>
                     {mentors.map((mentor, index) => (
                         <div
                             key={index}
@@ -63,9 +63,14 @@ export default function Mentors() {
                                     <h3 className="tfont-rajdhani ext-xl sm:text-2xl font-semibold text-gray-900 tracking-tight">
                                         {mentor.name}
                                     </h3>
-                                    <div className="flex items-center justify-center w-[18px] h-[18px] rounded-full bg-black text-white shrink-0 cursor-help transition-transform hover:scale-110">
+                                    <a 
+                                        href="https://scholar.google.com/citations?user=ypKGGcsAAAAJ&hl=en" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className="flex items-center justify-center w-[18px] h-[18px] rounded-full bg-black text-white shrink-0 cursor-pointer transition-transform hover:scale-110"
+                                    >
                                         <span className="font-serif text-[11px] font-bold italic leading-none pt-[1px]">i</span>
-                                    </div>
+                                    </a>
                                 </div>
 
                                 <p className="text-sm sm:text-base text-gray-800 leading-snug font-rajdhani font-semibold">
@@ -74,7 +79,7 @@ export default function Mentors() {
                             </div>
                         </div>
                     ))}
-                </div> */}
+                </div>
 
             </div>
         </section>

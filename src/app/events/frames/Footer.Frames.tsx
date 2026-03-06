@@ -134,8 +134,8 @@ export default function Footer() {
                                         <a href="tel:+918617537124" className="font-semibold font-rajdhani block text-slate-900 hover:text-[#0A5C7A] transition-colors">
                                             +91 86175 37124
                                         </a>
-                                        <a href="tel:917063253983" className="font-semibold font-rajdhani text-slate-900 hover:text-[#0A5C7A] transition-colors block">
-                                            +91 70632 53983
+                                        <a href="tel:+916289519690" className="font-semibold font-rajdhani text-slate-900 hover:text-[#0A5C7A] transition-colors block">
+                                            +91 62895 19690
                                         </a>
                                     </div>
                                 </li>

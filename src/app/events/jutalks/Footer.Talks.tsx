@@ -122,7 +122,7 @@ export default function Footer() {
 
                                 {/* Phone */}
                                 <li className='flex items-start gap-4 group'>
-                                    <a href="tel:+917063253983" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-fuchsia-300 group-hover:bg-fuchsia-300/10 group-hover:shadow-[0_0_15px_rgba(240,171,252,0.4)] transition-all duration-300 shrink-0">
+                                    <a href="tel:+919679640227" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-fuchsia-300 group-hover:bg-fuchsia-300/10 group-hover:shadow-[0_0_15px_rgba(240,171,252,0.4)] transition-all duration-300 shrink-0">
                                         <MdCall className="text-xl text-fuchsia-300 mt-0.5 group-hover:text-fuchsia-200 transition-colors duration-300" />
                                     </a>
 
@@ -130,11 +130,11 @@ export default function Footer() {
                                         <span className="font-rajdhani text-white font-bold block mb-0.5 group-hover:text-fuchsia-300 transition-colors duration-300">
                                             Phone
                                         </span>
-                                        <a href="tel:+917063253983" className="font-semibold font-rajdhani block text-white hover:text-gray-200 transition-colors">
-                                            +91 70632 53983
-                                        </a>
-                                        <a href="tel:+919679640227" className="font-semibold font-rajdhani text-white hover:text-gray-200 transition-colors  block">
+                                        <a href="tel:+919679640227" className="font-semibold font-rajdhani block text-white hover:text-gray-200 transition-colors">
                                             +91 96796 40227
+                                        </a>
+                                        <a href="tel:+917908193370" className="font-semibold font-rajdhani text-white hover:text-gray-200 transition-colors  block">
+                                            +91 79081 93370
                                         </a>
                                     </div>
                                 </li>
