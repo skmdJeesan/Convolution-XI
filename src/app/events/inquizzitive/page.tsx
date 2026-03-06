@@ -13,12 +13,12 @@ function page() {
     <div className='bg-linear-to-br from-slate-800 to-blue-800 w-full min-h-screen'>
       {/* <EventNav/> */}
       <About/>
-      <Rules/>
+      {/* <Rules/>
       <Timeline />
       <Mentors />
       <Team/>
       <Faq/>
-      <Footer/>
+      <Footer/> */}
     </div>
   )
 }
