@@ -15,12 +15,11 @@ export default function Page() {
   return (
     <div className='bg-gradient-to-b from-[#60b6d1] via-[#85d3eb] to-[#a3e2f5] w-full min-h-screen relative overflow-hidden'>
       {/* Global Light Blue Winter Background */}
-      
+
       <ParticlesBackground theme="snow" />
-      
+
       {/* Optional: Adjust Nav to contrast nicely with the new light background */}
-      <EventNav navTheme="bg-black/10 text-white backdrop-blur-md"/>
-        
+      <EventNav navTheme="bg-gradient-to-b from-[#52BAFF] to-[#a9b9d6]" />
       <div className="relative z-10">
         <About />
         <Rules />
