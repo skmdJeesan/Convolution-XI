@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import FlipLink from "@/components/FlipLink";
 
 const rules = [
   "Round 1 : PPT Shortlisting : Teams must submit a concise PowerPoint presentation (max 10 slides) outlining their proposed solution. Judges will review the submissions and shortlist the top 25 teams, with 5 more teams in the waitlist",
@@ -31,6 +33,22 @@ const Rules = () => {
             ))}
           </ul>
         </div>
+
+          <div className="mt-5">
+                  <Link
+                    href="/Know_more/sparkhack-guidelines.pdf"
+                    target="_blank"
+                    className="group
+              shadow-white/40 hover:bg-white  hover:text-shadow-light hover:opacity-90 bg-[#2c9bac]  group flex items-center gap-2 px-5 py-3 
+                 backdrop-blur-md rounded-full 
+                transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
+                              "
+                  >
+                    <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] group-hover:text-[#77ccd8] uppercase tracking-wide">
+                      <FlipLink>Know&nbsp;More</FlipLink>
+                    </span>
+                  </Link>
+                </div>
       </div>
     </div>
   );
