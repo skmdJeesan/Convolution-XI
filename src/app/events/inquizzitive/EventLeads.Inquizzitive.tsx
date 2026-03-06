@@ -13,22 +13,28 @@ type TeamMember = {
 
 const teamMembers: TeamMember[] = [
   {
-    name: "Jahid Mamud",
-    post: "Secretary",
-    image: "/jahid.png",
-    linkedin: "https://www.linkedin.com/in/jahid-mamud/",
-    instagram:
-      "https://www.instagram.com/jem_.__/profilecard/?igsh=b2o0ZjlqZ3pkeW5t",
+    name: "Kushaj Mallick",
+    post: "Event Lead",
+    image: "/peoplePics/Kushaj.png",
+    linkedin: "https://www.linkedin.com/in/kushaj-mallick-a0926318a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "https://www.instagram.com/kushaj__?igsh=dHVmbmUyZnhydjhm",
     facebook: "",
   },
   {
-    name: "Ritam Kundu",
-    post: "Joint secretary",
-    image: "/ritam.png",
-    linkedin:
-      "https://www.linkedin.com/in/ritam-kundu-394612257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    instagram:
-      "https://www.instagram.com/ritamkundu.__/profilecard/?igsh=MTJxZ2NibmMxcW1pNw==",
+    name: "Aayushi Ghosh",
+    post: "Event Lead",
+    image: "/peoplePics/Ayushi.jpeg",
+    linkedin: "https://in.linkedin.com/in/aayushi-ghosh-79aa76251",
+    instagram: "",
+    facebook: "",
+  },
+
+  {
+    name: "Ankan Chandra",
+    post: "Event Lead",
+    image: "/peoplePics/Ankan.jpeg",
+    linkedin: " https://www.linkedin.com/in/ankan-chandra-1098b01b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "https://www.instagram.com/inspire_ankan.456?igsh=bTh4cHZvaHJmdm9h",
     facebook: "",
   },
   
@@ -85,9 +91,17 @@ function Team() {
   };
 
   return (
-    <div id='team' className="team-section">
+    <div id='team' className="relative w-full min-h-[50vh] px-2.5 py-10 overflow-hidden flex flex-col items-center justify-center mt-0 isolate">
+      {/* --- BACKGROUND LAYER --- */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+             maskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)',
+             WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)'
+        }}
+      ></div>
       {/* Premium dark background with gradient */}
-      <div className="team-bg-gradient"></div>
+      <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"></div>
       {/* Header Section */}
       <div className='maxWidthForSections'>
       <motion.div
@@ -96,10 +110,11 @@ function Team() {
         whileInView="visible"
         viewport={{ once: true }}
         className="flex flex-col items-center pointer-events-none select-none mb-5">
-       <h1 className="font-orbitron  font-bold  text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase ">
+       <h1 className="font-orbitron  font-bold  text-center text-4xl md:text-5xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase ">
           Our Team
           <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
         </h1>
+        <p className="opacity-90 text-center text-white text-shadow-dark mt-5 text-base sm:text-lg font-medium">Meet the event leads of Inquizzitive! We are ready to address all your queries.</p>
       </motion.div>
 
       {/* Curved Cards Container */}
@@ -131,7 +146,7 @@ function Team() {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="team-card-image"
+                    className={`w-full h-full ${ (index == 2) ? 'object-cover' : (index == 1) ? 'object-center' : 'object-center'} transition ease-out duration-600 will-change-transform`}
                   />
                 ) : (
                   <div className="team-card-avatar">
@@ -166,7 +181,7 @@ function Team() {
                     <a
                       href={member.facebook}
                       className="team-social-link"
-                      title="Facebook"
+                      title="xs"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

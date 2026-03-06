@@ -5,7 +5,7 @@ const rules = [
   "Teams can have 2-4 (max.) members, including the Team Lead.",
     "Teams may be formed across different institutes and different years but all participants must be students.",
     "Use of any unfair means will lead to disqualification.",
-    "Registration will be ONLINE through the official website of Convolution-X.",
+    "Registration will be ONLINE through the official website of Convolution-XI.",
     // "On-spot registrations may be allowed depending on vacancy.",
     "There will be 3 rounds. Elimination round 1 and 2. Followed by the Finals.",
     "Top 20  teams from elimination Round 1 move to elimination Round 2.",
@@ -16,7 +16,7 @@ const Rules = () => {
   return (
     <div
       id="rules"
-      className="relative w-full py-20 flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#2a237e] to-[#5926b1] -mt-0.5"
+      className="relative w-full py-20 flex items-center justify-center overflow-hidden-mt-0.5"
     >
       
       {/* Background */}
@@ -38,7 +38,7 @@ const Rules = () => {
 
 
       {/* --- Main Content --- */}
-      <div className="relative z-10 maxWidthForSections flex flex-col items-center w-full px-4">
+      <div className="relative z-10 maxWidthForSections flex flex-col items-center w-full px-4 font-rajdhani">
         <div
           className="rounded-2xl w-full max-w-4xl py-10 px-6 md:px-12 bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
         >
