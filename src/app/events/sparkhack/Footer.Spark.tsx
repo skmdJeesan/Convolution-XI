@@ -122,7 +122,7 @@ export default function Footer() {
 
                                 {/* Phone */}
                                 <li className='flex items-start gap-4 group'>
-                                    <a href="tel:+918158066614" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/20 border border-white/40 group-hover:border-[#2c9bac] group-hover:bg-[#2c9bac]/10 group-hover:shadow-[0_0_15px_rgba(44,155,172,0.2)] transition-all duration-300 shrink-0">
+                                    <a href="tel:+916289243103" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/20 border border-white/40 group-hover:border-[#2c9bac] group-hover:bg-[#2c9bac]/10 group-hover:shadow-[0_0_15px_rgba(44,155,172,0.2)] transition-all duration-300 shrink-0">
                                         <MdCall className="text-xl text-slate-700 mt-0.5 group-hover:text-[#2c9bac] transition-colors duration-300" />
                                     </a>
 
@@ -130,10 +130,10 @@ export default function Footer() {
                                         <span className="font-rajdhani text-slate-600 font-bold block mb-0.5 group-hover:text-[#2c9bac] transition-colors duration-300">
                                             Phone
                                         </span>
-                                        <a href="tel:+91 62892 43103" className="font-semibold font-rajdhani block text-slate-800 hover:text-[#2c9bac] transition-colors">
+                                        <a href="tel:+916289243103" className="font-semibold font-rajdhani block text-slate-800 hover:text-[#2c9bac] transition-colors">
                                             +91 62892 43103
                                         </a>
-                                        <a href="tel:+91 98366 77963" className="font-semibold font-rajdhani text-slate-800 hover:text-[#2c9bac] transition-colors  block">
+                                        <a href="tel:+919836677963" className="font-semibold font-rajdhani text-slate-800 hover:text-[#2c9bac] transition-colors  block">
                                             +91 98366 77963
                                         </a>
                                     </div>
@@ -171,29 +171,31 @@ export default function Footer() {
             </div>
 
             {/*Big Convo Text Background Watermark */}
-            <div className='middle relative w-full -mt-13 md:-mt-30 h-[25vw] md:h-[22vw] overflow-clip z-10 pointer-events-none flex items-end justify-center'>
+            <div className='middle relative w-full -mt-13 md:-mt-30  h-[25vw] md:h-[22vw] overflow-clip z-10 pointer-events-none flex items-end justify-center'>
+
                 <h1
                     ref={ref as React.RefObject<HTMLHeadingElement>}
-                    className='font-orbitron text-[13vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-gradient-to-b [&_span]:from-slate-800/45 [&_span]:via-slate-600/70 [&_span]:to-transparent tracking-tight font-extrabold absolute -bottom-3 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
+                    className='font-orbitron text-[13vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-slate-800/45 [&_span]:via-slate-600/70 [&_span]:to-transparent tracking-tight font-extrabold absolute -bottom-3 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
                 >{text}</h1>
+
             </div>
 
-
             {/*Bottom Bar*/}
-            <div className='relative w-full bg-transparent z-30 pt-4 pb-6 mt-4'>
-                <div className="w-[95%] h-px bg-gradient-to-r from-transparent via-slate-400/40 to-transparent mx-auto mb-4"></div>
+            <div className='relative w-full bg-transparent/40 backdrop-blur-md z-30'>
+                <div className="w-[95%] h-px  bg-gradient-to-r from-transparent via-slate-400/40 to-transparent mx-auto"></div>
                 <div className="max-w-360 mx-auto ">
                     <div className="flex flex-col items-center">
 
-                        <div className="font-rajdhani text-sm tracking-wider text-slate-600 text-center md:text-left">
-                            © 2026 Convolution XI
+                        <div className="font-rajdhani text-sm font-semibold tracking-wider text-slate-600 text-center md:text-left">
+                            © 2026 Convolution
                         </div>
 
                         <div className="font-rajdhani text-sm tracking-wider text-slate-600 text-center mt-1">
-                            Made with <span className="text-[#2c9bac]">❤️</span> by <span className="text-slate-800 text-sm font-bold hover:text-[#2c9bac] transition-colors cursor-pointer">Team Convo</span>
+                            Made with <span className="text-[#2c9bac]">❤️</span> by <span className="text-slate-800 text-sm font-bold">Team Convo</span>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     );
