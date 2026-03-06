@@ -26,7 +26,20 @@ function page({ users }: DashboardProps) {
   const data = useContext(userData)
 
   const [activeTab, setActiveTab] = useState("All Participants");
-  const navItems = ["All Participants", "Algomaniac", "Aboltabol", "Decisia", "Inquizzitive", "Sparchack", "Ju talks", "Eureka", "Circuistics", "24 Frames"];
+  const navItems = ["All Participants", "algomaniac", "aboltabol", "decisia", "inquizzitive", "sparkhack", "jutalks", "eureka", "circuistics", "frames"];
+  
+  // Mapping for display names (what shows on the tab)
+  const displayNames: { [key: string]: string } = {
+    "algomaniac": "Algomaniac",
+    "aboltabol": "Abol Tabol",
+    "decisia": "Decisia",
+    "inquizzitive": "Inquizzitive",
+    "sparkhack": "SparkHack",
+    "jutalks": "JuTalks",
+    "eureka": "Eureka",
+    "circuistics": "Circuistics",
+    "frames": "24 Frames"
+  };
 
   // This automatically updates whenever 'activeTab' or 'users' changes
   const filteredUsers = useMemo(() => {
@@ -60,7 +73,7 @@ function page({ users }: DashboardProps) {
 
               {/* 2. The Text (Must be z-10 to sit ON TOP of the background) */}
               <span className={`relative z-10 ${activeTab === item ? "text-white" : "text-zinc-400 hover:text-zinc-200"}`}>
-                {item}
+                {item === "All Participants" ? item : displayNames[item] || item}
               </span>
             </li>
           ))}
@@ -70,7 +83,7 @@ function page({ users }: DashboardProps) {
       {/* Data table */}
       <div className="max-h-[75vh] sm:max-h-[80vh] md:max-h-[90vh] bg-zinc-900 border border-zinc-800 rounded-xl overflow-y-auto w-full mt-2 no-scrollbar">
         <div className="p-3 sm:p-4 border-b border-zinc-800 flex justify-between items-center">
-          <h2 className="text-base sm:text-lg md:text-xl font-bold text-white">{activeTab}</h2>
+          <h2 className="text-base sm:text-lg md:text-xl font-bold text-white">{activeTab === "All Participants" ? activeTab : displayNames[activeTab] || activeTab}</h2>
           <span className="text-[10px] sm:text-xs bg-zinc-800 text-zinc-400 px-2 py-1 rounded-md">
             Total: {filteredUsers.length}
           </span>
@@ -118,7 +131,7 @@ function page({ users }: DashboardProps) {
               ) : (
                 <tr>
                   <td colSpan={6} className="px-3 sm:px-6 py-4 sm:py-6 text-sm sm:text-base text-zinc-600">
-                    No participants found for {activeTab}.
+                    No participants found for {activeTab === "All Participants" ? activeTab : displayNames[activeTab] || activeTab}.
                   </td>
                 </tr>
               )}

@@ -30,13 +30,12 @@ export async function POST(req: Request) {
 
     if (existingUser) {
       // UPGRADE EXISTING USER
-      const hashedPassword = await bcrypt.hash(password, 10);
-      existingUser.role = 'LEAD';
-      existingUser.password = hashedPassword;
-      await existingUser.save();
-      await allowedLead.save();
+      if (existingUser.role !== 'LEAD') {
+        existingUser.role = 'LEAD';
+        await existingUser.save();
+      }
       return NextResponse.json(
-        { message: "Account verified. Redirecting..." },
+        { message: "Account verified and upgraded to Lead. Please log in." },
         { status: 200 }
       );
     }
