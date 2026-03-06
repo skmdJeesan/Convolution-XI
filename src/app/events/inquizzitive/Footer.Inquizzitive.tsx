@@ -145,7 +145,7 @@ export default function Footer() {
 
                                 {/* Phone */}
                                 <li className='flex items-start gap-4 group'>
-                                    <a href="tel:+919123646812" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-blue-400 group-hover:bg-blue-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0">
+                                    <a href="tel:+918240961456" className="flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-blue-400 group-hover:bg-blue-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0">
                                         <MdCall className="text-xl text-blue-400 mt-0.5 group-hover:text-blue-300 transition-colors duration-300" />
                                     </a>
 
@@ -156,8 +156,11 @@ export default function Footer() {
                                         <a href="tel:+918240961456" className="font-semibold font-rajdhani block text-slate-200 hover:text-white transition-colors">
                                             +91 8240961456
                                         </a>
-                                        <a href="tel:+919831928836" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
-                                            +91 9831928836
+                                        <a href="tel:+917044484274" className="font-semibold font-rajdhani block text-slate-200 hover:text-white transition-colors">
+                                            +91 70444 84274
+                                        </a>
+                                        <a href="tel:+918900002887" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
+                                            +91 89000 02887
                                         </a>
                                     </div>
                                 </li>
