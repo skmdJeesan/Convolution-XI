@@ -6,18 +6,31 @@ import Faq from "./Faq.Spark";
 import About from "./About.Spark";
 import Rules from "./Rules.Spark";
 import Team from "./EventLeads.Spark";
+import Mentors from "./Mentor.Spark";
+import Prizes from "./Prize.Spark";
+import Timeline from "./TimeLine.Spark";
+import ParticlesBackground from "./ParticlesBackground";
 
-function page() {
+export default function Page() {
   return (
-    <div className='bg-gradient-to-b from-[#0D30BB] via-[#2a237e] to-[#7c3aed] w-full min-h-screen'>
-      {/* <EventNav/> */}
-      <About/>
-      {/* <Rules/> */}
-      {/* <Team/> */}
-      {/* <Faq/>
-      <Footer/> */}
+    <div className='bg-gradient-to-b from-[#60b6d1] via-[#85d3eb] to-[#a3e2f5] w-full min-h-screen relative overflow-hidden'>
+      {/* Global Light Blue Winter Background */}
+      
+      <ParticlesBackground theme="snow" />
+      
+      {/* Optional: Adjust Nav to contrast nicely with the new light background */}
+      <EventNav navTheme="bg-black/10 text-white backdrop-blur-md"/>
+        
+      <div className="relative z-10">
+        <About />
+        <Rules />
+        <Timeline />
+        <Mentors />
+        <Prizes />
+        <Team />
+        <Faq />
+        <Footer />
+      </div>
     </div>
   )
 }
-
-export default page
