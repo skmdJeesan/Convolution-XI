@@ -131,18 +131,14 @@ function Team() {
                   <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-[#FF97E3] to-transparent z-10"></div>
 
       <div className='maxWidthForSections'>
-        <motion.div
-          variants={headerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
+        <div
           className="flex flex-col items-center pointer-events-none select-none mb-5"
         >
           <h1 className="relative z-20 font-orbitron font-bold text-center text-3xl md:text-4xl tracking-wide text-[#592A13] drop-shadow-sm whitespace-nowrap uppercase">
             Our Team
           </h1>
           <p className="opacity-90 text-center text-[#592A13] font-bold mt-5 text-base sm:text-lg font-rajdhani">Meet the event leads of JU Talks! We are ready to address all your queries.</p>
-        </motion.div>
+        </div>
 
         <motion.div
           className="team-cards-container"
