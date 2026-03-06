@@ -13,7 +13,7 @@ export default function About() {
   const contextData = useContext(userData);
   const eventName = "decisia";
   const eventMode = "team";
-  const isClosed = true; // Toggle this to true to shut down registrations
+  const isClosed = false; // Toggle this to true to shut down registrations
 
   const userEvents = contextData?.user?.eventsRegistered || [];
   const isRegistered = userEvents.some(
@@ -55,22 +55,22 @@ export default function About() {
     }
 
     return (
-      <TransitionLink
-        href={`/events/register-${eventMode}?eventName=${eventName}`}
+      <Link
+        href="https://unstop.com/o/ptW5DZb?lb=GODWzEsX&utm_medium=Share&utm_source=competitions&utm_campaign=Leadschi38885"
+        target="_blank"
         className="hover:bg-[#D11100] shadow-[#D11100] hover:shadow-[#5B0804] text-shadow-dark bg-[#DE5C00] hover:opacity-90 text-white group flex items-center gap-2 px-5 py-3 backdrop-blur-md rounded-full transition-all duration-300 shadow-sm cursor-pointer overflow-hidden"
       >
         <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] uppercase tracking-wide">
           <FlipLink>Register&nbsp;Now</FlipLink>
         </span>
-      </TransitionLink>
+      </Link>
     );
   };
 
   return (
     <section
       id="about"
-      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-br from-[#DE5C00] via-[#77340F] 
-    via-[#931308] to-[#5B0804] py-20 px-6 overflow-hidden"
+      className="relative w-full max-h-screen flex items-center justify-center bg-transparent pt-15 md:pt-20 pb-10  px-6 overflow-hidden"
     >
       <div
         className="absolute inset-0 opacity-10 pointer-events-none"
@@ -80,7 +80,7 @@ export default function About() {
         }}
       ></div>
 
-      <TransitionLink
+      {/* <TransitionLink
         href="/"
         className="
           absolute top-6 left-6 z-50 flex items-center gap-2 px-5 py-3 
@@ -93,7 +93,7 @@ export default function About() {
         <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-white uppercase transition-colors duration-300">
           <FlipLink>Return&nbsp;Home</FlipLink>
         </span>
-      </TransitionLink>
+      </TransitionLink> */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center gap-10 z-10">

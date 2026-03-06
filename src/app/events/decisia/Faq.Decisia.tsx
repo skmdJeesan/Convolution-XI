@@ -4,6 +4,10 @@ import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa6'; 
 
 const Data = [
+    {
+        question:"How will i register for this event?",
+        answer:"Click on Register Now button and you will be redirected to unstop page and you will register your team there"
+    },
   {
       question: "Will there be any opportunities to showcase interdisciplinary projects?",
       answer: 
@@ -32,9 +36,9 @@ export default function Faq() {
     };
 
     return (
-        <section id="faq" className="relative w-full py-20 overflow-hidden transform-gpu">
+        <section id="faq" className="relative w-full pb-10 overflow-hidden transform-gpu">
             
-            <div className="absolute inset-0 z-0 bg-linear-to-b from-[#0D30BB] to-[#2C1071]"></div>
+            {/* <div className="absolute inset-0 z-0 bg-linear-to-b from-[#0D30BB] to-[#2C1071]"></div> */}
 
             <div 
                 className="absolute inset-0 z-0 opacity-20 pointer-events-none" 

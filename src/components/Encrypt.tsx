@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Users, User, UsersRound, Download, FileSpreadsheet, Loader2 } from "lucide-react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import TransitionLink from "./TransitionLink";
+import { IoArrowBack } from "react-icons/io5";
+import FlipLink from "./FlipLink";
 
 export default function Leaderdashboard() {
   const [data, setData] = useState<any>(null);
@@ -58,10 +61,17 @@ export default function Leaderdashboard() {
   return (
     <div className="min-h-screen bg-gray-50 p-6 md:p-10 pt-20 font-rajdhani">
       <div className="max-w-5xl mx-auto space-y-10">
-        
+        <TransitionLink
+        href="/"
+        className="flex absolute top-6 left-6 z-50 items-center gap-2 px-4 py-2.5 bg-cyan-950/40  border-cyan-500/50  lg:bg-black/30 lg:border-white/10 lg:hover:border-cyan-500/50 lg:hover:bg-cyan-950/40 lg:hover:shadow-cyan-500/20 backdrop-blur-md border  rounded-full transition-all duration-300 shadow-lg  group cursor-pointer overflow-hidden"
+      >
+        <IoArrowBack className="text-cyan-400 text-lg group-hover:-translate-x-1 transition-transform duration-300" />
+        <span className="font-orbitron text-xs font-bold tracking-[0.2em] text-cyan-100 group-hover:text-white uppercase transition-colors"><FlipLink>Return&nbsp;Home</FlipLink></span>
+      </TransitionLink>
+
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-orbitron font-bold text-gray-900 text-center">Lead Dashboard</h1>
+          <h1 className="text-3xl font-orbitron font-bold text-gray-900 text-center">Leader Dashboard</h1>
           <p className="text-gray-500 mt-2 text-center">Overview of all kind of Registartions.</p>
         </div>
 

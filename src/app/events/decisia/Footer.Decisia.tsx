@@ -8,9 +8,9 @@ import { useEffect, useState } from 'react';
 import { useWaveText } from '@/hooks/useWaveText';
 import FlipLink from '@/components/FlipLink';
 import TransitionLink from '@/components/TransitionLink';
-import  fds1 from "@/assets/images/bgs/fds-1.png"
-import  fds2 from "@/assets/images/bgs/fds-2.png"
-import  fds3 from "@/assets/images/bgs/fds-3.png"
+import fds1 from "@/assets/images/bgs/fds-1.png"
+import fds2 from "@/assets/images/bgs/fds-2.png"
+import fds3 from "@/assets/images/bgs/fds-3.png"
 
 const events = [
     { name: "Algomaniac", href: "/events/algomaniac" },
@@ -40,61 +40,15 @@ export default function Footer() {
     }, [text, breakTheText]);
 
     return (
-        <div id='contact' className='relative bg-[#03050c] -mt-0.5 flex flex-col pt-5 overflow-hidden z-0 pt-4'>
+        <div id='contact' className='relative bg-transparent -mt-0.5 flex flex-col pt-5 overflow-hidden z-0 pt-4'>
 
-           
+
             {/* --- BACKGROUND LAYER --- */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-    
-    {/* --- MASK FADE --- */}
-    <div 
-        className="absolute inset-0 z-10"
-        style={{
-            maskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)'
-        }}
-    >
-        
-        <div 
-            className="hidden md:block absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] z-0"
-            style={{
-                background: 'radial-gradient(circle, rgba(112, 26, 117, 0.2) 0%, transparent 70%)' 
-            }}
-        ></div>
-        <div 
-            className="hidden md:block absolute top-[-10%] left-[30%] w-[50vw] h-[60vw] z-0"
-            style={{
-                background: 'radial-gradient(circle, rgba(88, 28, 135, 0.25) 0%, transparent 70%)'
-            }}
-        ></div>
 
-        <div 
-            className="hidden md:block absolute bottom-[-10%] right-[-10%] w-[60vw] h-[50vw] z-0"
-            style={{
-                background: 'radial-gradient(circle, rgba(22, 78, 99, 0.25) 0%, transparent 70%)'
-            }}
-        ></div>
-
-        {/* for mobile */}
-                <div className="block md:hidden absolute top-[7%] left-[7%] w-[86vw] h-[78vw] rounded-full bg-fuchsia-950/50 blur-[100px] z-0"></div>
-
-                <div className="block md:hidden absolute top-[40%] left-[10%] w-[100vw] h-[70vw] rounded-full bg-purple-950/40 blur-[100px] z-0"></div>
-
-                <div className="block md:hidden absolute bottom-[5%] right-[2%] w-[100vw] h-[50vw] rounded-full bg-cyan-900/30 blur-[100px] z-0"></div>
-                
-
-                {/* Grid */}
-        <div
-
-            className="absolute inset-0 z-0 opacity-[0.12] md:opacity-[0.15]"
-            style={{
-                backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`,
-                backgroundSize: '30px 30px'
-            }}
-        ></div>
-         <div className="absolute top-0 left-0 w-full h-10 bg-linear-to-b from-[#0307126f]  to-transparent z-10 pointer-events-none"></div>
-    </div>
-</div>
+                {/* --- MASK FADE --- */}
+       
+            </div>
             <div className="w-full maxWidthForSections relative z-20">
                 <div className="flex flex-col md:grid md:grid-cols-3 gap-8 mt-4 w-full">
 
@@ -145,7 +99,7 @@ export default function Footer() {
                             <ul className="flex flex-col gap-4">
                                 {/* Email */}
                                 <li className='flex items-start gap-4 group'>
-                                    <Link href="mailto:convolutionXI2026@gmail.com" className='flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-cyan-400 group-hover:bg-cyan-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0'>
+                                    <Link href="mailto:convolutionxi@gmail.com" className='flex items-center justify-center w-10 h-10 rounded-lg  bg-white/5 border border-white/10 group-hover:border-cyan-400 group-hover:bg-cyan-400/10 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 shrink-0'>
                                         <MdOutlineEmail className="text-xl text-cyan-400 mt-0.5 group-hover:text-cyan-300 transition-colors duration-300" />
                                     </Link>
                                     <div className="text-md">
@@ -188,10 +142,10 @@ export default function Footer() {
                                             Phone
                                         </span>
                                         <a href="tel:+918158066614" className="font-semibold font-rajdhani block text-slate-200 hover:text-white transition-colors">
-                                            +91 81580 66614
+                                            +91 9831928836
                                         </a>
-                                        <a href="tel:+916297739399" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
-                                            +91 62977 39399
+                                        <a href="tel:+919477189131" className="font-semibold font-rajdhani text-slate-200 hover:text-white transition-colors  block">
+                                            +91 9477189131
                                         </a>
                                     </div>
                                 </li>
@@ -232,7 +186,7 @@ export default function Footer() {
 
                 <h1
                     ref={ref as React.RefObject<HTMLHeadingElement>}
-                    className='font-orbitron text-[13vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#0e7490] [&_span]:to-black/50 tracking-tight font-extrabold absolute -bottom-3 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
+                    className='font-orbitron text-[13vw] [&_span]:text-transparent [&_span]:bg-clip-text [&_span]:bg-linear-to-b [&_span]:from-[#996a13] [&_span]:to-black/50 tracking-tight font-extrabold absolute -bottom-3 md:-bottom-9 lg:-bottom-12 leading-none whitespace-nowrap'
                 >{text}</h1>
 
             </div>

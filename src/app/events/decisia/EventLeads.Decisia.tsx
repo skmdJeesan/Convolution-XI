@@ -1,15 +1,15 @@
 'use client'
 import React, { memo } from 'react'
 import { motion, easeInOut } from "framer-motion"
-import './TeamStyles.Decisia.css'
 import Image from 'next/image';
+import './TeamStyles.Decisia.css'
 
 // -- Types --
 type TeamMember = {
   name: string;
   post: string;
   instagram: string;
-  x: string;
+  facebook: string;
   linkedin: string;
   image: string;
 };
@@ -17,33 +17,33 @@ type TeamMember = {
 // -- Data --
 const teamMembers: TeamMember[] = [
   {
-    name: "",
+    name: "Plabon Bose",
     post: "Event Lead",
-    image: "",
-    linkedin: "",
-    instagram: "",
-    x: "",
+    image: "/peoplePics/Plabone_1.jpeg",
+    linkedin: "https://www.linkedin.com/in/plabon-bose-2b6398265/",
+    instagram: "https://www.instagram.com/theplabone_/",
+    facebook: "",
   },
   {
-    name: "",
+    name: "Debaditya Ghosh",
     post: "Event Lead",
-    image: "",
-    linkedin: "",
-    instagram: "",
-    x: "",
-  }
+    image: "/peoplePics/Debaditya_2.jpeg",
+    linkedin: "https://www.linkedin.com/in/debaditya-ghosh-951679279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "https://www.instagram.com/debaditya_gh?igsh=ajVtMWpvYTJuY3R0",
+    facebook: "",
+  },
 ];
 
-// icons
+// -- Extracted SVG Icons --
 const Icons = {
   instagram: (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.646.069 4.85 0 3.204-.012 3.584-.07 4.85-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.322a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z" />
     </svg>
   ),
-  x: (
+  facebook: (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
     </svg>
   ),
   linkedin: (
@@ -54,20 +54,19 @@ const Icons = {
 };
 
 // -- Reusable Components --
-
 const SocialLink = ({ href, title, icon }: { href: string; title: string; icon: React.ReactNode }) => (
   <a href={href} className="team-social-link" title={title} target="_blank" rel="noopener noreferrer">
     {icon}
   </a>
 );
 
-// Memoized Card Component to prevent re-renders
+// -- Memoized Card Component --
 const TeamCard = memo(({ member, variants }: { member: TeamMember, variants: any }) => {
   return (
     <div className="team-card-wrapper">
       <motion.div variants={variants} className="team-card">
         {/* Image/Avatar Section */}
-        <div className="team-card-image-container">
+        <div className="team-card-image-container relative">
           {member.image ? (
             <Image
               src={member.image}
@@ -96,7 +95,7 @@ const TeamCard = memo(({ member, variants }: { member: TeamMember, variants: any
           {/* Social Links */}
           <div className="team-card-socials">
             {member.instagram && <SocialLink href={member.instagram} title="Instagram" icon={Icons.instagram} />}
-            {member.x && <SocialLink href={member.x} title="X" icon={Icons.x} />}
+            {member.facebook && <SocialLink href={member.facebook} title="Facebook" icon={Icons.facebook} />}
             {member.linkedin && <SocialLink href={member.linkedin} title="LinkedIn" icon={Icons.linkedin} />}
           </div>
         </div>
@@ -108,7 +107,6 @@ const TeamCard = memo(({ member, variants }: { member: TeamMember, variants: any
 TeamCard.displayName = "TeamCard";
 
 // -- Main Component --
-
 function Team() {
   const headerVariants = {
     hidden: { opacity: 0, y: 40 },
@@ -117,7 +115,7 @@ function Team() {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.4 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.3 } }
   };
 
   const cardVariants = {
@@ -127,14 +125,8 @@ function Team() {
 
   return (
     <div id='team' className="team-section">
-      <div className="team-bg-gradient"></div>
-      <div className="absolute top-0 left-0 w-full h-20 bg-linear-to-b from-[#030712e5]  to-transparent z-10"></div>
-
-
-      {/* Spotlight Glow - Optimized in CSS */}
-      <div className="team-spotlight-glow"></div>
-
-      <div className='maxWidthForSections'>
+      {/* Header Section */}
+      <div className='maxWidthForSections relative z-10'>
         <motion.div
           variants={headerVariants}
           initial="hidden"
@@ -142,21 +134,29 @@ function Team() {
           viewport={{ once: true, amount: 0.5 }}
           className="flex flex-col items-center pointer-events-none select-none mb-5"
         >
-          <h1 className="relative z-20 font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
+          <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-cyan-200 to-fuchsia-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
             Our Team
-            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
+            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-fuchsia-400/60 to-transparent"></span>
           </h1>
+          <p className="opacity-90 text-center text-white text-shadow-dark mt-5 text-base sm:text-lg font-medium">
+            Meet the event leads of Decisia! We are ready to address all your queries.
+          </p>
         </motion.div>
 
+        {/* Standard Flex/Grid Container without rotation logic */}
         <motion.div
           className="team-cards-container"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }} //when the page is 15% travelled then reveal
+          viewport={{ once: true, amount: 0.15 }}
         >
           {teamMembers.map((member, index) => (
-            <TeamCard key={index} member={member} variants={cardVariants} />
+            <TeamCard
+              key={index}
+              member={member}
+              variants={cardVariants}
+            />
           ))}
         </motion.div>
       </div>

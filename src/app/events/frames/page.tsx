@@ -6,16 +6,19 @@ import Faq from "./Faq.Frames";
 import About from "./About.Frames";
 import Rules from "./Rules.Frames";
 import Team from "./EventLeads.Frames";
-
+import Timeline from "./TimeLine.Frames"
+import Mentors from "./Mentor.Frames";
 function page() {
   return (
     <div className='w-full min-h-screen'>
-      {/* <EventNav/> */}
+      <EventNav navTheme="bg-gradient-to-b from-[#52BAFF] to-[#a9b9d6]"/>
       <About/>
-      {/* <Rules/>
+      <Rules/>
+      <Timeline/>
+      <Mentors/>
       <Team/>
       <Faq/>
-      <Footer/> */}
+      <Footer/>
     </div>
   )
 }

@@ -10,8 +10,8 @@ const rules = [
     "There will be two Tiers for this event: Tier 1 for UG1 and UG2, and Tier 2 for UG3 and UG4.",
     "There will be two rounds: Prelims (Pen & Paper Mode) and Finals, conducted over a span of two days.",
     "For Tier 1, there will be two different sets of question papers. UG1 will have a reduced syllabus compared to UG2, providing some equity. The selection will be based on a weighted score or percentile method.",
-    "Tier 2 will have the same question paper provided to both years.",
-    "Questions will be mostly MCQ and NAT in the Prelims, with MSQ only for Tier 2. Use of calculators is allowed.",
+    "Tier 2 will have the same question paper (A circuit design problem) provided to both years.",
+    "Questions will be mostly MCQ and NAT in the Prelims. There may be some MSQ's also.Use of calculator is allowed.",
     "The top 8 teams will move to the Finals from each tier.",
     "Finalists of both Tiers will have to build a fully functional electronic circuit according to the given problem statement.",
 ];
@@ -60,7 +60,7 @@ const Rules = () => {
         </div>
         <div className="mt-5">
           <Link
-            href=""
+            href="/Know_more/circuistics-guidelines.pdf"
             target="_blank"
             className="shadow-white/70 hover:shadow-white/30  hover:bg-[#1c2097] bg-[#3647c2]   text-[#ffffff]  transition-all duration-300 group flex items-center gap-2 px-5 py-3 backdrop-blur-md rounded-full shadow-sm cursor-pointer overflow-hidden"
           >
