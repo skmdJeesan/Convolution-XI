@@ -205,7 +205,7 @@ export default function SignupForm() {
                       <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoCallOutline size={14} /></div>
                       <input
                         type="text"
-                        placeholder='+91-xxxx-xxxx-xx'
+                        placeholder='Enter you phone number'
                         name='phone'
                         value={formData.phone}
                         onChange={handleChange}
