@@ -31,13 +31,13 @@ export async function POST(req: NextRequest) {
 
         await dbConnect();
 
-        // jutalks maximum seat 220
+        // jutalks maximum seat 230
         if (eventName.toLowerCase() === "jutalks") {
             const jutalksRegistrations = await Team.countDocuments({
                 eventName: "jutalks",
             });
 
-            if (jutalksRegistrations >= 220) {
+            if (jutalksRegistrations >= 230) {
                 return NextResponse.json(
                     { message: "Registrations for Jutalks have been closed as we have reached the maximum number of participants." },
                     { status: 400 }
@@ -55,6 +55,25 @@ export async function POST(req: NextRequest) {
                 { message: "Signup on the website before registering for an event." },
                 { status: 400 }
             );
+        }
+
+        //banning ug3 ee, ju
+        if (userExists.institution && userExists.department && userExists.year) {
+            const inst = userExists.institution.toLowerCase().replace(/\s+/g, "");
+            const isJU = inst === "ju" || inst.includes("jadavpur");
+
+            const dept = userExists.department.toLowerCase().replace(/\s+/g, "");
+            const isEE = dept === "ee" || dept === "ele" || dept.includes("electrical");
+
+            const yr = userExists.year.toUpperCase().replace(/\s+/g, "");
+            const isUG3 = yr === "UG3";
+
+            if (isJU && isEE && isUG3) {
+                return NextResponse.json(
+                    { message: "JU Electrical Ug3 is not allowed to participate" },
+                    { status: 403 }
+                );
+            }
         }
 
         const existingTeam = await Team.findOne({

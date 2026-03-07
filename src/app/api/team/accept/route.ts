@@ -33,11 +33,33 @@ export async function POST(req: NextRequest) {
         }
 
         const checkUser = await User.findById(userId);
-        if (checkUser && checkUser.eventsRegistered.includes(team.eventName.toLowerCase())) {
-            return NextResponse.json(
-                { message: `You are already registered for ${getFriendlyEventName(team.eventName)} in another team.` },
-                { status: 400 }
-            );
+        
+        if (checkUser) {
+            // ban
+            if (checkUser.institution && checkUser.department && checkUser.year) {
+                const inst = checkUser.institution.toLowerCase().replace(/\s+/g, "");
+                const isJU = inst === "ju" || inst.includes("jadavpur");
+
+                const dept = checkUser.department.toLowerCase().replace(/\s+/g, "");
+                const isEE = dept === "ee" || dept === "ele" || dept.includes("electrical");
+
+                const yr = checkUser.year.toUpperCase().replace(/\s+/g, "");
+                const isUG3 = yr === "UG3";
+
+                if (isJU && isEE && isUG3) {
+                    return NextResponse.json(
+                        { message: "3rd Year EE, JU is not allowed to participate." },
+                        { status: 403 }
+                    );
+                }
+            }
+
+            if (checkUser.eventsRegistered.includes(team.eventName.toLowerCase())) {
+                return NextResponse.json(
+                    { message: `You are already registered for ${getFriendlyEventName(team.eventName)} in another team.` },
+                    { status: 400 }
+                );
+            }
         }
 
         const acceptingUser = team.members[memberIndex].user as any;
@@ -202,7 +224,7 @@ export async function POST(req: NextRequest) {
             team.status = "pending";
             await team.save();
 
-            // Notify leader they are under minimum size
+            // notify leader they are under minimum size
             await Notification.create({
                 email: leader.email,
                 message: `⚠️ Action Required: All invites resolved, but your team <span class="font-bold text-cyan-400">${team.teamName}</span> is below the minimum size of ${minSize} for <span class="font-bold text-purple-500">${getFriendlyEventName(team.eventName)}</span>. Invite a new member!`,

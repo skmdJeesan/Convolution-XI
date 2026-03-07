@@ -43,10 +43,9 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // Connect to DB
         await dbConnect();
 
-        // Input validation
+        // input validation
         if (!teamName || !eventName || !leaderId || !leaderEmail || !Array.isArray(teamMembers)) {
             return NextResponse.json(
                 { message: "Missing required fields" },
@@ -73,7 +72,7 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // Check if all of the emails are unique
+        // Check all emails unique
         const uniqueMembers = new Set(allMembers);
         if (uniqueMembers.size !== allMembers.length) {
             return NextResponse.json(
@@ -82,7 +81,7 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // Fetch users from the database
+        //fetch users
         const users = await User.find({
             email: { $in: allMembers }
         });
@@ -98,6 +97,27 @@ export async function POST(req: NextRequest) {
                 { message: `The following users have not signed up on the website: ${nonExistingUsers.join(", ")}` },
                 { status: 400 }
             );
+        }
+
+        // ban
+        for (const u of users) {
+            if (u.institution && u.department && u.year) {
+                const inst = u.institution.toLowerCase().replace(/\s+/g, "");
+                const isJU = inst === "ju" || inst.includes("jadavpur");
+
+                const dept = u.department.toLowerCase().replace(/\s+/g, "");
+                const isEE = dept === "ee" || dept === "ele" || dept.includes("electrical");
+
+                const yr = u.year.toUpperCase().replace(/\s+/g, "");
+                const isUG3 = yr === "UG3";
+
+                if (isJU && isEE && isUG3) {
+                    return NextResponse.json(
+                        { message: "JU Electrical Ug3 is not allowed" },
+                        { status: 403 }
+                    );
+                }
+            }
         }
 
         const allMemberIds = users.map(u => u._id);
@@ -117,7 +137,6 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // Ensure team size doesn't exceed maxSize
         const maxSize = 5;
         if (teamMembers.length + 1 > maxSize) {
             return NextResponse.json(

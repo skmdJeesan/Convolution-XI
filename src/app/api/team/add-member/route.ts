@@ -49,6 +49,25 @@ export async function POST(req: NextRequest) {
         const newUser = await User.findOne({ email: newMemberEmail });
         if (!newUser) return NextResponse.json({ message: "This user has not registered on the website yet." }, { status: 400 });
 
+        //ban
+        if (newUser.institution && newUser.department && newUser.year) {
+            const inst = newUser.institution.toLowerCase().replace(/\s+/g, "");
+            const isJU = inst === "ju" || inst.includes("jadavpur");
+
+            const dept = newUser.department.toLowerCase().replace(/\s+/g, "");
+            const isEE = dept === "ee" || dept === "ele" || dept.includes("electrical");
+
+            const yr = newUser.year.toUpperCase().replace(/\s+/g, "");
+            const isUG3 = yr === "UG3";
+
+            if (isJU && isEE && isUG3) {
+                return NextResponse.json(
+                    { message: "3rd Year EE, JU is not allowed to participate." },
+                    { status: 403 }
+                );
+            }
+        }
+
         // check if they are already in the team
         const isAlreadyInTeam = team.members.some((m: any) => m.user.toString() === newUser._id.toString());
         if (isAlreadyInTeam || team.leader.email === newMemberEmail) {
@@ -78,7 +97,6 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // 🚀 EXTRA SAFETY: Check if they registered through some other loophole
         if (newUser.eventsRegistered && newUser.eventsRegistered.includes(team.eventName.toLowerCase())) {
              return NextResponse.json(
                 { message: "This user has already successfully registered for this event." }, 

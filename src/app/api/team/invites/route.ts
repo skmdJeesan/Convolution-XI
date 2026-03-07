@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/db";
 import Team from "@/models/team.model";
+import User from "@/models/user.model";
 
 export async function GET(req: NextRequest) {
     try {
@@ -11,6 +12,27 @@ export async function GET(req: NextRequest) {
         }
 
         await dbConnect();
+
+        // ban
+        const user = await User.findById(userId);
+        
+        if (user && user.institution && user.department && user.year) {
+            const inst = user.institution.toLowerCase().replace(/\s+/g, "");
+            const isJU = inst === "ju" || inst.includes("jadavpur");
+
+            const dept = user.department.toLowerCase().replace(/\s+/g, "");
+            const isEE = dept === "ee" || dept === "ele" || dept.includes("electrical");
+
+            const yr = user.year.toUpperCase().replace(/\s+/g, "");
+            const isUG3 = yr === "UG3";
+
+            if (isJU && isEE && isUG3) {
+                return NextResponse.json(
+                    { message: "JU Electrical Ug3 is not allowed", invites: [] },
+                    { status: 403 }
+                );
+            }
+        }
 
         //find the team where the user is in pending and also the team itself is pending
         const pendingTeams = await Team.find({

@@ -7,6 +7,7 @@ import Image from 'next/image'
 import profileIcon from "@/assets/images/Robot_Profile.jpg";
 import React, { useContext, useState, useEffect, useRef } from 'react'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 import { IoLogOutOutline, IoHardwareChipOutline, IoTimeOutline, 
   IoSchoolOutline, IoCodeSlashOutline, IoWarningOutline, IoMailOutline, 
   IoCallOutline, IoQrCodeOutline, IoListOutline, IoPeopleOutline, IoMailUnreadOutline 
@@ -228,29 +229,67 @@ export default function ProfilePage() {
                 
                 setEventsList(formattedEvents);
             })
-            .catch(err => console.error("Error fetching my teams:", err));
+            .catch(err => {
+                console.error("Error fetching my teams:", err);
+                if (err.response?.status === 403) {
+                     toast.error(err.response?.data?.message || "Access restricted.", {
+                         style: { background: "#0a0e14", color: "#ef4444", border: "1px solid #7f1d1d", fontFamily: "rajdhani" },
+                         iconTheme: { primary: '#ef4444', secondary: '#0a0e14' }
+                     });
+                }
+            });
     }
   }, [data?.user?._id, data?.user?.eventsRegistered]);
 
   const handleAction = async (teamId: string, action: "accept" | "decline") => {
       if(!data?.user?._id) return;
+
+      if (action === "accept") {
+          if (data?.user?.institution && data?.user?.department && data?.user?.year) {
+              const inst = data.user.institution.toLowerCase().replace(/\s+/g, "");
+              const isJU = inst === "ju" || inst.includes("jadavpur");
+
+              const dept = data.user.department.toLowerCase().replace(/\s+/g, "");
+              const isEE = dept === "ee" || dept === "ele" || dept.includes("electrical");
+
+              const yr = data.user.year.toUpperCase().replace(/\s+/g, "");
+              const isUG3 = yr === "UG3";
+
+              if (isJU && isEE && isUG3) {
+                  toast.error("3rd Year EE, JU is not allowed to participate.", {
+                      style: { background: "#0a0e14", color: "#ef4444", border: "1px solid #7f1d1d", fontFamily: "rajdhani" },
+                      iconTheme: { primary: '#ef4444', secondary: '#0a0e14' }
+                  });
+                  return; 
+              }
+          }
+      }
+
       setActionLoading(teamId);
       
       try {
           const response = await axios.post(`/api/team/${action}`, {
               teamId,
-              userId: data?.user?._id // <-- FIXED THIS LINE
+              userId: data?.user?._id 
           });
 
-          alert(response.data.message);
+          toast.success(response.data.message, {
+              style: { background: "#0a0e14", color: "#10b981", border: "1px solid #059669", fontFamily: "rajdhani" },
+              iconTheme: { primary: '#10b981', secondary: '#0a0e14' }
+          });
           
           setPendingRequestsList((prev) => prev.filter((invite) => invite._id !== teamId));
           
           if (action === "accept") {
-              window.location.reload();
+              setTimeout(() => {
+                  window.location.reload();
+              }, 1000); 
           }
       } catch (error: any) {
-          alert(error.response?.data?.message || `Failed to ${action} invite`);
+          toast.error(error.response?.data?.message || `Failed to ${action} invite`, {
+              style: { background: "#0a0e14", color: "#ef4444", border: "1px solid #7f1d1d", fontFamily: "rajdhani" },
+              iconTheme: { primary: '#ef4444', secondary: '#0a0e14' }
+          });
       } finally {
           setActionLoading(null);
       }
@@ -263,25 +302,67 @@ export default function ProfilePage() {
     } catch (error) {
       console.error('Sign out error:', error)
       setLoading(false)
+      toast.error("Failed to log out", {
+          style: { background: "#0a0e14", color: "#ef4444", border: "1px solid #7f1d1d", fontFamily: "rajdhani" },
+          iconTheme: { primary: '#ef4444', secondary: '#0a0e14' }
+      });
     }
   }
   
   const handleAddMember = async (teamId: string) => {
-      if (!newMemberEmail || !data?.user?._id) return;
+      if (!newMemberEmail || !data?.user?._id) {
+          toast.error("Please enter a valid email address.", {
+              style: { background: "#0a0e14", color: "#ef4444", border: "1px solid #7f1d1d", fontFamily: "rajdhani" },
+              iconTheme: { primary: '#ef4444', secondary: '#0a0e14' }
+          });
+          return;
+      }
+
+
+      if (data?.user?.institution && data?.user?.department && data?.user?.year) {
+          const inst = data.user.institution.toLowerCase().replace(/\s+/g, "");
+          const isJU = inst === "ju" || inst.includes("jadavpur");
+
+          const dept = data.user.department.toLowerCase().replace(/\s+/g, "");
+          const isEE = dept === "ee" || dept === "ele" || dept.includes("electrical");
+
+          const yr = data.user.year.toUpperCase().replace(/\s+/g, "");
+          const isUG3 = yr === "UG3";
+
+          if (isJU && isEE && isUG3) {
+              toast.error("You are restricted from performing this action.", {
+                  style: { background: "#0a0e14", color: "#ef4444", border: "1px solid #7f1d1d", fontFamily: "rajdhani" },
+                  iconTheme: { primary: '#ef4444', secondary: '#0a0e14' }
+              });
+              return; 
+          }
+      }
+
       setAddMemberLoading(true);
       
       try {
           const res = await axios.post('/api/team/add-member', {
               teamId,
-              leaderId: data?.user?._id, // <-- FIXED THIS LINE
+              leaderId: data?.user?._id,
               newMemberEmail
           });
-          alert(res.data.message);
+          
+          toast.success(res.data.message, {
+              style: { background: "#0a0e14", color: "#10b981", border: "1px solid #059669", fontFamily: "rajdhani" },
+              iconTheme: { primary: '#10b981', secondary: '#0a0e14' }
+          });
+          
           setAddMemberMode(null);
           setNewMemberEmail("");
-          window.location.reload(); 
+          
+          setTimeout(() => {
+              window.location.reload(); 
+          }, 1000);
       } catch (error: any) {
-          alert(error.response?.data?.message || "Failed to add member");
+          toast.error(error.response?.data?.message || "Failed to add member", {
+              style: { background: "#0a0e14", color: "#ef4444", border: "1px solid #7f1d1d", fontFamily: "rajdhani" },
+              iconTheme: { primary: '#ef4444', secondary: '#0a0e14' }
+          });
       } finally {
           setAddMemberLoading(false);
       }

@@ -92,6 +92,26 @@ export default function EventRegistrationForm() {
       return;
     }
 
+    // banning 3rd year ee, ju
+    if (user.institution && user.department && user.year) {
+      const inst = user.institution.toLowerCase().replace(/\s+/g, "");
+      const isJU = inst === "ju" || inst.includes("jadavpur");
+
+      const dept = user.department.toLowerCase().replace(/\s+/g, "");
+      const isEE = dept === "ee" || dept === "ele" || dept.includes("electrical");
+
+      const yr = user.year.toUpperCase().replace(/\s+/g, "");
+      const isUG3 = yr === "UG3";
+
+      if (isJU && isEE && isUG3) {
+        toast.error("JU Electrical Ug3 is not allowed to participate", {
+          style: { background: "#0a0e14", color: "#ef4444", border: "1px solid #7f1d1d", fontFamily: "rajdhani" }
+        });
+        return; 
+      }
+    }
+
+
     try {
       await axios.post("/api/team", { 
         teamName: data.teamName,
@@ -214,6 +234,7 @@ export default function EventRegistrationForm() {
                     </h1>
                   </div>
 
+                  {/* form */}
                   <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
                     
                     <div className="flex items-center justify-between bg-cyan-950/20 border border-cyan-900/40 p-2.5 [clip-path:polygon(0_0,100%_0,100%_calc(100%-8px),calc(100%-8px)_100%,0_100%)]">
@@ -221,7 +242,7 @@ export default function EventRegistrationForm() {
                       <span className="font-orbitron text-sm font-semibold text-fuchsia-300 pr-1 truncate uppercase">{user?.name || "Loading..."}</span>
                     </div>
 
-                    {/* Team Name Input */}
+
                     <div className='group/input relative'>
                           <div className="flex justify-between items-end mb-0.5 px-1">
                             <label className="font-rajdhani text-sm text-slate-300 font-semibold tracking-wider uppercase">Team Name</label>
@@ -243,7 +264,6 @@ export default function EventRegistrationForm() {
                           )}
                     </div>
 
-                    {/* Team Members Section */}
                     <div>
                       <div className="flex justify-between items-end mb-2 px-1">
                          <label className="font-rajdhani text-sm text-slate-300 font-semibold tracking-wider uppercase">Member's Email</label>
@@ -285,7 +305,6 @@ export default function EventRegistrationForm() {
                         </p>
                       )}
 
-                      {/* Add Member Button */}
                       {memberCount < eventConfig.max && (
                         <button
                           type="button"
@@ -297,7 +316,6 @@ export default function EventRegistrationForm() {
                       )}
                     </div>
 
-                    {/* Submit Button */}
                     <button 
                       type="submit" 
                       disabled={isSubmitting} 
