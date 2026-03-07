@@ -10,7 +10,7 @@ const Timeline = () => {
       {/*main content */}
       <div className="relative z-10 flex flex-col items-center justify-between w-full px-4 gap-20">
        <div
-          className="flex flex-col items-center pointer-events-none select-none mb-5"
+          className="flex flex-col items-center pointer-events-none select-none mb-1"
         >
           <h1 className="font-orbitron font-bold text-center text-3xl md:text-4xl tracking-wide text-[#592A13] drop-shadow-sm whitespace-nowrap uppercase">
             Timeline
