@@ -58,7 +58,7 @@ hover:bg-[#FCF0C4] shadow-[#FCF0C4] hover:shadow-[#512511]  bg-[#512511] hover:o
               "
             >
               <span className="font-orbitron text-sm md:text-base font-bold uppercase tracking-wide">
-             <FlipLink>Login&nbsp;to&nbsp;Register</FlipLink>
+             <FlipLink>Secure&nbsp;your&nbsp;spot</FlipLink>
            </span>
          </TransitionLink>
        );
@@ -68,7 +68,7 @@ hover:bg-[#FCF0C4] shadow-[#FCF0C4] hover:shadow-[#512511]  bg-[#512511] hover:o
        return (
          <div className="flex items-center gap-2 px-8 py-3 bg-[#FCF0C4]  backdrop-blur-md border border-white/10 rounded-full cursor-not-allowed opacity-70">
               <span className="font-orbitron text-sm md:text-base font-bold  tracking-wide text-[#512511]">
-             Registrations not started yet
+              Registrations not started yet
            </span>
          </div>
        );
@@ -95,7 +95,7 @@ hover:bg-[#FCF0C4] shadow-[#FCF0C4] hover:shadow-[#512511]  bg-[#512511] hover:o
               "
             >
               <span className="font-orbitron text-sm md:text-base font-bold uppercase tracking-wide">
-           <FlipLink>{loading ? "Registering..." : "Register\u00A0Now"}</FlipLink>
+           <FlipLink>{loading ? "Securing..." : "Secure\u00A0your\u00A0spot"}</FlipLink>
          </span>
        </button>
      );
