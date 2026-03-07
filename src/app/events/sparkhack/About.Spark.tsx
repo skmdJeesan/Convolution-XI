@@ -62,9 +62,8 @@ export default function About() {
     }
 
     return (
-      <Link
-        href={`https://unstop.com/o/0u4ctEr?lb=qFLMX5O&utm_medium=Share&utm_source=online_coding_challenge&utm_campaign=Debaradh9719`}
-        target="_blank"
+      <TransitionLink
+        href={`/events/register-${eventMode}?eventName=${eventName}`}
         className="
               group
               shadow-white/40 hover:bg-white  hover:text-shadow-light hover:opacity-90 bg-[#2c9bac]  group flex items-center gap-2 px-5 py-3 
@@ -75,7 +74,7 @@ export default function About() {
         <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] group-hover:text-[#77ccd8] uppercase tracking-wide">
           <FlipLink>Register&nbsp;Now</FlipLink>
         </span>
-      </Link>
+      </TransitionLink>
     );
   };
 
