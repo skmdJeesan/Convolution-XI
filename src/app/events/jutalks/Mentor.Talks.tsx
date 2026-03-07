@@ -19,7 +19,7 @@ const mentors: Mentor[] = [
 
 export default function Mentors() {
     return (
-        <section id='judges' className="relative w-full pt-20 md:pt-25 pb-20 flex flex-col items-center justify-center overflow-hidden bg-[#FF97E3]">
+        <section id='judges' className="relative w-full pt-20 md:pt-25 pb-5 flex flex-col items-center justify-center overflow-hidden bg-[#FF97E3]">
 
             <div className='maxWidthForSections w-full flex flex-col items-center px-4'>
 

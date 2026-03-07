@@ -134,9 +134,9 @@ function Team() {
           viewport={{ once: true, amount: 0.5 }}
           className="flex flex-col items-center pointer-events-none select-none mb-5"
         >
-          <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-slate-800 to-slate-600 drop-shadow-sm whitespace-nowrap uppercase relative inline-block">
+          <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-slate-800 to-slate-600 drop-shadow-sm whitespace-nowrap uppercase relative inline-block">
             Our Team
-            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-slate-400/60 to-transparent"></span>
+            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-400/80 to-transparent"></span>
           </h1>
           <p className="opacity-90 text-center text-slate-800 mt-5 text-base sm:text-lg font-bold font-rajdhani tracking-wide">
             Meet the event leads of SparkHack! We are ready to address all your queries.

@@ -4,7 +4,7 @@ const Timeline = () => {
   return (
     <div
       id="timeline"
-      className="relative w-full pt-20 md:pt-25 pb-20 flex flex-col items-center justify-center overflow-hidden bg-[#FF97E3]"
+      className="relative w-full pt-20 md:pt-25 pb-5 flex flex-col items-center justify-center overflow-hidden bg-[#FF97E3]"
     >
       
       {/*main content */}

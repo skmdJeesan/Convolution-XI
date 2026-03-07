@@ -20,7 +20,7 @@ const notificationSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 
-notificationSchema.index({ createdAt: 1 }, { expireAfterSeconds: 259200 }); //vanish after 3days default
+notificationSchema.index({ createdAt: 1 }, { expireAfterSeconds: 1209600 }); //vanish after 14days default
 
 const Notification = mongoose.models.Notification || mongoose.model("Notification", notificationSchema);
 export default Notification;

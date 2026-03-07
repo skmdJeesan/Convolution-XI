@@ -34,20 +34,33 @@ const Rules = () => {
           </ul>
         </div>
 
-          <div className="mt-5">
+          <div className="mt-5 flex  items-center justify-center gap-4">
                   <Link
                     href="/Know_more/sparkhack-guidelines.pdf"
                     target="_blank"
                     className="group
-              shadow-white/40 hover:bg-white  hover:text-shadow-light hover:opacity-90 bg-[#2c9bac]  group flex items-center gap-2 px-5 py-3 
+              shadow-white/80 hover:shadow-white/40 hover:bg-white  hover:text-shadow-light hover:opacity-100 bg-[#3AADD9]  group flex items-center gap-2 px-5 py-3 opacity-80
                  backdrop-blur-md rounded-full 
                 transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
                               "
                   >
-                    <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] group-hover:text-[#77ccd8] uppercase tracking-wide">
+                    <span className="font-orbitron text-sm md:text-base font-bold text-[#ffffff] group-hover:text-[#77ccd8] tracking-wide uppercase">
                       <FlipLink>Know&nbsp;More</FlipLink>
                     </span>
                   </Link>
+                  {/* <Link
+                    href="/Know_more/sparkhack-guidelines.pdf"
+                    target="_blank"
+                    className="group
+              shadow-white/80 hover:shadow-white/40 bg-white  hover:text-shadow-light hover:opacity-100 hover:bg-[#3AADD9]  group flex items-center gap-2 px-5 py-3 opacity-80
+                 backdrop-blur-md rounded-full 
+                transition-all duration-300 shadow-sm cursor-pointer overflow-hidden
+                              "
+                  >
+                    <span className="font-rajdhani text-sm md:text-base font-bold group-hover:text-[#ffffff] text-[#77ccd8] tracking-wide">
+                      <FlipLink>Problem&nbsp;Statements</FlipLink>
+                    </span>
+                  </Link> */}
                 </div>
       </div>
     </div>
