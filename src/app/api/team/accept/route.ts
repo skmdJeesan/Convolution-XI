@@ -188,7 +188,7 @@ export async function POST(req: NextRequest) {
                                 <div style="font-family: Arial, sans-serif; color: #333;">
                                     <h3>Hello ${obj.name} 👋!</h3>
                                     <p>Great news! Everyone has accepted their invitations.</p>
-                                    <p>Your/ team <b>"${team.teamName}"</b> is officially confirmed and registered for <b>${getFriendlyEventName(team.eventName)}</b>, Convolution26.</p>
+                                    <p>Your team <b>"${team.teamName}"</b> is officially confirmed and registered for <b>${getFriendlyEventName(team.eventName)}</b>, Convolution26.</p>
                                     ${gform}
                                     <p>Best of luck for the competition!</p>
                                 </div>
