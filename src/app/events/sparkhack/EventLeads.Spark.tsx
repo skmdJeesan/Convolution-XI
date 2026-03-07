@@ -21,7 +21,7 @@ const teamMembers: TeamMember[] = [
     post: "Event Lead",
     image: "/peoplePics/Chitrak.jpeg",
     linkedin: "https://www.linkedin.com/in/chitrak-saha-07b901310/",
-    instagram: "",
+    instagram: "https://www.instagram.com/chitrak.__?igsh=YzZ1Zzl6MXV5dHU=",
     facebook: "",
   },
   {
@@ -29,7 +29,7 @@ const teamMembers: TeamMember[] = [
     post: "Event Lead",
     image: "/peoplePics/Debarghya.jpeg",
     linkedin: "https://www.linkedin.com/in/debarghya-adhikari-18baaa243?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    instagram: "",
+    instagram: "https://www.instagram.com/debarghya._?igsh=MWg4dWxkMDJ4Mnh5eg==",
     facebook: "",
   },
 ];
