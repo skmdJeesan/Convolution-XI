@@ -103,7 +103,7 @@ export default function Leaderdashboard() {
             </div>
             <div className="hidden md:block w-px bg-gray-200"></div>
             <div>
-              <p className="text-sm text-gray-500 font-medium">Not registered any event</p>
+              <p className="text-sm text-gray-500 font-medium">Not registered in any event</p>
               <p className="text-2xl font-bold text-gray-400">{data.notRegisteredUsers}</p>
             </div>
           </div>
