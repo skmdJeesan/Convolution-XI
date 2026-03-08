@@ -13,7 +13,7 @@ import Prizes from "./Prize.circuistics"
 function page() {
   return (
     <div className='bg-linear-to-b from-[#0D30BB] via-[#2a237e] to-[#7c3aed] w-full min-h-screen'>
-      <EventNav/>
+      <EventNav navTheme="bg-linear-to-b from-[#0D30BB] via-[#2a237e] to-[#7c3aed]"/>
       <About/>
       <Rules/>
       <TimeLine />
