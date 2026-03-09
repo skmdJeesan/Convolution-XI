@@ -138,7 +138,7 @@ function Team() {
             Our Team
             <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-400/80 to-transparent"></span>
           </h1>
-          <p className="opacity-90 text-center text-slate-800 mt-5 text-base sm:text-lg font-bold font-rajdhani tracking-wide">
+          <p className="opacity-90 font-rajdhani text-center text-slate-800 mt-5 text-base sm:text-lg font-bold font-rajdhani tracking-wide">
             Meet the event leads of SparkHack! We are ready to address all your queries.
           </p>
         </motion.div>

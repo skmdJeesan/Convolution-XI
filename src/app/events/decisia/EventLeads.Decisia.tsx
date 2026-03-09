@@ -138,7 +138,7 @@ function Team() {
             Our Team
             <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-fuchsia-400/60 to-transparent"></span>
           </h1>
-          <p className="opacity-90 text-center text-white text-shadow-dark mt-5 text-base sm:text-lg font-medium">
+          <p className="opacity-90 font-rajdhani text-center text-white text-shadow-dark mt-5 text-base sm:text-lg font-medium">
             Meet the event leads of Decisia! We are ready to address all your queries.
           </p>
         </motion.div>

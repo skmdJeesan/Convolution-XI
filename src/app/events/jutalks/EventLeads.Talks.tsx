@@ -137,7 +137,7 @@ function Team() {
           <h1 className="relative z-20 font-orbitron font-bold text-center text-3xl md:text-4xl tracking-wide text-[#592A13] drop-shadow-sm whitespace-nowrap uppercase">
             Our Team
           </h1>
-          <p className="opacity-90 text-center text-[#592A13] font-bold mt-5 text-base sm:text-lg font-rajdhani">Meet the event leads of JU Talks! We are ready to address all your queries.</p>
+          <p className="opacity-90 font-rajdhani text-center text-[#592A13] font-bold mt-5 text-base sm:text-lg font-rajdhani">Meet the event leads of JU Talks! We are ready to address all your queries.</p>
         </div>
 
         <motion.div
