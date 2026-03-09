@@ -81,7 +81,7 @@ export default function Footer() {
 
                         <div className='flex flex-col items-center sm:items-start md:items-center md:ml-7 lg-ml-2 lg:items-start'>
 
-                            <h3 className="font-orbitron text-[20px] md:text-xl lg:text-2xl font-bold text-[#063547] uppercase mb-8 relative inline-block whitespace-nowrap sm:ml-11">
+                            <h3 className="font-orbitron text-[20px] md:text-xl font-bold text-[#063547] uppercase mb-8 relative inline-block whitespace-nowrap sm:ml-11">
                                 Let's Connect
                                 <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-[#063547]/50 to-transparent"></span>
                             </h3>
@@ -146,7 +146,7 @@ export default function Footer() {
                     {/* Events */}
                     <div className='flex flex-col items-center md:items-end w-full'>
                         <div className='flex flex-col items-center sm:items-start'>
-                            <h3 className="font-orbitron text-[20px] md:text-xl lg:text-2xl font-bold text-[#063547] uppercase mb-8 relative inline-block -ml-4 sm:ml-0">
+                            <h3 className="font-orbitron text-[20px] md:text-xl font-bold text-[#063547] uppercase mb-8 relative inline-block -ml-4 sm:ml-0">
                                 events
                                 <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-[#063547]/50 to-transparent"></span>
                             </h3>

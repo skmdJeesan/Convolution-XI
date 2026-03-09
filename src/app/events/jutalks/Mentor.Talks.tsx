@@ -32,17 +32,11 @@ export default function Mentors() {
                         Meet the Mentor of JU Talks!
                     </p>
                 </div>
-
-                {/* <span className="font-rajdhani text-2xl md:text-3xl font-bold tracking-wide text-white drop-shadow-[0_4px_10px_rgba(89,42,19,0.2)] text-center mt-2">
-              To be declared soon ...
-            </span> */}
-
-                {/* Mentors Grid - NOW SMART/CONDITIONAL */}
                 <div className={`grid grid-cols-1 ${mentors.length > 1 ? 'md:grid-cols-2' : ''} gap-6 lg:gap-10 w-full max-w-4xl justify-items-center`}>
                     {mentors.map((mentor, index) => (
                         <div
                             key={index}
-                            className="flex items-center gap-5 sm:gap-6 p-6 sm:p-7 w-full max-w-xl rounded-[1.5rem] bg-[#FCEBEA] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-transform duration-300"
+                            className="flex items-center gap-5 sm:gap-6 p-4 w-full max-w-xl rounded-[1.5rem] bg-[#FCEBEA] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-transform duration-300"
                         >
                             <div className="relative shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-gray-300">
                                 {mentor.image ? (
@@ -69,7 +63,7 @@ export default function Mentors() {
                                         rel="noopener noreferrer" 
                                         className="flex items-center justify-center w-[18px] h-[18px] rounded-full bg-black text-white shrink-0 cursor-pointer transition-transform hover:scale-110"
                                     >
-                                        <span className="font-serif text-[11px] font-bold italic leading-none pt-[1px]">i</span>
+                                        <span className="font-serif text-[13px] font-bold italic leading-none pt-[1px]">i</span>
                                     </a>
                                 </div>
 

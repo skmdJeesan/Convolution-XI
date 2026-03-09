@@ -46,7 +46,7 @@ const Timeline = () => {
       
       {/* --- TIMELINE HEADING --- */}
       <div className="absolute top-10 lg:top-10 w-full z-40 flex justify-center px-6">
-        <h1 className="relative z-20 font-orbitron font-bold text-center text-4xl md:text-5xl tracking-wide text-transparent bg-clip-text bg-gradient-to-t from-gray-200 to-white drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
+        <h1 className="relative z-20 font-orbitron font-bold text-center text-3xl md:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-t from-gray-200 to-white drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
             Timeline
           </h1>
       </div>
@@ -59,7 +59,7 @@ const Timeline = () => {
           
           {/* Mobile: Pill style. Desktop: Simple plain text */}
           <div className="px-6 lg:px-0 py-2 lg:py-0 bg-[#cdeffd]/90 lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none rounded-full lg:rounded-none shadow-[0_8px_32px_rgba(0,0,0,0.1)] lg:shadow-none border border-white/40 lg:border-none">
-            <h2 className="uppercase font-rajdhani font-bold text-3xl md:text-6xl tracking-wide text-[#0A5C7A] lg:drop-shadow-sm">
+            <h2 className="uppercase font-rajdhani font-bold text-2xl md:text-4xl tracking-wide text-[#0A5C7A] lg:drop-shadow-sm">
               Coming Soon...
             </h2>
           </div>

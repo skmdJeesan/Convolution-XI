@@ -177,7 +177,7 @@ function Team() {
           viewport={{ once: true, amount: 0.5 }}
           className="flex flex-col items-center pointer-events-none select-none mb-5"
         >
-          <h1 className="relative z-20 font-orbitron font-bold text-center text-4xl md:text-5xl tracking-wide text-transparent bg-clip-text bg-gradient-to-t from-gray-200 to-white drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
+          <h1 className="relative z-20 font-orbitron font-bold text-center text-3xl md:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-t from-gray-200 to-white drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
             Our Team
           </h1>
           <p className="opacity-90 text-center text-white text-shadow-dark mt-5 text-base sm:text-lg font-medium">Meet the event leads of 24 Frames! We are ready to address all your queries.</p>

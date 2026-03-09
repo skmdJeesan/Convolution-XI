@@ -60,7 +60,7 @@ const Rules = () => {
             <div
               className="rounded-[2rem] w-full py-10 px-6 md:px-12 bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.15)]"
             >
-              <h1 className="uppercase font-orbitron font-bold text-left text-2xl md:text-3xl lg:text-4xl mb-8 drop-shadow-md tracking-wide text-transparent bg-clip-text bg-gradient-to-t from-gray-200 to-white">
+              <h1 className="uppercase font-orbitron font-bold text-left text-2xl md:text-3xl mb-8 drop-shadow-md tracking-wide text-transparent bg-clip-text bg-gradient-to-t from-gray-200 to-white">
                 Rules & Regulations
               </h1>
               

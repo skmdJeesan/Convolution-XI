@@ -46,7 +46,7 @@ export default function Faq() {
   };
 
     return (
-        <section id="faq" className="relative w-full py-20 overflow-hidden transform-gpu">
+        <section id="faq" className="relative w-full py-10 overflow-hidden transform-gpu">
             
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#b55d09] via-[#9a3412] to-[#7f1d1d]"></div>
 
@@ -71,7 +71,6 @@ export default function Faq() {
       >
         <h1 className="font-orbitron font-bold text-center text-2xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-gray-300 to-white drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] sm:whitespace-nowrap uppercase">
                                 Frequently Asked questions
-                                <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-200/60 to-transparent"></span>
                             </h1>
       </motion.div>
                     </div>

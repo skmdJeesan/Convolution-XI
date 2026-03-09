@@ -53,7 +53,7 @@ export default function Faq() {
                     {/* Header */}
                     <div className="text-center mb-12 space-y-4 flex flex-col items-center">
                         <div className="relative inline-block">
-                            <h1 className="uppercase font-orbitron font-bold text-center text-3xl md:text-5xl mb-10 tracking-wide text-[#0A5C7A] drop-shadow-md">
+                            <h1 className="uppercase font-orbitron font-bold text-center text-3xl md:text-4xl mb-10 tracking-wide text-[#0A5C7A] drop-shadow-md">
                                 Frequently Asked questions
                             </h1>
                         </div>

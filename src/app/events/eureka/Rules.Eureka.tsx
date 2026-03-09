@@ -41,7 +41,7 @@ const Rules = () => {
         <div
           className="rounded-2xl w-full max-w-4xl py-10 px-6 md:px-12 bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
         >
-          <h1 className="uppercase font-orbitron font-bold text-center text-2xl md:text-5xl mb-10  drop-shadow-md tracking-wide text-transparent bg-clip-text bg-linear-to-t from-green-200 to-white">
+          <h1 className="uppercase font-orbitron font-bold text-center text-2xl md:text-4xl mb-10  drop-shadow-md tracking-wide text-transparent bg-clip-text bg-linear-to-t from-green-200 to-white">
             Rules & Regulations
           </h1>
 

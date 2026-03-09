@@ -1,11 +1,30 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+import { FaInfoCircle } from "react-icons/fa";
 
+type Mentor = {
+    name: string;
+    post: string;
+    university: string;
+    image: string;
+    profile: string
+};
+
+const mentors: Mentor[] = [
+    {
+        name: "Sayantan Chakraborty",
+        post: "Assistant Professor at Department of Electrical Engineering",
+        university: "Jadavpur University",
+        image: "/Mentors/stc.png",
+        profile: "https://jadavpuruniversity.in/faculty-profile/sovan-dalai/"
+    },
+];
 const Mentors = () => {
   return (
     <div
       id="judges"
-      className="relative w-full pt-20 md:pt-25 pb-30 flex flex-col items-center justify-center overflow-hidden"
+      className="relative w-full py-10 flex flex-col items-center justify-center overflow-hidden"
     >
       <div className="absolute top-0 left-0 w-full h-full bg-[#52BAFF] -z-20"></div>
 
@@ -46,7 +65,7 @@ const Mentors = () => {
       {/* --- MENTORS HEADING (At the very top) --- */}
       {/* Kept the same styling as your Timeline heading */}
       <div className="relative  lg:top-10 w-full z-40 flex flex-col justify-center px-6 mb-10 lg:mb-15">
-        <h1 className="font-orbitron font-bold text-center text-4xl md:text-5xl tracking-wide text-transparent bg-clip-text bg-linear-to-t from-gray-200 to-white drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
+        <h1 className="font-orbitron font-bold text-center text-3xl md:text-4xl tracking-wide text-transparent bg-clip-text bg-linear-to-t from-gray-200 to-white drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
                         Mentor
                     </h1>
                     <p className="opacity-90 text-center text-white mt-5 text-base md:text-lg font-rajdhani font-bold tracking-wide">
@@ -55,35 +74,43 @@ const Mentors = () => {
       </div>
 
       
-      <div className="relative w-[280px] md:w-[450px] h-[180px] md:h-[250px] flex flex-col items-center justify-center z-20 mt-10">
+                      <div className="flex justify-center md:flex-wrap lg:flex-nowrap flex-col md:flex-row gap-2 md:gap-x-6">
+                    {mentors.map((mentor, index) => (
+                        <div
+                            key={index}
+                            className="rounded-xl bg-white/20 shadow-black/20 shadow-md backdrop-blur-sm flex py-4 px-3 items-center gap-x-4 sm:max-w-[500px]"
+                        >
+                            <div className="relative shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-gray-300">
+                                {mentor.image ? (
+                                    <img
+                                        src={mentor.image}
+                                        alt={mentor.name}
+                                        className="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <div className="w-full h-full font-rajdhani bg-[#592A13] flex items-center justify-center text-3xl font-bold text-white">
+                                        {mentor.name.charAt(0)}
+                                    </div>
+                                )}
+                            </div>
 
-        {/* --- CORNER BRACKETS --- */}
-        <div className="absolute top-0 left-0 w-6 md:w-10 h-6 md:h-10 border-t-2 border-l-2 border-[#1e293b]"></div>
-        <div className="absolute top-0 right-0 w-6 md:w-10 h-6 md:h-10 border-t-2 border-r-2 border-[#1e293b]"></div>
-        <div className="absolute bottom-0 left-0 w-6 md:w-10 h-6 md:h-10 border-b-2 border-l-2 border-[#1e293b]"></div>
-        <div className="absolute bottom-0 right-0 w-6 md:w-10 h-6 md:h-10 border-b-2 border-r-2 border-[#1e293b]"></div>
-
-        <div className="absolute top-3 left-3 md:top-4 md:left-4 flex items-center gap-2">
-          <div className="w-2 h-2 md:w-2.5 md:h-2.5 bg-red-500 rounded-full animate-pulse shadow-[0_0_5px_rgba(239,68,68,0.8)]"></div>
-          <span className="text-[#1e293b] font-bold text-[10px] md:text-xs tracking-widest uppercase">
-            REC
-          </span>
-        </div>
-
-        <div className="relative w-8 md:w-12 h-8 md:h-12 flex items-center justify-center mb-2 md:mb-4">
-          <div className="absolute top-0 left-0 w-2 md:w-3 h-2 md:h-3 border-t border-l border-[#1e293b]"></div>
-          <div className="absolute top-0 right-0 w-2 md:w-3 h-2 md:h-3 border-t border-r border-[#1e293b]"></div>
-          <div className="absolute bottom-0 left-0 w-2 md:w-3 h-2 md:h-3 border-b border-l border-[#1e293b]"></div>
-          <div className="absolute bottom-0 right-0 w-2 md:w-3 h-2 md:h-3 border-b border-r border-[#1e293b]"></div>
-          <span className="text-[#1e293b] text-lg md:text-xl font-light">+</span>
-        </div>
-
-
-        <h2 className="uppercase font-rajdhani font-bold text-2xl md:text-3xl tracking-wider text-[#0A5C7A] drop-shadow-sm">
-          Coming Soon
-        </h2>
-
-      </div>
+                            <div className="flex flex-col">
+                                <div className="flex items-center gap-2 mb-1.5 text-white">
+                                  
+                                    <h3 className="tfont-rajdhani text-sm sm:text-lg font-semibold text-white tracking-tight">
+                                        {mentor.name}
+                                    </h3>
+                                    <Link target="_blank" href={mentor.profile}>
+                <FaInfoCircle  />
+              </Link>
+                                </div>
+                                <p className="text-xs sm:text-sm text-slate-200 leading-snug font-rajdhani font-semibold">
+                                    {mentor.post}, <br className="hidden sm:block" /> {mentor.university}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
     </div>
   );
 };

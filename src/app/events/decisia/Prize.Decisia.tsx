@@ -66,7 +66,7 @@ export default function Prizes() {
     };
 
     return (
-        <section id='prizes' className="relative w-full py-24 flex flex-col items-center justify-center bg-transparent z-10">
+        <section id='prizes' className="relative w-full py-10 flex flex-col items-center justify-center bg-transparent z-10">
 
             <div className='maxWidthForSections w-full flex flex-col items-center px-4'>
 
@@ -78,7 +78,7 @@ export default function Prizes() {
                     viewport={{ once: true, margin: "-100px" }}
                     className="flex flex-col items-center pointer-events-none select-none mb-16 md:mb-24"
                 >
-                    <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase relative inline-block">
+                    <h1 className="font-orbitron font-bold text-center text-3xl sm:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-gray-300 to-white drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase relative inline-block">
                         Prizes
                         <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-200/60 to-transparent"></span>
                     </h1>
@@ -106,11 +106,6 @@ export default function Prizes() {
                   transition-all duration-500 hover:-translate-y-2 md:hover:-translate-y-3 
                   ${prize.borderGlow} ${prize.glow}`}
                             >
-
-                                {/* Responsive Image Sizing
-                                    Mobile Math: Gold (-top-12, h-20), Silver (-top-8, h-16) -> Bottoms align perfectly at 2rem!
-                                    Desktop Math: Gold (-top-24, h-40), Silver (-top-16, h-32) -> Bottoms align perfectly at 4rem!
-                                */}
                                 <div
                                     className={`absolute drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)] transition-transform duration-500 ease-out 
                                     ${isGold 

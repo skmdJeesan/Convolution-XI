@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { motion, Variants } from "framer-motion" // <-- 1. Import Variants here
+import { motion, Variants } from "framer-motion"
 
 type Mentor = {
     name: string;
@@ -25,7 +25,6 @@ const mentors: Mentor[] = [
 ];
 
 export default function Mentors() {
-    // 2. Add ": Variants" to your animation objects
     const headerVariants: Variants = {
         hidden: { opacity: 0, y: 40 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.6, staggerChildren: 0.15 } }
@@ -47,7 +46,7 @@ export default function Mentors() {
         visible: {
             opacity: 1,
             x: 0,
-            transition: { duration: 0.5, ease: "easeOut" } // The error here will disappear!
+            transition: { duration: 0.5, ease: "easeOut" }
         }
     };
 

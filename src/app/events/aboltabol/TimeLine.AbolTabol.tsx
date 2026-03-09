@@ -28,15 +28,14 @@ const Timeline = () => {
           viewport={{ once: true, amount: 0.5 }}
           className="flex flex-col items-center pointer-events-none select-none mb-5"
         >
-          <h1 className="font-orbitron font-bold text-center text-4xl md:text-5xl tracking-wide text-transparent bg-clip-text bg-linear-to-b from-gray-300 to-white drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
-            Timeline
-            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-200/60 to-transparent"></span>
-          </h1>
-        </motion.div>
-        
-        <span className="font-orbitron text-3xl md:text-6xl font-bold tracking-widest text-yellow-300 drop-shadow-[0_0_15px_rgba(250,204,21,0.3)] uppercase text-center mt-2">
-          Coming Soon...
-        </span>
+          <h1 className="font-orbitron font-bold text-center text-3xl md:text-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-blue-200 to-purple-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] whitespace-nowrap uppercase">
+                      Timeline
+                    </h1>
+                  </motion.div>
+                  
+                  <span className="font-orbitron text-3xl md:text-4xl font-bold tracking-widest text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.3)] uppercase text-center mt-2">
+                    Coming Soon...
+                  </span>
       </div>
       
     </div>
