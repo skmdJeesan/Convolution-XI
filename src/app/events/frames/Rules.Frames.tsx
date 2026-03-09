@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 const rules = [
-  "The event has two themes in particular. Photos of pattern and a  theme will be accepted.",
+  "The event has 2 categories, an open category and a thematic category. The theme for this year is PATTERNS. Open submissions are also accepted, the naming will be as is given in the gform rules given.",
   "Format: JPEG/JPG format",
   "Photo Dimensions: 2×3 / 4×6 / 8×12 (inch)",
   "Max 3 photos are to be submitted (for each participant).",
@@ -52,10 +52,8 @@ const Rules = () => {
       {/* --- Main Content --- */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         
-        {/* 12-Column Grid for exact proportional control */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-5 items-center">
-          
-          {/* LEFT ON DESKTOP | BOTTOM ON MOBILE */}
+
           <div className="order-2 lg:order-1 lg:col-span-7 xl:col-span-8 flex justify-center lg:justify-start w-full">
             <div
               className="rounded-[2rem] w-full py-10 px-6 md:px-12 bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.15)]"
