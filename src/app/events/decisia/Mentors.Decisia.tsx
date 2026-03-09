@@ -20,11 +20,11 @@ const mentors: Mentor[] = [
         profile: "https://jadavpuruniversity.in/faculty-profile/sovan-dalai/"
     },
     {
-        name: "Susanta Ray",
+        name: "Arpan Kumar Pradhan",
         post: "Associate Professor at Department of Electrical Engineering",
         university: "Jadavpur University",
-        image: "/Mentors/sr.png",
-        profile: "https://www.researchgate.net/profile/Susanta-Ray"
+        image: "/Mentors/ap.png",
+        profile: "https://scholar.google.co.in/citations?user=fqBBOAYAAAAJ&hl=en"
     },
 ];
 
