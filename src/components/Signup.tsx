@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import Link from 'next/link';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import {
   Select,
   SelectContent,
@@ -31,7 +32,7 @@ import DecorativeIcons from './DecorativeIcons';
 import TransitionLink from './TransitionLink';
 import FlipLink from './FlipLink';
 
-// --- LOADER ---
+//loader
 const Loader = () => (
   <div className="flex items-center gap-1">
     <span className="w-0.5 h-3 bg-cyan-950 animate-[pulse_0.6s_ease-in-out_infinite]"></span>
@@ -57,7 +58,14 @@ export default function SignupForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    
+
+    if (name === 'phone') {
+      const numericValue = value.replace(/\D/g, '');
+      setFormData(prev => ({ ...prev, [name]: numericValue.slice(0, 10) }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleYearChange = (value: string) => {
@@ -66,6 +74,16 @@ export default function SignupForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // mobile number checker
+    if (formData.phone.length !== 10) {
+      toast.error("Phone number must be exactly 10 digits.", {
+        style: { background: "#0a0e14", color: "#ef4444", border: "1px solid #7f1d1d", fontFamily: "rajdhani" },
+        iconTheme: { primary: '#ef4444', secondary: '#0a0e14' }
+      });
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -90,7 +108,6 @@ export default function SignupForm() {
       setLoading(false);
     }
   };
-
 
   const inputContainerClass = "relative flex items-center h-9 bg-[#0a0e14] border border-cyan-800/30 transition-all duration-300 group-hover/input:border-cyan-500/50 group-focus-within/input:border-cyan-400 group-focus-within/input:bg-[#080b10] group-focus-within/input:shadow-[inset_0_0_10px_rgba(6,182,212,0.1)] [clip-path:polygon(0_0,100%_0,100%_calc(100%-8px),calc(100%-8px)_100%,0_100%)]";
 
@@ -120,7 +137,7 @@ export default function SignupForm() {
         <DecorativeIcons />
       </div>
 
-      {/* HIDDEN ON MOBILE */}
+      {/*hidden for mobile*/}
       <TransitionLink
         href="/"
         className="hidden md:flex absolute top-6 left-6 z-50 items-center gap-2 px-4 py-2.5 bg-cyan-950/40  border-cyan-500/50  lg:bg-black/30 lg:border-white/10 lg:hover:border-cyan-500/50 lg:hover:bg-cyan-950/40 lg:hover:shadow-cyan-500/20 backdrop-blur-md border  rounded-full transition-all duration-300 shadow-lg  group cursor-pointer overflow-hidden"
@@ -236,7 +253,9 @@ export default function SignupForm() {
                       <div className="pl-3 pr-2 text-cyan-600 group-focus-within/input:text-cyan-400 transition-colors"><IoCallOutline size={14} /></div>
                       <input
                         type="text"
-                        placeholder='Enter you phone number'
+                        inputMode="numeric"
+                        maxLength={10}
+                        placeholder='Enter your phone number'
                         name='phone'
                         value={formData.phone}
                         onChange={handleChange}
