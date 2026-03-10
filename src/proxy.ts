@@ -57,9 +57,8 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/profile/:path*',        // profile overview + edit
-    '/lead-dashboard/:path*', // lead dashboard pages
-    '/lead-access/:path*',    // must be logged in to upgrade to lead
-    // add additional protected pages here as they appear
+    '/profile/:path*',
+    '/lead-dashboard/:path*', 
+    '/lead-access/:path*',    
   ],
 };
