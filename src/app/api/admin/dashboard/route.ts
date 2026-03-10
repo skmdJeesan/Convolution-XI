@@ -10,19 +10,21 @@ export async function GET(req: NextRequest) {
         await dbConnect();
 
         // total users
-        const totalUsers = await User.countDocuments();
+        const totalUsers = await User.countDocuments({ isVerified: true });
         const registeredUsers = await User.countDocuments({
+            isVerified: true,
             eventsRegistered: { $exists: true, $not: { $size: 0 } }
         });
 
         // ju vs non-ju
         const juRegex = /^\s*(ju|jadavpur university)\s*$/i;
         const totalJUUsers = await User.countDocuments({
+            isVerified: true,
             institution: { $regex: juRegex }
         });
         const totalOtherUsers = totalUsers - totalJUUsers;
 
-        // Team stats
+        // team stats
         const teamStats = await Team.aggregate([
             {
                 $group: {
@@ -33,15 +35,14 @@ export async function GET(req: NextRequest) {
             }
         ]);
 
-        //solo with ju
         const allRegistrations = await User.aggregate([
+            { $match: { isVerified: true } },
             { $unwind: "$eventsRegistered" },
             {
                 $project: {
                     event: "$eventsRegistered",
                     isJU: {
                         $in: [
-                            // CHANGED: "$institution" instead of "$college"
                             { $trim: { input: { $toLower: { $ifNull: ["$institution", ""] } } } },
                             ["ju", "jadavpur university"]
                         ]
@@ -80,7 +81,6 @@ export async function GET(req: NextRequest) {
                 };
             });
 
-        // 7. Format Team Events Data
         const teamEventsData = teamStats
             .filter(event => !soloEventKeys.includes(event._id.toLowerCase()))
             .map(e => {

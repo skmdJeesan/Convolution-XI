@@ -5,7 +5,6 @@ import Team from "@/models/team.model";
 
 export const dynamic = 'force-dynamic';
 
-// Helper function to safely format strings for CSV
 const escapeCSV = (value: any) => {
     if (value === null || value === undefined) return '""';
     const str = String(value).replace(/"/g, '""'); // Escape double quotes
@@ -24,21 +23,38 @@ export async function GET(req: NextRequest) {
         let filename = "export.csv";
 
         if (type === "users") {
-        //    total overview
-            const users = await User.find({}).sort({ createdAt: -1 });
+            const users = await User.find({ isVerified: true }).sort({ createdAt: -1 });
             
-            const headers = ["Username", "User ID", "Institute", "Year", "Department", "Email", "Contact", "Registered In Any Event"];
+            const headers = [
+                "Username", "User ID", "Institute", "Year", "Department", "Email", "Contact", "Registered In Any Event",
+                "Algomaniac", "Sparkhack", "Decisia", "Aboltabol", "Circuistics", "Eureka", "Inquizzitive", "24Frames", "JU Talks"
+            ];
             
-            const rows = users.map(u => [
-                u.name,
-                u._id?.toString() || "",
-                u.institution,
-                u.year,
-                u.department,
-                u.email,
-                u.phone,
-                u.eventsRegistered && u.eventsRegistered.length > 0 ? "Yes" : "No"
-            ]);
+            const rows = users.map(u => {
+                const userEvents = (u.eventsRegistered || []).map((e: string) => e.toLowerCase().trim());
+
+                return [
+                    u.name,
+                    u._id?.toString() || "",
+                    u.institution,
+                    u.year,
+                    u.department,
+                    u.email,
+                    u.phone,
+                    u.eventsRegistered && u.eventsRegistered.length > 0 ? "Yes" : "No",
+                    
+                    // Specific Event Checks
+                    userEvents.includes("algomaniac") ? "Yes" : "No",
+                    userEvents.includes("sparkhack") ? "Yes" : "No",
+                    userEvents.includes("decisia") ? "Yes" : "No",
+                    userEvents.includes("aboltabol") ? "Yes" : "No",
+                    userEvents.includes("circuistics") ? "Yes" : "No",
+                    userEvents.includes("eureka") ? "Yes" : "No",
+                    userEvents.includes("inquizzitive") ? "Yes" : "No",
+                    (userEvents.includes("frames") || userEvents.includes("24frames")) ? "Yes" : "No",
+                    userEvents.includes("jutalks") ? "Yes" : "No",
+                ];
+            });
 
             csvData = [headers.map(escapeCSV).join(","), ...rows.map(row => row.map(escapeCSV).join(","))].join("\n");
             filename = "All_Users_Overview.csv";
@@ -47,7 +63,7 @@ export async function GET(req: NextRequest) {
             // solo
             const users = await User.find({ eventsRegistered: eventName }).sort({ createdAt: -1 });
             
-            // Exactly the same details as overview
+            
             const headers = ["Username", "User ID", "Institute", "Year", "Department", "Email", "Contact", "Registered In Any Event"];
             
             const rows = users.map(u => [
@@ -58,7 +74,7 @@ export async function GET(req: NextRequest) {
                 u.department,
                 u.email,
                 u.phone,
-                "Yes" // If they are in this list, they are registered
+                "Yes" 
             ]);
 
             csvData = [headers.map(escapeCSV).join(","), ...rows.map(row => row.map(escapeCSV).join(","))].join("\n");
@@ -71,26 +87,27 @@ export async function GET(req: NextRequest) {
                 .populate("members.user", "name email phone institution department year _id")
                 .sort({ createdAt: -1 });
 
-            // Using a flattened structure where each row represents ONE person in a team
+           
             const headers = [
-                "Team Name", "Team Status", "Role", "Invite Status", 
+                "Team ID", "Team Name", "Team Status", "Role", "Invite Status", 
                 "Username", "User ID", "Institute", "Year", "Department", "Email", "Contact"
             ];
 
             const rows: any[][] = [];
 
             teams.forEach(t => {
+                const teamId = t._id?.toString() || "";
                 const teamName = t.teamName;
-                const teamStatus = t.status; // 'pending' or 'confirmed'
-
+                const teamStatus = t.status;
                 // Leader's Row
                 const leader = t.leader as any;
                 if (leader) {
                     rows.push([
+                        teamId,
                         teamName, 
                         teamStatus, 
                         "Leader", 
-                        "Accepted", // Leader automatically accepts by creating the team
+                        "Accepted",
                         leader.name, 
                         leader._id?.toString() || "", 
                         leader.institution, 
@@ -107,7 +124,8 @@ export async function GET(req: NextRequest) {
                         const memberUser = m.user;
                         if (memberUser) {
                             rows.push([
-                                teamName, 
+                                teamName,
+                                teamId, 
                                 teamStatus, 
                                 "Member", 
                                 m.status, // 'pending', 'accepted', or 'declined'
