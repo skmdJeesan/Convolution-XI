@@ -103,8 +103,8 @@ export async function GET(req: NextRequest) {
                 const leader = t.leader as any;
                 if (leader) {
                     rows.push([
-                        teamId,
                         teamName, 
+                        teamId,
                         teamStatus, 
                         "Leader", 
                         "Accepted",
